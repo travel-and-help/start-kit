@@ -11,7 +11,7 @@
     "coverage:front": "nyc --report-dir=reports/coverage/front npm run test:front",
     "coverage:back": "nyc --report-dir=reports/coverage/back npm run test:back",
 
-    "lint": "eslint .",
+    "lint": "eslint src",
     "lint:front": "eslint src/front",
     "lint:back": "eslint src/back"
   },
