@@ -4,12 +4,14 @@
   "description": "",
   "private": "true",
   "scripts": {
-    "test": "npm-run-all test:*",
-    "pretest:front": "npm run lint:front",
     "test:front": "mocha test/front --compilers js:babel-register",
-    "pretest:back": "npm run lint:back",
     "test:back": "mocha test/back",
-    "lint": "eslint ./",
+
+    "test": "npm-run-all lint coverage:*",
+    "coverage:front": "nyc --report-dir=reports/coverage/front npm run test:front",
+    "coverage:back": "nyc --report-dir=reports/coverage/back npm run test:back",
+
+    "lint": "eslint .",
     "lint:front": "eslint src/front",
     "lint:back": "eslint src/back"
   },
@@ -35,11 +37,21 @@
     "glob": "^7.0.3",
     "mocha": "^2.4.5",
     "npm-run-all": "^1.5.3",
+    "nyc": "^6.1.1",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0"
   },
   "engines": {
     "node": "^5.8.0",
     "npm": "^3.8.1"
+  },
+  "nyc": {
+    "reporter": "html",
+    "exclude": [
+      "**/*.spec.js",
+      "test/"
+    ],
+    "lines": 98,
+    "check-coverage": true
   }
 }
