@@ -1,0 +1,25 @@
+{
+  "extends": "airbnb/base",
+  "env": {
+    "node": true,
+    "mocha": true
+  },
+  "globals": {
+    "env": true
+  },
+  "parserOptions": {
+    "sourceType": "script"
+  },
+  "rules": {
+    "one-var": 0,
+    "padded-blocks": 0,
+    "strict": [
+      2,
+      "global"
+    ],
+    "indent": [
+      2,
+      4
+    ]
+  }
+}

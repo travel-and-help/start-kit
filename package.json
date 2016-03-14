@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint src",
+    "pretest": "npm run lint",
+    "test": ""
   },
   "repository": {
     "type": "git",
@@ -14,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/PAUR/travel-and-help/issues"
   },
-  "homepage": "https://github.com/PAUR/travel-and-help#readme"
+  "homepage": "https://github.com/PAUR/travel-and-help#readme",
+  "devDependencies": {
+    "babel-eslint": "^5.0.0",
+    "eslint": "^2.4.0",
+    "eslint-config-airbnb": "^6.1.0",
+    "eslint-plugin-react": "^4.2.1"
+  }
 }
