@@ -7,7 +7,8 @@ reports
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff:
-.idea/
+!.idea/
+.idea/*
 !.idea/codeStyleSettings.xml
 
 ## File-based project format:
