@@ -1,11 +1,5 @@
 'use strict';
 
-const
-    glob = require('glob'),
-    path = require('path');
+const load = require('./load');
 
-require('./testConfig');
-
-const SPECS_PATTERN = path.join(__dirname, '../src/back/**/*.spec.js');
-
-glob.sync(SPECS_PATTERN).forEach(spec => require(spec));
+load('../src/back');
