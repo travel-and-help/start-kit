@@ -5,13 +5,20 @@
     "commonjs": true,
     "mocha": true
   },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
   "globals": {
-    "env": true
+    "env": true,
+    "deepFreeze": true
   },
   "plugins": [
     "react"
   ],
   "rules": {
+    "comma-dangle": 0,
     "one-var": 0,
     "padded-blocks": 0,
     "indent": [

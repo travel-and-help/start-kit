@@ -5,12 +5,14 @@
     "mocha": true
   },
   "globals": {
-    "env": true
+    "env": true,
+    "deepFreeze": true
   },
   "parserOptions": {
     "sourceType": "script"
   },
   "rules": {
+    "comma-dangle": 0,
     "one-var": 0,
     "padded-blocks": 0,
     "strict": [
