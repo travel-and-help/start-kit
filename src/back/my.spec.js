@@ -1,10 +1,11 @@
 'use strict';
 
+const my = require('./my');
+
 describe('my test', () => {
 
     it('should not fail', () => {
-
-        true.should.equal(true);
+        my.foo().should.equal(1);
     });
 
 });
