@@ -6,11 +6,9 @@
   "scripts": {
     "test:front": "mocha test/front --compilers js:babel-register",
     "test:back": "mocha test/back",
-
     "test": "npm-run-all lint coverage:*",
     "coverage:front": "nyc --report-dir=reports/coverage/front npm run test:front",
     "coverage:back": "nyc --report-dir=reports/coverage/back npm run test:back",
-
     "lint": "eslint src",
     "lint:front": "eslint src/front",
     "lint:back": "eslint src/back"
@@ -31,6 +29,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.7.2",
     "chai": "^3.5.0",
+    "deep-freeze": "0.0.1",
     "eslint": "^2.4.0",
     "eslint-config-airbnb": "^6.1.0",
     "eslint-plugin-react": "^4.2.1",
