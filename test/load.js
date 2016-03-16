@@ -7,7 +7,7 @@ const
 module.exports = (sourceDir) => {
     require('./testConfig');
 
-    const SPECS_PATTERN = path.join(__dirname, sourceDir, '/**/*.spec.js');
+    const SPECS_PATTERN = path.join(sourceDir, '/**/*.spec.js');
 
     glob.sync(SPECS_PATTERN).forEach(spec => require(spec));
 };
