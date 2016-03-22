@@ -1,0 +1,27 @@
+{
+  "extends": "airbnb/base",
+  "env": {
+    "node": true,
+    "mocha": true
+  },
+  "globals": {
+    "env": true,
+    "deepFreeze": true
+  },
+  "parserOptions": {
+    "sourceType": "script"
+  },
+  "rules": {
+    "comma-dangle": 0,
+    "one-var": 0,
+    "padded-blocks": 0,
+    "strict": [
+      2,
+      "global"
+    ],
+    "indent": [
+      2,
+      4
+    ]
+  }
+}
