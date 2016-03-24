@@ -1,6 +1,8 @@
 ### PROJECT
 .nyc_output
 reports
+target
+.env
 
 ### IDE
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm

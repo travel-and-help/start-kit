@@ -4,6 +4,7 @@
   "description": "",
   "private": "true",
   "scripts": {
+    "build": "webpack --config webpack/index.js",
     "test:front": "mocha test/front --compilers js:babel-register",
     "test:back": "mocha test/back",
     "test": "npm-run-all lint coverage:*",
@@ -24,21 +25,36 @@
   },
   "homepage": "https://github.com/travel-and-help/start-kit#readme",
   "devDependencies": {
+    "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.6.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.7.2",
+    "base64-font-loader": "0.0.3",
     "chai": "^3.5.0",
+    "chalk": "^1.1.1",
+    "css-loader": "^0.23.1",
     "deep-freeze": "0.0.1",
+    "dotenv": "^2.0.0",
     "eslint": "^2.4.0",
     "eslint-config-airbnb": "^6.1.0",
     "eslint-plugin-react": "^4.2.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "getenv": "^0.6.0",
     "glob": "^7.0.3",
+    "html-webpack-plugin": "^2.14.0",
+    "import-glob-loader": "^1.1.0",
     "mocha": "^2.4.5",
+    "node-sass": "^3.4.2",
     "npm-run-all": "^1.5.3",
     "nyc": "^6.1.1",
+    "raw-loader": "^0.5.1",
+    "react-hot-loader": "^1.3.0",
+    "sass-loader": "^3.2.0",
     "sinon": "^1.17.3",
-    "sinon-chai": "^2.8.0"
+    "sinon-chai": "^2.8.0",
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1"
   },
   "engines": {
     "node": "^5.8.0",
@@ -52,5 +68,8 @@
     ],
     "lines": 98,
     "check-coverage": true
+  },
+  "dependencies": {
+    "react": "^0.14.7"
   }
 }
