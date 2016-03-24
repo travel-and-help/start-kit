@@ -4,7 +4,8 @@ const
     env = require('../env'),
     layout = require('../layout'),
     logEnv = require('../env/log'),
-    loaders = require('./loaders');
+    loaders = require('./loaders'),
+    autoprefixer = require('autoprefixer');
 
 logEnv(env);
 
@@ -17,7 +18,11 @@ module.exports = Object.assign({
             loaders: 'import-glob-loader'
         }],
         loaders
-    }
+    },
+    postcss: () => ([
+        autoprefixer
+    ])
+
 }, getConfigForEnv(env));
 
 function getConfigForEnv(environment) {
