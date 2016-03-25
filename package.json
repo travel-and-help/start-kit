@@ -6,9 +6,10 @@
   "scripts": {
     "start:back": "cd src/back && nodemon",
     "start:front": "npm run build",
-    "start": "npm-run-all -p start:*",
+    "start": "npm-run-all start:front start:back",
     "watch:front": "webpack-dev-server --config webpack/index.js",
     "watch:back": "npm run start:back",
+    "watch:db": "mongod --dbpath .local-db",
     "watch": "npm-run-all -p watch:*",
     "build": "webpack --config webpack/index.js",
     "test:front": "mocha test/front --compilers js:babel-register",
@@ -62,6 +63,7 @@
     "react-hot-loader": "^1.3.0",
     "sass-loader": "^3.2.0",
     "sinon": "^1.17.3",
+    "sinon-as-promised": "^4.0.0",
     "sinon-chai": "^2.8.0",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"
@@ -87,6 +89,8 @@
     "body-parser": "^1.15.0",
     "cors": "^2.7.1",
     "express": "^4.13.4",
+    "mongoose": "^4.4.10",
+    "q": "^1.4.1",
     "react": "^0.14.7"
   }
 }

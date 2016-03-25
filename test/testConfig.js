@@ -4,10 +4,13 @@ const
     chai = require('chai'),
     sinon = require('sinon'),
     sinonChai = require('sinon-chai'),
-    deepFreeze = require('deep-freeze');
+    deepFreeze = require('deep-freeze'),
+    sinonAsPromised = require('sinon-as-promised'),
+    q = require('q');
 
 global.env = null;
 global.sinon = sinon;
+sinonAsPromised(q.Promise);
 global.deepFreeze = deepFreeze;
 chai.should();
 

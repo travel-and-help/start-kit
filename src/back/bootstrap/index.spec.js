@@ -4,37 +4,50 @@ const proxyquire = require('proxyquire');
 
 describe('bootstrap', () => {
 
-    let sut,
-        premiddleware,
-        app;
+    let premiddleware,
+        app,
+        db,
+        appEnv,
+        result;
+
     const controllers = {};
 
     beforeEach(() => {
 
         premiddleware = env.stub();
+        db = env.stub();
+        appEnv = {
+            DB_URL: 'db-url'
+        };
 
-        sut = proxyquire('./index', {
+        const sut = proxyquire('./index', {
             '../controllers': controllers,
-            './preMiddleware': premiddleware
+            './preMiddleware': premiddleware,
+            './db': db,
+            '../../../env': appEnv
         });
 
         app = {
             use: env.spy(() => app)
         };
+
+        result = sut(app);
+    });
+
+    it('should connect to database', () => {
+        db.should.been.calledWith(appEnv.DB_URL);
     });
 
     it('should add premiddleware to app', () => {
-        sut(app);
         premiddleware.should.been.calledWith(app);
     });
 
     it('should add controllers to app', () => {
-        sut(app);
         app.use.should.been.calledWith(controllers);
     });
 
     it('should return app instance', () => {
-        sut(app).should.equal(app);
+        result.should.equal(app);
     });
 
 });

@@ -10,5 +10,5 @@ loadEnv(layout.envFilePath);
 module.exports = {
     PORT: getenv.int('PORT', 9000),
     NODE_ENV: getenv('NODE_ENV', 'production'),
-    DB_URL: getenv('DB_URL', '')
+    DB_URL: getenv('DB_URL', 'mongodb://localhost:27017')
 };
