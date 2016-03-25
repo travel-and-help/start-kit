@@ -2,10 +2,15 @@
   "name": "travel-and-help",
   "version": "1.0.0",
   "description": "",
-  "private": "true",
+  "private": true,
   "scripts": {
+    "start:back": "cd src/back && nodemon",
+    "start:front": "npm run build",
+    "start": "npm-run-all -p start:*",
+    "watch:front": "webpack-dev-server --config webpack/index.js",
+    "watch:back": "npm run start:back",
+    "watch": "npm-run-all -p watch:*",
     "build": "webpack --config webpack/index.js",
-    "watch": "webpack-dev-server --config webpack/index.js",
     "test:front": "mocha test/front --compilers js:babel-register",
     "test:back": "mocha test/back",
     "test": "npm-run-all lint coverage:*",
@@ -48,9 +53,11 @@
     "import-glob-loader": "^1.1.0",
     "mocha": "^2.4.5",
     "node-sass": "^3.4.2",
+    "nodemon": "^1.9.1",
     "npm-run-all": "^1.5.3",
     "nyc": "^6.1.1",
     "postcss-loader": "^0.8.2",
+    "proxyquire": "^1.7.4",
     "raw-loader": "^0.5.1",
     "react-hot-loader": "^1.3.0",
     "sass-loader": "^3.2.0",
@@ -67,12 +74,19 @@
     "reporter": "html",
     "exclude": [
       "**/*.spec.js",
-      "test/"
+      "test/",
+      "webpack/",
+      "env/",
+      "reports/",
+      "target/"
     ],
     "lines": 98,
     "check-coverage": true
   },
   "dependencies": {
+    "body-parser": "^1.15.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
     "react": "^0.14.7"
   }
 }

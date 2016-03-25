@@ -12,6 +12,7 @@
   },
   "globals": {
     "env": true,
+    "sinon": true,
     "deepFreeze": true
   },
   "plugins": [
