@@ -15,9 +15,5 @@ module.exports = [
     {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract('css!sass!import-glob-loader!postcss')
-    },
-    {
-        test: /\.png$/,
-        loader: 'file?name=sprite.[ext]'
     }
 ];
