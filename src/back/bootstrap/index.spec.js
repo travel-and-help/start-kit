@@ -5,17 +5,27 @@ const proxyquire = require('proxyquire');
 describe('bootstrap', () => {
 
     let sut,
+        premiddleware,
         app;
     const controllers = {};
 
     beforeEach(() => {
+
+        premiddleware = env.stub();
+
         sut = proxyquire('./index', {
-            '../controllers': controllers
+            '../controllers': controllers,
+            './preMiddleware': premiddleware
         });
 
         app = {
             use: env.spy(() => app)
         };
+    });
+
+    it('should add premiddleware to app', () => {
+        sut(app);
+        premiddleware.should.been.calledWith(app);
     });
 
     it('should add controllers to app', () => {

@@ -1,5 +1,10 @@
 'use strict';
 
-const controllers = require('../controllers');
+const
+    preMiddleware = require('./preMiddleware'),
+    controllers = require('../controllers');
 
-module.exports = (app) => app.use(controllers);
+module.exports = (app) => {
+    preMiddleware(app);
+    return app.use(controllers);
+};
