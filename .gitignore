@@ -1,5 +1,8 @@
 ### PROJECT
 .nyc_output
+!.local-db/
+.local-db/*
+!.local-db/.gitkeep
 reports
 target
 .env
