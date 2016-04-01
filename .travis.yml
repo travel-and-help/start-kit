@@ -5,12 +5,10 @@ git:
   depth: 5
 addons:
   sauce_connect: true
-before_install:
-  - npm install -g protractor
 script:
   - npm run build
   - npm test
-  - protractor protractor.conf.js
+  - npm run protractor
 branches:
   only:
     - master

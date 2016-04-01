@@ -19,7 +19,8 @@
     "coverage:back": "nyc --report-dir=reports/coverage/back npm run test:back",
     "lint": "eslint src",
     "lint:front": "eslint src/front",
-    "lint:back": "eslint src/back"
+    "lint:back": "eslint src/back",
+    "protractor": "protractor protractor.conf.js"
   },
   "repository": {
     "type": "git",
