@@ -1,23 +1,24 @@
 language: node_js
 sudo: false
-node_js:
-  - '5'
 git:
   depth: 5
 addons:
   sauce_connect: true
+
+before_install:
+  - npm install -g npm@latest
 script:
   - npm run build
-  - npm test
+  - npm run test-ci
   - npm run protractor
 branches:
   only:
     - master
-cache:
-  directories:
-    - node_modules
 deploy:
   provider: heroku
   skip_cleanup: true
   api_key:
     secure: YHBT3sqo1xtGG+THDOenxQP8vnb+D43luWPzP3rv+Oa8kyo+bTUOMUdeJOl2uoM2XvlToEM7hOJbWEgaVPjomJ3/HFMSW2PAsfBcUYYJDOQ43t/wehJpPX/+ALdZuWUs+lzAsL31WTxTkyYn5HfiE6T406gtbY05sBx1AQBcvXQW/1IIDCMljxKnLdmpET9IAS3SHIjKBI2nF6f2LVghUkXKU6v9xhYgw8Jt998dv/mlWoYHhUDqw3Vk913ce+EQljguPxSy5FKdEOBwyxu0Bqh9GVGaUe+YpWnVP6u0kMqehjfEog0wNMu1ly4cIrXQTrWAfrHEU3dduFda2k0sarBOLeOQvjveM11nw1CANt9hwViOsFfWpteIDuZLTYx8F2hMj0kEkmFCloCa8yh9VrrVY+06i0SjLlKeub2o2M4jjc4m6RWOgjZYdoVCPnlz85TEdcQ/BBf6Uxuxs13oauQRFQgqVqC9SXojeTnUyiIc8YNEy8dAXggFkL7GXWV+G4Y5tbcVYaPaKezWN6wvDmd9ikZ1bYLhRSezMsb5cnSM1KTlk2DaD712s+auXqVcSMMoBfuvvazixf2CyuTIAaKo92egVjxphgXWAsBb4udethBAL8A6CRvykBzqAGaV2NWasNjA4tLrpR9asVw4enQKDbvlwEziSI54a2gCbOM=
+cache:
+  directories:
+    - node_modules
