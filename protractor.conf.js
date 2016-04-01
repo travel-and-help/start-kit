@@ -1,4 +1,5 @@
 exports.config = {
+    baseUrl: 'https://t7h-ci-kit.herokuapp.com',
     capabilities: {
         'browserName': 'chrome'
     },
