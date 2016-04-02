@@ -4,11 +4,11 @@
 
 ## Links
 
-### CI [Travis-CI] (https://travis-ci.org/stremann/t7h-ci-kit)
+### CI [Travis-CI] (https://travis-ci.org/travel-and-help/start-kit)
 
 ### E2E [Sauce Labs] (https://saucelabs.com/beta/dashboard/tests)
 
-### LIVE [Heroku] (https://t7h-ci-kit.herokuapp.com/)
+### LIVE [Heroku] (https://start-kit.herokuapp.com/)
 
 ## Main npm scripts
 

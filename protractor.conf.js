@@ -1,5 +1,5 @@
 exports.config = {
-    baseUrl: 'https://t7h-ci-kit.herokuapp.com',
+    baseUrl: 'https://start-kit.herokuapp.com/',
     reporters: ['dots', 'saucelabs'],
     capabilities: {
         'browserName': 'chrome'
