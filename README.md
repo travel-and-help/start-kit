@@ -1,4 +1,4 @@
-# start-kit
+# Travel and Help
 [![Build Status](https://travis-ci.org/travel-and-help/start-kit.svg?branch=master)](https://travis-ci.org/travel-and-help/start-kit)
 [![Coverage](https://codecov.io/github/travel-and-help/start-kit/coverage.svg?branch=master)](https://codecov.io/github/travel-and-help/start-kit?branch=master)
 
