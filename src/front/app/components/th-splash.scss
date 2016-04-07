@@ -1,0 +1,67 @@
+.th-splash {
+  $content-padding: 150px;
+  $font-size: 60px;
+  $word-width: 45;
+  $word-width-padding: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 200px;
+  font-size: $font-size;
+  user-select: none;
+
+  &__content {
+    position: relative;
+    cursor: pointer;
+
+    &:hover {
+      .th-splash {
+
+        &__travel {
+          left: -($word-width + $word-width-padding + 129) + $content-padding;
+        }
+
+        &__help {
+          left: ($word-width + $word-width-padding) + $content-padding;
+        }
+
+        &-word {
+          &__rest-word {
+            font-size: inherit;
+          }
+        }
+      }
+    }
+  }
+
+  &__travel {
+    top: 0;
+    left: -$word-width * 1px + $content-padding;
+    transition: left, fade-in, .3s;
+  }
+
+  &__and {
+    display: block;
+    padding: 0 $content-padding;
+  }
+
+  &__help {
+    top: 0;
+    left: $word-width * 1px + $content-padding;
+  }
+
+  &-word {
+    position: absolute;
+    transition: padding, fade-in, .3s;
+
+    &__first-letter {
+      font-weight: bold;
+    }
+
+    &__rest-word {
+      font-size: 0;
+      transition: font-size, fade-in, .3s;
+    }
+  }
+}
