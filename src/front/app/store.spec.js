@@ -45,7 +45,7 @@ describe('store', () => {
                 routing: reactRouterRedux.routerReducer
             })
             .and
-            .callCount(1);
+            .callCount(2);
     });
 
     it('should create store for combined reducer', () => {
