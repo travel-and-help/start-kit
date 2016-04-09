@@ -1,7 +1,11 @@
 import React from 'react';
-import { Route } from 'react-router';
-import THSplash from './components/THSplash';
+import { Route, IndexRoute } from 'react-router';
+import TodoScreen from './components/screens/TodoScreen';
+import LoginScreen from './components/screens/LoginScreen';
 
 export default () => (
-    <Route path="/" component={THSplash} />
+    <Route path="/">
+        <IndexRoute component={LoginScreen} />
+        <Route path="todo" component={TodoScreen} />
+    </Route>
 );
