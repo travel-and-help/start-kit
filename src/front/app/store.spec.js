@@ -16,7 +16,7 @@ describe('store', () => {
         };
 
         reactRouter = {
-            browserHistory: {}
+            hashHistory: {}
         };
 
         reactRouterRedux = {
@@ -57,7 +57,7 @@ describe('store', () => {
 
     it('should sync history with app store', () => {
         reactRouterRedux.syncHistoryWithStore.should
-            .calledWith(reactRouter.browserHistory, redux.createStore())
+            .calledWith(reactRouter.hashHistory, redux.createStore())
             .and
             .callCount(1);
     });
