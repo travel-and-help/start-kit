@@ -4,13 +4,13 @@
 
 ## Links
 
-### CI [Travis-CI] (https://travis-ci.org/travel-and-help/start-kit)
+#### CI [Travis-CI] (https://travis-ci.org/travel-and-help/start-kit)
 
-### E2E [Sauce Labs] (https://saucelabs.com/beta/dashboard/tests)
+#### E2E [Sauce Labs] (https://saucelabs.com/beta/dashboard/tests)
 
-### LIVE [Heroku] (https://start-kit.herokuapp.com/)
+#### LIVE [Heroku] (https://start-kit.herokuapp.com/)
 
-### Style Gude [Airbnb React/JSX Style Guide] (https://github.com/airbnb/javascript/tree/master/react#naming)
+#### Style Gude [Airbnb React/JSX Style Guide] (https://github.com/airbnb/javascript/tree/master/react#naming)
 
 ## Main npm scripts
 
