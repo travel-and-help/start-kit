@@ -10,6 +10,8 @@
 
 ### LIVE [Heroku] (https://start-kit.herokuapp.com/)
 
+### Style Gude [Airbnb React/JSX Style Guide] (https://github.com/airbnb/javascript/tree/master/react#naming)
+
 ## Main npm scripts
 
 * ``` npm run watch ``` build app, stand up local mongo db, start server and watch for changes on bacend and frontend (best for development). Notice: front end will be served from memory by webpack dev server and be available on __PORT + 1__
