@@ -10,7 +10,11 @@ before_install:
  - sudo apt-get install openjdk-7-jdk
  - sudo apt-get update
  - sudo apt-get install -qq libstdc++6:i386 lib32z1 expect
- - cat android-sdk-installer | bash /dev/stdin --install=build-tools-18.1.0,android-17,sys-img-armeabi-v7a-android-17
+ - cat android-sdk-installer | bash /dev/stdin --install=build-tools-23.1.0,android-23,sys-img-armeabi-v7a-android-23
+ - set COMPONENTS="build-tools-23.1.0,android-23,sysimg-23"
+ - set LICENSES="android-sdk-license-5be876d5|mips-android-sysimage-license-15de68cc|intel-android-sysimage-license-1ea702d1"
+ - curl -L https://raw.github.com/embarkmobile/android-sdk-installer/version-2/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS --accept=$LICENSES && source ~/.android-sdk-installer/env
+ - update sdk --no-ui --all --filter build-tools" "android-sdk-license-5be876d5|mips-android-sysimage-license-15de68cc"
  - ls -la
  - source ~/.android-sdk-installer/env
 script:
