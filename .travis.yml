@@ -13,7 +13,6 @@ before_install:
  - cd android-sdk-linux/tools
  - echo "y" | android update sdk --no-ui --all --filter android-23,build-tools-23.0.1
 script:
-  - npm run version
   - npm run build
   - npm run cordova:copy
   - npm run cordova:prepare
