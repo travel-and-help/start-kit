@@ -8,14 +8,11 @@ addons:
   sauce_connect: true
 before_install:
  - sudo apt-get install openjdk-7-jdk
- - wget http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
- - tar -xvf android-sdk_r24.4.1-linux.tgz
- - cd android-sdk-linux/tools
- - echo yes | ./android update sdk --no-ui
- - echo "PATH=${PATH}:$HOME/sdk/android-sdk-linux/platform-tools:$HOME/sdk/android-sdk-linux/tools:$HOME/sdk/android-sdk-linux/build-tools/23.0.1/" >> ~/.zshrc
- - source ~/.zshrc
- - sudo apt-get install libc6:i386 libstdc++6:i386
- - sudo apt-get install zlib1g:i386
+ - sudo apt-get update
+ - sudo apt-get install -qq libstdc++6:i386 lib32z1 expect
+ - cat android-sdk-installer | bash /dev/stdin --install=build-tools-18.1.0,android-17,sys-img-armeabi-v7a-android-17
+ - ls -la
+ - source ~/.android-sdk-installer/env
 script:
   - npm run version
   - npm run build
