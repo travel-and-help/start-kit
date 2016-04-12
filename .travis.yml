@@ -1,4 +1,5 @@
 language: node_js
+sudo: true
 node_js:
   - "5"
 android:
@@ -10,7 +11,10 @@ git:
 addons:
   sauce_connect: true
 before_install:
-#  - npm install -g npm@latest
+ - sudo apt-get install openjdk-8-jdk
+ - wget http://dl.google.com/android/android-sdk_r24.2-linux.tgz
+ - tar -xvf android-sdk_r24.4.1-linux.tgz
+ - ./android update sdk --no-ui
 script:
   - npm run version
   - npm run build
