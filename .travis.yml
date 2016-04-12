@@ -8,9 +8,9 @@ addons:
   sauce_connect: true
 before_install:
  - sudo apt-get install openjdk-7-jdk
- - sudo apt-get update
- - sudo apt-get install -qq libstdc++6:i386 lib32z1 expect
- - cat android-sdk-installer | bash /dev/stdin --install=build-tools-23.1.0,android-23,sys-img-armeabi-v7a-android-23
+ - sudo apt-get install -qq libstdc++6:i386 lib32z1
+ - export COMPONENTS=build-tools-23.1.0,android-23,sys-img-armeabi-v7a-android-23,extra-android-support,extra-google-google_play_services,extra-google-gcm,build-tools-23.1.0,extra-google-m2repository,extra-android-m2repository
+ - curl -L https://raw.github.com/embarkmobile/android-sdk-installer/version-1/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS
  - source ~/.android-sdk-installer/env
 script:
   - npm run version
