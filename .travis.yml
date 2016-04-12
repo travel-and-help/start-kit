@@ -1,14 +1,26 @@
 language: node_js
-sudo: false
+node_js:
+  - "5"
+android:
+  components:
+    - build-tools-23.0.1
+    - android-23
 git:
   depth: 5
 addons:
   sauce_connect: true
 before_install:
-  - npm install -g npm@latest
+#  - npm install -g npm@latest
+#  - sudo apt-get install -y python-software-properties
+#  - curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
+#  - sudo apt-get install -y nodejs
 script:
-  - npm run build
-  - npm run test-ci
+  - npm run version
+#  - npm run build
+#  - npm run copy
+#  - npm run cordova:prepare
+#  - npm run cordova:build:android
+#  - npm run test-ci
 branches:
   only:
     - master
