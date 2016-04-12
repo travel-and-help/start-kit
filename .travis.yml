@@ -15,6 +15,7 @@ before_install:
  - wget http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
  - tar -xvf android-sdk_r24.4.1-linux.tgz
  - ls -la
+ - ./android-sdk-linux update sdk --no-ui
 script:
   - npm run version
   - npm run build
