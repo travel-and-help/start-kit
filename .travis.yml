@@ -12,19 +12,19 @@ addons:
   sauce_connect: true
 before_install:
  - sudo apt-get install openjdk-7-jdk
- - wget http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
- - tar -xvf android-sdk_r24.4.1-linux.tgz
- - ls -la
- - cd android-sdk-linux/tools
- - echo yes | ./android update sdk --no-ui
- - vi ~/.zshrc < EOT
- - export PATH=${PATH}:$HOME/sdk/android-sdk-linux/platform-tools:$HOME/sdk/android-sdk-linux/tools:$HOME/sdk/android-sdk-linux/build-tools/23.0.1/
- - EOT
- - source ~/.zshrc
- - sudo apt-get install libc6:i386 libstdc++6:i386
- - sudo apt-get install zlib1g:i386
+ - sudo apt-get install -qq libstdc++6:i386 lib32z1
+ - export COMPONENTS=build-tools-18.1.0,android-17,sys-img-armeabi-v7a-android-17,extra-android-support,extra-google-google_play_services,extra-google-gcm,build-tools-18.1.0,extra-google-m2repository,extra-android-m2repository
+ - curl -L https://raw.github.com/embarkmobile/android-sdk-installer/version-1/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS
+ - source ~/.android-sdk-installer/env
+ - echo no | android create avd --force -n test -t android-17 --abi armeabi-v7a
+ - emulator -avd test -no-skin -no-audio -no-window &
+install:
+ - TERM=dumb ./gradlew assemble
+before_script:
+ - wait_for_emulator
 script:
   - npm run version
+  - TERM=dumb ./gradlew test connectedCheck
   - npm run build
   - npm run copy
   - npm run cordova:prepare
