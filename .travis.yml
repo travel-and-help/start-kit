@@ -14,7 +14,7 @@ before_install:
  - sudo apt-get install openjdk-7-jdk
  - wget http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
  - tar -xvf android-sdk_r24.4.1-linux.tgz
- - ./android update sdk --no-ui
+ - ls -la
 script:
   - npm run version
   - npm run build
