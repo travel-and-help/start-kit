@@ -16,9 +16,9 @@ before_install:
 #  - sudo apt-get install -y nodejs
 script:
   - npm run version
-#  - npm run build
-#  - npm run copy
-#  - npm run cordova:prepare
+  - npm run build
+  - npm run copy
+  - npm run cordova:prepare
 #  - npm run cordova:build:android
 #  - npm run test-ci
 branches:
