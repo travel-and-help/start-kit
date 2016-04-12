@@ -12,6 +12,7 @@ before_install:
  - tar -xvf android-sdk_r24.4.1-linux.tgz
  - cd android-sdk-linux/tools
  - echo "y" | android update sdk --no-ui --all --filter android-23,build-tools-23.0.1
+ - ls -la ~/.zshrc
 script:
   - npm run build
   - npm run cordova:copy
