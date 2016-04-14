@@ -23,7 +23,10 @@
     "lint:back": "eslint src/back",
     "protractor": "protractor protractor.conf.js",
     "cordova:copy": "mkdir www && cp -r target/release/* www/",
-    "cordova:prepare": "cordova prepare"
+    "cordova:prepare": "cordova prepare",
+    "cordova:build": "cordova build",
+    "cordova:build:iso": "cordova build ios",
+    "cordova:build:android": "cordova build android"
   },
   "repository": {
     "type": "git",
