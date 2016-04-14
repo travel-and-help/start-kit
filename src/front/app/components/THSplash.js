@@ -12,14 +12,17 @@ THSplashWord.propTypes = {
     word: React.PropTypes.string
 };
 
-export default () => (
-    <div className="th-splash">
-        <div className="th-splash__content">
-            <THSplashWord className="th-splash__travel" word="Travel" />
+export default ({ children }) => (
+    <div>
+        <div className="th-splash">
+            <div className="th-splash__content">
+                <THSplashWord className="th-splash__travel" word="Travel" />
 
-            <div className="th-splash__and"> &</div>
+                <div className="th-splash__and"> &</div>
 
-            <THSplashWord className="th-splash__help" word="Help" />
+                <THSplashWord className="th-splash__help" word="Help" />
+            </div>
         </div>
+        { children }
     </div>
 );
