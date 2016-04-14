@@ -20,7 +20,7 @@ module.exports = Object.assign({
         loaders
     },
     postcss: () => ([
-        autoprefixer
+        autoprefixer({ browsers: ["and_chr 49", "Android 4.3", "ios_saf 8.4", "bb 10", "ie_mob 11"] })
     ])
 
 }, getConfigForEnv(env));
