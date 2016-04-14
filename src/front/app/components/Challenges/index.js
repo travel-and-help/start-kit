@@ -4,7 +4,7 @@ import Menu from './Menu';
 import Navigation from './../Navigation';
 
 export default () => (
-    <div>
+    <div className="challenges">
         <Menu />
         <ChallengeList />
         <Navigation />
