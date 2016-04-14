@@ -3,43 +3,49 @@ import { connect } from 'react-redux';
 import Challenge from './Challenge';
 import TopChallenge from './TopChallenge';
 
-let ChallengeList = ({challenges, getInitialChallenges}) => {
-    if(!challenges.length) {
-        getInitialChallenges();
+let ChallengeList = ({ challenges, dispatch }) => {
+    if (!challenges.length) {
+        dispatch(getInitialChallenges());
     }
     const first = challenges[0];
     const others = challenges.slice(1);
 
     return (
         <ul className="challenges__challengeList">
-            < TopChallenge challenge={first}/>
-            {others.map((challenge, index) => {
-                return (
-                    < Challenge key={index} challenge={challenge}/>
-                );
-            })}
+            <TopChallenge challenge={ first } />
+            { others.map((challenge, index) => (
+                    <Challenge key={ index } challenge={ challenge } />
+            ))}
         </ul>
     );
 };
 
-const mapStateToProps = (state) => {
+ChallengeList.propTypes = {
+    challenges: React.PropTypes.array,
+    dispatch: React.PropTypes.func
+};
+
+const mapStateToProps = ({ challenges }) => {
     return {
-        challenges: state.challenges
+      challenges
     };
 };
 
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getInitialChallenges: () => {
-            dispatch({type:'GET_INITIAL_CHALLENGES'})
-        }
+function getInitialChallenges() {
+    return function fetchChallenges(dispatch) {
+        fetch('/api/challenges').then((response) => {
+            response.json().then((challenges) => {
+                dispatch({
+                    type: 'GET_INITIAL_CHALLENGES',
+                    challenges
+                });
+            });
+        })
     };
-};
+}
 
 ChallengeList = connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
 )(ChallengeList);
 
 export default ChallengeList;
