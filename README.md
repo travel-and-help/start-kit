@@ -45,3 +45,7 @@ Before start server or build environment variables will be loaded from .env file
 # npm run mm create [MIGRATION NAME] -> new migrations in migrations folder appears
 # in migration file implement up method
 # npm run mm will run migrations
+
+# npm run mm create [MIGRATION NAME] -> new migrations in migrations folder appears
+# in migration file implement up method
+# npm run mm will run migrations

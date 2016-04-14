@@ -1,15 +1,23 @@
-import appReducer from './app';
+import challenges from './challenges';
+import proxyquire from 'proxyquire';
 
 describe('reducer/app', () => {
 
-    let sut;
+    let sut, combineReducers;
 
     beforeEach(() => {
-        sut = appReducer();
+        combineReducers = env.stub();
+
+        sut = proxyquire('./app', {
+            'redux': {
+                combineReducers
+            }
+        }).default;
+
     });
 
-    it('should be empty object', () => {
-        sut.should.eqls({});
+    it('should combine reducers', () => {
+        combineReducers.should.been.calledWith({challenges});
     });
 
 });

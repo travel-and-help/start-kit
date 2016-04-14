@@ -1,5 +1,8 @@
 @import '../../node_modules/normalize.css/normalize.css';
 @import './app/components/th-splash';
+@import './app/components/navigation/navigation';
+@import './app/components/challenges/challengeList';
+
 
 * {
   box-sizing: border-box;
