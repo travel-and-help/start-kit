@@ -29,6 +29,12 @@
 
 * ``` npm run test-ci ``` lint code, run tests, generates coverage report and uploads it to codecov
 
+* ``` npm run cordova:copy ``` copy build artifact from target/ to cordova
+* ``` npm run cordova:prepare ``` expand cordova plugins and platforms from config.xml
+* ``` npm run cordova:build ``` build native applications with cordova ios and android
+* ``` npm run cordova:build:ios ``` build native ios application with cordova
+* ``` npm run cordova:build:android ``` build native android application with cordova
+
 ## .env file
 Before start server or build environment variables will be loaded from .env file
 
