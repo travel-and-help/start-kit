@@ -1,8 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default ({ item }) => (
+const NavigationItem = ({ item }) => (
     <li className="navigation__item">
-        <Link to={item.link} className="icon" dangerouslySetInnerHTML={{__html: item.icon}} />
+        <Link to={ item.link } className="icon"
+              dangerouslySetInnerHTML={{ __html: item.icon }} />
     </li>
 );
+
+NavigationItem.propTypes = {
+    item: React.PropTypes.object
+};
+
+export default NavigationItem;

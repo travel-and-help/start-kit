@@ -49,13 +49,13 @@ describe('reducer/challenges', () => {
 
 
     it('should NOT change state if action.type is UNKNOWN', () => {
-        const action = {type: 'unknownType'};
+        const action = { type: 'unknownType' };
         sut = challengesReducer({}, action);
         sut.should.eqls({});
     });
 
     it('should add initial challenges to state', () => {
-        const action = {type: 'GET_INITIAL_CHALLENGES'};
+        const action = { type: 'GET_INITIAL_CHALLENGES' };
         sut = challengesReducer(undefined, action);
         sut.should.eqls(INITIAL_CHALLENGES);
     });
