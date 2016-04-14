@@ -44,11 +44,11 @@ module.exports.up = function (done) {
 	            rating: 3
 	        }
 	    }
-	], done());
+	], done);
 };
 
 module.exports.down = function (done) {
   // use this.db for MongoDB communication, and this.log() for logging
   	const challenges = this.db.collection('challenges');
-  	challenges.remove({}, done());
+  	challenges.remove({}, done);
 };
