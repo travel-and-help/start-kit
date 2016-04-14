@@ -14,6 +14,6 @@ module.exports = [
     },
     {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('css!sass!import-glob-loader!postcss')
+        loader: ExtractTextPlugin.extract('css!csscomb!sass!import-glob-loader!postcss')
     }
 ];
