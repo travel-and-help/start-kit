@@ -31,4 +31,4 @@ THSplashWord.propTypes = {
     word: React.PropTypes.string
 };
 
-export default THSplash
+export default THSplash;
