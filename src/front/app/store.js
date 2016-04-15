@@ -1,6 +1,6 @@
 import { createStore, combineReducers } from 'redux';
 import appReducer from './reducer/app';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 export default () => {
@@ -9,7 +9,7 @@ export default () => {
         routing: routerReducer
     }));
 
-    const history = syncHistoryWithStore(browserHistory, state);
+    const history = syncHistoryWithStore(hashHistory, state);
 
     return {
         state,
