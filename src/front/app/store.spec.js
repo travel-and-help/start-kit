@@ -5,14 +5,16 @@ describe('store', () => {
     let redux,
         reactRouter,
         reactRouterRedux,
-        appReducer,
+        challenges,
+        thunk,
         result;
 
     beforeEach(() => {
 
         redux = {
             createStore: env.stub().returns({}),
-            combineReducers: env.stub().returns({})
+            combineReducers: env.stub().returns({}),
+            applyMiddleware: env.stub().returns({})
         };
 
         reactRouter = {
@@ -24,7 +26,11 @@ describe('store', () => {
             routerReducer: env.stub()
         };
 
-        appReducer = {
+        thunk = {
+            default: 'thunk'
+        };
+
+        challenges = {
             default: env.stub()
         };
 
@@ -32,25 +38,36 @@ describe('store', () => {
             redux,
             'react-router': reactRouter,
             'react-router-redux': reactRouterRedux,
-            './reducer/app': appReducer
+            'redux-thunk': thunk,
+            './reducer/challenges': challenges
         }).default;
 
         result = sut();
     });
 
-    it('should combine app and routing reducers', () => {
+    it('should combine challenges and routing reducers once', () => {
         redux.combineReducers.should
             .calledWith({
-                app: appReducer.default,
+                challenges: challenges.default,
                 routing: reactRouterRedux.routerReducer
             })
             .and
             .callCount(1);
     });
 
-    it('should create store for combined reducer', () => {
+    it('should apply thunk middleware once', function(){
+        redux.applyMiddleware.should
+        .calledWith(thunk.default)
+        .and
+        .callCount(1);
+    });
+
+    it('should create store for combined reducer and apply middleware', () => {
         redux.createStore.should
-            .calledWith(redux.combineReducers())
+            .calledWith(
+                redux.combineReducers(),
+                redux.applyMiddleware()
+            )
             .and
             .callCount(1);
     });
