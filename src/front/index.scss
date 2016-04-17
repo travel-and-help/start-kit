@@ -1,6 +1,11 @@
 @import '../../node_modules/normalize.css/normalize.css';
 @import './app/components/th-splash';
+@import './app/components/Create/create';
 
-* {
-  box-sizing: border-box;
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
 }
