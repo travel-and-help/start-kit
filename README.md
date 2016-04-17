@@ -29,15 +29,17 @@
 
 * ``` npm run test-ci ``` lint code, run tests, generates coverage report and uploads it to codecov
 
-* ``` npm run cordova:copy ``` copy build artifact from target/ to cordova
 * ``` npm run cordova:prepare ``` expand cordova plugins and platforms from config.xml
-* ``` npm run cordova:build ``` build native applications with cordova ios and android
-* ``` npm run cordova:build:ios ``` build native ios application with cordova
-* ``` npm run cordova:build:android ``` build native android application with cordova
+* ``` npm run build:cordova ``` build native applications with cordova ios and android
+* ``` npm run build:cordova ios ``` build native ios application with cordova
+* ``` npm run build:cordova android ``` build native android application with cordova
+* ``` npm run emulate:cordova ios ``` emulate native ios application with cordova
+* ``` npm run emulate:cordova android ``` emulate native android application with cordova
 
 ## .env file
 Before start server or build environment variables will be loaded from .env file
 
 * __NODE_ENV__ - supported values: (development|production). With production or not development env all sources will be optimized for production
+* __PLATFORM__ - supported values: (web|cordova). With cordova env target will be forced to www
 * __PORT__ - port for serving target (for both express and browser-sync)
 * __DB_URL__ - database connection string eg. url

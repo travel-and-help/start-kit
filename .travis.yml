@@ -8,8 +8,6 @@ addons:
   sauce_connect: true
 script:
   - npm run build
-  - npm run cordova:copy
-  - npm run cordova:prepare
   - npm run test-ci
 branches:
   only:
