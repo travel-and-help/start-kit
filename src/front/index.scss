@@ -1,6 +1,6 @@
 @import '../../node_modules/normalize.css/normalize.css';
-@import './app/components/screens/todo-screen';
-@import './app/components/screens/login-screen';
+@import 'app/components/todo-screen';
+@import 'app/components/Login/login-screen';
 
 * {
   box-sizing: border-box;

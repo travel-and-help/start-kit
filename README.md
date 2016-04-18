@@ -4,11 +4,13 @@
 
 ## Links
 
-### CI [Travis-CI] (https://travis-ci.org/travel-and-help/start-kit)
+#### CI [Travis-CI] (https://travis-ci.org/travel-and-help/start-kit)
 
-### E2E [Sauce Labs] (https://saucelabs.com/beta/dashboard/tests)
+#### E2E [Sauce Labs] (https://saucelabs.com/beta/dashboard/tests)
 
-### LIVE [Heroku] (https://start-kit.herokuapp.com/)
+#### LIVE [Heroku] (https://start-kit.herokuapp.com/)
+
+#### Style Gude [Airbnb React/JSX Style Guide] (https://github.com/airbnb/javascript/tree/master/react#naming)
 
 ## Main npm scripts
 
@@ -26,6 +28,12 @@
 * ``` npm run coverage ``` generates html coverage report
 
 * ``` npm run test-ci ``` lint code, run tests, generates coverage report and uploads it to codecov
+
+* ``` npm run cordova:copy ``` copy build artifact from target/ to cordova
+* ``` npm run cordova:prepare ``` expand cordova plugins and platforms from config.xml
+* ``` npm run cordova:build ``` build native applications with cordova ios and android
+* ``` npm run cordova:build:ios ``` build native ios application with cordova
+* ``` npm run cordova:build:android ``` build native android application with cordova
 
 ## .env file
 Before start server or build environment variables will be loaded from .env file
