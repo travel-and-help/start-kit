@@ -42,6 +42,7 @@ Before start server or build environment variables will be loaded from .env file
 * __PORT__ - port for serving target (for both express and browser-sync)
 * __DB_URL__ - database connection string eg. url
 
-# npm run mm create [MIGRATION NAME] -> new migrations in migrations folder appears
-# in migration file implement up method
-# npm run mm will run migrations
+## Db migrations
+
+* ``` npm run mm create [MIGRATION NAME] ``` new migrations in migrations folder appears, in migration file implement up method
+* ``` npm run mm``` run migrations
