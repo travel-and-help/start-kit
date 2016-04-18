@@ -1,8 +1,18 @@
 import React from 'react';
 
-export default () => (
-    <div className="challenges__menu">
-        <button className="challenges__menu__search">Search</button>
-        <button className="challenges__menu__add">Add</button>
-    </div>
-);
+const Menu = ({ active }) => {
+
+    const menuClass = (active) ? 'challenges__menu_active' : 'challenges__menu';
+
+    return (
+        <div className={ menuClass }>
+            <input className="challenges__search" type="text" placeholder="Search" />
+        </div>
+    );
+};
+
+Menu.propTypes = {
+    active: React.PropTypes.bool
+};
+
+export default Menu;

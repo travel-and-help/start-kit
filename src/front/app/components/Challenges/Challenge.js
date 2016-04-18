@@ -1,30 +1,30 @@
 import React from 'react';
 
-const Challenge = ({ challenge = {} }) => (
-    <li className="challenges__challengeList__challenge">
-        <div className="challenges__challengeList__challenge__image">Image here</div>
-        <span className="challenges__challengeList__challenge__description">
-            {challenge.description && challenge.description.toUpperCase()}
+const Challenge = ({ description, user, location }) => (
+    <li className="challenge">
+        <div className="challenge__image">Image here</div>
+        <span className="challenge__description">
+            {description && description.toUpperCase()}
         </span>
-        <div className="challenges__challengeList__challenge__user-block">
-            <span className="challenges__challengeList__challenge__user-block__rating">
-                {challenge.user && challenge.user.rating}
+        <div className="challenge__user-block">
+            <span className="challenge__rating">
+                {user && user.rating}
             </span>
             <span>
-                {challenge.user && challenge.user.firstName}
-                {challenge.user && challenge.user.lastName}
+                {user && user.firstName} {user && user.lastName}
             </span>
         </div>
-        <span className="challenges__challengeList__challenge__location">
-            <span className="challenges__challengeList__challenge__location__icon"
-                  dangerouslySetInnerHTML={{ __html: '&#xE55F' }} />
-            {challenge.location}
+        <span className="challenge__location">
+            <span className="icon challenge__icon" />
+            {location}
         </span>
     </li>
 );
 
 Challenge.propTypes = {
-    challenge: React.PropTypes.object
+    description: React.PropTypes.string,
+    user: React.PropTypes.object,
+    location: React.PropTypes.string
 };
 
 export default Challenge;
