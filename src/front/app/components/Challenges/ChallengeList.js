@@ -11,10 +11,10 @@ let ChallengeList = ({ challenges, dispatch }) => {
     const others = challenges.slice(1);
 
     return (
-        <ul className="challenges__challengeList">
-            <TopChallenge challenge={ first } />
+        <ul className="challenges__list">
+            <TopChallenge { ...first } />
             { others.map((challenge, index) => (
-                    <Challenge key={ index } challenge={ challenge } />
+                    <Challenge key={ index } { ...challenge } />
             ))}
         </ul>
     );
@@ -25,22 +25,18 @@ ChallengeList.propTypes = {
     dispatch: React.PropTypes.func
 };
 
-const mapStateToProps = ({ challenges }) => {
-    return {
-      challenges
-    };
-};
+const mapStateToProps = ({ challenges }) => ({ challenges });
 
 function getInitialChallenges() {
     return function fetchChallenges(dispatch) {
-        fetch('/api/challenges').then((response) => {
-            response.json().then((challenges) => {
+        fetch('/api/challenges')
+            .then(response => response.json())
+            .then((challenges) => {
                 dispatch({
                     type: 'GET_INITIAL_CHALLENGES',
                     challenges
                 });
             });
-        })
     };
 }
 

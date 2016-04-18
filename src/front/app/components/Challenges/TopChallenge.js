@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Challenge = ({ challenge = {} }) => (
-    <li className="challenges__challengeList__topChallenge">
-        <div className="challenges__challengeList__topChallenge__caption">
-            <p className="challenges__challengeList__topChallenge__caption__description">
-                {challenge.description && challenge.description.toUpperCase()}
+const Challenge = ({ description }) => (
+    <li className="topChallenge">
+        <div className="topChallenge__caption">
+            <p className="topChallenge__description">
+                {description && description.toUpperCase()}
             </p>
-            <span className="challenges__challengeList__topChallenge__caption__popular">
+            <span className="topChallenge__popular">
                 Popular this week
             </span>
         </div>
@@ -14,7 +14,7 @@ const Challenge = ({ challenge = {} }) => (
 );
 
 Challenge.propTypes = {
-    challenge: React.PropTypes.object
+    description: React.PropTypes.string
 };
 
 export default Challenge;

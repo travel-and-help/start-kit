@@ -55,7 +55,7 @@ describe('store', () => {
             .callCount(1);
     });
 
-    it('should apply thunk middleware once', function(){
+    it('should apply thunk middleware once', () => {
         redux.applyMiddleware.should
         .calledWith(thunk.default)
         .and
