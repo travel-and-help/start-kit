@@ -9,7 +9,8 @@ describe('controllers/api', () => {
     beforeEach(() => {
 
         router = {
-            use: env.spy(() => router)
+            use: env.spy(() => router),
+            get: env.spy(() => router)
         };
 
         const express = {
