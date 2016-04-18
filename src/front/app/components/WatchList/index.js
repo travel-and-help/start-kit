@@ -1,12 +1,12 @@
 import React from 'react';
-import ChallengeList from './ChallengeList';
-import Menu from './Menu';
 import Navigation from './../Navigation';
+import WatchList from './WatchList';
+import { hashHistory } from 'react-router';
 
 export default () => (
     <div className="challenges">
-        <Menu />
-        <ChallengeList />
+        <div onClick={hashHistory.goBack}>&lt; Watch List</div>
+        <WatchList />
         <Navigation />
     </div>
 );

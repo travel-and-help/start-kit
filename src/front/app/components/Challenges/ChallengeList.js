@@ -33,14 +33,12 @@ const mapStateToProps = ({ challenges }) => {
 
 function getInitialChallenges() {
     return function fetchChallenges(dispatch) {
-        fetch('/api/challenges').then((response) => {
-            response.json().then((challenges) => {
-                dispatch({
-                    type: 'GET_INITIAL_CHALLENGES',
-                    challenges
-                });
-            });
-        })
+        fetch('http://localhost:9000/api/challenges')
+            .then(response => response.json())
+            .then(challenges => dispatch({
+                type: 'GET_INITIAL_CHALLENGES',
+                challenges
+            }));
     };
 }
 
