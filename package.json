@@ -103,7 +103,6 @@
     "body-parser": "^1.15.0",
     "cors": "^2.7.1",
     "express": "^4.13.4",
-    "fetch": "^1.0.1",
     "mongoose": "^4.4.10",
     "normalize.css": "^4.0.0",
     "q": "^1.4.1",
