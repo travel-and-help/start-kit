@@ -41,3 +41,11 @@ Before start server or build environment variables will be loaded from .env file
 * __NODE_ENV__ - supported values: (development|production). With production or not development env all sources will be optimized for production
 * __PORT__ - port for serving target (for both express and browser-sync)
 * __DB_URL__ - database connection string eg. url
+
+# npm run mm create [MIGRATION NAME] -> new migrations in migrations folder appears
+# in migration file implement up method
+# npm run mm will run migrations
+
+# npm run mm create [MIGRATION NAME] -> new migrations in migrations folder appears
+# in migration file implement up method
+# npm run mm will run migrations
