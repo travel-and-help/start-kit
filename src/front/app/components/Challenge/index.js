@@ -1,4 +1,5 @@
 import React from 'react';
+import { Component } from 'react';
 import ChallengeNav from './ChallengeNav';
 import ChallengeDetails from './ChallengeDetails';
 import ChallengeComments from './ChallengeComments';
@@ -26,7 +27,6 @@ const challengesData = [
 //    )
 //);
 
-const { Component } = React;
 
 class Challenge extends Component {
     render() {

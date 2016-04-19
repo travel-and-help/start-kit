@@ -9,4 +9,8 @@ const ChallengeDetails = ({challenge}) => (
     </section>
 );
 
+ChallengeDetails.propTypes = {
+    challenge: React.PropTypes.object
+};
+
 export default ChallengeDetails;
