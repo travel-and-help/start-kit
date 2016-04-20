@@ -7,25 +7,23 @@ class Challenges extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isActive: false
+            menuClass: 'challenges__menu'
         };
     }
 
-    scrollHandler(e) {
+    onScroll(e) {
         e.preventDefault();
-        if (e.target.scrollTop > 52) {
-            this.setState({ isActive: true });
+        if (e.target.scrollTop) {
+            this.setState({ menuClass: 'challenges__menu_active' });
         } else {
-            this.setState({ isActive: false });
+            this.setState({ menuClass: 'challenges__menu' });
         }
     }
 
     render() {
-        const scrollHandler = this.scrollHandler.bind(this);
-
         return (
-            <div className="challenges" onScroll={ scrollHandler }>
-                <Menu active={ this.state.isActive } />
+            <div className="challenges" onScroll={ e => this.onScroll(e) }>
+                <Menu menuClass={ this.state.menuClass } />
                 <ChallengeList />
                 <Navigation />
             </div>
