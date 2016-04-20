@@ -22,7 +22,8 @@ class Challenges extends React.Component {
 
     render() {
         return (
-            <div className="challenges" onScroll={ e => this.onScroll(e) }>
+            /* eslint-disable react/jsx-no-bind  */
+            <div className="challenges" onScroll={ this.onScroll.bind(this) }>
                 <Menu menuClass={ this.state.menuClass } />
                 <ChallengeList />
                 <Navigation />
