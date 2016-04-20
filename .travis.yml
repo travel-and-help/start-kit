@@ -11,8 +11,8 @@ android:
     - android-23
 before_script:
   - nvm install $(< .nvmrc)
-script:
   - npm install
+script:
   - npm run build
   - npm run cordova:build android
   - npm run test-ci
