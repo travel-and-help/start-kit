@@ -17,7 +17,9 @@ describe('bootstrap', () => {
         premiddleware = env.stub();
         db = env.stub();
         appEnv = {
-            DB_URL: 'db-url'
+            DB_NAME: 'DB_NAME',
+            DB_HOST: 'DB_HOST',
+            DB_PORT: 'DB_PORT'
         };
 
         const sut = proxyquire('./index', {
@@ -35,7 +37,9 @@ describe('bootstrap', () => {
     });
 
     it('should connect to database', () => {
-        db.should.been.calledWith(appEnv.DB_URL);
+        const dbUrl = `mongodb://${appEnv.DB_HOST}:${appEnv.DB_PORT}/${appEnv.DB_NAME}`;
+
+        db.should.been.calledWith(dbUrl);
     });
 
     it('should add premiddleware to app', () => {

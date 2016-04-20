@@ -43,3 +43,8 @@ Before start server or build environment variables will be loaded from .env file
 * __PLATFORM__ - supported values: (web|cordova). With cordova env target will be forced to www
 * __PORT__ - port for serving target (for both express and browser-sync)
 * __DB_URL__ - database connection string eg. url
+
+## Db migrations
+
+* ``` npm run mm create [MIGRATION NAME] ``` new migrations in migrations folder appears, in migration file implement up method
+* ``` npm run mm``` run migrations
