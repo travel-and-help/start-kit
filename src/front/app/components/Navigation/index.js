@@ -11,7 +11,7 @@ const navigationItemData = [
 export default () => (
     <ul className="navigation">
         {navigationItemData.map((link, index) => (
-            < NavigationItem link={link} key={index} />
+            < NavigationItem link={link} iconClass={`icon navigation__${link}`} key={index} />
         ))}
     </ul>
 );

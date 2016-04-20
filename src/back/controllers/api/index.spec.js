@@ -9,8 +9,7 @@ describe('controllers/api', () => {
     beforeEach(() => {
 
         router = {
-            use: env.spy(() => router),
-            get: env.spy(() => router)
+            use: env.spy(() => router)
         };
 
         const express = {
@@ -25,6 +24,5 @@ describe('controllers/api', () => {
     it('should export router', () => {
         sut.should.equal(router);
     });
-
 });
 
