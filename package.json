@@ -26,7 +26,8 @@
     "cordova:prepare": "cordova prepare",
     "cordova:build": "cordova build",
     "cordova:build:iso": "cordova build ios",
-    "cordova:build:android": "cordova build android"
+    "cordova:build:android": "cordova build android",
+    "mm": "./node_modules/.bin/mm"
   },
   "repository": {
     "type": "git",
@@ -62,6 +63,7 @@
     "html-webpack-plugin": "^2.14.0",
     "import-glob-loader": "^1.1.0",
     "mocha": "^2.4.5",
+    "mongodb-migrations": "^0.5.1",
     "node-sass": "^3.4.2",
     "nodemon": "^1.9.1",
     "npm-run-all": "^1.5.3",
