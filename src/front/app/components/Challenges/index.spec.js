@@ -6,6 +6,7 @@ describe('component/challenges', () => {
     beforeEach(() => {
         sut = new Index();
         env.spy(sut, 'setState');
+        env.spy(sut, 'render');
     });
 
     it('should set menu`s initial class', () => {
@@ -42,4 +43,8 @@ describe('component/challenges', () => {
         });
     });
 
+    it('should render something', () => {
+        const component = sut.render();
+        sinon.assert.match(component, sinon.match.object);
+    });
 });
