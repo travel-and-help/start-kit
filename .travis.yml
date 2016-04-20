@@ -1,11 +1,11 @@
 language: android
 sudo: true
-node_js:
-  - "5"
 git:
   depth: 5
 addons:
   sauce_connect: true
+before_script
+  - nvm install $(< .nvmrc)
 script:
   - npm run build
   - npm run cordova:build android
