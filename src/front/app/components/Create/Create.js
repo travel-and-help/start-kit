@@ -1,70 +1,118 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
+import { reduxForm } from 'redux-form';
 
-export default () => (
-    <div className="challenge-create__body">
-        <div className="challenge-create__photo">
-            <button className="challenge-create__photo-download">Download Image</button>
-            <img className="challenge-create__image" src="" />
-        </div>
+const validate  = (values) => {
+    const errors = {};
 
-        <input className="challenge-create__title" placeholder="Enter title" />
+    if (!values.title) {
+        errors.title = 'Title is required';
+    }
 
-        <textarea className="challenge-create__description" placeholder="Enter description"></textarea>
+    if(!values.description) {
+        errors.description = 'Description is required';
+    }
 
-        <h3 className="challenge-create__subtitle">Settings</h3>
+    return errors;
+};
 
-        <label className="challenge-create__field">
-            Category
-            <select>
-                <option value="-1">Select</option>
-                <option>Category 1</option>
-                <option>Category 2</option>
-                <option>Category 3</option>
-            </select>
-        </label>
+class CreateForm extends Component  {
+    render() {
+        const {fields: {title, description}, handleSubmit} = this.props;
 
-        <label className="challenge-create__field">
-            Repeateble
-            <input type="checkbox" checked  disabled/>
-        </label>
+        return (
+            <section className="challenge-create">
+                <form onSubmit={handleSubmit(() => {console.log('Submited!');})}>
+                    <header className="challenge-create__header">
+                        <h2>Create Challenge</h2>
 
-        <label className="challenge-create__field">
-            Start Date
-            <input type="date" />
-        </label>
+                        <button className="challenge-create__discard">Discard</button>
+                        <button className="challenge-create__post">Post</button>
+                    </header>
 
-        <label className="challenge-create__field">
-            End Date
-            <input type="date" />
-        </label>
+                    <div className="challenge-create__body">
+                        <div className="challenge-create__photo">
+                            <button className="challenge-create__photo-download">Download Image</button>
+                            <img className="challenge-create__image" src="" />
+                        </div>
 
-        <label className="challenge-create__field">
-            Special skills
+                        <input className="challenge-create__title" placeholder="Enter title" {...title} />
+                        {title.touched && title.error && <div className="form-error">{title.error}</div>}
 
-            <input type="checkbox"/>
-        </label>
+                        <textarea className="challenge-create__description" placeholder="Enter description" {...description}></textarea>
+                        {description.touched && description.error && <div className="form-error">{description.error}</div>}
 
-        <label className="challenge-create__field">
-            Spare time
 
-            <input type="checkbox"/>
-        </label>
+                        <h3 className="challenge-create__subtitle">Settings</h3>
 
-        <label className="challenge-create__field">
-            Complexity level
+                        <label className="challenge-create__field">
+                            Category
 
-            <select>
-                <option value="-1">Select</option>
-                <option>Low</option>
-                <option>Middle</option>
-                <option>Hight</option>
-            </select>
-        </label>
+                            <select>
+                                <option value="-1">Select</option>
+                                <option>Category 1</option>
+                                <option>Category 2</option>
+                                <option>Category 3</option>
+                            </select>
+                        </label>
 
-        <label className="challenge-create__field">
-            Verification
+                        <label className="challenge-create__field">
+                            Repeateble
+                            <input type="checkbox" checked  disabled/>
+                        </label>
 
-            <input type="checkbox"/>
-        </label>
-    </div>
-);
+                        <label className="challenge-create__field">
+                            Start Date
+                            <input type="date"/>
+                        </label>
+
+                        <label className="challenge-create__field">
+                            End Date
+                            <input type="date"/>
+                        </label>
+
+                        <label className="challenge-create__field">
+                            Special skills
+
+                            <input type="checkbox"/>
+                        </label>
+
+                        <label className="challenge-create__field">
+                            Spare time
+
+                            <input type="checkbox"/>
+                        </label>
+
+                        <label className="challenge-create__field">
+                            Complexity level
+
+                            <select>
+                                <option value="-1">Select</option>
+                                <option>Low</option>
+                                <option>Middle</option>
+                                <option>Hight</option>
+                            </select>
+                        </label>
+
+                        <label className="challenge-create__field">
+                            Verification
+
+                            <input type="checkbox"/>
+                        </label>
+                    </div>
+                </form>
+            </section>
+        )
+    }
+};
+
+CreateForm.propTypes = {
+    fields: PropTypes.object.isRequired,
+    handleSubmit: PropTypes.func.isRequired
+};
+
+export default reduxForm({
+    form: 'create',
+    fields: ['title', 'description'],
+    validate,
+    touchOnChange: true
+})(CreateForm)
