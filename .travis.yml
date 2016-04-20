@@ -4,6 +4,11 @@ git:
   depth: 5
 addons:
   sauce_connect: true
+android:
+  components:
+    - tools
+    - build-tools-23.0.2
+    - android-23
 before_script:
   - nvm install $(< .nvmrc)
 script:
