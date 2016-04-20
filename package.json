@@ -25,7 +25,7 @@
     "precordova:build": "PLATFORM=cordova npm run build && cordova prepare",
     "cordova:build": "cordova build",
     "precordova:emulate": "PLATFORM=cordova npm run build && cordova prepare",
-    "cordova:emulate": "cordova emulate"
+    "cordova:emulate": "cordova emulate",
     "mm": "./node_modules/.bin/mm"
   },
   "repository": {
