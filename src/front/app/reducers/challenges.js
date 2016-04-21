@@ -1,6 +1,9 @@
-const reducer = (state = [], action = {}) => {
+import actions from './../actions/challenges';
+
+
+const reducer = (state = [], action) => {
     switch (action.type) {
-    case 'GET_INITIAL_CHALLENGES':
+    case actions.getChallenges:
         return [
             ...state,
             ...action.challenges

@@ -1,9 +1,11 @@
 import proxyquire from 'proxyquire';
+import actions from './../../actions/challenges';
 
 describe('component/challengeList', () => {
     const mockChallenges = [1, 2, 3];
 
     let sut,
+        challengeList,
         connector,
         dispatch,
         mockFetchResponse,
@@ -13,7 +15,7 @@ describe('component/challengeList', () => {
         dispatch = env.spy();
         connector = env.spy((component) => component);
         const connect = env.stub().returns(connector);
-        sut = proxyquire('./ChallengeList', {
+        challengeList = proxyquire('./ChallengeList', {
             'react-redux': {
                 connect
             }
@@ -44,7 +46,7 @@ describe('component/challengeList', () => {
                 dispatch
             };
 
-            sut(testState);
+            sut = new challengeList(testState);
         });
 
         it('should call async action to get initial challenges', () => {
@@ -69,7 +71,7 @@ describe('component/challengeList', () => {
             asyncAction(dispatch);
             const dispatchArgs = dispatch.lastCall.args[0];
             dispatchArgs.should.eqls({
-                type: 'GET_INITIAL_CHALLENGES',
+                type: actions.getChallenges,
                 challenges: mockChallenges
             });
         });
@@ -80,10 +82,21 @@ describe('component/challengeList', () => {
             challenges: mockChallenges,
             dispatch
         };
-        sut(testState);
+        sut = new challengeList(testState);
 
         const checkDispatch = () => dispatch.should.not.been.called;
         checkDispatch();
+    });
+
+    it('should render something', () => {
+        const testState = {
+            challenges: mockChallenges,
+            dispatch
+        };
+        sut = new challengeList(testState);
+
+        const component = sut.render();
+        sinon.assert.match(component, sinon.match.object);
     });
 
     describe('connect', () => {
@@ -98,6 +111,7 @@ describe('component/challengeList', () => {
                     connect
                 }
             }).default;
+
         });
 
         it('should return connected component', () => {

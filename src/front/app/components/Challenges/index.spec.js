@@ -10,7 +10,7 @@ describe('component/challenges', () => {
     });
 
     it('should set menu`s initial class', () => {
-        sut.state.menuClass.should.equal('challenges__menu');
+        sut.state.isMenuActive.should.equal(false);
     });
 
     it('should change menu`s class if scrollTop appears', () => {
@@ -24,7 +24,7 @@ describe('component/challenges', () => {
         sut.onScroll(fakeEvent);
 
         sut.setState.should.been.calledWith({
-            menuClass: 'challenges__menu_active'
+            isMenuActive: true
         });
     });
 
@@ -39,7 +39,7 @@ describe('component/challenges', () => {
         sut.onScroll(fakeEvent);
 
         sut.setState.should.been.calledWith({
-            menuClass: 'challenges__menu'
+            isMenuActive: false
         });
     });
 

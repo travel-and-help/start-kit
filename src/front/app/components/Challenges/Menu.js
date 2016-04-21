@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Menu = ({ menuClass }) => (
-    <div className={ menuClass }>
+const Menu = ({ active }) => (
+    <div className={ (active) ? 'challenges__menu_active' : 'challenges__menu' }>
         <input className="challenges__search" type="text" placeholder="Search" />
     </div>
 );
 
 Menu.propTypes = {
-    menuClass: React.PropTypes.string
+    active: React.PropTypes.bool.isRequired
 };
 
 export default Menu;

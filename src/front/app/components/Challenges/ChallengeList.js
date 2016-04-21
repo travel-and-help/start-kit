@@ -1,24 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import actions from './../../actions/challenges';
 import Challenge from './Challenge';
 import TopChallenge from './TopChallenge';
 
-let ChallengeList = ({ challenges, dispatch }) => {
-    if (!challenges.length) {
-        dispatch(getInitialChallenges());
+class ChallengeList extends React.Component {
+    constructor(props) {
+        super(props);
+        const { challenges, dispatch } = props;
+        if (!challenges.length) {
+            dispatch(getInitialChallenges());
+        }
     }
-    const first = challenges[0];
-    const others = challenges.slice(1);
 
-    return (
-        <ul className="challenges__list">
-            <TopChallenge { ...first } />
-            { others.map((challenge, index) => (
+    render() {
+        return (
+            <ul className="challenges__list">
+                <TopChallenge { ...this.props.challenges[0] } />
+                { this.props.challenges.slice(1).map((challenge, index) => (
                     <Challenge key={ index } { ...challenge } />
-            ))}
-        </ul>
-    );
-};
+                ))}
+            </ul>
+        );
+    }
+
+}
 
 ChallengeList.propTypes = {
     challenges: React.PropTypes.array,
@@ -33,15 +39,11 @@ function getInitialChallenges() {
             .then(response => response.json())
             .then((challenges) => {
                 dispatch({
-                    type: 'GET_INITIAL_CHALLENGES',
+                    type: actions.getChallenges,
                     challenges
                 });
             });
     };
 }
 
-ChallengeList = connect(
-    mapStateToProps
-)(ChallengeList);
-
-export default ChallengeList;
+export default connect(mapStateToProps)(ChallengeList);
