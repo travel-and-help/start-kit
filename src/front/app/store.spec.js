@@ -39,7 +39,7 @@ describe('store', () => {
             'react-router': reactRouter,
             'react-router-redux': reactRouterRedux,
             'redux-thunk': thunk,
-            './reducer/challenges': challenges
+            './reducers/challenges': challenges
         }).default;
 
         result = sut();
