@@ -1,45 +1,50 @@
 import React from 'react';
 import { Component } from 'react';
+import { connect } from 'react-redux';
 import ChallengeNav from './ChallengeNav';
 import ChallengeDetails from './ChallengeDetails';
 import ChallengeComments from './ChallengeComments';
 
-const challengesData = [
-    {
-        id: 0,
-        name: '1',
-        image: '0.png',
-        author: 'Anton',
-        level: 'hard'
-    },
-    {
-        id: 1,
-        name: '2',
-        image: '0.png',
-        author: 'Igor',
-        level: 'easy'
-    }
-];
-
-//const getChallenge = ({challenges, id}) => (
-//    challenges.filter(
-//        challenge => challenge.id === id
-//    )
-//);
-
-
 class Challenge extends Component {
-    render() {
+    componentDidMount() {
         const id = this.props.params.id;
+        const dispatch = this.props.dispatch;
+        dispatch(getChallenge(id));
+    }
 
+    render() {
         return (
             <div>
                 <ChallengeNav />
-                <ChallengeDetails challenge={challengesData[id]} />
+                <ChallengeDetails {...this.props.challenge} />
                 <ChallengeComments />
             </div>
         );
     }
 }
+
+const mapStateToProps = ({ challenge }) => ({ challenge });
+
+function getChallenge(id) {
+    return function fetchChallenge(dispatch) {
+        fetch('http://localhost:9000/api/challenge/' + id)
+        //fetch('/api/challenge/' + id)
+            .then(response => response.json())
+            .then((challenge) => {
+                dispatch({
+                    type: 'GET_CHALLENGE',
+                    challenge
+                });
+            });
+    };
+}
+
+Challenge.propTypes = {
+    dispatch: React.PropTypes.func
+};
+
+Challenge = connect(
+    mapStateToProps
+)(Challenge);
 
 export default Challenge;

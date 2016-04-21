@@ -6,7 +6,7 @@ import Challenge from './components/Challenge';
 import THSplash from './components/THSplash';
 
 export default () => (
-    <Route path="/" component={THSplash} >
+    <Route path="/" >
         <Route path="login" component={Login} />
         <Route path="challenges" component={Challenges} />
         <Route path="challenge/:id" component={Challenge} />
