@@ -21,7 +21,8 @@ class CreateForm extends Component  {
 
         return (
             <section className="challenge-create">
-                <form onSubmit={handleSubmit(() => {console.log('Submited!');})}>
+                <form onSubmit={ handleSubmit(() => {console.log('Submited!');}) }>
+
                     <header className="challenge-create__header">
                         <h2>Create Challenge</h2>
 
