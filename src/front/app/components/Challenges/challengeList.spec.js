@@ -5,7 +5,7 @@ describe('component/challengeList', () => {
     const mockChallenges = [1, 2, 3];
 
     let sut,
-        challengeList,
+        ChallengeList,
         connector,
         dispatch,
         mockFetchResponse,
@@ -15,7 +15,7 @@ describe('component/challengeList', () => {
         dispatch = env.spy();
         connector = env.spy((component) => component);
         const connect = env.stub().returns(connector);
-        challengeList = proxyquire('./ChallengeList', {
+        ChallengeList = proxyquire('./ChallengeList', {
             'react-redux': {
                 connect
             }
@@ -46,7 +46,7 @@ describe('component/challengeList', () => {
                 dispatch
             };
 
-            sut = new challengeList(testState);
+            sut = new ChallengeList(testState);
         });
 
         it('should call async action to get initial challenges', () => {
@@ -82,7 +82,7 @@ describe('component/challengeList', () => {
             challenges: mockChallenges,
             dispatch
         };
-        sut = new challengeList(testState);
+        sut = new ChallengeList(testState);
 
         const checkDispatch = () => dispatch.should.not.been.called;
         checkDispatch();
@@ -93,7 +93,7 @@ describe('component/challengeList', () => {
             challenges: mockChallenges,
             dispatch
         };
-        sut = new challengeList(testState);
+        sut = new ChallengeList(testState);
 
         const component = sut.render();
         sinon.assert.match(component, sinon.match.object);
