@@ -48,7 +48,6 @@
     "babel-register": "^6.7.2",
     "base64-font-loader": "0.0.3",
     "chai": "^3.5.0",
-    "chai-http": "^2.0.1",
     "chalk": "^1.1.1",
     "codecov": "^1.0.1",
     "cordova": "^6.1.1",
