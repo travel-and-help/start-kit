@@ -4,14 +4,14 @@ const Challenge = ({ description, user, location }) => (
     <li className="challenge">
         <div className="challenge__image">Image here</div>
         <span className="challenge__description">
-            {description && description.toUpperCase()}
+            {description}
         </span>
         <div className="challenge__user-block">
             <span className="challenge__rating">
-                {user && user.rating}
+                {user.rating}
             </span>
             <span>
-                {user && user.firstName} {user && user.lastName}
+                {user.firstName} {user.lastName}
             </span>
         </div>
         <span className="challenge__location">

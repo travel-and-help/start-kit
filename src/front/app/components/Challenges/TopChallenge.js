@@ -4,7 +4,7 @@ const Challenge = ({ description }) => (
     <li className="topChallenge">
         <div className="topChallenge__caption">
             <p className="topChallenge__description">
-                {description && description.toUpperCase()}
+                {description}
             </p>
             <span className="topChallenge__popular">
                 Popular this week
