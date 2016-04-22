@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Challenge = ({ description }) => (
+const TopChallenge = ({ description }) => (
     <li className="topChallenge">
         <div className="topChallenge__caption">
             <p className="topChallenge__description">
@@ -13,8 +13,8 @@ const Challenge = ({ description }) => (
     </li>
 );
 
-Challenge.propTypes = {
+TopChallenge.propTypes = {
     description: React.PropTypes.string.isRequired
 };
 
-export default Challenge;
+export default TopChallenge;

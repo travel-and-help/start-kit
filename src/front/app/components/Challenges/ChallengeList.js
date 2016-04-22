@@ -20,7 +20,7 @@ class ChallengeList extends React.Component {
 
         return (
             <ul className="challenges__list">
-                <TopChallenge { ...topChallenge } />
+                { topChallenge && <TopChallenge { ...topChallenge } /> }
                 { otherChallenges.map((challenge, index) => (
                     <Challenge key={ index } { ...challenge } />
                 ))}
