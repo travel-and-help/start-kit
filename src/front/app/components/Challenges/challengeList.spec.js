@@ -1,5 +1,5 @@
 import proxyquire from 'proxyquire';
-import actions from './../../actions/challenges';
+import { GET_CHALLENGES } from './../../actions/challenges';
 
 describe('component/challengeList', () => {
     const mockChallenges = [1, 2, 3];
@@ -71,7 +71,7 @@ describe('component/challengeList', () => {
             asyncAction(dispatch);
             const dispatchArgs = dispatch.lastCall.args[0];
             dispatchArgs.should.eqls({
-                type: actions.getChallenges,
+                type: GET_CHALLENGES,
                 challenges: mockChallenges
             });
         });

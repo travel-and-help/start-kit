@@ -1,6 +1,6 @@
 import freeze from 'deep-freeze';
 import sut from './challenges';
-import actions from './../actions/challenges';
+import { GET_CHALLENGES } from './../actions/challenges';
 
 describe('reducer/challenges', () => {
     it('should NOT change state if action.type is UNKNOWN', () => {
@@ -13,7 +13,7 @@ describe('reducer/challenges', () => {
 
     it('should add initial challenges to state', () => {
         const action = {
-            type: actions.getChallenges,
+            type: GET_CHALLENGES,
             challenges: [1, 2, 3]
         };
         const prevState = { challenges: [] };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions from './../../actions/challenges';
+import { fetchChallenges } from './../../actions/challenges';
 import Challenge from './Challenge';
 import TopChallenge from './TopChallenge';
 
@@ -9,7 +9,7 @@ class ChallengeList extends React.Component {
         super(props);
         const { challenges, dispatch } = props;
         if (!challenges.length) {
-            dispatch(getInitialChallenges());
+            dispatch(fetchChallenges());
         }
     }
 
@@ -36,18 +36,5 @@ ChallengeList.propTypes = {
 };
 
 const mapStateToProps = ({ challenges }) => ({ challenges });
-
-function getInitialChallenges() {
-    return function fetchChallenges(dispatch) {
-        fetch('/api/challenges')
-            .then(response => response.json())
-            .then((challenges) => {
-                dispatch({
-                    type: actions.getChallenges,
-                    challenges
-                });
-            });
-    };
-}
 
 export default connect(mapStateToProps)(ChallengeList);
