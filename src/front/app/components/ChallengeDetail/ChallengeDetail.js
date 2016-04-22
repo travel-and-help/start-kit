@@ -7,31 +7,31 @@ const AddAndAcceptButton = ({ text, icon }) => (
     </button>
 );
 
-const ChallengeCreatedInfo = ({ challenge_title, created_by_title, created_by, rating, challenge_level_title, challenge_level }) => (
+const ChallengeCreatedInfo = ({ challengeTitle, createdByTitle, createdBy, rating, challengeLevelTitle, challengeLevel }) => (
     <section className="challenge-created-info">
-        <div className="challenge-created-info__challenge-title">pokormi bomzha {challenge_title}</div>
+        <div className="challenge-created-info__challenge-title">pokormi bomzha {challengeTitle}</div>
         <div className="challenge-created-info__created-by-line">
-            <span className="challenge-created-info__created-by-title">Created by {created_by_title}</span>
-            <span className="challenge-created-info__created-by"> Anton Golubev {created_by}</span>
+            <span className="challenge-created-info__created-by-title">Created by {createdByTitle}</span>
+            <span className="challenge-created-info__created-by"> Anton Golubev {createdBy}</span>
             <span className="challenge-created-info__rating"><img src="" title="rating" />{rating}</span>
         </div>
         <div className="challenge-created-info__created-by-line">
-            <span className="challenge-created-info__challange-level-title">Challenge Level {challenge_level_title}</span>
-            <span className="challenge-created-info__challange-level">Hard {challenge_level}</span>
+            <span className="challenge-created-info__challange-level-title">Challenge Level {challengeLevelTitle}</span>
+            <span className="challenge-created-info__challange-level">Hard {challengeLevel}</span>
         </div>
     </section>
 );
 
-const ChallengeCompletedInfo = ({ completed_by, weeks, more_details }) => (
+const ChallengeCompletedInfo = ({ completedBy, weeks, moreDetails }) => (
     <div className="challenge-completed-info">
-        <div className="challenge-completed-info__completed-by">Completed by 25 people {completed_by}</div>
+        <div className="challenge-completed-info__completed-by">Completed by 25 people {completedBy}</div>
         <div className="challenge-completed-info__weeks">3 this week {weeks}</div>
-        <div className="challenge-completed-info__more-details"><a href="">See more details {more_details}</a></div>
+        <div className="challenge-completed-info__more-details"><a href="">See more details {moreDetails}</a></div>
     </div>
 );
 
 const ChallengeDescription = ({ description }) => (
-    <div className="challenge-description"> {description} Description is one of four rhetorical modes (also known as modes of discourse), along with exposition, argumentation, and narration. Each of the rhetorical modes is present in a variety of forms and each has its own purpose and conventions. The act of description may be related to that of definition. Description is also the fiction-writing mode for transmitting a mental image of the particulars of a story.[citation needed] Definition: The pattern of development that presents a word picture of a thing, a person, a situation, or a series of events. Fiction is a form of narrative, one of the four rhetorical modes of discourse. Fiction-writing also has modes for fiction-writing: action, exposition, description, dialogue, summary, and transition (Morrell 2006, p. 127)</div>
+    <div className="challenge-description"> {description}</div>
 
 );
 
