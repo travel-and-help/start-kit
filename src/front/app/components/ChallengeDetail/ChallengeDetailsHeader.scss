@@ -1,7 +1,9 @@
+$header-background: #DCDCDC;
+
 .challenge-detail-header {
     margin-left: auto;
     margin-right: auto;
-    background: #DCDCDC;
+    background: $header-background;
     height: 250px;
 
     &__back-button {

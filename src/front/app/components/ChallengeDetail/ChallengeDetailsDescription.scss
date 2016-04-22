@@ -1,6 +1,8 @@
+$challenge-description-block-color: #eeeeee;
+
 .challenge-description {
     min-height: 300px;
-    background: #eeeeee;
+    background: $challenge-description-block-color;
     margin-top: 5px;
     font-size: 18px;
     padding: 10px 10px 10px 10px;

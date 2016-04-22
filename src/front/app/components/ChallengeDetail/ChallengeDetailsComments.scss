@@ -1,20 +1,22 @@
+$comments-block-color: #FFFFFF;
+$comments-title-color: #dddddd;
+$input-comment: #eeeeee;
+
 .challenge-detail-comments {
     min-height: 200px;
-    background: #FAF0E6;
     margin-top: 5px;
     font-size: 18px;
 
     &__title {
      height: 30px;
-     background: #dddddd;
+     background: $comments-title-color;
      padding: 5px 10px 10px 10px;
      font-size: 18px;
       font-weight: bold;
     }
-
     &-block {
     min-height: 200px;
-    background: #FFFFFF;
+    background: $comments-block-color;
     padding: 10px 10px 10px 10px;
 
     &__comment-creator {
@@ -35,7 +37,7 @@
 
         &__input-comment {
             width: 80%;
-            background: #eeeeee;
+            background: $input-comment;
             float: left;
             min-height: 40px;
             border-radius: 5px 5px 5px;
