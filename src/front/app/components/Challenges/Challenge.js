@@ -22,9 +22,9 @@ const Challenge = ({ description, user, location }) => (
 );
 
 Challenge.propTypes = {
-    description: React.PropTypes.string,
-    user: React.PropTypes.object,
-    location: React.PropTypes.string
+    description: React.PropTypes.string.isRequired,
+    user: React.PropTypes.object.isRequired,
+    location: React.PropTypes.string.isRequired
 };
 
 export default Challenge;

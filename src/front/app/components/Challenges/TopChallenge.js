@@ -14,7 +14,7 @@ const Challenge = ({ description }) => (
 );
 
 Challenge.propTypes = {
-    description: React.PropTypes.string
+    description: React.PropTypes.string.isRequired
 };
 
 export default Challenge;
