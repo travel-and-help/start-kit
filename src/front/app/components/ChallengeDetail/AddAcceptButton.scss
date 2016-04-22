@@ -1,8 +1,10 @@
+$accept-button-color: #dddddd;
+
 .add-accept-button {
     height: 100px;
     width: 28%;
     margin-top: 5px;
-    background: #dddddd;
+    background: $accept-button-color;
     display: block;
     float: right;
     cursor: pointer;

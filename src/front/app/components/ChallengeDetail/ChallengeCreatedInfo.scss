@@ -8,7 +8,7 @@
     display: block;
     padding: 0 0 10px 10px;
 
-    &__challenge-title {
+    &__title {
         text-transform: uppercase;
         color: #000000;
         font-size: 22px;
@@ -16,7 +16,7 @@
         padding: 10px 10px 5px 10px;
     }
 
-    &__created-by-title, &__challange-level-title {
+    &__author-title, &__level-title {
         font-size: 18px;
         text-align: left;
         color: #C0C0C0;
@@ -28,11 +28,11 @@
         width: 25px;
     }
 
-    &__created-by {
+    &__author {
         text-align: right;
     }
 
-    &__created-by-line {
+    &__author-line {
         display: block;
     }
 }

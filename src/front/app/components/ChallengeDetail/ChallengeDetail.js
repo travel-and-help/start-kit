@@ -9,22 +9,22 @@ const AddAndAcceptButton = ({ text, icon }) => (
 
 const ChallengeCreatedInfo = ({ challengeTitle, createdByTitle, createdBy, rating, challengeLevelTitle, challengeLevel }) => (
     <section className="challenge-created-info">
-        <div className="challenge-created-info__challenge-title">pokormi bomzha {challengeTitle}</div>
-        <div className="challenge-created-info__created-by-line">
-            <span className="challenge-created-info__created-by-title">Created by {createdByTitle}</span>
-            <span className="challenge-created-info__created-by"> Anton Golubev {createdBy}</span>
+        <div className="challenge-created-info__title">pokormi bomzha {challengeTitle}</div>
+        <div className="challenge-created-info__author-line">
+            <span className="challenge-created-info__author-title">Created by {createdByTitle}</span>
+            <span className="challenge-created-info__author"> Anton Golubev {createdBy}</span>
             <span className="challenge-created-info__rating"><img src="" title="rating" />{rating}</span>
         </div>
         <div className="challenge-created-info__created-by-line">
-            <span className="challenge-created-info__challange-level-title">Challenge Level {challengeLevelTitle}</span>
-            <span className="challenge-created-info__challange-level">Hard {challengeLevel}</span>
+            <span className="challenge-created-info__level-title">Challenge Level {challengeLevelTitle}</span>
+            <span className="challenge-created-info__level">Hard {challengeLevel}</span>
         </div>
     </section>
 );
 
 const ChallengeCompletedInfo = ({ completedBy, weeks, moreDetails }) => (
     <div className="challenge-completed-info">
-        <div className="challenge-completed-info__completed-by">Completed by 25 people {completedBy}</div>
+        <div className="challenge-completed-info__count-by">Completed by 25 people {completedBy}</div>
         <div className="challenge-completed-info__weeks">3 this week {weeks}</div>
         <div className="challenge-completed-info__more-details"><a href="">See more details {moreDetails}</a></div>
     </div>
