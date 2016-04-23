@@ -8,3 +8,21 @@ Travel and Help is a mobile application, which lets travelers perform some socia
 * Design mockups: https://projects.invisionapp.com/share/Q66S0N79F#/screens
 * Dashboard: https://tree.taiga.io/project/kucherenko-travel-and-help/backlog
 * Developer Guide: https://github.com/travel-and-help/start-kit/wiki/Developer-Guide
+
+Building Travel and Help
+---------
+[Once you have set up your environment](https://github.com/travel-and-help/start-kit/wiki/Developer-Guide), just run:
+
+    npm start
+
+Running tests
+-------------
+To execute all unit tests, use:
+
+    npm run test:unit
+
+To execute end-to-end (e2e) tests, use:
+
+    npm run test:e2e
+
+To learn more about npm scripts, use [npm scripts guide](https://docs.npmjs.com/misc/scripts)
