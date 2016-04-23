@@ -9,7 +9,7 @@ Travel and Help is a mobile application, which lets travelers perform some socia
 * Dashboard: https://tree.taiga.io/project/kucherenko-travel-and-help/backlog
 * Developer Guide: https://github.com/travel-and-help/start-kit/wiki/Developer-Guide
 
-Building Travel and Help
+Building
 ---------
 [Once you have set up your environment](https://github.com/travel-and-help/start-kit/wiki/Developer-Guide), just run:
 
