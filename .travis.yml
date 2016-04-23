@@ -14,7 +14,6 @@ before_script:
   - npm install
 script:
   - npm run build
-  - npm run cordova:prepare
   - npm run cordova:build android --release
   - npm run test:ci
 branches:

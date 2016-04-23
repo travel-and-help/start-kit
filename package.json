@@ -29,9 +29,9 @@
     "lint:front": "eslint src/front",
     "lint:back": "eslint src/back",
 
-    "cordova:prepare": "PLATFORM=cordova npm run build && cordova prepare",
     "cordova:build": "cordova build",
-    "cordova:emulate": "cordova emulate"
+    "cordova:emulate": "cordova emulate",
+    "precordova:build": "PLATFORM=cordova npm run build && cordova prepare"
   },
   "repository": {
     "type": "git",
