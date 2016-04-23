@@ -1,6 +1,10 @@
 @import '../../node_modules/normalize.css/normalize.css';
 @import './app/components/th-splash';
-@import './app/components/Create/create';
+@import './app/components/Create/create-header';
+@import './app/components/Create/create-main';
+@import './app/components/Create/create-basic';
+@import './app/components/Create/checkboxes';
+@import './app/components/Create/create-blocks';
 
 html {
     box-sizing: border-box;

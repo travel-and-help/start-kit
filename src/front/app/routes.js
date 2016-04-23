@@ -6,9 +6,10 @@ import THSplash from './components/THSplash';
 import Create from './components/Create'
 
 export default () => (
-    <Route path="/" component={THSplash} >
+    <Route path="/">
         <Route path="login" component={Login} />
         <Route path="challenges" component={Challenges} />
         <Route path="create" component={Create} />
+        <Route path="thsplash" component={THSplash} />
     </Route>
 );

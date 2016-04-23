@@ -1,0 +1,41 @@
+$photo-download-color: #adadad;
+
+.challenge-create-main {
+    margin-left: auto;
+    margin-right: auto;
+    float: left;
+    height: 100px;
+    width: 100%;
+    display: inline-block;
+
+    &__photo {
+        height: 100px;
+        width: 25%;
+        padding-top: 20px;
+        margin-left: 30px;
+        display: inline-block;
+        background: $photo-download-color;
+    }
+
+    &__photo-download {
+        cursor: pointer;
+        outline: none;
+        background-color: transparent;
+        border: none;
+    }
+
+    &__image {
+        height: 50px;
+        width: 30px;
+        margin-left: 25px;
+    }
+
+    &__input {
+        float: right;
+        outline: none;
+        border: none;
+        background-color: transparent;
+        width: 67%;
+        padding: 10px;
+    }
+}
