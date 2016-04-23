@@ -15,7 +15,7 @@ before_script:
 script:
   - npm run build
   - npm run cordova:build android --release
-  - npm run test-ci
+  - npm run test:ci
 branches:
   only:
     - master
@@ -31,7 +31,7 @@ deploy:
     on:
       tags: true
 after_deploy:
-  - npm run protractor
+  - npm run test:e2e
 cache:
   directories:
     - node_modules
