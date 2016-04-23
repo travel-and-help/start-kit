@@ -10,7 +10,8 @@ const
 module.exports = [
     new webpack.DefinePlugin({
         'process.env': JSON.stringify({
-            NODE_ENV: env.NODE_ENV
+            NODE_ENV: env.NODE_ENV,
+            PLATFORM: env.PLATFORM
         })
     }),
     new Html({

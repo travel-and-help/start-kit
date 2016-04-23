@@ -22,6 +22,7 @@ module.exports = {
     },
     target: {
         buildDir: path.join(targetDir, 'build'),
-        releaseDir: path.join(targetDir, 'release')
+        releaseDir: path.join(targetDir, 'release'),
+        cordovaDir: path.join(__dirname, 'www')
     }
 };
