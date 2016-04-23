@@ -79,6 +79,7 @@ class CreateForm extends Component  {
                             </div>
                             
                                 <div className="challenge-create-basic__description-title">Description</div>
+                            <hr/>
                            <textarea placeholder="Tell Users about the background of the issue." className="challenge-create-basic__description"></textarea>
                           {description.touched && description.error && <div className="form-error">{description.error}</div>}
                         </div>
@@ -125,7 +126,8 @@ class CreateForm extends Component  {
                          </div>
                         </div>
                         <div className="challenge-create-block">
-                        <CreateTitleBlock text="" />
+
+                            <span className="challenge-create-block__footer-strip"></span>
                         <EnabledCheckbox text="Invite Friends" />
                     </div>
                     </div>

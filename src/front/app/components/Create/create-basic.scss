@@ -1,8 +1,8 @@
-$basic-color: #cccccc;
+$create-blocks-title-color: #cccccc;
 $create-titles-text-color: #fafafa;
 $uppercase: uppercase;
 $disabled-point-color: #cbcbcb;
-$point-font: "Times New Roman";
+$checkbox-title-font: "Times New Roman";
 
 .challenge-create-basic {
     margin-left: auto;
@@ -23,7 +23,7 @@ $point-font: "Times New Roman";
     }
 
     &__description {
-        margin: 10px 10px 30px 30px;
+        margin: 0 10px 30px 30px;
         width: 90%;
         padding: 5px;
         outline: none;
@@ -32,4 +32,8 @@ $point-font: "Times New Roman";
     }
 }
 
+hr {
+    width: 85%;
+    color: $create-blocks-title-color;
+}
 

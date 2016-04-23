@@ -28,6 +28,16 @@
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 30px;
+
+    &__footer-strip {
+        width: 100%;
+        height: 15px;
+        padding: 10px 0 0 30px;
+        background: $create-blocks-title-color;
+        display: inline-block;
+        color: $create-titles-text-color;
+        text-transform: $uppercase;
+    }
 }
 
 .challenge-create-day {
@@ -45,8 +55,9 @@
     width: 100%;
     height: 35px;
     padding: 10px 0 0 30px;
-    background: $basic-color;
+    background: $create-blocks-title-color;
     display: inline-block;
     color: $create-titles-text-color;
     text-transform: $uppercase;
 }
+
