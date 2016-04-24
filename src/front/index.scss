@@ -1,4 +1,10 @@
 @import '../../node_modules/normalize.css/normalize.css';
+@import './app/components/th-splash';
+@import './app/components/Create/create-header';
+@import './app/components/Create/create-main';
+@import './app/components/Create/create-basic';
+@import './app/components/Create/checkboxes';
+@import './app/components/Create/create-blocks';
 @import 'app/components/todo-screen';
 @import 'app/components/Login/login-screen';
 @import './app/components/Navigation/navigation';

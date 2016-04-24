@@ -1,0 +1,20 @@
+.challenge-create-enabled__title {
+    padding: 20px 0 0 30px;
+    font-weight: bold;
+}
+
+.challenge-create-disabled__title {
+    padding: 20px 0 0 30px;
+    color: $disabled-point-color;
+    font-family: $checkbox-title-font;
+}
+
+.challenge-create-disabled__checkbox {
+    padding-left: 30px;
+    display: inline-block;
+}
+
+.challenge-create-enabled__checkbox {
+    padding-left: 30px;
+    display: inline-block;
+}
