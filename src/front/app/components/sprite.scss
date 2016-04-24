@@ -1,0 +1,174 @@
+﻿/* glue: 0.9.4 hash: aa62a706e6 */
+.sprite-todo,
+.sprite-rate,
+.sprite-follow,
+.sprite-circle,
+.sprite-user,
+.sprite-updates,
+.sprite-challenges,
+.sprite-awards,
+.sprite-twitter,
+.sprite-linkedIn,
+.sprite-gp,
+.sprite-fb,
+.sprite-delete,
+.sprite-checked,
+.sprite-checkbox,
+.sprite-options,
+.sprite-comment,
+.sprite-rate-sm,
+.sprite-arrow-right,
+.sprite-arrow-left {
+            background-image: url('images/sprite.png');
+            background-repeat: no-repeat;
+            display: inline-block;
+        }
+        
+        .sprite-todo {
+            background-position: 0 0;
+            width: 45px;
+            height: 66px;
+        }
+        
+        .sprite-rate {
+            background-position: -45px 0;
+            width: 45px;
+            height: 66px;
+        }
+        
+        .sprite-follow {
+            background-position: -90px 0;
+            width: 52px;
+            height: 52px;
+        }
+        
+        .sprite-circle {
+            background-position: 0 -66px;
+            width: 52px;
+            height: 52px;
+        }
+        
+        .sprite-user {
+            background-position: -52px -66px;
+            width: 44px;
+            height: 40px;
+        }
+        
+        .sprite-updates {
+            background-position: -96px -66px;
+            width: 44px;
+            height: 40px;
+        }
+        
+        .sprite-challenges {
+            background-position: -142px 0;
+            width: 44px;
+            height: 40px;
+        }
+        
+        .sprite-awards {
+            background-position: -142px -40px;
+            width: 44px;
+            height: 40px;
+        }
+        
+        .sprite-twitter {
+            background-position: -142px -80px;
+            width: 35px;
+            height: 27px;
+        }
+        
+        .sprite-linkedIn {
+            background-position: 0 -118px;
+            width: 35px;
+            height: 27px;
+        }
+        
+        .sprite-gp {
+            background-position: -35px -118px;
+            width: 35px;
+            height: 27px;
+        }
+        
+        .sprite-fb {
+            background-position: -70px -118px;
+            width: 35px;
+            height: 27px;
+        }
+        
+        .sprite-delete {
+            background-position: 0 -145px;
+            width: 30px;
+            height: 32px;
+        }
+        
+        .sprite-checked {
+            background-position: -30px -145px;
+            width: 32px;
+            height: 32px;
+        }
+        
+        .sprite-checkbox {
+            background-position: -62px -145px;
+            width: 32px;
+            height: 32px;
+        }
+        
+        .sprite-options {
+            background-position: -94px -145px;
+            width: 31px;
+            height: 31px;
+        }
+        
+        .sprite-comment {
+            background-position: -105px -118px;
+            width: 30px;
+            height: 26px;
+        }
+        
+        .sprite-rate-sm {
+            background-position: -125px -145px;
+            width: 21px;
+            height: 28px;
+        }
+        
+        .sprite-arrow-right {
+            background-position: -135px -118px;
+            width: 13px;
+            height: 19px;
+        }
+        
+        .sprite-arrow-left {
+            background-position: -148px -118px;
+            width: 12px;
+            height: 19px;
+        }
+        
+        @media screen and (-webkit-min-device-pixel-ratio: 1.0), screen and (min--moz-device-pixel-ratio: 1.0), screen and (-o-min-device-pixel-ratio: 100/100), screen and (min-device-pixel-ratio: 1.0), screen and (min-resolution: 1.0dppx) {
+          .sprite-todo,
+          .sprite-rate,
+          .sprite-follow,
+          .sprite-circle,
+          .sprite-user,
+          .sprite-updates,
+          .sprite-challenges,
+          .sprite-awards,
+          .sprite-twitter,
+          .sprite-linkedIn,
+          .sprite-gp,
+          .sprite-fb,
+          .sprite-delete,
+          .sprite-checked,
+          .sprite-checkbox,
+          .sprite-options,
+          .sprite-comment,
+          .sprite-rate-sm,
+          .sprite-arrow-right,
+          .sprite-arrow-left {
+                      background-image: url('images/sprite.png');
+                      -webkit-background-size: 186px 177px;
+                      -moz-background-size: 186px 177px;
+                      background-size: 186px 177px;
+                  }
+        }
+        

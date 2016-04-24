@@ -15,5 +15,9 @@ module.exports = [
     {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract('css!csscomb!sass!import-glob-loader!postcss')
+    },
+    {
+        test: /\.(png|jpg)$/,
+        loader: 'file-loader?name=images/[name].[ext]'
     }
 ];

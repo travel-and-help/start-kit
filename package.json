@@ -58,6 +58,7 @@
     "eslint-config-airbnb": "^6.1.0",
     "eslint-plugin-react": "^4.2.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5",
     "getenv": "^0.6.0",
     "glob": "^7.0.3",
     "html-webpack-plugin": "^2.14.0",
