@@ -1,7 +1,6 @@
 import React from 'react';
 import ChallengeList from './ChallengeList';
 import Menu from './Menu';
-import Navigation from './../Navigation';
 
 class Challenges extends React.Component {
     constructor(props) {
@@ -28,7 +27,6 @@ class Challenges extends React.Component {
             <div className="challenges" onScroll={ this.onScroll }>
                 <Menu active={ isMenuActive } />
                 <ChallengeList />
-                <Navigation />
             </div>
         );
     }

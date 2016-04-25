@@ -1,40 +1,57 @@
-.navigation {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  background-color: #f2f2f2;
+@import '../sprite.scss';
 
-    &__item {
-        width: 25%;
-        display: inline-block;
-    }
+.navigation {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
 
     &__link {
+        width: 25%;
+
         text-decoration: none;
-        color: #444656;
-        width: 100%;
+        color: rgb(216,216,216);
         text-align: center;
+        font-size: 12px;
+        background-color: rgb(74, 74, 74);
+        padding: 10px 0;
         display: inline-block;
-        line-height: 52px;
+        border-right: 1px solid rgb(155, 155, 155);
+
+        &:last {
+            border-right: 0 none;
+        }
+
+        &--active {
+            background-color: rgb(155, 155, 155);
+
+            p {
+                color: #2B2B2B;
+            }
+        }
+
+        p {
+            margin: 0;
+        }
     }
 
     &__challenges:before {
-        content: '\EB40';
+        @extend .sprite-challenges
     }
 
     &__awards:before {
-        content: '\E838';
+        @extend .sprite-awards
     }
 
     &__updates:before {
-        content: '\E7F4';
+        @extend .sprite-updates
     }
 
     &__profile:before {
-        content: '\E7FD';
+        @extend .sprite-profile
     }
 }
 

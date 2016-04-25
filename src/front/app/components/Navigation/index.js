@@ -9,9 +9,9 @@ const navigationItemData = [
 ];
 
 export default () => (
-    <ul className="navigation">
+    <nav className="navigation">
         {navigationItemData.map((link, index) => (
-            < NavigationItem link={link} iconClass={`icon navigation__${link}`} key={index} />
+            <NavigationItem link={link} iconClass={`sprite-${link}`} key={index} />
         ))}
-    </ul>
+    </nav>
 );

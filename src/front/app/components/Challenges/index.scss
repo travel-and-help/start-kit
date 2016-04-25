@@ -1,7 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900);
-
 .challenges {
-  font-family: 'Lato';
   position: absolute;
   left: 0;
   right: 0;
@@ -17,7 +14,6 @@
         background-color: transparent;
         z-index: 999;
         padding: 8px 16px;
-        font-family: 'Lato';
         font-size: 14px;
 
         &_active {
@@ -27,7 +23,6 @@
             top: 0;
             width: 100%;
             padding: 8px 16px;
-            font-family: 'Lato';
             font-size: 14px;
         }
     }
@@ -121,7 +116,6 @@
     }
 }
 
-
 .topChallenge {
     height: 67%;
     color: white;
@@ -156,5 +150,3 @@
         letter-spacing: 1px;
     }
 }
-
-
