@@ -1,32 +1,33 @@
 import React from 'react';
 import IconButton from './../IconButton';
+import {Link} from 'react-router';
 
-const ChallengeDetails = ({image, category, title, level, description, user}) => (
+const ChallengeDetails = ({image, title, level, description, user={}}) => (
     <section>
         <img src={image} alt="" />
         <div>{title}</div>
         <div>{level}</div>
         <IconButton
-            title={'add to watch list'}
-            className={'challenge__add-to-watch'}
-            iconClassName={'icon icon-watch-list'}
+            title={'share challenge'}
+            className={'challenge__share'}
+            iconClassName={'icon icon-share'}
         />
         <IconButton
             title={'accept challenge'}
             className={'challenge__accept'}
             iconClassName={'icon icon-accept'}
         />
-        <div>{user && user.firstName}</div>
-        <div>{user && user.lastName}</div>
-        <div>{user && user.rating}</div>
+        <div>{user.firstName}</div>
+        <div>{user.lastName}</div>
+        <div>{user.rating}</div>
         <div>{description}</div>
+        <Link to="challenge/1">link</Link>
     </section>
 );
 
 ChallengeDetails.propTypes = {
     image: React.PropTypes.string,
     title: React.PropTypes.string,
-    category: React.PropTypes.array,
     level: React.PropTypes.string,
     description: React.PropTypes.string,
     user: React.PropTypes.object
