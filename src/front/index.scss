@@ -1,6 +1,8 @@
 @import '../../node_modules/normalize.css/normalize.css';
 @import 'app/components/todo-screen';
 @import 'app/components/Login/login-screen';
+@import './app/components/Navigation/navigation';
+@import './app/components/Challenges/index';
 @import './app/components/ChallengeDetail/ChallengeDetailsHeader';
 @import './app/components/ChallengeDetail/ChallengeDetailsInfo';
 @import './app/components/ChallengeDetail/ChallengeDetailsDescription';
@@ -11,4 +13,12 @@
 
 * {
   box-sizing: border-box;
+}
+
+.icon {
+    position: relative;
+    display: inline-block;
+    font-size: inherit;
+    text-align: center;
+    font-family: 'Material Icons';
 }
