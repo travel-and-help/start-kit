@@ -10,13 +10,7 @@ class Challenge extends Component {
         const id = this.props.params.id;
         const dispatch = this.props.dispatch;
         dispatch(getChallenge(id));
-        //console.log('did');
     }
-
-    //shouldComponentUpdate(nextProps, nextState) {
-    //    console.log(this.props.routeParams.id, nextProps.routeParams.id);
-    //    return nextProps.challenge.id !== this.props.challenge.id;
-    //}
 
     render() {
         return (
