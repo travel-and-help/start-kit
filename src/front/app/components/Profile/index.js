@@ -1,118 +1,47 @@
 import React from 'react';
 import { Router } from 'react-router';
+import { connect } from 'react-redux';
+import Header from './Header';
+import Socials from './Socials';
+import UserDetails from './UserDetails';
+import { getUser } from './../../actions/user';
 
-export default class Profile extends React.Component {
+class Profile extends React.Component {
     constructor(props) {
         super(props);
+        const { user, dispatch } = props;
+        if (!user) {
+            dispatch(getUser());
+        }
     }
+
     render() {
-        const user = {
-            rating: 9.5,
-            categories: 'Children, Obesity, HIV',
-            locations: 'Ukraine, USA, UK',
-            photo: 'http://placehold.it/124x120',
-            name: 'ANTON SHNAIDER',
-            created: 0,
-            accepted: 0,
-            completed: 0,
-            registerDate: '10 april 2012',
-            lastLogin: '23 March 2016'
-        };
+        const { user } = this.state;
+
         return (
-            <div className="profile" >
-                <nav className='nav' >
-                    {/* goBack icon
-                     <a className='nav__item nav__item--left' href='#'>
-                     <i className='sprite sprite-arrow-left'></i>
-                     </a>
-                     */}
-                    <a className='nav__item nav__item--right' href='#' >
-                        <i className='sprite sprite-options' ></i>
-                    </a>
-                </nav>
+            <div class="profile" >
+                <Header />
+                <UserDetails user={user} />
 
-                <section className='user' >
-
-                    <ul className='user__info' >
-                        <li className='user__info__item' >
-                            <span className='sprite sprite-todo' ></span>
-                        </li>
-                        <li className='user__info__item' >
-                            <img className='user__image' src={user.photo} title={user.name} />
-                        </li>
-                        <li className='user__info__item user__info__item--rate' >
-                            <span className='sprite sprite-rate' >{user.rating}</span>
-                        </li>
-                    </ul>
-
-                    <div className='user__name' >
-                        <h2>{user.name}</h2>
-                    </div>
-
-                    <ul className='user__status' >
-                        <li className='user__status__item' >
-                            <div className='user__status__item__value' >{user.created}</div>
-                            <div className='user__status__item__title' >created</div>
-                        </li>
-                        <li className='user__status__item' >
-                            <div className='user__status__item__value' >{user.accepted}</div>
-                            <div className='user__status__item__title' >accepted</div>
-                        </li>
-                        <li className='user__status__item' >
-                            <div className='user__status__item__value' >{user.completed}</div>
-                            <div className='user__status__item__title' >completed</div>
-                        </li>
-                        <li className='user__status__item' >
-                            <div className='user__status__item__value' >
-                                <a href='#' >
-                                    <span className='sprite sprite-follow' ></span>
-                                </a>
-                            </div>
-                            <div className='user__status__item__title' >follow</div>
-                        </li>
-                    </ul>
+                <section class='section-container' >
+                    <h4 class='section-container__title' >LOCATIONS</h4>
+                    <div class='section-container__description' >{user.locations}</div>
                 </section>
 
-                <section className='section-container' >
-                    <h4 className='section-container__title' >LOCATIONS</h4>
-                    <div className='section-container__description' >{user.locations}</div>
+                <section class='section-container' >
+                    <h4 class='section-container__title' >CATEGORIES</h4>
+                    <div class='section-container__description' >{user.categories}</div>
                 </section>
 
-                <section className='section-container' >
-                    <h4 className='section-container__title' >CATEGORIES</h4>
-                    <div className='section-container__description' >{user.categories}</div>
-                </section>
-
-                <section className='section-container section-container--inline' >
-                    <h4 className='section-container__title' >ON WEB</h4>
-                    <div className='section-container__description' >
-                        <ul className='section-container__social' >
-                            <li>
-                                <a href='#' >
-                                    <span className='sprite sprite-twitter' ></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href='#' >
-                                    <span className='sprite sprite-fb' ></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href='#' >
-                                    <span className='sprite sprite-linkedIn' ></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href='#' >
-                                    <span className='sprite sprite-gp' ></span>
-                                </a>
-                            </li>
-                        </ul>
+                <section class='section-container section-container--inline' >
+                    <h4 class='section-container__title' >ON WEB</h4>
+                    <div class='section-container__description' >
+                        <Socials socials={user.socials} />
                     </div>
                 </section>
 
-                <section className='section-container' >
-                    <div className='section-container__description' >
+                <section class='section-container' >
+                    <div class='section-container__description' >
                         <p>
                             Member since {user.registerDate}
                         </p>
@@ -121,8 +50,11 @@ export default class Profile extends React.Component {
                         </p>
                     </div>
                 </section>
-
             </div>
         );
     }
 };
+
+const mapStateToProps = ({ user }) => ({ user });
+
+export default connect(mapStateToProps)(Profile);

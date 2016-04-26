@@ -7,12 +7,13 @@ import routes from './routes';
 
 export default () => {
     const store = appStore();
+    const app = document.getElementById('root');
     render(
         <Provider store={store.state}>
             <Router history={store.history}>
                 { routes() }
             </Router>
         </Provider>,
-        document.getElementById('root')
+        app
     );
 };

@@ -6,7 +6,10 @@ module.exports = [
     {
         test: /\.js?$/,
         exclude: /node_modules/,
-        loaders: ['react-hot', 'babel']
+        loader: 'babel',
+        query: {
+            plugins: ['react-html-attrs']
+        }
     },
     {
         test: /\.(woff|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
