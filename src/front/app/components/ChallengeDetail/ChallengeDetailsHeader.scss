@@ -1,0 +1,32 @@
+$header-background: #DCDCDC;
+
+.challenge-detail-header {
+    margin-left: auto;
+    margin-right: auto;
+    background: $header-background;
+    height: 250px;
+
+    &__back-button {
+        overflow: hidden;
+        position: relative;
+        height: 40px;
+        width: 30px;
+        left: 20px;
+        top: 10px;
+        float: left;
+        cursor: pointer;
+    }
+
+    &__share-button {
+        overflow: hidden;
+        position: relative;
+        height: 40px;
+        width: 40px;
+        right: 20px;
+        top: 10px;
+        float: right;
+        cursor: pointer;
+    }
+}
+
+

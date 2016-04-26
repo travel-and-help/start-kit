@@ -1,0 +1,42 @@
+$challenge-info-block-color: #eeeeee;
+$challenge-title-color: #000000;
+$challegne-author-title-color: #C0C0C0;
+
+.challenge-created-info, .challenge-completed-info {
+    min-height: 100px;
+    max-height: 100px;
+    width: 70%;
+    background: $challenge-info-block-color;
+    margin-top: 5px;
+    float: left;
+    display: block;
+    padding: 0 0 10px 10px;
+
+    &__title {
+        text-transform: uppercase;
+        color: $challenge-title-color;
+        font-size: 22px;
+        text-align: left;
+        padding: 10px 10px 5px 10px;
+    }
+
+    &__author-title, &__level-title {
+        font-size: 18px;
+        text-align: left;
+        color: $challegne-author-title-color;
+        padding: 5px;
+    }
+
+    &__rating {
+        height: 25px;
+        width: 25px;
+    }
+
+    &__author {
+        text-align: right;
+    }
+
+    &__author-line {
+        display: block;
+    }
+}
