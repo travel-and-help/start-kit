@@ -11,4 +11,4 @@ ChallengeTopic.propTypes = {
     name: PropTypes.string.isRequired
 };
 
-export default ChallengeTopic
+export default ChallengeTopic;

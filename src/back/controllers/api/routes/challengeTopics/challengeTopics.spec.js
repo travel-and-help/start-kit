@@ -21,7 +21,7 @@ describe('challengeTopics handler', () => {
     });
 
     it('should return data as parsed json', () => {
-        const res = {json: env.stub()};
+        const res = { json: env.stub() };
         const data = 'data';
 
         sut.getAll({}, res);

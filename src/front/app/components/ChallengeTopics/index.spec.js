@@ -12,7 +12,7 @@ describe('ChallengeTopics', () => {
 
     beforeEach(() => {
         topics = ['topics'];
-        action = {plain: 'object'};
+        action = { plain: 'object' };
         getChallengeTopics = env.stub().returns(topics);
         toggleChallengeTopic = env.stub().returns(action);
         const connector = env.spy((component) => component);

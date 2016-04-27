@@ -1,4 +1,3 @@
-import proxyquire from 'proxyquire';
 import { getChallengeTopics, GET_CHALLENGE_TOPICS } from './challengeTopics';
 
 describe('action/challengeTopics', () => {

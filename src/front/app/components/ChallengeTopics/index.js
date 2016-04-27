@@ -29,7 +29,7 @@ class ChallengeTopicList extends Component {
                     <ChallengeTopic
                       key={index}
                       {...topic}
-                      onClick={() => {this.handleClick(topic.name)}}
+                      onClick={() => {this.handleClick(topic.name);}}
                     />
                 ))}
             </ul>

@@ -1,3 +1,5 @@
+'use strict';
+
 const challengeTopic = require('./../../models/challengeTopic');
 
 const getAll = (req, res) => {
