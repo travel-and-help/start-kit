@@ -7,25 +7,35 @@
   padding: 0;
   background-color: #f2f2f2;
 
-  &__item {
-    width: 25%;
-    display: inline-block;
-
-    a {
-      text-decoration: none;
-      color: #444656;
-      width: 100%;
-      text-align: center;
-      display: inline-block;
-      line-height: 52px;
+    &__item {
+        width: 25%;
+        display: inline-block;
     }
-  }
+
+    &__link {
+        text-decoration: none;
+        color: #444656;
+        width: 100%;
+        text-align: center;
+        display: inline-block;
+        line-height: 52px;
+    }
+
+    &__challenges:before {
+        content: '\EB40';
+    }
+
+    &__awards:before {
+        content: '\E838';
+    }
+
+    &__updates:before {
+        content: '\E7F4';
+    }
+
+    &__profile:before {
+        content: '\E7FD';
+    }
 }
 
-.icon{
-  position:relative;
-  display:inline-block;
-  text-align:center;
-  font-family:'Material Icons';
-  font-size:24px;
-}
+

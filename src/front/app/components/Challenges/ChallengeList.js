@@ -1,49 +1,40 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { fetchChallenges } from './../../actions/challenges';
 import Challenge from './Challenge';
 import TopChallenge from './TopChallenge';
 
-let ChallengeList = ({ challenges, dispatch }) => {
-    if (!challenges.length) {
-        dispatch(getInitialChallenges());
+class ChallengeList extends React.Component {
+    constructor(props) {
+        super(props);
+        const { challenges, dispatch } = props;
+        if (!challenges.length) {
+            dispatch(fetchChallenges());
+        }
     }
-    const first = challenges[0];
-    const others = challenges.slice(1);
 
-    return (
-        <ul className="challenges__challengeList">
-            <TopChallenge challenge={ first } />
-            { others.map((challenge, index) => (
-                    <Challenge key={ index } challenge={ challenge } />
-            ))}
-        </ul>
-    );
-};
+    render() {
+        const { challenges } = this.props,
+            topChallenge = challenges[0],
+            otherChallenges = challenges.slice(1);
+
+        return (
+            <ul className="challenges__list">
+                { topChallenge && <TopChallenge { ...topChallenge } /> }
+                { otherChallenges.map((challenge, index) => (
+                    <Challenge key={ index } { ...challenge } />
+                ))}
+            </ul>
+        );
+    }
+
+}
 
 ChallengeList.propTypes = {
     challenges: React.PropTypes.array,
     dispatch: React.PropTypes.func
 };
 
-const mapStateToProps = ({ challenges }) => {
-    return {
-      challenges
-    };
-};
+const mapStateToProps = ({ challenges }) => ({ challenges });
 
-function getInitialChallenges() {
-    return function fetchChallenges(dispatch) {
-        fetch('http://localhost:9000/api/challenges')
-            .then(response => response.json())
-            .then(challenges => dispatch({
-                type: 'GET_INITIAL_CHALLENGES',
-                challenges
-            }));
-    };
-}
-
-ChallengeList = connect(
-    mapStateToProps
-)(ChallengeList);
-
-export default ChallengeList;
+export default connect(mapStateToProps)(ChallengeList);

@@ -1,9 +1,17 @@
 @import '../../node_modules/normalize.css/normalize.css';
-@import './app/components/th-splash';
+@import 'app/components/todo-screen';
+@import 'app/components/Login/login-screen';
 @import './app/components/Navigation/navigation';
-@import './app/components/Challenges/challengeList';
-
+@import './app/components/Challenges/index.scss';
 
 * {
   box-sizing: border-box;
+}
+
+.icon {
+    position: relative;
+    display: inline-block;
+    font-size: inherit;
+    text-align: center;
+    font-family: 'Material Icons';
 }

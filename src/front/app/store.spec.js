@@ -39,7 +39,7 @@ describe('store', () => {
             'react-router': reactRouter,
             'react-router-redux': reactRouterRedux,
             'redux-thunk': thunk,
-            './reducer/challenges': challenges
+            './reducers/challenges': challenges
         }).default;
 
         result = sut();
@@ -55,7 +55,7 @@ describe('store', () => {
             .callCount(1);
     });
 
-    it('should apply thunk middleware once', function(){
+    it('should apply thunk middleware once', () => {
         redux.applyMiddleware.should
         .calledWith(thunk.default)
         .and

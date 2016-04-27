@@ -1,51 +1,28 @@
-# Travel and Help
-[![Build Status](https://travis-ci.org/travel-and-help/start-kit.svg?branch=master)](https://travis-ci.org/travel-and-help/start-kit)
-[![Coverage](https://codecov.io/github/travel-and-help/start-kit/coverage.svg?branch=master)](https://codecov.io/github/travel-and-help/start-kit?branch=master)
+Travel and Help [![Build Status](https://travis-ci.org/travel-and-help/start-kit.svg?branch=master)](https://travis-ci.org/travel-and-help/start-kit) [![Coverage](https://codecov.io/github/travel-and-help/start-kit/coverage.svg?branch=master)](https://codecov.io/github/travel-and-help/start-kit?branch=master)
+=========
+Travel and Help is a mobile application, which lets travelers perform some social activities called challenges in chosen city or country. Challenge makers will have the possibility to create social challenges and they will be posted after verification.
 
-## Links
+* Web site: https://start-kit.herokuapp.com/#/login
+* Travis-CI: https://travis-ci.org/travel-and-help/start-kit
+* Sauce Labs: https://saucelabs.com/beta/dashboard/tests
+* Design mockups: https://projects.invisionapp.com/share/Q66S0N79F#/screens
+* Dashboard: https://tree.taiga.io/project/kucherenko-travel-and-help/backlog
+* Developer Guide: https://github.com/travel-and-help/start-kit/wiki/Developer-Guide
 
-#### CI [Travis-CI] (https://travis-ci.org/travel-and-help/start-kit)
+Building
+---------
+[Once you have set up your environment](https://github.com/travel-and-help/start-kit/wiki/Developer-Guide), just run:
 
-#### E2E [Sauce Labs] (https://saucelabs.com/beta/dashboard/tests)
+    npm start
 
-#### LIVE [Heroku] (https://start-kit.herokuapp.com/)
+Running tests
+-------------
+To execute all unit tests, use:
 
-#### Style Gude [Airbnb React/JSX Style Guide] (https://github.com/airbnb/javascript/tree/master/react#naming)
+    npm run test:unit
 
-## Main npm scripts
+To execute end-to-end (e2e) tests, use:
 
-* ``` npm run watch ``` build app, stand up local mongo db, start server and watch for changes on bacend and frontend (best for development). Notice: front end will be served from memory by webpack dev server and be available on __PORT + 1__
-* ``` npm start ``` build project (target depends on __NODE_ENV__) and serve target (best for deployment)
+    npm run test:e2e
 
-* ``` npm run lint ``` lint all sources (see [JS style guide](https://github.com/airbnb/javascript))
-* ``` npm run lint:front ``` lint frontend sources
-* ``` npm run lint:back ``` lint backend sources
-
-* ``` npm test ``` run all tests
-* ``` npm run test:front ``` run frontend tests
-* ``` npm run test:back ``` run backend tests
-
-* ``` npm run coverage ``` generates html coverage report
-
-* ``` npm run test-ci ``` lint code, run tests, generates coverage report and uploads it to codecov
-
-* ``` npm run cordova:copy ``` copy build artifact from target/ to cordova
-* ``` npm run cordova:prepare ``` expand cordova plugins and platforms from config.xml
-* ``` npm run cordova:build ``` build native applications with cordova ios and android
-* ``` npm run cordova:build:ios ``` build native ios application with cordova
-* ``` npm run cordova:build:android ``` build native android application with cordova
-
-## .env file
-Before start server or build environment variables will be loaded from .env file
-
-* __NODE_ENV__ - supported values: (development|production). With production or not development env all sources will be optimized for production
-* __PORT__ - port for serving target (for both express and browser-sync)
-* __DB_URL__ - database connection string eg. url
-
-# npm run mm create [MIGRATION NAME] -> new migrations in migrations folder appears
-# in migration file implement up method
-# npm run mm will run migrations
-
-# npm run mm create [MIGRATION NAME] -> new migrations in migrations folder appears
-# in migration file implement up method
-# npm run mm will run migrations
+To learn more about npm scripts, use [npm scripts guide](https://docs.npmjs.com/misc/scripts)

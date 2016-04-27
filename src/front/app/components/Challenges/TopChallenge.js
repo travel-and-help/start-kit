@@ -1,20 +1,20 @@
 import React from 'react';
 
-const Challenge = ({ challenge = {} }) => (
-    <li className="challenges__challengeList__topChallenge">
-        <div className="challenges__challengeList__topChallenge__caption">
-            <p className="challenges__challengeList__topChallenge__caption__description">
-                {challenge.description && challenge.description.toUpperCase()}
+const TopChallenge = ({ description }) => (
+    <li className="topChallenge">
+        <div className="topChallenge__caption">
+            <p className="topChallenge__description">
+                {description}
             </p>
-            <span className="challenges__challengeList__topChallenge__caption__popular">
+            <span className="topChallenge__popular">
                 Popular this week
             </span>
         </div>
     </li>
 );
 
-Challenge.propTypes = {
-    challenge: React.PropTypes.object
+TopChallenge.propTypes = {
+    description: React.PropTypes.string.isRequired
 };
 
-export default Challenge;
+export default TopChallenge;
