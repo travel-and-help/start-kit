@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Challenge = ({ description, user, location }) => (
+const Challenge = ({ title, user, location }) => (
     <li className="challenge">
         <div className="challenge__image">Image here</div>
-        <span className="challenge__description">
-            {description}
+        <span className="challenge__title">
+            {title}
         </span>
         <div className="challenge__user-block">
             <span className="challenge__rating">
@@ -22,7 +22,7 @@ const Challenge = ({ description, user, location }) => (
 );
 
 Challenge.propTypes = {
-    description: React.PropTypes.string.isRequired,
+    title: React.PropTypes.string.isRequired,
     user: React.PropTypes.object.isRequired,
     location: React.PropTypes.string.isRequired
 };
