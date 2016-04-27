@@ -2,10 +2,15 @@
 @import 'app/components/todo-screen';
 @import 'app/components/Login/login-screen';
 @import './app/components/Navigation/navigation';
-@import './app/components/Challenges/index.scss';
+@import './app/components/Challenges/index';
+@import './app/components/Create/index';
 
-* {
-  box-sizing: border-box;
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
 }
 
 .icon {
