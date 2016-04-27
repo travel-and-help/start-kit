@@ -12,6 +12,7 @@
     "codecov": "nyc report | codecov",
     "lint": "eslint src",
     "migration": "mm",
+    "migrate": "mm migrate",
     "start:back": "cd src/back && nodemon",
     "start:front": "npm run build",
     "watch:front": "webpack-dev-server --config webpack/index.js",
