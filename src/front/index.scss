@@ -1,4 +1,5 @@
 @import '../../node_modules/normalize.css/normalize.css';
+@import './app/components/IconButton/index';
 @import 'app/components/todo-screen';
 @import 'app/components/Login/login-screen';
 @import './app/components/Navigation/navigation';
@@ -19,6 +20,27 @@
     position: relative;
     display: inline-block;
     font-size: inherit;
-    text-align: center;
     font-family: 'Material Icons';
+    font-style: normal;
+    text-align: center;
+
+    $i: 14;
+    $selector: '&_size-';
+    @while ($i < 50) {
+
+        '#{$selector}#{$i}' {
+            font-size: $i+px;
+        }
+
+        $i: $i + 2;
+    }
+
+    &_dark {
+        color: #333;
+    }
+
+    &_light {
+        color: #fefefe;
+    }
 }
+

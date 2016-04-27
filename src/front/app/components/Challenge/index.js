@@ -15,7 +15,7 @@ class Challenge extends Component {
 
     render() {
         return (
-            <div>
+            <div className="challenge-details">
                 <ChallengeNav />
                 <ChallengeDetails {...this.props.challenge} />
                 <ChallengeComments />

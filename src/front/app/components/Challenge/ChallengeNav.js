@@ -3,17 +3,19 @@ import { hashHistory } from 'react-router';
 import IconButton from './../IconButton';
 
 export default () => (
-    <div>
+    <div className="challenge-nav">
         <IconButton
-            title={'Back'}
-            buttonClassName={'challenge__back'}
-            iconClassName={'icon icon-back'}
+            buttonClassName={'challenge-nav__item challenge-nav__item_back'}
+            iconName={'keyboard_arrow_left'}
+            iconSize={40}
+            iconClassName={'icon_light'}
             clickHandler={hashHistory.goBack}
         />
         <IconButton
-            title={'Add to watch list'}
-            buttonClassName={'challenge__add-watch'}
-            iconClassName={'icon icon-add-watch'}
+            buttonClassName={'challenge-nav__item challenge-nav__item_watch'}
+            iconName={'bookmark_border'}
+            iconSize={40}
+            iconClassName={'icon_light'}
         />
     </div>
 );

@@ -3,7 +3,7 @@ import { hashHistory } from 'react-router';
 import thunk from 'redux-thunk';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import challenges from './reducers/challenges';
-import challenge from './reducer/challenge';
+import challenge from './reducers/challenge';
 
 export default () => {
     const state = createStore(
