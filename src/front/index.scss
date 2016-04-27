@@ -1,18 +1,16 @@
 @import '../../node_modules/normalize.css/normalize.css';
-@import './app/components/th-splash';
-@import './app/components/Create/create-header';
-@import './app/components/Create/create-main';
-@import './app/components/Create/create-basic';
-@import './app/components/Create/checkboxes';
-@import './app/components/Create/create-blocks';
 @import 'app/components/todo-screen';
 @import 'app/components/Login/login-screen';
 @import './app/components/Navigation/navigation';
-@import './app/components/Challenges/index.scss';
-@import './app/components/Create/create';
+@import './app/components/Challenges/index';
+@import './app/components/Create/index';
 
-* {
-  box-sizing: border-box;
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
 }
 
 .icon {
@@ -21,8 +19,4 @@
     font-size: inherit;
     text-align: center;
     font-family: 'Material Icons';
-}
-
-*:before, *:after {
-    box-sizing: inherit;
 }
