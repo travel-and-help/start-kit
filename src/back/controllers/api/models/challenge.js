@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const Challenge = new Schema({
-    category: { type: Array, required: true },
+    categories: { type: Array, required: true },
     title: { type: String, required: true },
     image: { type: String, required: true },
     level: { type: String, required: true },
