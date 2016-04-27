@@ -1,0 +1,23 @@
+
+.challenge-create {
+
+    &__description-title {
+        padding: 5px 0 0 30px;
+        font-weight: bold;
+    }
+
+    &__description {
+        margin: 0 0 30px 30px;
+        width: 90%;
+        padding: 5px;
+        outline: none;
+        background-color: transparent;
+        border: none;
+    }
+}
+
+hr {
+    width: 85%;
+    color: $create-blocks-title-color;
+}
+
