@@ -8,7 +8,7 @@ import Updates from './components/Updates';
 import Profile from './components/Profile';
 
 export default () => (
-    <Route path="/" >
+    <Route path="/" component={Login}>
         <Route path="login" component={Login} />
         <Route path="challenges" component={Challenges} />
         <Route path="awards" component={Awards} />

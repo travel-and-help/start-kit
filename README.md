@@ -26,3 +26,7 @@ To execute end-to-end (e2e) tests, use:
     npm run test:e2e
 
 To learn more about npm scripts, use [npm scripts guide](https://docs.npmjs.com/misc/scripts)
+
+cp -r target/build/* www/ 
+
+lt --port 9000 --subdomain travelandhelp
