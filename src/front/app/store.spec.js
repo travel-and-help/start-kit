@@ -6,6 +6,7 @@ describe('store', () => {
         reactRouter,
         reactRouterRedux,
         challenges,
+        challengeTopics,
         thunk,
         result;
 
@@ -34,12 +35,17 @@ describe('store', () => {
             default: env.stub()
         };
 
+        challengeTopics = {
+            default: env.stub()
+        };
+
         const sut = proxyquire('./store', {
             redux,
             'react-router': reactRouter,
             'react-router-redux': reactRouterRedux,
             'redux-thunk': thunk,
-            './reducers/challenges': challenges
+            './reducers/challenges': challenges,
+            './reducers/challengeTopics': challengeTopics
         }).default;
 
         result = sut();
@@ -49,7 +55,8 @@ describe('store', () => {
         redux.combineReducers.should
             .calledWith({
                 challenges: challenges.default,
-                routing: reactRouterRedux.routerReducer
+                routing: reactRouterRedux.routerReducer,
+                challengeTopics: challengeTopics.default
             })
             .and
             .callCount(1);

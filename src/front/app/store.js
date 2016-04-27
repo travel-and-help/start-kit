@@ -3,11 +3,13 @@ import { hashHistory } from 'react-router';
 import thunk from 'redux-thunk';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import challenges from './reducers/challenges';
+import challengeTopics from './reducers/challengeTopics';
 
 export default () => {
     const state = createStore(
         combineReducers({
             challenges,
+            challengeTopics,
             routing: routerReducer
         }),
         applyMiddleware(thunk)
