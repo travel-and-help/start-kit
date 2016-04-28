@@ -1,9 +1,13 @@
-.challenge-create-header {
-    margin-left: auto;
-    margin-right: auto;
-    background: $create-header-color;
-    height: 70px;
-    text-align: center;
+.challenge-create {
+
+    &__header {
+        margin-left: auto;
+        margin-right: auto;
+        background: $create-header-color;
+        height: 70px;
+        text-align: center;
+    }
+
 
     &__title {
         text-transform: uppercase;

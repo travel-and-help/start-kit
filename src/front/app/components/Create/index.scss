@@ -1,7 +1,8 @@
 $create-blocks-title-color: #cccccc;
 $create-titles-text-color: #fafafa;
 $uppercase: uppercase;
-$disabled-point-color: #cbcbcb;
+$disabled-title-checkbox-color: #cbcbcb;
+$enabled-title-checkbox-color: #000000;
 $checkbox-title-font: "Times New Roman";
 $create-header-title-color: #f6f6f6;
 $create-header-color: #666666;
@@ -10,8 +11,10 @@ $create-header-button-font: "Times New Roman";
 $create-header-button-size: 18px;
 $photo-download-color: #adadad;
 
+
+
 @import './checkboxes';
-@import './create-basic';
-@import './create-blocks';
+@import 'create-description';
+@import 'create-own-blocks';
 @import './create-header';
-@import './create-main';
+@import 'create-own-info';

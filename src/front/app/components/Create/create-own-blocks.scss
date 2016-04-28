@@ -1,0 +1,52 @@
+.challenge-create {
+
+    &__field {
+        position: relative;
+        height: 30px;
+        padding-top: 10px;
+        display: block;
+        padding-left: 10px;
+        padding-bottom: 20px;
+    }
+
+    &__select-type {
+        width: 50px;
+        margin-right: 50px;
+        float: right;
+        outline: none;
+        background-color: transparent;
+        border: none;
+        -webkit-appearance: none;
+        background-position: right center;
+        background-repeat: no-repeat;
+        text-align: right;
+        display: block;
+    }
+
+    &__day-input {
+        margin-left: 10px;
+        outline: none;
+        background-color: transparent;
+        border: none;
+        padding: 10px 10px 0 30px;
+    }
+}
+
+.challenge-create__titles {
+    width: 100%;
+    height: 35px;
+    padding: 10px 0 0 30px;
+    margin: 10px 0 10px 0;
+    background: $create-blocks-title-color;
+    display: inline-block;
+    color: $create-titles-text-color;
+    text-transform: $uppercase;
+}
+
+.challenge-create__septa {
+    width: 100%;
+    height: 15px;
+    background: $create-blocks-title-color;
+    display: inline-block;
+}
+

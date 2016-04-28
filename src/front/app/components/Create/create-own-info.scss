@@ -1,15 +1,18 @@
-.challenge-create-main {
-    margin-left: auto;
-    margin-right: auto;
-    float: left;
-    height: 100px;
-    width: 100%;
-    display: inline-block;
+.challenge-create {
+
+    &__body {
+        margin-left: auto;
+        margin-right: auto;
+        float: left;
+        height: 100px;
+        width: 100%;
+        display: inline-block;
+    }
 
     &__photo {
         height: 100px;
         width: 25%;
-        padding-top: 20px;
+        padding-top: 5px;
         margin-left: 30px;
         display: inline-block;
         background: $photo-download-color;
