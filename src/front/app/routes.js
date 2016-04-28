@@ -3,7 +3,6 @@ import { Route } from 'react-router';
 import Login from './components/Login';
 import Challenges from './components/Challenges';
 import Challenge from './components/Challenge';
-import ChallengeDetail from './components/ChallengeDetail/ChallengeDetail';
 import TodoScreen from './components/TodoScreen';
 import Awards from './components/Awards';
 import Updates from './components/Updates';
@@ -17,7 +16,6 @@ export default () => (
         <Route path="awards" component={Awards} />
         <Route path="updates" component={Updates} />
         <Route path="profile" component={Profile} />
-        <Route path="challengedetail" component={ChallengeDetail} />
         <Route path="todo" component={TodoScreen} />
     </Route>
 );
