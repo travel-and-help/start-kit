@@ -1,3 +1,12 @@
+/* Mixins START */
+@function _th-rem($val, $basic_val:16) {
+    @return $val / $basic_val + rem;
+}
+
+
+
+/* Mixins END */
+
 @import '../../node_modules/normalize.css/normalize.css';
 @import './app/components/IconButton/index';
 @import 'app/components/todo-screen';
@@ -11,6 +20,10 @@
 @import './app/components/ChallengeDetail/AddAcceptButton';
 @import './app/components/ChallengeDetail/ChallengeCreatedInfo';
 @import './app/components/ChallengeDetail/ChallengeCompletedInfo';
+@import './app/components/Challenge/index';
+
+
+
 
 * {
   box-sizing: border-box;
@@ -29,17 +42,19 @@
     @while ($i < 50) {
 
         '#{$selector}#{$i}' {
-            font-size: $i+px;
+            font-size: _th-rem($i);
         }
 
         $i: $i + 2;
     }
 
     &_dark {
+        text-shadow: 0 0 2px rgba(255,255,255, .5);
         color: #333;
     }
 
     &_light {
+        text-shadow: 0 0 2px rgba(0,0,0, .5);
         color: #fefefe;
     }
 }

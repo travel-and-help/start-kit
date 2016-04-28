@@ -3,7 +3,7 @@ import IconButton from './../IconButton';
 
 const ChallengeDetails = ({image, title, level, description, user}) => (
     <section>
-        <div className="challenge__header" style={{backgroundImage: 'url(' + image + ')'}}></div>
+        <div className="challenge__img" style={{backgroundImage: 'url(' + image + ')'}}></div>
 
         <div className="challenge-info">
 
@@ -12,7 +12,7 @@ const ChallengeDetails = ({image, title, level, description, user}) => (
                 <div className="challenge-info-author">
                     <span className="challenge-info-author__label">Created by </span>
                     <span className="challenge-info-author__name">{user.firstName} {user.lastName}</span>
-                    <span className="challenge-info-author__rating"><i className="icon icon_size-24">star_border</i><sup>{user.rating}</sup></span>
+                    <span className="challenge-info-author__rating"><i className="icon icon_size-36">star_border</i><sup className="challenge-info-author__rating-val">{user.rating}</sup></span>
                 </div>
                 <div className="challenge-info-level">
                     <span className="challenge-info-level__label">Challenge Level </span>
@@ -22,26 +22,26 @@ const ChallengeDetails = ({image, title, level, description, user}) => (
 
             <IconButton
                 title={'accept challenge'}
-                buttonClassName={'add-accept-button'}
+                buttonClassName={'challenge-info__button'}
                 iconName={'check_circle'}
                 iconSize={32}
             />
 
             <div className="challenge-info__item challenge-info__item_completed">
-                <div className="challenge-info__completed-count">Completed by 25 people</div>
-                <div className="challenge-info__completed-count_week">3 this week</div>
-                <div className="challenge-info__completed-count"><a href="">See more details</a></div>
+                <p className="challenge-info-completed__count"><b>Completed by 25 people</b></p>
+                <p className="challenge-info-completed__this-week">3 this week</p>
+                <a className="challenge-info-completed__see-more" href="">See more details</a>
             </div>
 
             <IconButton
                 title={'share challenge'}
-                buttonClassName={'add-accept-button'}
+                buttonClassName={'challenge-info__button'}
                 iconName={'share'}
                 iconSize={32}
             />
 
+            <p className="challenge-info__description">{description}</p>
         </div>
-        <div className="challenge-description">{description}</div>
     </section>
 );
 

@@ -2,13 +2,14 @@ import React from 'react';
 
 const IconButton = ({
     title,
-    buttonClassName,
     iconName,
-    iconSize,
-    iconClassName,
-    clickHandler
+    clickHandler,
+    iconSize = 24,
+    iconClassName = '',
+    buttonClassName = '',
+    buttonType = 'button'
 }) => (
-    <button onClick={clickHandler} className={'icon-button ' + buttonClassName}>
+    <button type={buttonType} onClick={clickHandler} className={'icon-button ' + buttonClassName}>
         <i className={'icon icon_size-' + iconSize + ' ' + iconClassName}>{iconName}</i>
         {title}
     </button>
@@ -16,11 +17,12 @@ const IconButton = ({
 
 IconButton.propTypes = {
     title: React.PropTypes.string,
-    buttonClassName: React.PropTypes.string,
     iconName: React.PropTypes.string.isRequired,
+    clickHandler: React.PropTypes.func,
     iconSize: React.PropTypes.number,
     iconClassName: React.PropTypes.string,
-    clickHandler: React.PropTypes.func
+    buttonClassName: React.PropTypes.string,
+    buttonType: React.PropTypes.string
 };
 
 export default IconButton;
