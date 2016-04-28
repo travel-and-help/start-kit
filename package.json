@@ -12,23 +12,19 @@
     "codecov": "nyc report | codecov",
     "lint": "eslint src",
     "migration": "mm",
-
+    "migrate": "mm migrate",
     "start:back": "cd src/back && nodemon",
     "start:front": "npm run build",
-
     "watch:front": "webpack-dev-server --config webpack/index.js",
     "watch:back": "npm run start:back",
     "watch:db": "mongod --dbpath .local-db",
-
     "test:unit": "npm-run-all test:front test:back",
     "test:front": "mocha test/unit/front --compilers js:babel-register",
     "test:back": "mocha test/unit/back",
     "test:e2e": "protractor protractor.conf.js",
     "test:ci": "npm-run-all -s lint coverage codecov",
-
     "lint:front": "eslint src/front",
     "lint:back": "eslint src/back",
-
     "cordova:prepare": "PLATFORM=cordova npm run build && cordova prepare",
     "cordova:build": "npm run cordova:prepare && cordova build",
     "cordova:emulate": "npm run cordova:prepare && cordova emulate",
@@ -108,6 +104,7 @@
     "body-parser": "^1.15.0",
     "cors": "^2.7.1",
     "express": "^4.13.4",
+    "mongodb-uri": "^0.9.7",
     "mongoose": "^4.4.10",
     "normalize.css": "^4.0.0",
     "q": "^1.4.1",

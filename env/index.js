@@ -13,5 +13,7 @@ module.exports = {
     PLATFORM: getenv('PLATFORM', 'web'),
     DB_NAME: getenv('DB_NAME', 'TravelAndHelp'),
     DB_HOST: getenv('DB_HOST', 'localhost'),
-    DB_PORT: getenv('DB_PORT', '27017')
+    DB_PORT: getenv('DB_PORT', '27017'),
+    DB_USER: getenv('DB_USER', ''),
+    DB_PASSWORD: getenv('DB_PASSWORD', '')
 };
