@@ -25,11 +25,11 @@
                 top: $nav-indent;
 
                 &_back {
-                    left: #{$nav-indent} * 2;
+                    left: $nav-indent * 2;
                 }
 
                 &_watch {
-                    right: #{$nav-indent} * 2;
+                    right: $nav-indent * 2;
                 }
             }
         }

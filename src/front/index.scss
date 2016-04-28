@@ -1,6 +1,6 @@
 /* Mixins START */
 @function _th-rem($val, $basic_val:16) {
-    @return $val / $basic_val + rem;
+    @return $val / $basic_val * 1rem;
 }
 
 
