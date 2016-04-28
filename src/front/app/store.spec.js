@@ -6,7 +6,7 @@ describe('store', () => {
         reactRouter,
         reactRouterRedux,
         challenges,
-        challengeTopics,
+        categories,
         thunk,
         result;
 
@@ -35,7 +35,7 @@ describe('store', () => {
             default: env.stub()
         };
 
-        challengeTopics = {
+        categories = {
             default: env.stub()
         };
 
@@ -45,7 +45,7 @@ describe('store', () => {
             'react-router-redux': reactRouterRedux,
             'redux-thunk': thunk,
             './reducers/challenges': challenges,
-            './reducers/challengeTopics': challengeTopics
+            './reducers/categories': categories
         }).default;
 
         result = sut();
@@ -56,7 +56,7 @@ describe('store', () => {
             .calledWith({
                 challenges: challenges.default,
                 routing: reactRouterRedux.routerReducer,
-                challengeTopics: challengeTopics.default
+                categories: categories.default
             })
             .and
             .callCount(1);

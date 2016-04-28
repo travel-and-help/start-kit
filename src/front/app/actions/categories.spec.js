@@ -1,15 +1,15 @@
-import { getChallengeTopics, GET_CHALLENGE_TOPICS } from './challengeTopics';
+import { getCategories, GET_CATEGORIES } from './categories';
 
-describe('action/challengeTopics', () => {
+describe('action/categories', () => {
     let sut;
     let dispatch;
     let fakeServerResponse;
     let mockedFetchResponse;
-    let mockedChallengeTopics;
+    let mockedCategories;
 
-    describe('getChallengeTopics', () => {
+    describe('getCategories', () => {
         beforeEach(() => {
-            mockedChallengeTopics = ['mockedChallengeTopics'];
+            mockedCategories = ['mockedCategories'];
 
             dispatch = env.spy();
 
@@ -22,7 +22,7 @@ describe('action/challengeTopics', () => {
                     fakeCallback(fakeServerResponse);
                     return {
                         then(cb) {
-                            cb(mockedChallengeTopics);
+                            cb(mockedCategories);
                         }
                     };
                 }
@@ -30,14 +30,14 @@ describe('action/challengeTopics', () => {
 
             global.fetch = env.spy(() => mockedFetchResponse);
 
-            sut = getChallengeTopics();
+            sut = getCategories();
 
         });
 
-        it('fetch challenge topics', () => {
+        it('fetch categories', () => {
             sut(dispatch);
 
-            global.fetch.should.have.been.calledWith('/api/challengeTopics').and.callCount(1);
+            global.fetch.should.have.been.calledWith('/api/categories').and.callCount(1);
         });
 
         it('should convert response to JSON', () => {
@@ -46,13 +46,13 @@ describe('action/challengeTopics', () => {
             fakeServerResponse.json.should.have.been.calledWith();
         });
 
-        it('should dispatch challenge topics event with data', () => {
+        it('should dispatch categories event with data', () => {
             sut(dispatch);
 
             const dispatchArgs = dispatch.lastCall.args[0];
             dispatchArgs.should.eqls({
-                type: GET_CHALLENGE_TOPICS,
-                challengeTopics: mockedChallengeTopics
+                type: GET_CATEGORIES,
+                categories: mockedCategories
             });
         });
     });

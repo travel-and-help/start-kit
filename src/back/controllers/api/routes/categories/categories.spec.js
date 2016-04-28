@@ -2,7 +2,7 @@
 
 const proxyquire = require('proxyquire');
 
-describe('challengeTopics handler', () => {
+describe('categories handler', () => {
     let sut;
     let model;
 
@@ -10,8 +10,8 @@ describe('challengeTopics handler', () => {
         model = {
             find: env.stub()
         };
-        sut = proxyquire('./challengeTopics', {
-            './../../models/challengeTopic': model
+        sut = proxyquire('./categories', {
+            './../../models/category': model
         });
     });
 

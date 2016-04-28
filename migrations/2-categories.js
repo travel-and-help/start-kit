@@ -1,9 +1,9 @@
-module.exports.id = "challengeTopics";
+module.exports.id = "categories";
 
 module.exports.up = function (done) {
     // use this.db for MongoDB communication, and this.log() for logging
-    const challengeTopics = this.db.collection('challengeTopics');
-    challengeTopics.insert([
+    const categories = this.db.collection('categories');
+    categories.insert([
         {
             name: 'animals'
         },
@@ -45,6 +45,6 @@ module.exports.up = function (done) {
 
 module.exports.down = function (done) {
     // use this.db for MongoDB communication, and this.log() for logging
-    const challengeTopics = this.db.collection('challengeTopics');
-    challengeTopics.remove({}, done);
+    const categories = this.db.collection('categories');
+    categories.remove({}, done);
 };
