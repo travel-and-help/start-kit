@@ -2,7 +2,6 @@
 
     &__checkbox-title {
         word-break: break-word;
-        /* float: left; */
         float: left;
         width: 60%;
         color: $disabled-title-checkbox-color;
@@ -10,9 +9,7 @@
     }
 
     &__checkbox {
-        float: right;
         margin-right: 100px;
-        display: inline-block;
         color: $disabled-title-checkbox-color;
         font-family: $checkbox-title-font;
     }

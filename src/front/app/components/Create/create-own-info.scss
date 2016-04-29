@@ -6,7 +6,6 @@
         float: left;
         height: 100px;
         width: 100%;
-        display: inline-block;
     }
 
     &__photo {
@@ -15,14 +14,14 @@
         padding-top: 5px;
         margin-left: 30px;
         display: inline-block;
-        background: $photo-download-color;
+        background-color: $photo-download-color;
     }
 
     &__photo-download {
         cursor: pointer;
-        outline: none;
+        outline: 0;
         background-color: transparent;
-        border: none;
+        border: 0;
     }
 
     &__image {
@@ -33,8 +32,8 @@
 
     &__input {
         float: right;
-        outline: none;
-        border: none;
+        outline: 0;
+        border: 0;
         background-color: transparent;
         width: 67%;
         padding: 10px;
