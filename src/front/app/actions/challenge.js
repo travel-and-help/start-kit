@@ -1,4 +1,5 @@
 export const GET_CHALLENGE = 'GET_CHALLENGE';
+export const PASS_CHALLENGE = 'PASS_CHALLENGE';
 
 function receiveChallenge(challenge) {
     return {

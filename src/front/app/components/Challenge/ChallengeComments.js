@@ -1,5 +1,5 @@
 import React from 'react';
-import IconButton from './../IconButton';
+import IconButton from './../common/IconButton';
 
 const ChallengeComments = () => (
     <div className="challenge-comments">

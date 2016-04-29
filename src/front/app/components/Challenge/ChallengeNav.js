@@ -1,6 +1,6 @@
 import React from 'react';
 import { hashHistory } from 'react-router';
-import IconButton from './../IconButton';
+import IconButton from './../common/IconButton';
 
 export default () => (
     <div className="challenge-nav">

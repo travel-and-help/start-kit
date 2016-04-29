@@ -8,9 +8,13 @@ import ChallengeComments from './ChallengeComments';
 
 class Challenge extends Component {
     componentDidMount() {
-        const id = this.props.params.id;
-        const dispatch = this.props.dispatch;
-        dispatch(fetchChallenge(id));
+        const { challenge } = this.props;
+
+        if(!challenge._id) {
+            const id = this.props.params.id;
+            const dispatch = this.props.dispatch;
+            dispatch(fetchChallenge(id));
+        }
     }
 
     render() {

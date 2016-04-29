@@ -14,13 +14,15 @@ class ChallengeList extends React.Component {
     }
 
     render() {
-        const { challenges } = this.props,
+        const { challenges, dispatch } = this.props,
             topChallenge = challenges[0],
             otherChallenges = challenges.slice(1);
 
+        //console.log(dispatch);
+
         return (
             <ul className="challenges__list">
-                { topChallenge && <TopChallenge { ...topChallenge } /> }
+            { topChallenge && <TopChallenge challenge={topChallenge} dispatch={dispatch} /> }
                 { otherChallenges.map((challenge, index) => (
                     <Challenge key={ index } { ...challenge } />
                 ))}

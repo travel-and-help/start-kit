@@ -1,7 +1,7 @@
 import React from 'react';
-import IconButton from './../IconButton';
+import IconButton from './../common/IconButton';
 
-const ChallengeDetails = ({image, title, level, description, user}) => (
+const ChallengeDetails = ({image, title, level, description, user={}}) => (
     <section>
         <div className="challenge__img" style={{backgroundImage: 'url(' + image + ')'}}></div>
 
@@ -46,11 +46,11 @@ const ChallengeDetails = ({image, title, level, description, user}) => (
 );
 
 ChallengeDetails.propTypes = {
-    image: React.PropTypes.string.isRequired,
-    title: React.PropTypes.string.isRequired,
-    level: React.PropTypes.string.isRequired,
-    description: React.PropTypes.string.isRequired,
-    user: React.PropTypes.object.isRequired
+    image: React.PropTypes.string,
+    title: React.PropTypes.string,
+    level: React.PropTypes.string,
+    description: React.PropTypes.string,
+    user: React.PropTypes.object
 };
 
 export default ChallengeDetails;

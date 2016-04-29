@@ -156,6 +156,7 @@
             }
 
             &__description {
+                flex: 1;
                 padding: $page-padding;
                 margin-bottom: 0;
                 font-size: map-get($font-sizes, default);

@@ -1,14 +1,13 @@
-/* Mixins START */
-@function _th-rem($val, $basic_val:16) {
-    @return $val / $basic_val * 1rem;
-}
+/* Mixins & functions */
+@import './app/components/common/styles/mixins';
 
-
-
-/* Mixins END */
-
+/* 3rd-party */
 @import '../../node_modules/normalize.css/normalize.css';
-@import './app/components/IconButton/index';
+
+/* Common components */
+@import './app/components/common/IconButton/index';
+
+/* Components */
 @import 'app/components/todo-screen';
 @import 'app/components/Login/login-screen';
 @import './app/components/Navigation/navigation';
@@ -51,4 +50,3 @@
         color: #fefefe;
     }
 }
-
