@@ -1,17 +1,51 @@
+/* Mixins & functions */
+@import './app/components/common/styles/mixins';
+
+/* 3rd-party */
 @import '../../node_modules/normalize.css/normalize.css';
+
+/* Common components */
+@import './app/components/common/IconButton/index';
+
+/* Components */
 @import 'app/components/todo-screen';
 @import 'app/components/Login/login-screen';
 @import './app/components/Navigation/navigation';
-@import './app/components/Challenges/index.scss';
+@import './app/components/Challenges/index';
+
+
+
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .icon {
     position: relative;
     display: inline-block;
     font-size: inherit;
-    text-align: center;
     font-family: 'Material Icons';
+    font-style: normal;
+    text-align: center;
+
+    $i: 14;
+    $selector: '&_size-';
+    @while ($i < 50) {
+
+    '#{$selector}#{$i}' {
+        font-size: _th-rem($i);
+    }
+
+        $i: $i + 2;
+    }
+
+    &_dark {
+        text-shadow: 0 0 2px rgba(255,255,255, .5);
+        color: #333;
+    }
+
+    &_light {
+        text-shadow: 0 0 2px rgba(0,0,0, .5);
+        color: #fefefe;
+    }
 }

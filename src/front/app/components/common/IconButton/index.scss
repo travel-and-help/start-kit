@@ -1,0 +1,12 @@
+.icon-button {
+    display: inline-block;
+    padding: 0;
+    border: none;
+    vertical-align: middle;
+    background: transparent;
+
+    .icon {
+        display: block;
+        margin: auto;
+    }
+}
