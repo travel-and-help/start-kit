@@ -9,11 +9,6 @@ module.exports = [
         loaders: ['react-hot', 'babel']
     },
     {
-        test: /\.js?$/,
-        exclude: /node_modules/,
-        loaders: ['eslint-loader']
-    },
-    {
         test: /\.(woff|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'base64-font-loader'
     },
