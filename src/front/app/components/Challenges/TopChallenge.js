@@ -1,10 +1,10 @@
 import React from 'react';
 
-const TopChallenge = ({ description }) => (
+const TopChallenge = ({ title }) => (
     <li className="topChallenge">
         <div className="topChallenge__caption">
-            <p className="topChallenge__description">
-                {description}
+            <p className="topChallenge__title">
+                {title}
             </p>
             <span className="topChallenge__popular">
                 Popular this week
@@ -14,7 +14,7 @@ const TopChallenge = ({ description }) => (
 );
 
 TopChallenge.propTypes = {
-    description: React.PropTypes.string.isRequired
+    title: React.PropTypes.string.isRequired
 };
 
 export default TopChallenge;
