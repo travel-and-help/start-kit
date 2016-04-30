@@ -6,7 +6,7 @@ describe('store', () => {
         reactRouter,
         reactRouterRedux,
         challenges,
-        thunk,
+        storeEnhancers,
         result;
 
     beforeEach(() => {
@@ -26,11 +26,11 @@ describe('store', () => {
             routerReducer: env.stub()
         };
 
-        thunk = {
-            default: 'thunk'
+        challenges = {
+            default: env.stub()
         };
 
-        challenges = {
+        storeEnhancers = {
             default: env.stub()
         };
 
@@ -38,8 +38,8 @@ describe('store', () => {
             redux,
             'react-router': reactRouter,
             'react-router-redux': reactRouterRedux,
-            'redux-thunk': thunk,
-            './reducers/challenges': challenges
+            '../reducers/challenges': challenges,
+            './enhancers': storeEnhancers
         }).default;
 
         result = sut();
@@ -55,18 +55,11 @@ describe('store', () => {
             .callCount(1);
     });
 
-    it('should apply thunk middleware once', () => {
-        redux.applyMiddleware.should
-        .calledWith(thunk.default)
-        .and
-        .callCount(1);
-    });
-
-    it('should create store for combined reducer and apply middleware', () => {
+    it('should create store for combined reducer with respective enhancers', () => {
         redux.createStore.should
             .calledWith(
                 redux.combineReducers(),
-                redux.applyMiddleware()
+                storeEnhancers.default
             )
             .and
             .callCount(1);
