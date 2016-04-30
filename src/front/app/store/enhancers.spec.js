@@ -42,15 +42,20 @@ describe('storeEnhancers', () => {
 
     describe('in development environment', () => {
         beforeEach(() => {
-            global.devToolsExtension = env.stub().returns({});
             process.env.NODE_ENV = 'development';
-            importSut();
         });
 
-        it('should apply devToolsExtension', () => {
+        it('should apply devToolsExtension if available', () => {
+            global.devToolsExtension = env.stub().returns({});
+            importSut();
             redux.compose.should.calledWith(redux.applyMiddleware(), global.devToolsExtension())
                 .and
                 .callCount(1);
+        });
+
+        it('should compose dummy function if devToolsExtension is not available', () => {
+            importSut();
+            redux.compose.getCall(0).args[1](42).should.equal(42);
         });
 
         afterEach(() => {
