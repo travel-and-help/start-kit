@@ -5,7 +5,7 @@ const
     layout = require('../layout'),
     logEnv = require('../env/log'),
     loaders = require('./loaders'),
-    preLoaders = require('./preLoaders'),
+    preLoaders = require('./preloaders'),
     autoprefixer = require('autoprefixer');
 
 logEnv(env);
