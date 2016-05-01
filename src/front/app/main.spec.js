@@ -17,7 +17,7 @@ describe('app/main', () => {
         appStore = env.stub().returns(store);
 
         sut = proxyquire('./main', {
-            './store/store': {
+            './store': {
                 default: appStore
             },
             'react-dom': {

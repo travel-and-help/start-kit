@@ -39,7 +39,7 @@ describe('store', () => {
             default: env.stub()
         };
 
-        const sut = proxyquire('./store', {
+        const sut = proxyquire('./index', {
             redux,
             'react-router': reactRouter,
             'react-router-redux': reactRouterRedux,
