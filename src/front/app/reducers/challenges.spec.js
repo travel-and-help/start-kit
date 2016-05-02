@@ -1,14 +1,10 @@
-import freeze from 'deep-freeze';
 import sut from './challenges';
+import { List } from 'immutable';
 import { GET_CHALLENGES } from './../actions/challenges';
 
 describe('reducer/challenges', () => {
-    it('should NOT change state if action.type is UNKNOWN', () => {
-        const action = { type: 'unknownType' };
-        const prevState = { challenges: [] };
-        const currentState = sut(prevState, action);
-
-        currentState.should.eqls(prevState);
+    it('should handle initial state', () => {
+        sut(undefined, {}).toJS().should.eqls([]);
     });
 
     it('should add initial challenges to state', () => {
@@ -16,13 +12,19 @@ describe('reducer/challenges', () => {
             type: GET_CHALLENGES,
             challenges: [1, 2, 3]
         };
-        const prevState = { challenges: [] };
         const expectedState = [1, 2, 3];
 
-        freeze(prevState);
+        const currentState = sut(undefined, action);
+
+        currentState.toJS().should.eqls(expectedState);
+    });
+
+    it('should ignore unknown actionTypes', () => {
+        const action = { type: 'unknownType' };
+        const prevState = List.of(1, 2);
         const currentState = sut(prevState, action);
 
-        currentState.should.eqls(expectedState);
+        currentState.toJS().should.eqls(prevState.toJS());
     });
 
 });

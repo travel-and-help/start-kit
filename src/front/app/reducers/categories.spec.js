@@ -1,24 +1,28 @@
+import { List } from 'immutable';
 import { GET_CATEGORIES } from './../actions/categories';
 import sut from './categories';
 
 describe('reducer/categories', () => {
-    it('should return current state if action.type is UNKNOWN', () => {
-        const action = { type: 'unknownType' };
-        const state = { categories: [] };
-        const currentState = sut(state, action);
-
-        currentState.should.eqls(state);
+    it('should handle initial state', () => {
+        sut(undefined, {}).toJS().should.eqls([]);
     });
 
-    it('should return initial categories', () => {
+    it('should handle GET_CATEGORIES', () => {
         const action = {
             type: GET_CATEGORIES,
             categories: ['categories']
         };
-        const prevState = { categories: [] };
         const expectedState = ['categories'];
-        const currentState = sut(prevState, action);
+        const currentState = sut(undefined, action);
 
-        currentState.should.eqls(expectedState);
+        currentState.toJS().should.eqls(expectedState);
+    });
+
+    it('should ignore unknown actionTypes', () => {
+        const action = { type: 'unknownType' };
+        const state = List.of(1, 2);
+        const currentState = sut(state, action);
+
+        currentState.toJS().should.eqls(state.toJS());
     });
 });
