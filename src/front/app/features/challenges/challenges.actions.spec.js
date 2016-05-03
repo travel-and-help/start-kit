@@ -1,4 +1,4 @@
-import { fetchChallenges, GET_CHALLENGES } from './challenges';
+import { fetchChallenges, GET_CHALLENGES } from './challenges.actions';
 
 describe('action/challenges', () => {
     let dispatch;

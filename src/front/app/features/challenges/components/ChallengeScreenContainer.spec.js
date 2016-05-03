@@ -27,7 +27,7 @@ describe('ChallengeScreenContainer', () => {
 
         sut = proxyquire('./ChallengeScreenContainer', {
             'react-redux': reactRedux,
-            './../../actions/challenges': challengesActionCreators,
+            '../challenges.actions': challengesActionCreators,
             './ChallengeScreen': ChallengeScreen
         });
     });

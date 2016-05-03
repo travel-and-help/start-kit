@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import Menu from './Menu';
-import ChallengeJumbotron from '../common/challenge/ChallengeJumbotron';
-import ChallengeTileList from '../common/challenge/ChallengeTileList';
-import Navigation from './../Navigation';
+import ChallengeJumbotron from '../../../common/components/challenge/ChallengeJumbotron';
+import ChallengeTileList from '../../../common/components/challenge/ChallengeTileList';
+import Navigation from '../../navigation';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class ChallengeScreen extends React.Component {

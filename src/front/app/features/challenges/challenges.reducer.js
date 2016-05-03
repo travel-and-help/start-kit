@@ -1,5 +1,5 @@
 import { List, fromJS } from 'immutable';
-import { GET_CHALLENGES } from './../actions/challenges';
+import { GET_CHALLENGES } from './challenges.actions';
 
 const initialState = new List();
 

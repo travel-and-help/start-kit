@@ -1,6 +1,6 @@
-import sut from './challenges';
+import sut from './challenges.reducer';
 import { List } from 'immutable';
-import { GET_CHALLENGES } from './../actions/challenges';
+import { GET_CHALLENGES } from './challenges.actions';
 
 describe('reducer/challenges', () => {
     it('should handle initial state', () => {

@@ -1,6 +1,6 @@
 import { List } from 'immutable';
-import { GET_CATEGORIES } from './../actions/categories';
-import sut from './categories';
+import { GET_CATEGORIES } from './categories.actions';
+import sut from './categories.reducer';
 
 describe('reducer/categories', () => {
     it('should handle initial state', () => {

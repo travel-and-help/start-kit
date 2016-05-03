@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import CategoryTileList from './CategoryTileList';
-import { getCategories, toggleCategory } from './../../actions/categories';
+import { getCategories, toggleCategory } from '../categories.actions';
 
 const mapStateToProps = ({ categories }) => ({ categories });
 
