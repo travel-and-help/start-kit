@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route } from 'react-router';
 import Login from './components/Login';
-import Challenges from './components/Challenges';
+import Challenges from './components/Challenges/ChallengeScreenContainer';
 import TodoScreen from './components/TodoScreen';
 import Awards from './components/Awards';
 import Updates from './components/Updates';
 import Profile from './components/Profile';
-import Categories from './components/Categories';
+import Categories from './components/Categories/CategoryTileListContainer';
 
 export default () => (
     <Route path="/" >

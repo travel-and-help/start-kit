@@ -1,58 +1,44 @@
 import { getCategories, GET_CATEGORIES } from './categories';
 
 describe('action/categories', () => {
-    let sut;
     let dispatch;
-    let fakeServerResponse;
-    let mockedFetchResponse;
-    let mockedCategories;
 
-    describe('getCategories', () => {
+    describe('#getCategories', () => {
+        let fetcher;
+        let promise;
+        let fetchResponse;
+        let categoryList;
+
         beforeEach(() => {
-            mockedCategories = ['mockedCategories'];
+            categoryList = ['mockedCategories'];
 
             dispatch = env.spy();
 
-            fakeServerResponse = {
-                json: env.spy()
+            fetchResponse = {
+                json: env.stub().returns(categoryList)
             };
 
-            mockedFetchResponse = {
-                then(fakeCallback) {
-                    fakeCallback(fakeServerResponse);
-                    return {
-                        then(cb) {
-                            cb(mockedCategories);
-                        }
-                    };
-                }
-            };
+            promise = env.stub().resolves(fetchResponse)();
 
-            global.fetch = env.spy(() => mockedFetchResponse);
+            global.fetch = env.stub().returns(promise);
 
-            sut = getCategories();
-
+            fetcher = getCategories();
         });
 
-        it('fetch categories', () => {
-            sut(dispatch);
+        it('should fetch categories', () => {
+            fetcher(dispatch);
 
             global.fetch.should.have.been.calledWith('/api/categories').and.callCount(1);
         });
 
-        it('should convert response to JSON', () => {
-            sut(dispatch);
-
-            fakeServerResponse.json.should.have.been.calledWith();
-        });
-
-        it('should dispatch categories event with data', () => {
-            sut(dispatch);
-
-            const dispatchArgs = dispatch.lastCall.args[0];
-            dispatchArgs.should.eqls({
-                type: GET_CATEGORIES,
-                categories: mockedCategories
+        it('should dispatch categories event with data from response', () => {
+            fetcher(dispatch);
+            return promise.finally(() => {
+                const action = dispatch.lastCall.args[0];
+                action.should.eqls({
+                    type: GET_CATEGORIES,
+                    categories: categoryList
+                });
             });
         });
     });

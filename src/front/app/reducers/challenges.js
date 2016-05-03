@@ -1,13 +1,12 @@
+import { List, fromJS } from 'immutable';
 import { GET_CHALLENGES } from './../actions/challenges';
 
+const initialState = new List();
 
-const reducer = (state = [], action) => {
+const reducer = (state = initialState, action) => {
     switch (action.type) {
     case GET_CHALLENGES:
-        return [
-            ...state,
-            ...action.challenges
-        ];
+        return fromJS(action.challenges);
     default:
         return state;
     }
