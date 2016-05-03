@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-const TopChallenge = ({ challenge }) => {
+const ChallengeJumbotron = ({ challenge }) => {
     const { title } = challenge.toJS();
     return (
         <li className="topChallenge" >
@@ -17,10 +17,10 @@ const TopChallenge = ({ challenge }) => {
     );
 };
 
-TopChallenge.propTypes = {
+ChallengeJumbotron.propTypes = {
     challenge: ImmutablePropTypes.mapContains({
         title: PropTypes.string.isRequired
     }).isRequired
 };
 
-export default TopChallenge;
+export default ChallengeJumbotron;

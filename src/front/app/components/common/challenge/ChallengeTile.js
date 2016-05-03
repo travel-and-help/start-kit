@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-const Challenge = ({ challenge }) => {
+const ChallengeTile = ({ challenge }) => {
     const {
         title,
         user: {
@@ -34,7 +34,7 @@ const Challenge = ({ challenge }) => {
     );
 };
 
-Challenge.propTypes = {
+ChallengeTile.propTypes = {
     challenge: ImmutablePropTypes.mapContains({
         title: PropTypes.string.isRequired,
         user: ImmutablePropTypes.mapContains({
@@ -46,4 +46,4 @@ Challenge.propTypes = {
     }).isRequired
 };
 
-export default Challenge;
+export default ChallengeTile;

@@ -5,7 +5,7 @@ import ChallengeTileList from '../common/challenge/ChallengeTileList';
 import Navigation from './../Navigation';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-class ChallengesScreen extends React.Component {
+class ChallengeScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -43,9 +43,9 @@ class ChallengesScreen extends React.Component {
 
 }
 
-ChallengesScreen.propTypes = {
+ChallengeScreen.propTypes = {
     challenges: ImmutablePropTypes.list.isRequired,
     getChallenges: PropTypes.func.isRequired
 };
 
-export default ChallengesScreen;
+export default ChallengeScreen;
