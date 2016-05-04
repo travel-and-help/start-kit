@@ -5,6 +5,7 @@ const
     layout = require('../layout'),
     logEnv = require('../env/log'),
     loaders = require('./loaders'),
+    preLoaders = require('./preloaders'),
     autoprefixer = require('autoprefixer');
 
 logEnv(env);
@@ -17,10 +18,7 @@ module.exports = Object.assign({
         filename: 'app.js'
     },
     module: {
-        preloaders: [{
-            test: /\.scss$/,
-            loaders: 'import-glob-loader'
-        }],
+        preLoaders,
         loaders
     },
     postcss: () => ([
