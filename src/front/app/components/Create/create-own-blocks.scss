@@ -13,21 +13,20 @@
         width: 50px;
         margin-right: 50px;
         float: right;
-        outline: none;
+        outline: 0;
         background-color: transparent;
-        border: none;
+        border: 0;
         -webkit-appearance: none;
         background-position: right center;
         background-repeat: no-repeat;
         text-align: right;
-        display: block;
     }
 
     &__day-input {
         margin-left: 10px;
-        outline: none;
+        outline: 0;
         background-color: transparent;
-        border: none;
+        border: 0;
         padding: 10px 10px 0 30px;
     }
 }
@@ -36,17 +35,17 @@
     width: 100%;
     height: 35px;
     padding: 10px 0 0 30px;
-    margin: 10px 0 10px 0;
-    background: $create-blocks-title-color;
+    margin: 10px 0;
+    background-color: $create-blocks-title-color;
     display: inline-block;
     color: $create-titles-text-color;
-    text-transform: $uppercase;
+    text-transform: uppercase;
 }
 
 .challenge-create__septa {
     width: 100%;
     height: 15px;
-    background: $create-blocks-title-color;
+    background-color: $create-blocks-title-color;
     display: inline-block;
 }
 
