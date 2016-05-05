@@ -23,7 +23,7 @@ export default class Socials extends React.Component {
             }
         ];
         return (
-            <ul class='section-container__social' >
+            <ul className='section-container__social' >
                 { socials && socials.map((social, index) => (
                     <Social key={ index } { ...social }/>
                 ))}

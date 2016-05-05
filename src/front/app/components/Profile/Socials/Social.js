@@ -3,7 +3,7 @@ import React from 'react';
 const Social = ({ name, url}) => (
     <li>
         <a href={url} target="_blank">
-            <span class={'sprite sprite-'  + name} title={name} ></span>
+            <span className={'sprite sprite-'  + name} title={name} ></span>
         </a>
     </li>
 );

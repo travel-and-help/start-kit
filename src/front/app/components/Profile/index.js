@@ -20,29 +20,29 @@ class Profile extends React.Component {
         const { user } = this.props || {};
 
         return (
-            <div class="profile" >
+            <div className="profile" >
                 <Header />
                 <UserDetails user={user} />
 
-                <section class='section-container' >
-                    <h4 class='section-container__title' >LOCATIONS</h4>
-                    <div class='section-container__description' >{user.locations}</div>
+                <section className='section-container' >
+                    <h4 className='section-container__title' >LOCATIONS</h4>
+                    <div className='section-container__description' >{user.locations}</div>
                 </section>
 
-                <section class='section-container' >
-                    <h4 class='section-container__title' >CATEGORIES</h4>
-                    <div class='section-container__description' >{user.categories}</div>
+                <section className='section-container' >
+                    <h4 className='section-container__title' >CATEGORIES</h4>
+                    <div className='section-container__description' >{user.categories}</div>
                 </section>
 
-                <section class='section-container section-container--inline' >
-                    <h4 class='section-container__title' >ON WEB</h4>
-                    <div class='section-container__description' >
+                <section className='section-container section-container--inline' >
+                    <h4 className='section-container__title' >ON WEB</h4>
+                    <div className='section-container__description' >
                         <Socials socials={user.socials} />
                     </div>
                 </section>
 
-                <section class='section-container' >
-                    <div class='section-container__description' >
+                <section className='section-container' >
+                    <div className='section-container__description' >
                         <p>
                             Member since {user.registerDate}
                         </p>

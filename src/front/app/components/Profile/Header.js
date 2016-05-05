@@ -1,14 +1,14 @@
 import React from 'react';
 
 export default ()=> (
-    <nav class='nav' >
+    <nav className='nav' >
         {/* goBack icon
-         <a class='nav__item nav__item--left' href='#'>
-         <i class='sprite sprite-arrow-left'></i>
+         <a className='nav__item nav__item--left' href='#'>
+         <i className='sprite sprite-arrow-left'></i>
          </a>
          */}
-        <a class='nav__item nav__item--right' href='#' >
-            <i class='sprite sprite-options' ></i>
+        <a className='nav__item nav__item--right' href='#' >
+            <i className='sprite sprite-options' ></i>
         </a>
     </nav>
 )

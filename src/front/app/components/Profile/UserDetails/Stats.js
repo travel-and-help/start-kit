@@ -6,7 +6,7 @@ export default class Stats extends React.Component {
         const { stats } = this.props;
 
         return (
-            <ul class='user__stats' >
+            <ul className='user__stats' >
                 { stats && stats.map((stat, index) => (
                     <Stat key={ index } { ...stat } />
                 ))}
