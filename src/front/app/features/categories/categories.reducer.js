@@ -1,5 +1,5 @@
 import { List, fromJS } from 'immutable';
-import { GET_CATEGORIES, TOGGLE_CATEGORY } from './../actions/categories';
+import { GET_CATEGORIES, TOGGLE_CATEGORY } from './categories.actions';
 
 const initialState = new List();
 

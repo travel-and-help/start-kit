@@ -1,4 +1,4 @@
-import { getCategories, GET_CATEGORIES } from './categories';
+import { getCategories, GET_CATEGORIES } from './categories.actions';
 
 describe('action/categories', () => {
     let dispatch;

@@ -29,7 +29,7 @@ describe('CategoryTileListContainer', () => {
         sut = proxyquire('./CategoryTileListContainer', {
             'react-redux': reactRedux,
             './CategoryTileList': CategoryTileList,
-            './../../actions/categories': categoriesActionCreators
+            '../categories.actions': categoriesActionCreators
         });
     });
 
