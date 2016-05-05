@@ -8,7 +8,7 @@ class ChallengeList extends React.Component {
     constructor(props) {
         super(props);
         const { challenges, dispatch } = props;
-        if (!challenges.length) {
+        if (!Object.keys(challenges).length) {
             dispatch(fetchChallenges());
         }
     }

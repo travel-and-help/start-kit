@@ -9,14 +9,15 @@ import { getUser } from './../../actions/user';
 class Profile extends React.Component {
     constructor(props) {
         super(props);
-        const { user, dispatch } = props;
-        if (!user) {
-            dispatch(getUser());
-        }
+
+        const { user } = props;
+        const { dispatch } = props;
+
+        dispatch(getUser());
     }
 
     render() {
-        const { user } = this.state;
+        const { user } = this.props || {};
 
         return (
             <div class="profile" >
@@ -53,6 +54,11 @@ class Profile extends React.Component {
             </div>
         );
     }
+}
+
+Profile.propTypes = {
+    user: React.PropTypes.object,
+    dispatch: React.PropTypes.func
 };
 
 const mapStateToProps = ({ user }) => ({ user });

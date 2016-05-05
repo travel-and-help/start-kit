@@ -7,7 +7,7 @@ export default class Stats extends React.Component {
 
         return (
             <ul class='user__stats' >
-                { stats.map((stat, index) => (
+                { stats && stats.map((stat, index) => (
                     <Stat key={ index } { ...stat } />
                 ))}
             </ul>

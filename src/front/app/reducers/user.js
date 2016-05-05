@@ -1,13 +1,9 @@
 import { GET_USER } from './../actions/user';
 
-
-const reducer = (state = [], action) => {
+const reducer = (state = {}, action) => {
     switch (action.type) {
         case GET_USER:
-            return [
-                ...state,
-                ...action.user
-            ];
+            return Object.assign({}, state,  action.user);
         default:
             return state;
     }
