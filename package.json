@@ -1,8 +1,15 @@
 {
   "name": "travel-and-help",
   "version": "1.0.0",
-  "description": "",
+  "description": "feed the homeless in chelyabinsk",
   "private": true,
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0",
+      "react"
+    ]
+  },
   "scripts": {
     "start": "npm-run-all start:front start:back",
     "watch": "npm-run-all -p watch:*",
