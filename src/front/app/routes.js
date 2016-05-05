@@ -6,6 +6,7 @@ import TodoScreen from './components/TodoScreen';
 import Awards from './components/Awards';
 import Updates from './components/Updates';
 import Profile from './components/Profile';
+import WatchList from './components/WatchList';
 
 export default () => (
     <Route path="/" >
@@ -15,5 +16,6 @@ export default () => (
         <Route path="updates" component={Updates} />
         <Route path="profile" component={Profile} />
         <Route path="todo" component={TodoScreen} />
+        <Route path="watch-list" component={WatchList} />
     </Route>
 );
