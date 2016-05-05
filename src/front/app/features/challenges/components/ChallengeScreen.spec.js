@@ -1,21 +1,22 @@
-import Index from './index';
+import ChallengeScreen from './ChallengeScreen';
 
-describe('component/challenges', () => {
+describe('ChallengeScreen', () => {
     let sut;
 
     beforeEach(() => {
-        sut = new Index();
+        sut = new ChallengeScreen();
         env.spy(sut, 'setState');
         env.spy(sut, 'render');
     });
 
-    it('should set menu`s initial class', () => {
+    it('should set initial state for the menu bar status', () => {
         sut.state.isMenuActive.should.equal(false);
     });
 
-    it('should change menu`s class if scrollTop appears', () => {
+    it('should change menu`s state if scrollTop appears', () => {
         const fakeEvent = {
-            preventDefault() {},
+            preventDefault() {
+            },
             target: {
                 scrollTop: 1
             }
@@ -28,9 +29,10 @@ describe('component/challenges', () => {
         });
     });
 
-    it('should change menu`s class if NO scrollTop', () => {
+    it('should change menu`s state if scrollTop is 0', () => {
         const fakeEvent = {
-            preventDefault() {},
+            preventDefault() {
+            },
             target: {
                 scrollTop: 0
             }
@@ -41,10 +43,5 @@ describe('component/challenges', () => {
         sut.setState.should.been.calledWith({
             isMenuActive: false
         });
-    });
-
-    it('should render something', () => {
-        const component = sut.render();
-        sinon.assert.match(component, sinon.match.object);
     });
 });
