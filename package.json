@@ -1,7 +1,7 @@
 {
   "name": "travel-and-help",
   "version": "1.0.0",
-  "description": "",
+  "description": "feed the homeless in chelyabinsk",
   "private": true,
   "scripts": {
     "start": "npm-run-all start:front start:back",
