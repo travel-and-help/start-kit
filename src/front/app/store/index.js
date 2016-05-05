@@ -1,16 +1,18 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { hashHistory } from 'react-router';
-import thunk from 'redux-thunk';
+import storeEnhancers from './enhancers';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
-import challenges from './reducers/challenges';
+import challenges from '../features/challenges/challenges.reducer';
+import categories from '../features/categories/categories.reducer';
 
 export default () => {
     const state = createStore(
         combineReducers({
             challenges,
+            categories,
             routing: routerReducer
         }),
-        applyMiddleware(thunk)
+        storeEnhancers
     );
 
     const history = syncHistoryWithStore(hashHistory, state);
