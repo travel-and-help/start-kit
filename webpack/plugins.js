@@ -14,6 +14,7 @@ module.exports = [
             PLATFORM: env.PLATFORM
         })
     }),
+    new webpack.EnvironmentPlugin('DOMAIN'),
     new Html({
         template: layout.src.front.htmlEntry
     }),

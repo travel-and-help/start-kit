@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 const loginButton = ({ text, onLogin }) => (
@@ -6,5 +6,10 @@ const loginButton = ({ text, onLogin }) => (
         {text}
     </button>
 );
+
+loginButton.propTypes = {
+    text: PropTypes.string,
+    onLogin: PropTypes.func.isRequired
+};
 
 export default connect()(loginButton);

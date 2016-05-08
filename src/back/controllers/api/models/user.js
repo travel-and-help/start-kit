@@ -5,6 +5,25 @@ const Schema = mongoose.Schema;
 
 const User = new Schema({
     photo: { type: String },
+    fullName: {
+        type: String,
+        required: true
+    },
+    email: String,
+    facebook: {
+        id: {
+            type: String,
+            index: true
+        },
+        token: String
+    },
+    google: {
+        id: {
+            type: String,
+            index: true
+        },
+        token: String
+    },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     registerDate: { type: Date, required: true },

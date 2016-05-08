@@ -1,17 +1,16 @@
-import { LOGIN_ATTEMPT, LOGOUT, LOGIN_SUCCESS, LOGIN_FAILED } from '../constants/login';
-import { LOGIN_SERVICES } from '../constants/login';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILED = 'LOGIN_FAILED';
+export const LOGIN_ATTEMPT = 'LOGIN_ATTEMPT';
+
+export const LOGIN_SERVICES = Object.freeze({
+    FACEBOOK: 'FACEBOOK',
+    GOOGLE_PLUS: 'GOOGLE_PLUS'
+});
 
 export function loginAttempt(service) {
     return {
         type: LOGIN_ATTEMPT,
         service
-    };
-}
-
-export function logout() {
-    localStorage.removeItem('token');
-    return {
-        type: LOGOUT
     };
 }
 
@@ -31,16 +30,9 @@ export function loginFailed(info) {
     };
 }
 
-class BaseLoginWindow {
-    getUrl() {
-        throw new Error('Not implemented');
-    }
-}
-
-class CordovaWindow extends BaseLoginWindow {
+class CordovaWindow {
 
     constructor(url, target, config) {
-        super();
         this.browserWindow = window.cordova.InAppBrowser.open(url, target, config);
     }
 
@@ -90,10 +82,9 @@ class CordovaWindow extends BaseLoginWindow {
     }
 }
 
-class BrowserLoginWindow extends BaseLoginWindow {
+class BrowserLoginWindow {
 
     constructor(url, target, config) {
-        super();
         this.browserWindow = window.open(url, target, config);
     }
 
@@ -144,14 +135,14 @@ function createLoginWindow(serviceURL) {
 }
 
 function getServiceUrl(type) {
-    const baseUrl = 'https://travelandhelp.localtunnel.me/';
+    const baseUrl = process.env.DOMAIN;
     switch (type) {
-        case LOGIN_SERVICES.FACEBOOK:
-            return `${baseUrl}auth/facebook`;
-        case LOGIN_SERVICES.GOOGLE_PLUS:
-            return `${baseUrl}auth/google-plus`;
-        default:
-            throw new Error('Login service is not supported');
+    case LOGIN_SERVICES.FACEBOOK:
+        return `${baseUrl}auth/facebook`;
+    case LOGIN_SERVICES.GOOGLE_PLUS:
+        return `${baseUrl}auth/google-plus`;
+    default:
+        throw new Error('Login service is not supported');
     }
 }
 

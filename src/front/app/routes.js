@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router';
-import Login from './features/login';
+import Login from './features/auth/components';
 import CategoryTileListContainer from './features/categories/components/CategoryTileListContainer';
 import ChallengeScreenContainer from './features/challenges/components/ChallengeScreenContainer';
 import TodoScreen from './features/todo/TodoScreen';

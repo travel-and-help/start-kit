@@ -30,3 +30,18 @@ To learn more about npm scripts, use [npm scripts guide](https://docs.npmjs.com/
 cp -r target/build/* www/ 
 
 lt --port 9000 --subdomain travelandhelp
+
+##### TODO:
+
+ * create unit tests
+ * include cordova on webPack build
+ * return status and do not redirect
+ * create migration scripts
+ * try to add env variables at heroku
+ * encode keys for social media
+ * auto redirect on login
+ * test request service
+ * redirect user to next screen
+ * check images and login getting
+ * skip login redirect
+ * build url into client app 
