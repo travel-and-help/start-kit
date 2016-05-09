@@ -5,7 +5,8 @@ const router = require('express').Router,
     authService = require('../auth.service');
 
 module.exports = router()
-    .get('/callback', passport.authenticate('google'), authService.responseAuthToken)
+    .get('/callback', passport.authenticate('google',
+        { session: false }), authService.responseAuthToken)
     .get('/', passport.authenticate('google',
         {
             scope: [

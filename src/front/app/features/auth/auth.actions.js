@@ -138,9 +138,9 @@ function getServiceUrl(type) {
     const baseUrl = process.env.DOMAIN;
     switch (type) {
     case LOGIN_SERVICES.FACEBOOK:
-        return `${baseUrl}auth/facebook`;
+        return `${baseUrl}/auth/facebook`;
     case LOGIN_SERVICES.GOOGLE_PLUS:
-        return `${baseUrl}auth/google-plus`;
+        return `${baseUrl}/auth/google-plus`;
     default:
         throw new Error('Login service is not supported');
     }

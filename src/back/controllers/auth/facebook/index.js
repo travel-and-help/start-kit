@@ -5,7 +5,7 @@ const router = require('express').Router,
     authService = require('../auth.service');
 
 module.exports = router()
-    .get('/callback', passport.authenticate('facebook'), authService.responseAuthToken)
-    // todo: change fail
-    .get('/', passport.authenticate('facebook', { failureRedirect: '/login' }));
+    .get('/callback', passport.authenticate('facebook',
+        { session: false }), authService.responseAuthToken)
+    .get('/', passport.authenticate('facebook'));
 

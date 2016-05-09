@@ -1,36 +1,20 @@
 'use strict';
 
 const router = require('express').Router,
-    passport = require('passport');
+    facebookPassport = require('./facebook/passport'),
+    googlePassport = require('./google-plus/passport'),
+    facebookMiddleware = require('./facebook'),
+    googleMiddleware = require('./google-plus');
+
 
 module.exports = (User) => {
-
-    require('./facebook/passport')(User);
-    require('./google-plus/passport')(User);
-
-    passport.serializeUser((user, done) => {
-        done(null, user._id);
-    });
-
-    passport.deserializeUser((id, done) => {
-        User.findById(id, done);
-    });
+    facebookPassport(User);
+    googlePassport(User);
 
     return router()
-        .use('/facebook', require('./facebook'))
-        .use('/google-plus', require('./google-plus'))
-
-        .use('/logout', (req, res, next) => {
-            // todo: remove jwt
-            req.logout();
-            next();
-        })
-
-        .use('/', (req, res) => {
-            if (req.isAuthenticated()) {
-                res.send('nice');
-            } else {
-                res.status(400).send('nope');
-            }
+        .use('/facebook', facebookMiddleware)
+        .use('/google-plus', googleMiddleware)
+        .use('/logout', (req, res) => {
+            res.status(501).send(new Error('Not Implemented'));
         });
 };

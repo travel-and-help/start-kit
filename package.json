@@ -105,7 +105,6 @@
   },
   "dependencies": {
     "body-parser": "^1.15.0",
-    "composable-middleware": "^0.3.0",
     "cors": "^2.7.1",
     "express": "^4.13.4",
     "immutable": "^3.8.1",

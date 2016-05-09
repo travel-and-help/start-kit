@@ -1,31 +1,29 @@
 'use strict';
-const jwt = require('jsonwebtoken');
-const expressJwt = require('express-jwt');
-const compose = require('composable-middleware');
-// todo: use env
-const sessionSecret = process.env.SESSION_SECRET || 'secret12345';
+const jwt = require('jsonwebtoken'),
+    expressJwt = require('express-jwt'),
+    env = require('../../../../env');
 
 const validateJwt = expressJwt({
-    secret: sessionSecret,
+    secret: env.SESSION_SECRET,
     credentialsRequired: false,
     requestProperty: 'auth'
 });
-
-module.exports = {
-    validateJwt: compose()
-        .use(validateJwt),
-    responseAuthToken
-};
 
 function responseAuthToken(req, res, next) {
     if (!req.user) {
         next(new Error('Something went wrong, please try again.'));
     } else {
         const id = req.user._id;
-        const token = jwt.sign({ id }, sessionSecret, { expiresIn: 60 * 60 * 5 });
+        const token = jwt.sign({ id }, env.SESSION_SECRET, { expiresIn: 60 * 60 * 5 });
         res.json({
             success: true,
             token
         });
     }
 }
+
+
+module.exports = {
+    validateJwt,
+    responseAuthToken
+};
