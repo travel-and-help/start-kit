@@ -1,6 +1,10 @@
-import { SERVICE_REQUEST_STATUS } from '../constants/common';
 import { pushState } from 'redux-router';
 
+export const SERVICE_REQUEST_STATUS = Object.freeze({
+    REQUESTED: 'REQUESTED',
+    RECEIVE_SUCCESS: 'RECEIVE_SUCCESS',
+    RECEIVE_FAILED: 'RECEIVE_FAILED'
+});
 
 export function requested() {
     return {

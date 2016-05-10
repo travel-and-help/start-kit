@@ -43,4 +43,3 @@ describe.only('google-plus', () => {
     });
 
 });
-

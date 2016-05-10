@@ -34,14 +34,14 @@ lt --port 9000 --subdomain travelandhelp
 ##### TODO:
 
  * create unit tests
+ * auto redirect on login
+ * redirect user to next screen
+ * skip login redirect
  * include cordova on webPack build
- * return status and do not redirect
  * create migration scripts
  * try to add env variables at heroku
  * encode keys for social media
- * auto redirect on login
  * test request service
- * redirect user to next screen
  * check images and login getting
- * skip login redirect
  * build url into client app 
+ * create tests for user 
