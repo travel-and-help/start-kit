@@ -1,20 +1,22 @@
-.challenge-create-enabled__title {
-    padding: 20px 0 0 30px;
-    font-weight: bold;
-}
+.challenge-create {
 
-.challenge-create-disabled__title {
-    padding: 20px 0 0 30px;
-    color: $disabled-point-color;
-    font-family: $checkbox-title-font;
-}
+    &__checkbox-title {
+        word-break: break-word;
+        float: left;
+        width: 60%;
+        color: $disabled-title-checkbox-color;
+        font-size: 17px;
+    }
 
-.challenge-create-disabled__checkbox {
-    padding-left: 30px;
-    display: inline-block;
-}
+    &__checkbox {
+        margin-right: 100px;
+        color: $disabled-title-checkbox-color;
+        font-family: $checkbox-title-font;
+    }
 
-.challenge-create-enabled__checkbox {
-    padding-left: 30px;
-    display: inline-block;
+    &__checkbox:checked + &__checkbox-title {
+        font-weight: bold;
+        font-size: 18px;
+        color: $enabled-title-checkbox-color;
+    }
 }

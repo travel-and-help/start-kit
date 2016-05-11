@@ -2,7 +2,7 @@ import React from 'react';
 
 const CreateFormHeader = () => (
     <header className="challenge-create__header">
-        <h2>Create Challenge</h2>
+        <div className="challenge-create__title">Create Challenge</div>
 
         <button className="challenge-create__discard">Discard</button>
         <button className="challenge-create__post" type="submit">Post</button>

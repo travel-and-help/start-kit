@@ -19,6 +19,7 @@ plugins
 # User-specific stuff:
 !.idea/
 .idea/*
+.idea
 !.idea/codeStyleSettings.xml
 
 ## File-based project format:

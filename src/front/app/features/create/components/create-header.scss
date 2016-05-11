@@ -1,13 +1,16 @@
-.challenge-create-header {
-    margin-left: auto;
-    margin-right: auto;
-    background: $create-header-color;
-    height: 70px;
-    text-align: center;
+.challenge-create {
+
+    &__header {
+        margin-left: auto;
+        margin-right: auto;
+        background: $create-header-color;
+        height: 70px;
+        text-align: center;
+    }
+
 
     &__title {
         text-transform: uppercase;
-        display: inline-block;
         text-align: center;
         padding: 5px 10px 5px 10px;
         font-size: 20px;
@@ -25,9 +28,9 @@
         top: 5px;
         float: left;
         cursor: pointer;
-        outline: none;
+        outline: 0;
         background-color: transparent;
-        border: none;
+        border: 0;
         text-align: left;
         color: $create-header-button;
         font-family: $create-header-button-font;
@@ -43,9 +46,9 @@
         top: 5px;
         float: right;
         cursor: pointer;
-        outline: none;
+        outline: 0;
         background-color: transparent;
-        border: none;
+        border: 0;
         text-align: right;
         color: $create-header-button;
         font-family: $create-header-button-font;

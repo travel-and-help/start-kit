@@ -5,9 +5,9 @@ if (process.env.PLATFORM === 'cordova') {
     const script = document.createElement('script');
     script.setAttribute('src', 'cordova.js');
     document.head.appendChild(script);
-    document.addEventListener('deviceready', () => {
+    document.addEventListener('deviceready', () = > {
         main();
-    }, false);
+}, false);
 } else {
     main();
 }
