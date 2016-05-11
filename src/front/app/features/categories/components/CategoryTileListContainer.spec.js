@@ -46,15 +46,15 @@ describe('CategoryTileListContainer', () => {
     });
 
     it('should map dispatch to onclick prop method', () => {
-        const { onCLick } = reactRedux.connect.getCall(0).args[1](dispatch);
-        onCLick();
+        const { onCategoryClick } = reactRedux.connect.getCall(0).args[1](dispatch);
+        onCategoryClick();
         dispatch.should.calledWith(categoriesActionCreators.toggleCategory());
     });
 
-    it('should pass category name to action creator in mapped onClick handler', () => {
+    it('should pass category name to action creator in mapped onCategoryClick handler', () => {
         const name = Symbol();
-        const { onCLick } = reactRedux.connect.getCall(0).args[1](dispatch);
-        onCLick(name);
+        const { onCategoryClick } = reactRedux.connect.getCall(0).args[1](dispatch);
+        onCategoryClick(name);
         categoriesActionCreators.toggleCategory.should.calledWith(name);
     });
 
