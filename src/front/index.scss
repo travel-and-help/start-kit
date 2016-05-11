@@ -1,11 +1,11 @@
 /* Mixins & functions */
-@import './app/components/common/styles/mixins';
+@import 'app/common/styles/mixins';
 
 /* 3rd-party */
 @import '../../node_modules/normalize.css/normalize.css';
 
 /* Common components */
-@import './app/components/common/IconButton/index';
+@import 'app/common/components/iconButton/index';
 
 /* Components */
 @import 'app/features/todo/todo-screen';
