@@ -2,13 +2,13 @@ import React, { PropTypes } from 'react';
 import CreateCategories from './CreateCategories';
 
 const categories = [
-    { name: 'Category 1213'},
-    { name: 'Category 2'},
-    { name: 'Category 3'},
-    { name: 'Category 4'}
+    { name: 'Category 1213' },
+    { name: 'Category 2' },
+    { name: 'Category 3' },
+    { name: 'Category 4' }
 ];
 
-const CreateFormBody = ({title, description}) => (
+const CreateFormBody = ({ title, description }) => (
     <div className="challenge-create__body">
         <div className="challenge-create__photo">
             <button className="challenge-create__photo-download">Download</button>
@@ -16,13 +16,17 @@ const CreateFormBody = ({title, description}) => (
         </div>
 
         <input className="challenge-create__input" placeholder="Enter title" {...title} />
-                        {title.touched && title.error && <div className="form-error">{title.error}</div>}
+        {title.touched && title.error && <div className="form-error">{title.error}</div>}
 
         <div className="challenge-create__septa"></div>
         <div className="challenge-create__description-title">Description</div>
-        <hr/>
-        <textarea className="challenge-create__description" placeholder="Enter description" {...description}></textarea>
-                        {description.touched && description.error && <div className="form-error">{description.error}</div>}
+        <hr />
+
+        <textarea className="challenge-create__descr" placeholder="Description" {...description}>
+        </textarea>
+
+        {description.touched && description.error &&
+         <div className="form-error">{description.error}</div>}
 
         <div className="challenge-create__titles">Settings</div>
 
@@ -35,12 +39,12 @@ const CreateFormBody = ({title, description}) => (
 
         <label className="challenge-create__field">
             Start Date
-            <input className="challenge-create__day-input" type="date"/>
+            <input className="challenge-create__day-input" type="date" />
         </label>
 
         <label className="challenge-create__field">
             End Date
-            <input className="challenge-create__day-input" type="date"/>
+            <input className="challenge-create__day-input" type="date" />
         </label>
 
         <div className="challenge-create__titles">Requirements</div>

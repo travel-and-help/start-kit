@@ -7,7 +7,7 @@ import TodoScreen from './features/todo/TodoScreen';
 import Awards from './features/awards';
 import Updates from './features/updates';
 import Profile from './features/profile';
-import CreateForm from './features/create/components/CreateForm'
+import CreateForm from './features/create/components/CreateForm';
 
 
 export default () => (

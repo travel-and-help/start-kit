@@ -4,27 +4,27 @@ import { connect } from 'react-redux';
 import CreateFormHeader from './CreateFormHeader';
 import CreateFormBody from './CreateFormBody';
 
-const validate  = (values) => {
+const validate = (values) => {
     const errors = {};
 
     if (!values.title) {
         errors.title = 'Title is required';
     }
 
-    if(!values.description) {
+    if (!values.description) {
         errors.description = 'Description is required';
     }
 
     return errors;
 };
 
-class CreateForm extends Component  {
+class CreateForm extends Component {
     constructor(props) {
         super(props);
 
-        const {categories, dispatch} = props;
+        const { categories, dispatch } = props;
 
-        if(!categories) {
+        if (!categories) {
             dispatch(fetchCategories());
         }
 
@@ -32,11 +32,11 @@ class CreateForm extends Component  {
     }
 
     postData() {
-        console.log('Submited!');
+
     }
 
     render() {
-        const {fields: {title, description}, handleSubmit} = this.props;
+        const { fields: { title, description }, handleSubmit } = this.props;
 
         return (
             <section className="challenge-create">
@@ -45,20 +45,20 @@ class CreateForm extends Component  {
                     <CreateFormBody title={title} description={description} />
                 </form>
             </section>
-        )
+        );
     }
 }
 
-function fetchCategories () {
+function fetchCategories() {
     return function innerFetch(dispatch) {
         fetch('/api/')
-            .then( (data) => {
+            .then((data) => {
                 dispatch({
                     type: 'test',
                     data
                 });
             });
-    }
+    };
 }
 
 CreateForm.propTypes = {
@@ -75,4 +75,4 @@ const FormWithRedux = reduxForm({
 
 const mapStateToProps = ({ categories }) => ({ categories });
 
-export default connect(mapStateToProps)(FormWithRedux)
+export default connect(mapStateToProps)(FormWithRedux);

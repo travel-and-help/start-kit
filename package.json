@@ -126,6 +126,7 @@
     "react-router": "^2.0.1",
     "react-router-redux": "^4.0.1",
     "redux": "^3.3.1",
+    "redux-form": "^5.2.3",
     "redux-thunk": "^2.0.1"
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
-const CreateCategories = ({categories}) => (
+const CreateCategories = ({ categories }) => (
     <label className="challenge-create__field">
         Category
 
@@ -12,6 +13,10 @@ const CreateCategories = ({categories}) => (
         </select>
     </label>
 );
+
+CreateCategories.propTypes = {
+    categories: ImmutablePropTypes.list.isRequired
+};
 
 
 export default CreateCategories;
