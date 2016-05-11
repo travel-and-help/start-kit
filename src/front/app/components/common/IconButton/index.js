@@ -9,8 +9,8 @@ const IconButton = ({
     buttonClassName = '',
     buttonType = 'button'
 }) => (
-    <button type={buttonType} onClick={clickHandler} className={'icon-button ' + buttonClassName}>
-        <i className={'icon icon_size-' + iconSize + ' ' + iconClassName}>{iconName}</i>
+    <button type={buttonType} onClick={clickHandler} className={`icon-button  ${buttonClassName}`}>
+        <i className={`icon icon_size-${iconSize} ${iconClassName}`}>{iconName}</i>
         {title}
     </button>
 );
