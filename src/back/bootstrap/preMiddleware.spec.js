@@ -15,7 +15,7 @@ describe('bootstrap pre middleware', () => {
             use: env.spy(() => app)
         };
 
-        cors = env.stub().returns({});
+        cors = env.stub().returns('cors');
 
         bodyParser = {
             json: env.stub().returns({})
