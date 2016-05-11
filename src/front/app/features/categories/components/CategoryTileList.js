@@ -8,7 +8,7 @@ class CategoryTileList extends Component {
     }
 
     render() {
-        const { categories, onCLick } = this.props;
+        const { categories, onCategoryClick } = this.props;
 
         return (
             <ul>
@@ -16,7 +16,7 @@ class CategoryTileList extends Component {
                     <CategoryTile
                       key={index}
                       category={category}
-                      onCLick={ () => onCLick(category.get('name')) }
+                      onClick={ onCategoryClick }
                     />
                 ))}
             </ul>
@@ -27,7 +27,7 @@ class CategoryTileList extends Component {
 CategoryTileList.propTypes = {
     categories: ImmutablePropTypes.list.isRequired,
     getCategories: PropTypes.func.isRequired,
-    onCLick: PropTypes.func.isRequired
+    onCategoryClick: PropTypes.func.isRequired
 };
 
 export default CategoryTileList;

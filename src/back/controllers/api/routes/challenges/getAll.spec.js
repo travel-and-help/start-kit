@@ -1,17 +1,15 @@
 'use strict';
-const proxyquire = require('proxyquire');
-
+const proxyquire = require('proxyquire').noCallThru();
 
 describe('routes/challenges-getAll', () => {
-    let sut,
-        req,
-        res,
+    let res,
         challenge,
         mockChallenges;
 
     beforeEach(() => {
 
-        req = {};
+        const req = {};
+
         res = {
             json: env.spy()
         };
@@ -23,7 +21,7 @@ describe('routes/challenges-getAll', () => {
             })
         };
 
-        sut = proxyquire('./getAll', {
+        const sut = proxyquire('./getAll', {
             '../../models/challenge': challenge
         });
 
