@@ -1,6 +1,6 @@
 'use strict';
 
-const proxyQuire = require('proxyquire');
+const proxyQuire = require('proxyquire').noCallThru();
 
 describe('bootstrap/db', () => {
 

@@ -1,6 +1,6 @@
 'use strict';
 
-const proxyquire = require('proxyquire');
+const proxyquire = require('proxyquire').noCallThru();
 
 describe('bootstrap pre middleware', () => {
 
