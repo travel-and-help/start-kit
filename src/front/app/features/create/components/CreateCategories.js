@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Category = ({categories}) => (
+const CreateCategories = ({categories}) => (
     <label className="challenge-create__field">
         Category
 
@@ -14,4 +14,4 @@ const Category = ({categories}) => (
 );
 
 
-export default Category;
+export default CreateCategories;

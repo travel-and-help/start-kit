@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Header = () => (
+const CreateFormHeader = () => (
     <header className="challenge-create__header">
         <h2>Create Challenge</h2>
 
@@ -10,4 +10,4 @@ const Header = () => (
 );
 
 
-export default Header;
+export default CreateFormHeader;

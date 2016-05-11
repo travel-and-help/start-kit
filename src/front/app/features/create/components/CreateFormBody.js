@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Category from './category';
+import CreateCategories from './CreateCategories';
 
 const categories = [
     { name: 'Category 1213'},
@@ -8,7 +8,7 @@ const categories = [
     { name: 'Category 4'}
 ];
 
-const Body = ({title, description}) => (
+const CreateFormBody = ({title, description}) => (
     <div className="challenge-create__body">
         <div className="challenge-create__photo">
             <button className="challenge-create__photo-download">Download Image</button>
@@ -24,38 +24,37 @@ const Body = ({title, description}) => (
 
         <h3 className="challenge-create__subtitle">Settings</h3>
 
-        <Category categories={categories} />
+        <CreateCategories categories={categories} />
 
         <label className="challenge-create__field">
-        Repeateble
+            Repeateble
             <input type="checkbox" checked  disabled/>
         </label>
 
         <label className="challenge-create__field">
-        Start Date
+            Start Date
             <input type="date"/>
         </label>
 
         <label className="challenge-create__field">
-        End Date
+            End Date
             <input type="date"/>
         </label>
 
         <label className="challenge-create__field">
-        Special skills
+            Special skills
 
             <input type="checkbox"/>
         </label>
 
         <label className="challenge-create__field">
-        Spare time
+            Spare time
 
             <input type="checkbox"/>
         </label>
 
         <label className="challenge-create__field">
-        Complexity level
-
+            Complexity level
             <select>
                 <option value="-1">Select</option>
                 <option>Low</option>
@@ -65,7 +64,7 @@ const Body = ({title, description}) => (
         </label>
 
         <label className="challenge-create__field">
-        Verification
+            Verification
 
             <input type="checkbox"/>
         </label>
@@ -73,10 +72,10 @@ const Body = ({title, description}) => (
 );
 
 
-Body.propTypes = {
+CreateFormBody.propTypes = {
     title: PropTypes.object,
     description: PropTypes.object
 };
 
 
-export default Body;
+export default CreateFormBody;
