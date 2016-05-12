@@ -6,7 +6,7 @@ import ChallengeScreenContainer from './features/challenges/components/Challenge
 import TodoScreen from './features/todo/TodoScreen';
 import Awards from './features/awards';
 import Updates from './features/updates';
-import Profile from './features/profile';
+import Profile from './features/profile/components/ProfileContainer';
 
 export default () => (
     <Route path="/" >
