@@ -7,7 +7,7 @@ import TodoScreen from './features/todo/TodoScreen';
 import Awards from './features/awards';
 import Updates from './features/updates';
 import Profile from './features/profile';
-import CreateForm from './features/create/components/CreateForm';
+import CreateFormContainer from './features/create/components/CreateFormContainer';
 
 
 export default () => (
@@ -19,6 +19,6 @@ export default () => (
         <Route path="profile" component={Profile} />
         <Route path="todo" component={TodoScreen} />
         <Route path="categories" component={CategoryTileListContainer} />
-        <Route path="create" component={CreateForm} />
+        <Route path="create" component={CreateFormContainer} />
     </Route>
 );

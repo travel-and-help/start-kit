@@ -1,14 +1,8 @@
 import React, { PropTypes } from 'react';
 import CreateCategories from './CreateCategories';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
-const categories = [
-    { name: 'Category 1213' },
-    { name: 'Category 2' },
-    { name: 'Category 3' },
-    { name: 'Category 4' }
-];
-
-const CreateFormBody = ({ title, description }) => (
+const CreateFormBody = ({ title, description, categories }) => (
     <div className="challenge-create__body">
         <div className="challenge-create__photo">
             <button className="challenge-create__photo-download">Download</button>
@@ -81,7 +75,8 @@ const CreateFormBody = ({ title, description }) => (
 
 CreateFormBody.propTypes = {
     title: PropTypes.object,
-    description: PropTypes.object
+    description: PropTypes.object,
+    categories: ImmutablePropTypes.list.isRequired
 };
 
 
