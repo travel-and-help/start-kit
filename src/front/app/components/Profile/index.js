@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Header from './Header';
 import Socials from './Socials';
 import UserDetails from './UserDetails';
+import Challenges from '../Challenges';
 import { getUser } from './../../actions/user';
 
 class Profile extends React.Component {
@@ -50,6 +51,26 @@ class Profile extends React.Component {
                             Last login {user.lastLogin}
                         </p>
                     </div>
+                </section>
+
+                <section className='section-container' >
+                    <h4 className='section-container__title' >Created Challenges</h4>
+                    <div className='section-container__description' >
+                        <Challenges/>
+                    </div>
+                    <Link to='Challenges'>
+                        Show All
+                    </Link>
+                </section>
+
+                <section className='section-container' >
+                    <h4 className='section-container__title' >Completed Challenges</h4>
+                    <div className='section-container__description' >
+                        <Challenges/>
+                    </div>
+                    <Link to='Challenges'>
+                        Show All
+                    </Link>
                 </section>
             </div>
         );
