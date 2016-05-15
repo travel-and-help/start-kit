@@ -1,6 +1,7 @@
 import React from 'react';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
-const IconButton = ({
+const iconButton = ({
     title,
     iconName,
     clickHandler,
@@ -15,14 +16,14 @@ const IconButton = ({
     </button>
 );
 
-IconButton.propTypes = {
-    title: React.PropTypes.string,
-    iconName: React.PropTypes.string.isRequired,
-    clickHandler: React.PropTypes.func,
-    iconSize: React.PropTypes.number,
-    iconClassName: React.PropTypes.string,
-    buttonClassName: React.PropTypes.string,
-    buttonType: React.PropTypes.string
+iconButton.propTypes = {
+    title: ImmutablePropTypes.string,
+    iconName: ImmutablePropTypes.string.isRequired,
+    clickHandler: ImmutablePropTypes.func,
+    iconSize: ImmutablePropTypes.number,
+    iconClassName: ImmutablePropTypes.string,
+    buttonClassName: ImmutablePropTypes.string,
+    buttonType: ImmutablePropTypes.string
 };
 
-export default IconButton;
+export default iconButton;
