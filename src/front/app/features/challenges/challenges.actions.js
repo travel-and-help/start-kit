@@ -1,3 +1,5 @@
+import api from '../../common/api';
+
 export const GET_CHALLENGES = 'GET_CHALLENGES';
 
 function receiveChallenges(challenges) {
@@ -9,7 +11,7 @@ function receiveChallenges(challenges) {
 
 export function fetchChallenges() {
     return function innerFetchChallenges(dispatch) {
-        fetch('/api/challenges')
+        api('/api/challenges')
             .then(response => response.json())
             .then((challenges) => {
                 dispatch(receiveChallenges(challenges));
