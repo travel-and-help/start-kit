@@ -23,7 +23,7 @@ describe('CategoryTileListContainer', () => {
 
         categoriesActionCreators = {
             getCategories: env.stub().returns({}),
-            toggleCategory: env.stub().returns({})
+            watchCategory: env.stub().returns({})
         };
 
         sut = proxyquire('./CategoryTileListContainer', {
@@ -48,14 +48,14 @@ describe('CategoryTileListContainer', () => {
     it('should map dispatch to onclick prop method', () => {
         const { onCategoryClick } = reactRedux.connect.getCall(0).args[1](dispatch);
         onCategoryClick();
-        dispatch.should.calledWith(categoriesActionCreators.toggleCategory());
+        dispatch.should.calledWith(categoriesActionCreators.watchCategory());
     });
 
     it('should pass category name to action creator in mapped onCategoryClick handler', () => {
         const name = Symbol();
         const { onCategoryClick } = reactRedux.connect.getCall(0).args[1](dispatch);
         onCategoryClick(name);
-        categoriesActionCreators.toggleCategory.should.calledWith(name);
+        categoriesActionCreators.watchCategory.should.calledWith(name);
     });
 
     it('should map to props once', () => {

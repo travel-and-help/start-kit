@@ -1,10 +1,15 @@
 import React, { PropTypes } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import classNames from 'classnames';
 
 const CategoryTile = ({ onClick, category }) => {
-    const onCategoryClick = () => onClick(category.get('name'));
+    const onCategoryClick = () => onClick(category.get('_id'));
+    const classes = classNames({
+        checked: category.get('checked') === true
+    });
+
     return (
-        <li onClick={ onCategoryClick } >
+        <li className={ classes } onClick={ onCategoryClick } >
             { category.get('name') }
         </li>
     );

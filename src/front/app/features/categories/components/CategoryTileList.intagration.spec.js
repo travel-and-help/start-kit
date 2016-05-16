@@ -34,6 +34,6 @@ describe('CategoryTileList', () => {
     it('should trigger onCategoryClick method on category tile click', () => {
         const categoryTile = wrapper.find('li').at(1);
         categoryTile.simulate('click');
-        onCategoryClick.should.calledWith(categoryList.getIn([1, 'name']));
+        onCategoryClick.should.calledWith(categoryList.getIn([1, '_id']));
     });
 });
