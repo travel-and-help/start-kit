@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import LoginButton from './login-button';
 
-describe.only('LoginButton', () => {
+describe('LoginButton', () => {
 
     let text,
         onClick,

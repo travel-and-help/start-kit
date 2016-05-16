@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
-import { login } from '../auth.actions';
-import { LOGIN_SERVICES } from '../auth.actions';
+import { login, LOGIN_SERVICES } from '../auth.actions';
 import LoginScreen from './login-screen';
 
 const mapStateToProps = ({}) => ({});

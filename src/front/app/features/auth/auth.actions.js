@@ -1,3 +1,5 @@
+import { open } from '../../common/in-app-browser';
+
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const LOGIN_ATTEMPT = 'LOGIN_ATTEMPT';
@@ -30,110 +32,6 @@ export function loginFailed(info) {
     };
 }
 
-class CordovaWindow {
-
-    constructor(url, target, config) {
-        this.browserWindow = window.cordova.InAppBrowser.open(url, target, config);
-    }
-
-    getGetWindow() {
-        return this.browserWindow;
-    }
-
-    close() {
-        this.browserWindow.close();
-    }
-
-    getUrl() {
-        return new Promise((resolve) => {
-            this.getGetWindow().executeScript(
-                { code: 'document.URL' },
-                (url) => {
-                    resolve(url.toString());
-                });
-        });
-    }
-
-    getBody() {
-        return new Promise((resolve) => {
-            this.getGetWindow().executeScript(
-                { code: 'document.body.innerHTML' },
-                (url) => {
-                    resolve(url.toString());
-                });
-        });
-    }
-
-    waitUrl(serviceCallbackUrl) {
-        const browserWindow = this.getGetWindow();
-        const me = this;
-        return new Promise((resolve) => {
-            browserWindow.addEventListener('loadstop', function onLoadStop() {
-                return me.getUrl()
-                    .then((url) => {
-                        if (url.startsWith(serviceCallbackUrl)) {
-                            browserWindow.removeEventListener('loadstop', onLoadStop);
-                            resolve(url);
-                        }
-                    });
-            });
-
-        });
-    }
-}
-
-class BrowserLoginWindow {
-
-    constructor(url, target, config) {
-        this.browserWindow = window.open(url, target, config);
-    }
-
-    getGetWindow() {
-        return this.browserWindow;
-    }
-
-    close() {
-        this.browserWindow.close();
-    }
-
-    getBody() {
-        const currentWindow = this.getGetWindow();
-        return new Promise((resolve) => {
-            resolve(currentWindow.document.body.innerText);
-        });
-    }
-
-    waitUrl(serviceCallbackUrl) {
-        const currentWindow = this.getGetWindow();
-        return new Promise((resolve, reject) => {
-            const intervalId = setInterval(() => {
-                const url = currentWindow.location && currentWindow.location.href;
-                if (currentWindow.closed) {
-                    reject(new Error('Window is closed'));
-                    stopChecking();
-                    return;
-                }
-                if (url.startsWith(serviceCallbackUrl)) {
-                    resolve();
-                    stopChecking();
-                }
-            }, 500);
-
-            function stopChecking() {
-                if (intervalId) {
-                    clearInterval(intervalId);
-                }
-            }
-        });
-    }
-}
-
-function createLoginWindow(serviceURL) {
-    return (window.cordova && window.cordova.InAppBrowser)
-        ? new CordovaWindow(serviceURL, '_blank', 'closebuttoncaption=Done,location=no')
-        : new BrowserLoginWindow(serviceURL, '', 'resizeable=true,height=200,width=200');
-}
-
 function getServiceUrl(type) {
     const baseUrl = process.env.DOMAIN;
     switch (type) {
@@ -151,8 +49,8 @@ export function login(loginService) {
         dispatch(loginAttempt(loginService));
         const serviceURL = getServiceUrl(loginService);
         const serviceCallbackUrl = `${serviceURL}/callback`;
-        const loginWindow = createLoginWindow(serviceURL);
-        loginWindow
+        const loginWindow = open(serviceURL);
+        return loginWindow
             .waitUrl(serviceCallbackUrl)
             .then(loginWindow.getBody.bind(loginWindow))
             .then((response) => {

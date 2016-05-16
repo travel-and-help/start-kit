@@ -6,7 +6,10 @@ const initialState = {
 export default function user(state = initialState, action) {
     switch (action.type) {
     case LOGIN_ATTEMPT:
-        return state;
+        return {
+            isLoggedIn: false,
+            attempt: true
+        };
     case LOGIN_SUCCESS:
         return {
             isLoggedIn: true,

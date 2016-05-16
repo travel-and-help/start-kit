@@ -2,7 +2,7 @@
 
 const proxyquire = require('proxyquire');
 
-describe.only('google-plus', () => {
+describe('google-plus', () => {
     let router,
         authService,
         passport;
