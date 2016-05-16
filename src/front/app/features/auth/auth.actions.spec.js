@@ -47,7 +47,7 @@ describe('action/auth', () => {
                 dispatch = env.stub();
                 inAppBrowser.open.returns(browserWrapper);
                 loginAction = sut.login(sut.LOGIN_SERVICES.FACEBOOK);
-                process.env.DOMAIN = 'test';
+                process.env.API_BASE_URL = 'test';
             });
 
             it('should export login function', () => {

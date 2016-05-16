@@ -34,7 +34,7 @@ export function loginFailed(info) {
 }
 
 function getServiceUrl(type) {
-    const baseUrl = process.env.DOMAIN;
+    const baseUrl = process.env.API_BASE_URL;
     switch (type) {
     case LOGIN_SERVICES.FACEBOOK:
         return `${baseUrl}/auth/facebook`;

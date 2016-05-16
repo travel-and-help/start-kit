@@ -6,7 +6,6 @@ export const TOGGLE_CATEGORY = 'TOGGLE_CATEGORY';
 export function getCategories() {
     return function fetchCategories(dispatch) {
         api('/api/categories')
-            .then(response => response.json())
             .then((categories) => {
                 dispatch({
                     type: GET_CATEGORIES,

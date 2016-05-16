@@ -44,4 +44,7 @@ lt --port 9000 --subdomain travelandhelp
  * test request service
  * check images and login getting
  * build url into client app 
- * create tests for user 
+ * create tests for user
+ * add middleware to resolve user from req.auth.id
+ * redirect on login then 401
+ 
