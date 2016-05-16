@@ -1,4 +1,5 @@
 import { open } from '../../common/in-app-browser';
+import { set, remove } from '../../common/local-storage';
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
@@ -17,7 +18,7 @@ export function loginAttempt(service) {
 }
 
 export function loginSuccess(token) {
-    localStorage.setItem('token', token);
+    set('token', token);
     return {
         type: LOGIN_SUCCESS,
         token
@@ -25,7 +26,7 @@ export function loginSuccess(token) {
 }
 
 export function loginFailed(info) {
-    localStorage.removeItem('token');
+    remove('token');
     return {
         type: LOGIN_FAILED,
         info

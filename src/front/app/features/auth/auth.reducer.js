@@ -1,26 +1,26 @@
-import { LOGIN_ATTEMPT, LOGIN_SUCCESS, LOGIN_FAILED, LOGOUT } from './auth.actions';
+import { fromJS } from 'immutable';
+import { LOGIN_ATTEMPT, LOGIN_SUCCESS, LOGIN_FAILED } from './auth.actions';
 
-const initialState = {
+const initialState = fromJS({
     isLoggedIn: false
-};
+});
 export default function user(state = initialState, action) {
     switch (action.type) {
     case LOGIN_ATTEMPT:
-        return {
+        return fromJS({
             isLoggedIn: false,
             attempt: true
-        };
+        });
     case LOGIN_SUCCESS:
-        return {
+        return fromJS({
             isLoggedIn: true,
             token: action.token
-        };
+        });
     case LOGIN_FAILED:
-        return {
+        return fromJS({
             isLoggedIn: false,
             info: action.info
-        };
-    case LOGOUT:
+        });
     default:
         return state;
     }

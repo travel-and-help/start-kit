@@ -6,16 +6,22 @@ const chai = require('chai'),
 describe('action/auth', () => {
 
     let sut,
-        inAppBrowser;
+        inAppBrowser,
+        localStorage;
 
     beforeEach(() => {
 
         inAppBrowser = {
             open: env.stub()
         };
+        localStorage = {
+            set: env.stub(),
+            remove: env.stub()
+        };
 
         sut = proxyquire('./auth.actions', {
-            '../../common/in-app-browser': inAppBrowser
+            '../../common/in-app-browser': inAppBrowser,
+            '../../common/local-storage': localStorage
         });
 
     });
@@ -23,7 +29,7 @@ describe('action/auth', () => {
     describe('#login', () => {
 
         it('should export available login services', () => {
-            expect(sut.LOGIN_SERVICES).to.exist;
+            expect(expect(sut.LOGIN_SERVICES).to.exist);
         });
 
         describe('login', () => {
@@ -50,12 +56,25 @@ describe('action/auth', () => {
 
             it('should open window', () => {
                 loginAction(dispatch);
-                inAppBrowser.open.should.called;
+                expect(inAppBrowser.open.should.called);
             });
 
             it('should open window with facebook endpoint if facebook login', () => {
                 loginAction(dispatch);
                 inAppBrowser.open.should.calledWith('test/auth/facebook');
+            });
+
+            it('should open window with google endpoint if google login', () => {
+                loginAction = sut.login(sut.LOGIN_SERVICES.GOOGLE_PLUS);
+                loginAction(dispatch);
+                inAppBrowser.open.should.calledWith('test/auth/google-plus');
+            });
+
+            it('should throw if login with not supported service', () => {
+                loginAction = sut.login('test');
+                expect(() => {
+                    loginAction(dispatch);
+                }).to.throw(Error);
             });
 
             it('should dispatch login attempt on login', () => {
@@ -67,30 +86,38 @@ describe('action/auth', () => {
             });
 
             it('should close window then get response', () => {
-                browserWrapper.getBody.returns(env.stub().resolves('')());
-                loginAction(dispatch);
-                browserWrapper.close.should.calledWiths();
+                browserWrapper.getBody.returns(
+                    env.stub().resolves('{"success":true,"token":"test"}')());
+                loginAction(dispatch)
+                    .finally(() => {
+                        expect(browserWrapper.close.should.called);
+                    });
+
             });
 
             it('should dispatch login success if response contains token', () => {
                 browserWrapper.getBody.returns(
                     env.stub().resolves('{"success":true,"token":"test"}')());
-                loginAction(dispatch);
-                dispatch.should.calledWith({
-                    type: sut.LOGIN_SUCCESS,
-                    token: 'test1'
-                });
+                loginAction(dispatch)
+                    .finally(() => {
+                        dispatch.should.calledWith({
+                            type: sut.LOGIN_SUCCESS,
+                            token: 'test1'
+                        });
+                    });
             });
 
             it('should dispatch login failed if response does not contains token', () => {
-                browserWrapper.getBody.returns(env.stub().reject('{"success":false}')());
-                loginAction(dispatch);
-                dispatch.should.calledWith({
-                    type: sut.LOGIN_FAILED,
-                    info: {
-                        success: false
-                    }
-                });
+                browserWrapper.getBody.returns(env.stub().rejects('{"success":false}')());
+                loginAction(dispatch)
+                    .finally(() => {
+                        dispatch.should.calledWith({
+                            type: sut.LOGIN_FAILED,
+                            info: {
+                                success: false
+                            }
+                        });
+                    });
             });
 
         });
