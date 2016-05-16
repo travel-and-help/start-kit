@@ -11,7 +11,8 @@ module.exports = [
     new webpack.DefinePlugin({
         'process.env': JSON.stringify({
             NODE_ENV: env.NODE_ENV,
-            PLATFORM: env.PLATFORM
+            PLATFORM: env.PLATFORM,
+            API_BASE_URL: env.API_BASE_URL
         })
     }),
     new webpack.EnvironmentPlugin('DOMAIN'),

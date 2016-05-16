@@ -8,7 +8,7 @@ const mapDispatchToProps = (dispatch) => ({
     getCategories: () => {
         dispatch(getCategories());
     },
-    onCLick: (name) => {
+    onCategoryClick: (name) => {
         dispatch(toggleCategory(name));
     }
 });

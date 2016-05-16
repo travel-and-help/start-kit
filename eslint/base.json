@@ -1,23 +1,13 @@
 {
-  "extends": "airbnb",
   "env": {
-    "browser": true,
-    "commonjs": true,
+    "browser": true, //since we use JSDOM in .spec
     "mocha": true
-  },
-  "parserOptions": {
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true
-    }
   },
   "globals": {
     "env": true,
     "sinon": true,
-    "deepFreeze": true
+    "should": true
   },
-  "plugins": [
-    "react"
-  ],
   "rules": {
     "no-use-before-define": 0,
     "comma-dangle": 0,

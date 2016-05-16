@@ -1,7 +1,7 @@
 /* eslint-disable no-console*/
 'use strict';
 
-const proxyquire = require('proxyquire');
+const proxyquire = require('proxyquire').noCallThru();
 
 describe('app', () => {
 
