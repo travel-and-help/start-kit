@@ -8,7 +8,6 @@ import TodoScreen from './features/todo/TodoScreen';
 import Awards from './features/awards';
 import Updates from './features/updates';
 import Profile from './features/profile';
-import Footer from './features/footer-menu/footer-menu';
 
 export default () => (
     <Route path="/" >
@@ -19,7 +18,6 @@ export default () => (
         <Route path="updates" component={Updates} />
         <Route path="profile" component={Profile} />
         <Route path="todo" component={TodoScreen} />
-        <Route path="footer" component={Footer} />
         <Route path="categories" component={CategoryTileListContainer} />
     </Route>
 );
