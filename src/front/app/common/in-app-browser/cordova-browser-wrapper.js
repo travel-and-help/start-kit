@@ -27,8 +27,8 @@ export default class CordovaBrowserWrapper {
         return new Promise((resolve) => {
             this.getGetWindow().executeScript(
                 { code: 'document.body.innerHTML' },
-                (url) => {
-                    resolve(url.toString());
+                (body) => {
+                    resolve(body.toString());
                 });
         });
     }

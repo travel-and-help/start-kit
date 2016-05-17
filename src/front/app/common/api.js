@@ -11,9 +11,7 @@ export default function api(context) {
     }
     return fetch(requestContext(context), fetchConfig)
         .then(checkHttpStatus)
-        .then((response) => {
-            return response.json();
-        });
+        .then((response) => response.json());
 }
 
 function requestContext(context) {

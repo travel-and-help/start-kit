@@ -1,12 +1,7 @@
-let storage;
 
 function getStorage() {
-    if (storage) {
-        return storage;
-    }
     const win = (typeof window !== 'undefined' ? window : global);
-    const localStorageName = 'localStorage';
-    storage = win[localStorageName];
+    const storage = win.localStorage;
     if (storage === undefined) {
         throw new Error('Local storage do not supported');
     }
@@ -26,7 +21,6 @@ function deserialize(value) {
     } catch (e) {
         return value || undefined;
     }
-
 }
 
 export function set(key, value) {

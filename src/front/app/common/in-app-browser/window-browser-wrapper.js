@@ -26,13 +26,13 @@ export default class WindowBrowserWrapper {
             const intervalId = setInterval(() => {
                 const url = currentWindow.location && currentWindow.location.href;
                 if (currentWindow.closed) {
-                    reject(new Error('Window is closed'));
                     stopChecking();
+                    reject(new Error('Window is closed'));
                     return;
                 }
                 if (url.startsWith(serviceCallbackUrl)) {
-                    resolve();
                     stopChecking();
+                    resolve(url);
                 }
             }, 500);
 
