@@ -3,12 +3,12 @@ $footerHeight: 12%;
 
 .navigation {
   position: fixed;
+  margin: 0 auto;
   bottom: -1%;
   right: 0;
   left: 0;
   width: 90%;
   height: $footerHeight;
-  margin: 0 auto;
 
   &__tabs {
     display: table;
@@ -19,19 +19,15 @@ $footerHeight: 12%;
 
 .navigation-item {
   display: block;
-  height: 100%;
-  width: 116%;
   position: relative;
   left: 0;
-  border-radius: 10px 10px 0 0;
-  border-color: black;
-  border-style: solid;
-  border-width: 1px;
   margin-top: $heightDifferenceTab;
+  border-radius: 10px 10px 0 0;
+  border: 1px solid black;
+  width: 116%;
+  height: 100%;
 
   &_active {
-    border-radius: 10px 10px 0 0;
-    position: relative;
     top: -$heightDifferenceTab;
     z-index: 5 !important;
   }
