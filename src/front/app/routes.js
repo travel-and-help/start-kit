@@ -6,7 +6,7 @@ import ChallengeScreenContainer from './features/challenges/components/Challenge
 import TodoScreen from './features/todo/TodoScreen';
 import Awards from './features/awards';
 import Updates from './features/updates';
-import Profile from './features/profile/components/ProfileContainer';
+import ProfileContainer from './features/profile/components/ProfileContainer';
 
 export default () => (
     <Route path="/" >
@@ -14,7 +14,7 @@ export default () => (
         <Route path="challenges" component={ChallengeScreenContainer} />
         <Route path="awards" component={Awards} />
         <Route path="updates" component={Updates} />
-        <Route path="profile" component={Profile} />
+        <Route path="profile" component={ProfileContainer} />
         <Route path="todo" component={TodoScreen} />
         <Route path="categories" component={CategoryTileListContainer} />
     </Route>
