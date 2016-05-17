@@ -8,7 +8,9 @@ const categories = (state = initialState, action) => {
     case GET_CATEGORIES:
         return fromJS(action.categories);
     case WATCH_CATEGORY:
+
         return state.map((category) => {
+            console.log('categoryId', category.get('_id'), action.categoryId);
             if (category.get('_id') !== action.categoryId) {
                 return category;
             }

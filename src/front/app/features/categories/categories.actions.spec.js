@@ -49,4 +49,41 @@ describe('action/categories', () => {
             });
         });
     });
+
+    describe('#watchCategory', () => {
+        it('should return watch category action', () => {
+            const categoryId = 123;
+            const response = sut.watchCategory(categoryId);
+
+            response.should.eqls({
+                type: sut.WATCH_CATEGORY,
+                categoryId
+            });
+        });
+    });
+
+    describe('#saveCategories', () => {
+        let ret;
+        let categories;
+
+        beforeEach(() => {
+            categories = 'smth';
+
+            ret = sut.saveCategories(categories);
+        });
+
+        it('should save provided categories', () => {
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(categories)
+            };
+
+            ret();
+
+            api.should.have.been.calledWith('/api/categories', options).and.callCount(1);
+        });
+    });
 });

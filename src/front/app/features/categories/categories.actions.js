@@ -27,7 +27,7 @@ export function watchCategory(categoryId) {
 
 export function saveCategories(categories) {
     return function postCategories() {
-        fetch('/api/categories', {
+        api('/api/categories', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
