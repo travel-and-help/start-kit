@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
 import Menu from './Menu';
-import ChallengeJumbotron from '../../../common/components/challenge/ChallengeJumbotron';
-import ChallengeTileList from '../../../common/components/challenge/ChallengeTileList';
-import Navigation from '../../navigation';
+import ChallengeJumbotron from '../../../../common/components/challenge/ChallengeJumbotron';
+import ChallengeTileList from '../../../../common/components/challenge/ChallengeTileList';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class ChallengeScreen extends React.Component {
@@ -36,7 +35,6 @@ class ChallengeScreen extends React.Component {
                 <Menu active={ isMenuActive } />
                 { topChallenge && <ChallengeJumbotron challenge={ topChallenge } /> }
                 <ChallengeTileList challenges={otherChallenges} />
-                <Navigation />
             </div>
         );
     }

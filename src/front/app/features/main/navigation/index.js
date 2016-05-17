@@ -13,7 +13,7 @@ export default () => (
         <div className="navigation__tabs" >
             {navigationItemData.map((link, index) => (
                 <NavigationItem
-                  link={link}
+                  link={`main/${link}`}
                   iconClass={link}
                   key={index}
                 />

@@ -6,7 +6,6 @@ describe('action/challenges', () => {
     let api;
 
     let promise;
-    let fetchResponse;
     let challengesList;
 
     beforeEach(() => {
@@ -14,7 +13,7 @@ describe('action/challenges', () => {
 
         dispatch = env.stub();
 
-        fetchResponse = {
+        const fetchResponse = {
             json: env.stub().returns(challengesList)
         };
 
@@ -23,7 +22,7 @@ describe('action/challenges', () => {
         api = env.stub().returns(promise);
 
         sut = proxyquire('./challenges.actions', {
-            '../../common/api': api
+            '../../../common/api': api
         });
     });
 
