@@ -30,7 +30,11 @@ const User = new Schema({
     }],
     locations: {
         type: String
-    }
+    },
+    categories: [{
+        type: Schema.ObjectId,
+        ref: 'Category'
+    }]
 });
 
 module.exports = mongoose.model('User', User);

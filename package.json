@@ -113,6 +113,7 @@
   "dependencies": {
     "babel-polyfill": "^6.8.0",
     "body-parser": "^1.15.0",
+    "classnames": "^2.2.5",
     "cors": "^2.7.1",
     "express": "^4.13.4",
     "immutable": "^3.8.1",
