@@ -26,25 +26,3 @@ To execute end-to-end (e2e) tests, use:
     npm run test:e2e
 
 To learn more about npm scripts, use [npm scripts guide](https://docs.npmjs.com/misc/scripts)
-
-cp -r target/build/* www/ 
-
-lt --port 9000 --subdomain travelandhelp
-
-##### TODO:
-
- * create unit tests
- * auto redirect on login
- * redirect user to next screen
- * skip login redirect
- * include cordova on webPack build
- * create migration scripts
- * try to add env variables at heroku
- * encode keys for social media
- * test request service
- * check images and login getting
- * build url into client app 
- * create tests for user
- * add middleware to resolve user from req.auth.id
- * redirect on login then 401
- 
