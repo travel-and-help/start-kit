@@ -17,7 +17,7 @@ describe('facebook passport', () => {
             SESSION_SECRET: 'testSecret',
             FACEBOOK_ID: 'testFacebookId',
             FACEBOOK_SECRET: 'testFacebookSecret',
-            DOMAIN: 'testDomain'
+            API_BASE_URL: 'testDomain'
         };
         passportFacebook = {
             Strategy: env.spy(() => facebookStrategy)

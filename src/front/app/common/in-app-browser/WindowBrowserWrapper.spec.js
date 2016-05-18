@@ -3,7 +3,7 @@ const proxyquire = require('proxyquire').noCallThru();
 const chai = require('chai'),
     expect = chai.expect;
 
-describe('app/common/in-app-browser/window-browser-wrapper', () => {
+describe('app/common/in-app-browser/WindowBrowserWrapper', () => {
     let Sut,
         windowBrowserInstance;
 
@@ -23,7 +23,7 @@ describe('app/common/in-app-browser/window-browser-wrapper', () => {
         env.spy(global, 'setInterval');
         env.spy(global, 'clearInterval');
 
-        Sut = proxyquire('./window-browser-wrapper', {}).default;
+        Sut = proxyquire('./WindowBrowserWrapper', {}).default;
     });
 
     describe('instance', () => {
@@ -38,10 +38,10 @@ describe('app/common/in-app-browser/window-browser-wrapper', () => {
             expect(instance).to.be.an.instanceof(Sut);
         });
 
-        describe('getGetWindow method', () => {
+        describe('getWindow method', () => {
 
             it('should return browser instance', () => {
-                instance.getGetWindow().should.equal(windowBrowserInstance);
+                instance.getWindow().should.equal(windowBrowserInstance);
             });
 
         });

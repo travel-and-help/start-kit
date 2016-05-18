@@ -5,7 +5,7 @@ export default class CordovaBrowserWrapper {
         this.browserWindow = window.cordova.InAppBrowser.open(url, target, config);
     }
 
-    getGetWindow() {
+    getWindow() {
         return this.browserWindow;
     }
 
@@ -15,7 +15,7 @@ export default class CordovaBrowserWrapper {
 
     getUrl() {
         return new Promise((resolve) => {
-            this.getGetWindow().executeScript(
+            this.getWindow().executeScript(
                 { code: 'document.URL' },
                 (url) => {
                     resolve(url.toString());
@@ -25,7 +25,7 @@ export default class CordovaBrowserWrapper {
 
     getBody() {
         return new Promise((resolve) => {
-            this.getGetWindow().executeScript(
+            this.getWindow().executeScript(
                 { code: 'document.body.innerHTML' },
                 (body) => {
                     resolve(body.toString());
@@ -34,7 +34,7 @@ export default class CordovaBrowserWrapper {
     }
 
     waitUrl(serviceCallbackUrl) {
-        const browserWindow = this.getGetWindow();
+        const browserWindow = this.getWindow();
         const me = this;
         return new Promise((resolve) => {
             browserWindow.addEventListener('loadstop', function onLoadStop() {

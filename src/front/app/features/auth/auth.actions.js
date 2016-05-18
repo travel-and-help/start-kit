@@ -53,7 +53,7 @@ export function login(loginService) {
         const loginWindow = open(serviceURL);
         return loginWindow
             .waitUrl(serviceCallbackUrl)
-            .then(loginWindow.getBody.bind(loginWindow))
+            .then(() => (loginWindow.getBody()))
             .then((response) => {
                 loginWindow.close();
                 return response;

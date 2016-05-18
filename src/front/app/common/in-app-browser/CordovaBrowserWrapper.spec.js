@@ -3,7 +3,7 @@ const proxyquire = require('proxyquire').noCallThru();
 const chai = require('chai'),
     expect = chai.expect;
 
-describe('app/common/in-app-browser/cordova-browser-wrapper', () => {
+describe('app/common/in-app-browser/CordovaBrowserWrapper', () => {
     let Sut,
         inAppBrowser,
         inAppBrowserInstance;
@@ -28,7 +28,7 @@ describe('app/common/in-app-browser/cordova-browser-wrapper', () => {
             open: env.stub().returns(inAppBrowserInstance)
         };
         global.window.cordova = { InAppBrowser: inAppBrowser };
-        Sut = proxyquire('./cordova-browser-wrapper', {}).default;
+        Sut = proxyquire('./CordovaBrowserWrapper', {}).default;
     });
 
     describe('instance', () => {
@@ -43,10 +43,10 @@ describe('app/common/in-app-browser/cordova-browser-wrapper', () => {
             expect(instance).to.be.an.instanceof(Sut);
         });
 
-        describe('getGetWindow method', () => {
+        describe('getWindow method', () => {
 
             it('should return browser instance', () => {
-                instance.getGetWindow().should.equal(inAppBrowserInstance);
+                instance.getWindow().should.equal(inAppBrowserInstance);
             });
 
         });

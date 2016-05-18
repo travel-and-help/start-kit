@@ -1,7 +1,6 @@
 
 function getStorage() {
-    const win = (typeof window !== 'undefined' ? window : global);
-    const storage = win.localStorage;
+    const storage = global.localStorage;
     if (storage === undefined) {
         throw new Error('Local storage do not supported');
     }

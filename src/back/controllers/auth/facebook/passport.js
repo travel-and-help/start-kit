@@ -10,7 +10,7 @@ exports = module.exports = (User) => {
     const strategyConfig = {
             clientID: env.FACEBOOK_ID,
             clientSecret: env.FACEBOOK_SECRET,
-            callbackURL: `${env.DOMAIN}/auth/facebook/callback`,
+            callbackURL: `${env.API_BASE_URL}/auth/facebook/callback`,
             profileFields: ['id', 'displayName', 'photos', 'emails']
         },
         verifyCallback = authService.generateOAuth2VerifyCallback(User, 'facebook');

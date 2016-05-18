@@ -1,5 +1,5 @@
-import CordovaBrowserWrapper from './cordova-browser-wrapper';
-import WindowBrowserWrapper from './window-browser-wrapper';
+import CordovaBrowserWrapper from './CordovaBrowserWrapper';
+import WindowBrowserWrapper from './WindowBrowserWrapper';
 
 export function open(url) {
     return (window.cordova && window.cordova.InAppBrowser)

@@ -9,8 +9,8 @@ describe('app/common/in-app-browser/index', () => {
         cordovaBrowserWrapper = env.spy(() => ({ type: 'cordova' }));
         windowBrowserWrapper = env.spy(() => ({ type: 'window' }));
         sut = proxyquire('./index', {
-            './cordova-browser-wrapper': cordovaBrowserWrapper,
-            './window-browser-wrapper': windowBrowserWrapper
+            './CordovaBrowserWrapper': cordovaBrowserWrapper,
+            './WindowBrowserWrapper': windowBrowserWrapper
         });
         global.window.cordova = null;
     });

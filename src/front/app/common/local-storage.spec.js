@@ -17,6 +17,7 @@ describe('local-storage', () => {
     });
 
     it('should throw if not supported', () => {
+        global.localStorage = undefined;
         expect(() => {
             sut.get('testItem');
         }).to.throw(Error);
@@ -25,7 +26,7 @@ describe('local-storage', () => {
     describe('local storade supported', () => {
 
         beforeEach(() => {
-            global.window.localStorage = localStorage;
+            global.localStorage = localStorage;
         });
 
         describe('set method', () => {

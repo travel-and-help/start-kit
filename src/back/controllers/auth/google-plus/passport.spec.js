@@ -17,7 +17,7 @@ describe('google passport', () => {
             SESSION_SECRET: 'testSecret',
             GOOGLE_PLUS_ID: 'testGoogleId',
             GOOGLE_PLUS_SECRET: 'testGoogleSecret',
-            DOMAIN: 'testDomain'
+            API_BASE_URL: 'testDomain'
         };
         passportGoogle = {
             OAuth2Strategy: env.spy(() => googleStrategy)

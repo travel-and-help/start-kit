@@ -5,7 +5,7 @@ export default class WindowBrowserWrapper {
         this.browserWindow = window.open(url, target, config);
     }
 
-    getGetWindow() {
+    getWindow() {
         return this.browserWindow;
     }
 
@@ -14,14 +14,14 @@ export default class WindowBrowserWrapper {
     }
 
     getBody() {
-        const currentWindow = this.getGetWindow();
+        const currentWindow = this.getWindow();
         return new Promise((resolve) => {
             resolve(currentWindow.document.body.innerText);
         });
     }
 
     waitUrl(serviceCallbackUrl) {
-        const currentWindow = this.getGetWindow();
+        const currentWindow = this.getWindow();
         return new Promise((resolve, reject) => {
             const intervalId = setInterval(() => {
                 const url = currentWindow.location && currentWindow.location.href;

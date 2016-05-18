@@ -11,7 +11,7 @@ exports = module.exports = (User) => {
     const strategyConfig = {
             clientID: env.GOOGLE_PLUS_ID,
             clientSecret: env.GOOGLE_PLUS_SECRET,
-            callbackURL: `${env.DOMAIN}/auth/google-plus/callback`,
+            callbackURL: `${env.API_BASE_URL}/auth/google-plus/callback`,
             profileFields: ['id', 'displayName', 'photos', 'email']
         },
         verifyCallback = authService.generateOAuth2VerifyCallback(User, 'googlePlus');
