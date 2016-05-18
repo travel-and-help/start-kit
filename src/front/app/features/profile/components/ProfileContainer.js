@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import profile from './Profile';
+import Profile from './Profile';
 import { getUser } from '../profile.actions';
 
 const mapStateToProps = ({ user }) => ({ user });
@@ -10,4 +10,4 @@ const mapDispatchToProps = (dispatch) => ({
     }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
