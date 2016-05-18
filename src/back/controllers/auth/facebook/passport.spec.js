@@ -8,6 +8,7 @@ describe('facebook passport', () => {
         envValues,
         passport,
         passportFacebook,
+        authService,
         user;
     const facebookStrategy = {};
     beforeEach(() => {
@@ -21,15 +22,17 @@ describe('facebook passport', () => {
         passportFacebook = {
             Strategy: env.spy(() => facebookStrategy)
         };
+        authService = {
+            generateOAuth2VerifyCallback: env.spy(() => 'VerifyCallback')
+        };
         passport = {
             use: env.spy()
         };
-        user = {
-            generateOAuth2VerifyCallback: env.spy(() => 'VerifyCallback')
-        };
+        user = {};
 
         sut = proxyquire('./passport', {
             '../../../../../env': envValues,
+            '../auth.service': authService,
             'passport-facebook': passportFacebook,
             passport
         });
@@ -47,7 +50,7 @@ describe('facebook passport', () => {
         });
 
         it('should register facebook strategy', () => {
-            user.generateOAuth2VerifyCallback.should.been.calledWith('facebook');
+            authService.generateOAuth2VerifyCallback.should.been.calledWith(user, 'facebook');
             passportFacebook.Strategy.should.been.calledWith({
                 clientID: 'testFacebookId',
                 clientSecret: 'testFacebookSecret',

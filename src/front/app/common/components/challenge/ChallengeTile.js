@@ -6,8 +6,7 @@ const ChallengeTile = ({ challenge }) => {
         title,
         user: {
             rating,
-            firstName,
-            lastName
+            fullName
         },
         location
     } = challenge.toJS();
@@ -23,7 +22,7 @@ const ChallengeTile = ({ challenge }) => {
                 {rating}
             </span>
             <span>
-                {firstName} {lastName}
+                { fullName }
             </span>
             </div>
         <span className="challenge__location" >
@@ -39,8 +38,7 @@ ChallengeTile.propTypes = {
         title: PropTypes.string.isRequired,
         user: ImmutablePropTypes.mapContains({
             rating: PropTypes.number.isRequired,
-            firstName: PropTypes.string.isRequired,
-            lastName: PropTypes.string.isRequired
+            fullName: PropTypes.string.isRequired
         }).isRequired,
         location: PropTypes.string.isRequired
     }).isRequired

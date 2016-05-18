@@ -8,7 +8,8 @@ describe('google passport', () => {
         envValues,
         passport,
         passportGoogle,
-        user;
+        user,
+        authService;
     const googleStrategy = {};
     beforeEach(() => {
 
@@ -24,12 +25,15 @@ describe('google passport', () => {
         passport = {
             use: env.spy()
         };
-        user = {
+        authService = {
             generateOAuth2VerifyCallback: env.spy(() => 'VerifyCallback')
         };
 
+        user = {};
+
         sut = proxyquire('./passport', {
             '../../../../../env': envValues,
+            '../auth.service': authService,
             'passport-google-oauth': passportGoogle,
             passport
         });
@@ -47,7 +51,7 @@ describe('google passport', () => {
         });
 
         it('should register google strategy', () => {
-            user.generateOAuth2VerifyCallback.should.been.calledWith('googlePlus');
+            authService.generateOAuth2VerifyCallback.should.been.calledWith(user, 'googlePlus');
             passportGoogle.OAuth2Strategy.should.been.calledWith({
                 clientID: 'testGoogleId',
                 clientSecret: 'testGoogleSecret',

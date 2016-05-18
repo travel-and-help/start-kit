@@ -7,7 +7,9 @@ describe('auth.service', () => {
     let sut,
         jsonwebtoken,
         expressJWT,
-        envValues;
+        envValues,
+        userModel,
+        userInstance;
 
     const expressJWTResult = function expressJWTResult() {
         return () => {
@@ -23,6 +25,11 @@ describe('auth.service', () => {
         envValues = {
             SESSION_SECRET: 'testSecret'
         };
+        userInstance = {
+            save: env.stub()
+        };
+        userModel = env.spy(() => (userInstance));
+        userModel.findOne = env.stub();
         sut = proxyquire('./auth.service', {
             jsonwebtoken,
             'express-jwt': expressJWT,
@@ -78,5 +85,75 @@ describe('auth.service', () => {
 
     });
 
+    describe('generateOAuth2VerifyCallback', () => {
+
+        const providerProperty = 'testProvided';
+
+        it('should generate verify callback', () => {
+            const result = sut.generateOAuth2VerifyCallback(userModel, providerProperty);
+            expect(result).to.be.an.instanceof(Function);
+        });
+
+        it('should find user by provider property', () => {
+            const callback = sut.generateOAuth2VerifyCallback(userModel, providerProperty);
+            userModel.findOne.returns(Promise.resolve(null));
+            callback('token', '', {
+                id: 'profileId'
+            }, () => {
+            });
+            userModel.findOne.should.calledWith({
+                'testProvided.id': 'profileId'
+            });
+        });
+
+        it('should resolve if user exists', (done) => {
+            const existingUser = {
+                'testProvided.id': 'profileId'
+            };
+            userModel.findOne.returns(Promise.resolve(existingUser));
+            const callback = sut.generateOAuth2VerifyCallback(userModel, providerProperty);
+            callback('token', '', {
+                id: 'profileId'
+            }, (err, user) => {
+                user.should.equal(existingUser);
+                done();
+            });
+        });
+
+        it('should create new user if not exists', (done) => {
+            const newUser = {
+                'testProvided.id': 'profileId'
+            };
+            userInstance.save.returns(Promise.resolve(newUser));
+            userModel.findOne.returns(Promise.resolve(null));
+            const callback = sut.generateOAuth2VerifyCallback(userModel, providerProperty);
+            callback('token', '', {
+                id: 'profileId',
+                photos: [{ value: 'testPhoto' }],
+                emails: [{ value: 'testEmail' }],
+                displayName: 'test user'
+            }, (err, user) => {
+                userInstance.fullName.should.equal('test user');
+                user.should.equal(newUser);
+                done();
+            });
+        });
+
+        it('should return error on reject', (done) => {
+            const error = {
+                'testProvided.id': 'profileId'
+            };
+            userModel.findOne.returns(Promise.reject(error));
+            const callback = sut.generateOAuth2VerifyCallback(userModel, providerProperty);
+            callback('token', '', {
+                id: 'profileId',
+                displayName: 'test user'
+            }, (err) => {
+                err.should.equal(error);
+                done();
+            });
+        });
+
+    });
 });
 

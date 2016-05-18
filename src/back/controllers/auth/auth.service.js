@@ -22,8 +22,36 @@ function responseAuthToken(req, res, next) {
     }
 }
 
+function generateOAuth2VerifyCallback(UserModel, providerProperty) {
+    return (accessToken, refreshToken, profile, done) => {
+        UserModel.findOne({ [`${providerProperty}.id`]: profile.id })
+            .then((user) => {
+                if (user) {
+                    return user;
+                }
+                const newUser = new UserModel();
+                newUser[providerProperty] = {
+                    id: profile.id,
+                    token: accessToken
+                };
+                newUser.fullName = profile.displayName;
+                if (profile.photos && profile.photos.length > 0) {
+                    newUser.photo = profile.photos[0].value;
+                }
+                if (profile.emails && profile.emails.length > 0) {
+                    newUser.email = profile.emails[0].value;
+                }
+                return newUser.save();
+            })
+            .then((user) => {
+                done(null, user);
+            })
+            .catch(done);
+    };
+}
 
 module.exports = {
     validateJwt,
-    responseAuthToken
+    responseAuthToken,
+    generateOAuth2VerifyCallback
 };

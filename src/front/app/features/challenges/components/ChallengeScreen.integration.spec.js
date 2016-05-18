@@ -12,16 +12,14 @@ describe('ChallengeScreen', () => {
             title: 'JumbtoTitle',
             user: {
                 rating: 42,
-                firstName: 'John',
-                lastName: 'Dou'
+                fullName: 'John Dou'
             },
             location: 'LA'
         }, {
             title: 'title',
             user: {
                 rating: 42,
-                firstName: 'Joe',
-                lastName: 'Doue'
+                fullName: 'Joe Doue'
             },
             location: 'SF'
         }]);
