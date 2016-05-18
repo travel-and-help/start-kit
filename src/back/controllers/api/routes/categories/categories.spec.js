@@ -32,4 +32,12 @@ describe('categories handler', () => {
 
         res.json.should.have.been.calledWith(data);
     });
+
+    it('should response with 200 status', () => {
+        const res = { sendStatus: env.stub() };
+
+        sut.save({}, res);
+
+        res.sendStatus.should.have.been.calledWith(200);
+    });
 });

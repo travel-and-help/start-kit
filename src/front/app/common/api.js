@@ -1,34 +1,16 @@
 import { get as getFromLocalStorage } from './local-storage';
 
-export default function api(context) {
+export default function api(url, options) {
     const token = getFromLocalStorage('token');
-    const fetchConfig = {};
     if (token) {
-        Object.assign(fetchConfig, {
+        Object.assign(options, {
             credentials: 'include',
             headers: { Authorization: `Bearer ${token}` }
         });
     }
-    return fetch(requestContext(context), fetchConfig)
+    return fetch(addBaseApiUrl(url), options)
         .then(checkHttpStatus)
         .then((response) => response.json());
-}
-
-function requestContext(context) {
-    if (typeof context === 'object') {
-        if (context.url) {
-            return {
-                ...context,
-                url: addBaseApiUrl(context.url)
-            };
-        }
-    }
-
-    if (typeof context === 'string') {
-        return addBaseApiUrl(context);
-    }
-
-    return context;
 }
 
 function addBaseApiUrl(url) {
