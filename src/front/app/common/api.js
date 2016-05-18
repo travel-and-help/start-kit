@@ -1,6 +1,6 @@
 import { get as getFromLocalStorage } from './local-storage';
 
-export default function api(url, options) {
+export default function api(url, options = {}) {
     const token = getFromLocalStorage('token');
     if (token) {
         Object.assign(options, {

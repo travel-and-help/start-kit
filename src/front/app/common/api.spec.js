@@ -49,8 +49,8 @@ describe('app/common/api', () => {
 
     it('should add authorization header if token exists', () => {
         localStorage.get.returns('authToken');
-        sut({});
-        fetch.should.been.calledWith({}, {
+        sut('/testUrl');
+        fetch.should.been.calledWith('/base-url/testUrl', {
             credentials: 'include',
             headers: { Authorization: 'Bearer authToken' }
         });
