@@ -7,7 +7,7 @@ const CategoryListSaveBar = ({ onClickHandler }) => (
             X
         </Link>
         <div>Topics to watch</div>
-        <div onClick={ onClickHandler }>
+        <div data-selector="save-categories-btn" onClick={ onClickHandler }>
             V
         </div>
     </div>
