@@ -15,7 +15,6 @@ module.exports = [
             API_BASE_URL: env.API_BASE_URL
         })
     }),
-    new webpack.EnvironmentPlugin('DOMAIN'),
     new Html({
         template: layout.src.front.htmlEntry
     }),
