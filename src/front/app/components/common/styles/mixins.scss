@@ -1,7 +1,0 @@
-// Converts px based values to rem units
-//
-// example: font-size: _th-rem(32); will compile to --> font-size: 2rem;
-
-@function _th-rem($val, $basic_val:16) {
-    @return $val / $basic_val * 1rem;
-}
