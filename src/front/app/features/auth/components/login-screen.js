@@ -12,7 +12,6 @@ const LoginScreen = ({ facebookLogin, googleLogin }) => (
             <div className="login-screen-actions__providers" >
                 <LoginButton text="Facebook" onLogin={() => {facebookLogin();}} />
                 <LoginButton text="G+" onLogin={() => {googleLogin();}} />
-                <LoginButton text="E-mail" />
             </div>
             <Link to="challenges" className="login-screen-actions__skip" >
                 Skip login

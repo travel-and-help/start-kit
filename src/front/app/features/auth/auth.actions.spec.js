@@ -108,7 +108,7 @@ describe('action/auth', () => {
             });
 
             it('should dispatch login failed if response does not contains token', () => {
-                browserWrapper.getBody.returns(env.stub().rejects('{"success":false}')());
+                browserWrapper.getBody.returns(env.stub().resolves('{"success":false}')());
                 loginAction(dispatch)
                     .finally(() => {
                         dispatch.should.calledWith({

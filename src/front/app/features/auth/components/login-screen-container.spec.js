@@ -31,6 +31,11 @@ describe('LoginScreenContainer', () => {
         });
     });
 
+    it('should map state', () => {
+        const state = {};
+        reactRedux.connect.getCall(0).args[0](state).should.deep.equals({});
+    });
+
     it('should map dispatch to prop method facebookLogin', () => {
         const { facebookLogin } = reactRedux.connect.getCall(0).args[1](dispatch);
         facebookLogin();

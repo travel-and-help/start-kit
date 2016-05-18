@@ -13,8 +13,5 @@ module.exports = (User) => {
 
     return router()
         .use('/facebook', facebookMiddleware)
-        .use('/google-plus', googleMiddleware)
-        .use('/logout', (req, res) => {
-            res.status(501).send(new Error('Not Implemented'));
-        });
+        .use('/google-plus', googleMiddleware);
 };

@@ -47,10 +47,6 @@ describe('auth', () => {
             router.use.should.been.calledWith('/google-plus', googleMiddleware);
         });
 
-        it('should register logout middleware', () => {
-            router.use.should.been.calledWith('/logout');
-        });
-
         it('should initialize facebook passport', () => {
             facebookPassport.should.been.calledWith(user);
         });
