@@ -76,7 +76,7 @@ describe('action/categories', () => {
             const options = {
                 method: 'POST',
                 headers: {
-                    'Content-type': 'application/json'
+                    Accept: 'application/json'
                 },
                 body: JSON.stringify(categories)
             };

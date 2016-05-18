@@ -30,7 +30,7 @@ export function saveCategories(categories) {
         api('/api/categories', {
             method: 'POST',
             headers: {
-                'Content-type': 'application/json'
+                Accept: 'application/json'
             },
             body: JSON.stringify(categories)
         }).then(() => {
