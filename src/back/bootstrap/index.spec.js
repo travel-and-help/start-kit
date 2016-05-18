@@ -1,6 +1,6 @@
 'use strict';
 
-const proxyquire = require('proxyquire');
+const proxyquire = require('proxyquire').noCallThru();
 
 describe('bootstrap', () => {
 
@@ -8,21 +8,30 @@ describe('bootstrap', () => {
         app,
         db,
         appEnv,
-        result;
+        result,
+        mongodbUri;
 
     const controllers = {};
+    const formattedDbUri = 'mongodb formatted uri';
 
     beforeEach(() => {
+
+        mongodbUri = {
+            formatMongoose: env.stub().returns(formattedDbUri)
+        };
 
         premiddleware = env.stub();
         db = env.stub();
         appEnv = {
             DB_NAME: 'DB_NAME',
             DB_HOST: 'DB_HOST',
-            DB_PORT: 'DB_PORT'
+            DB_PORT: 'DB_PORT',
+            DB_USER: 'DB_USER',
+            DB_PASSWORD: 'DB_PASSWORD'
         };
 
         const sut = proxyquire('./index', {
+            'mongodb-uri': mongodbUri,
             '../controllers': controllers,
             './preMiddleware': premiddleware,
             './db': db,
@@ -36,10 +45,26 @@ describe('bootstrap', () => {
         result = sut(app);
     });
 
-    it('should connect to database', () => {
-        const dbUrl = `mongodb://${appEnv.DB_HOST}:${appEnv.DB_PORT}/${appEnv.DB_NAME}`;
+    it('should create db uri from env', () => {
+        mongodbUri.formatMongoose.should.been
+            .calledWith({
+                scheme: 'mongodb',
+                hosts: [
+                    {
+                        host: appEnv.DB_HOST,
+                        port: appEnv.DB_PORT
+                    }
+                ],
+                username: appEnv.DB_USER,
+                password: appEnv.DB_PASSWORD,
+                database: appEnv.DB_NAME
+            })
+            .and
+            .callCount(1);
+    });
 
-        db.should.been.calledWith(dbUrl);
+    it('should connect to database', () => {
+        db.should.been.calledWith(formattedDbUri);
     });
 
     it('should add premiddleware to app', () => {
