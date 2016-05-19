@@ -20,7 +20,6 @@ export function fetchCategories() {
         fetch('/api/categories/')
             .then(response => response.json())
             .then((categories) => {
-                console.log(categories);
                 dispatch(receiveCategories(categories));
             });
     };
