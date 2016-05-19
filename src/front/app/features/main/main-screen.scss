@@ -1,0 +1,5 @@
+.main-screen {
+  $bgStripeColor: #AAA;
+  height: 100vh;
+  background: repeating-linear-gradient(45deg, $bgStripeColor, $bgStripeColor 2px, #fff 0px, #fff 10px)
+}

@@ -1,5 +1,5 @@
-$heightDifferenceTab: 10px;
-$footerHeight: 12%;
+$heightDifferenceTab: 6px;
+$footerHeight: 66px;
 
 .navigation {
   position: fixed;
@@ -7,7 +7,7 @@ $footerHeight: 12%;
   bottom: -1%;
   right: 0;
   left: 0;
-  width: 90%;
+  width: 94%;
   height: $footerHeight;
 
   &__tabs {
@@ -23,8 +23,8 @@ $footerHeight: 12%;
   left: 0;
   margin-top: $heightDifferenceTab;
   border-radius: 10px 10px 0 0;
-  border: 1px solid black;
-  width: 116%;
+  border: 2px solid black;
+  width: 115%;
   height: 100%;
 
   &_active {

@@ -9,7 +9,6 @@ import mainRoutes from './features/main/routes';
 export default () => (
     <Route path="/" >
         <IndexRoute component={Login} />
-        <Route path="login" component={Login} />
         {mainRoutes()}
         <Route path="todo" component={TodoScreen} />
         <Route path="categories" component={CategoryTileListContainer} />

@@ -2,7 +2,7 @@ import React from 'react';
 import Navigation from './navigation';
 
 const MainScreen = ({ children }) => (
-    <div>
+    <div className="main-screen">
         {children}
         <Navigation />
     </div>

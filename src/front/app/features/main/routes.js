@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route } from 'react-router';
 import MainScreen from './MainScreen';
 import Awards from './awards';
 import Updates from './updates';
@@ -8,7 +8,6 @@ import ChallengeScreenContainer from './challenges/components/ChallengeScreenCon
 
 export default () => (
     <Route path="main" component={MainScreen} >
-        <IndexRoute component={ChallengeScreenContainer} />
         <Route path="challenges" component={ChallengeScreenContainer} />
         <Route path="awards" component={Awards} />
         <Route path="updates" component={Updates} />

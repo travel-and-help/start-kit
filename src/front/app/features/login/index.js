@@ -23,7 +23,7 @@ export default () => (
                 <LoginAction text="G+" />
                 <LoginAction text="E-mail" />
             </div>
-            <Link to="main" className="login-screen-actions__skip">
+            <Link to="main/challenges" className="login-screen-actions__skip">
                 Skip login
             </Link>
         </section>
