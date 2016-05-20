@@ -4,7 +4,7 @@ import { IndexRoute } from 'react-router';
 import Login from './features/login';
 import CategoryTileListContainer from './features/categories/components/CategoryTileListContainer';
 import ChallengeScreenContainer from './features/challenges/components/ChallengeScreenContainer';
-import Challenge from './components/Challenge';
+import Challenge from './features/challenge/components/index';
 import TodoScreen from './features/todo/TodoScreen';
 import Awards from './features/awards';
 import Updates from './features/updates';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchChallenge } from './../../actions/challenge';
+import { fetchChallenge } from './../challenge.actions';
 import ChallengeNav from './ChallengeNav';
 import ChallengeDetails from './ChallengeDetails';
 import ChallengeComments from './ChallengeComments';
@@ -10,7 +10,7 @@ class Challenge extends Component {
     componentDidMount() {
         const { challenge } = this.props;
 
-        if(!challenge._id) {
+        if (!challenge._id) {
             const id = this.props.params.id;
             const dispatch = this.props.dispatch;
             dispatch(fetchChallenge(id));

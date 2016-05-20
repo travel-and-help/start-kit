@@ -3,7 +3,7 @@ import { hashHistory } from 'react-router';
 import storeEnhancers from './enhancers';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import challenges from '../features/challenges/challenges.reducer';
-import challenge from './reducers/challenge';
+import challenge from './features/challenge/challenge.reducer';
 import categories from '../features/categories/categories.reducer';
 
 export default () => {

@@ -1,4 +1,4 @@
-import { GET_CHALLENGE, PASS_CHALLENGE } from './../actions/challenge';
+import { GET_CHALLENGE, PASS_CHALLENGE } from './challenge.actions';
 
 const reducer = (state = {}, action = {}) => {
     switch (action.type) {
