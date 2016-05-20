@@ -20,7 +20,6 @@ module.exports = {
     DB_USER: getenv('DB_USER', ''),
     DB_PASSWORD: getenv('DB_PASSWORD', ''),
     SESSION_SECRET: getenv('SESSION_SECRET', 'secret12345'),
-    DOMAIN: getenv('DOMAIN', ''),
     FACEBOOK_ID: getenv('FACEBOOK_ID', ''),
     FACEBOOK_SECRET: getenv('FACEBOOK_SECRET', ''),
     GOOGLE_PLUS_ID: getenv('GOOGLE_PLUS_ID', ''),
