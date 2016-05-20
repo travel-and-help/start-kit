@@ -8,7 +8,7 @@ describe('LoginScreenContainer', () => {
         dispatch;
 
     beforeEach(() => {
-        dispatch = env.stub();
+        dispatch = env.stub().resolves();
 
         wrapWithConnect = env.stub().returns({});
 
