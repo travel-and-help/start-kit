@@ -1,8 +1,7 @@
 .challenge-create {
 
     &__header {
-        margin-left: auto;
-        margin-right: auto;
+        margin: 0 auto;
         background: $create-header-color;
         height: 70px;
         text-align: center;
@@ -17,6 +16,7 @@
         color: $create-header-title-color;
         float: inherit;
         font-family: serif;
+        margin: 0;
 }
 
     &__discard {

@@ -15,6 +15,7 @@
         margin-left: 30px;
         display: inline-block;
         background-color: $photo-download-color;
+        position: relative;
     }
 
     &__photo-download {
@@ -22,6 +23,11 @@
         outline: 0;
         background-color: transparent;
         border: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
     }
 
     &__image {
@@ -37,5 +43,10 @@
         background-color: transparent;
         width: 67%;
         padding: 10px;
+    }
+
+    &__error {
+        color: red;
+        padding: 2px 5px;
     }
 }
