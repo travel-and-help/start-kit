@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import ChallengeTileInfo from './ChallengeTileInfo';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const ChallengeTile = ({ challenge }) => {
@@ -6,31 +7,25 @@ const ChallengeTile = ({ challenge }) => {
         title,
         user: {
             rating,
-            firstName,
-            lastName
+            firstName
         },
         location
     } = challenge.toJS();
 
     return (
-        <li className="challenge" >
-            <div className="challenge__image" >Image here</div>
-        <span className="challenge__title" >
-            {title}
-        </span>
-            <div className="challenge__user-block" >
-            <span className="challenge__rating" >
-                {rating}
-            </span>
-            <span>
-                {firstName} {lastName}
-            </span>
-            </div>
-        <span className="challenge__location" >
-            <span className="icon challenge__icon" />
-            {location}
-        </span>
-        </li>
+        <div className="challenge-tile" >
+            <img
+              className="challenge-tile__image"
+              src="http://placekitten.com/70/70"
+            />
+            <ChallengeTileInfo
+              className="challenge-tile__info"
+              title={title}
+              userName={firstName}
+              userRank={rating}
+              location={location}
+            />
+        </div>
     );
 };
 
@@ -39,8 +34,7 @@ ChallengeTile.propTypes = {
         title: PropTypes.string.isRequired,
         user: ImmutablePropTypes.mapContains({
             rating: PropTypes.number.isRequired,
-            firstName: PropTypes.string.isRequired,
-            lastName: PropTypes.string.isRequired
+            firstName: PropTypes.string.isRequired
         }).isRequired,
         location: PropTypes.string.isRequired
     }).isRequired

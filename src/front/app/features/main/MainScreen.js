@@ -2,9 +2,17 @@ import React from 'react';
 import Navigation from './navigation';
 
 const MainScreen = ({ children }) => (
-    <div className="main-screen">
-        {children}
-        <Navigation />
+    <div className="main-screen" >
+        <div className="main-screen__menu" >
+
+        </div>
+        <div className="main-screen__content" >
+            {children}
+        </div>
+
+        <div className="main-screen__navigation" >
+            <Navigation />
+        </div>
     </div>
 );
 

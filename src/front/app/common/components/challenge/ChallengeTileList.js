@@ -3,11 +3,11 @@ import ChallengeTile from './ChallengeTile';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const ChallengeTileList = ({ challenges }) => (
-    <ul className="challenges__list" >
+    <div>
         { challenges.map((challenge, index) => (
             <ChallengeTile key={ index } challenge={ challenge } />
         ))}
-    </ul>
+    </div>
 );
 
 ChallengeTileList.propTypes = {

@@ -35,7 +35,7 @@ describe('ChallengeScreen', () => {
           challenges={ challengeList }
           getChallenges={getChallenges}
         />);
-        wrapper.find('.topChallenge__title').text()
+        wrapper.find('.top-challenge-tile__title').text()
             .should.equal(challengeList.first().get('title'));
     });
 });

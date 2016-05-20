@@ -1,5 +1,38 @@
+%content {
+  margin: 0 auto;
+  width: 352px;
+}
+
 .main-screen {
-  $bgStripeColor: #AAA;
+  $navigationHeight: 66px;
+  $menuHeight: 45px;
+  $bgStripeColor: #aaa;
+
   height: 100vh;
-  background: repeating-linear-gradient(45deg, $bgStripeColor, $bgStripeColor 2px, #fff 0px, #fff 10px)
+  background: repeating-linear-gradient(45deg, $bgStripeColor, $bgStripeColor 2px, #fff 0px, #fff 9px);
+
+  &__menu {
+    border-bottom: $gBorder;
+    height: $menuHeight;
+    background: #fff;
+  }
+
+  &__content {
+    @extend %content;
+    position: absolute;
+    top: $menuHeight;
+    left: 0;
+    right: 0;
+    bottom: $navigationHeight - 20px;
+    overflow-y: auto;
+  }
+
+  &__navigation {
+    @extend %content;
+    position: fixed;
+    bottom: -1%;
+    right: 0;
+    left: 0;
+    height: $navigationHeight;
+  }
 }
