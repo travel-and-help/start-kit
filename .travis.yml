@@ -19,7 +19,7 @@ script:
   - npm run test:ci
 branches:
   only:
-    - master
+    - demo/#1
 deploy:
   - provider: heroku
     skip_cleanup: true
