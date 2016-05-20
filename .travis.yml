@@ -19,7 +19,7 @@ script:
   - npm run test:ci
 branches:
   only:
-    - 1_demo
+    - demo/#1
     - master
 deploy:
   - provider: heroku
