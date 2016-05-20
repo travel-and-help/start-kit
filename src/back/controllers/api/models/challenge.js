@@ -4,12 +4,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const Challenge = new Schema({
-    categories: { type: Array, required: true },
+    categories: { type: Array },
     title: { type: String, required: true },
-    image: { type: String, required: true },
-    level: { type: String, required: true },
-    location: { type: String, required: true },
-    user: { type: Object, required: true },
+    image: { type: String },
+    level: { type: String },
+    location: { type: String },
+    user: { type: Object },
     description: { type: String, required: true }
 });
 
