@@ -20,6 +20,7 @@ script:
 branches:
   only:
     - demo/#1
+    - master
 deploy:
   - provider: heroku
     skip_cleanup: true
