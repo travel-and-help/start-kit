@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import CategoryTileList from './CategoryTileList';
-import { getCategories, toggleCategory } from '../categories.actions';
+import { getCategories, watchCategory, saveCategories } from '../categories.actions';
 
 const mapStateToProps = ({ categories }) => ({ categories });
 
@@ -8,8 +8,11 @@ const mapDispatchToProps = (dispatch) => ({
     getCategories: () => {
         dispatch(getCategories());
     },
-    onCLick: (name) => {
-        dispatch(toggleCategory(name));
+    onCategoryClick: (category) => {
+        dispatch(watchCategory(category));
+    },
+    onSaveCategoryClick: (categories) => {
+        dispatch(saveCategories(categories.filter((category) => category.get('checked') === true)));
     }
 });
 
