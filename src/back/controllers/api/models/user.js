@@ -8,7 +8,7 @@ const User = new Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     registerDate: { type: Date, required: true },
-    lastLogin: { type: Date, required: true },
+    lastLogin: { type: Date, required: true }, // What the value should be right after user registered?
     rating: { type: Number, required: true },
     wishList: [{
         type: Schema.ObjectId,

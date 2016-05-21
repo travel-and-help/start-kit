@@ -7,7 +7,7 @@ import TodoScreen from './features/todo/TodoScreen';
 import Awards from './features/awards';
 import Updates from './features/updates';
 import Profile from './features/profile';
-import WatchList from './components/WatchList';
+import WatchList from './features/WatchList';
 
 export default () => (
     <Route path="/" >
