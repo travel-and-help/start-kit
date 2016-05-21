@@ -10,7 +10,7 @@ const UserDetailsContainer = ({ user }) => {
     return (
         <section className="user" >
             <ul className="user__info" >
-                <li className="user__info__item" >
+                <li className="user__info__item">
                     <img className="user__image" src={photo} title={firstName} />
                 </li>
                 <li className="user__info__item user__info__item--rate" >

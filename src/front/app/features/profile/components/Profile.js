@@ -5,7 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 //  import ChallengeList from '../../../common/components/challenge/ChallengeTileList';
 import UserDetailsContainer from './UserDetails/UserDetailsContainer';
 //  import SocialList from './Social/SocialList';
-//  import Header from './Header';
+import Header from './Header';
 
 
 class Profile extends Component {
@@ -32,13 +32,8 @@ class Profile extends Component {
             lastName: 'Golubev',
             rating: 9
         });
-        //  <Header />
 
-        //
-        //    <section className="section-container" >
-        //        <h4 className="section-container__title" >LOCATIONS</h4>
-        //        <div className="section-container__description" >{user.locations}</div>
-        //    </section>
+
         //
         //    <section className="section-container" >
         //        <h4 className="section-container__title" >CATEGORIES</h4>
@@ -63,29 +58,23 @@ class Profile extends Component {
         //        </div>
         //    </section>
         //
-        //    <section className="section-container" >
-        //        <h4 className="section-container__title" >Created Challenges</h4>
-        //        <div className="section-container__description" >
-        //            <ChallengeList challenges={user.createdChallenges} />
-        //        </div>
-        //        <Link to="Challenges">
-        //            Show All
-        //        </Link>
-        //    </section>
-        //
-        //    <section className="section-container" >
-        //        <h4 className="section-container__title" >Completed Challenges</h4>
-        //        <div className="section-container__description" >
-        //            <ChallengeList challenges={user.completedChallenges} />
-        //        </div>
-        //        <Link to="Challenges">
-        //            Show All
-        //        </Link>
-        //    </section>
+
 
         return (
             <div className="profile">
+                <Header />
                 <UserDetailsContainer user={user} />
+                <section className="section-container" >
+                    <h4 className="section-container__title" >LOCATIONS</h4>
+                    <div className="section-container__description" >{user.get('location')}</div>
+                </section>
+                <section className="section-container" >
+                    <h4 className="section-container__title" >Accepted Challenges</h4>
+                    <div className="section-container__description" >
+                        <div>{user.get('challenges')
+                            .filter(challenge => challenge.get('status') === 'accepted')}</div>
+                    </div>
+                </section>
             </div>
         );
     }
