@@ -1,0 +1,69 @@
+$primaryTextSz: 18px;
+
+%primaryText {
+  font-size: $primaryTextSz;
+  font-weight: bold;
+}
+
+%secondaryText {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.challenge-tile-info {
+
+  $goodRankColor: #A6D136;
+  $middleRankColor: #FEDF44;
+  $badRankColor: red;
+
+  @extend %primaryText;
+
+  height: 100%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #505050;
+
+  &__title {
+    width: 100%;
+    padding: 5px;
+    text-transform: uppercase;
+  }
+
+  &__info {
+    @extend %secondaryText;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__location {
+    padding-right: 20px;
+  }
+
+  &__user {
+    &-name {
+      padding: 0 5px 0 20px;
+    }
+
+    &-rank {
+      @extend %primaryText;
+
+      &_good {
+        color: $goodRankColor;
+      }
+
+      &_middle {
+        color: $middleRankColor;
+      }
+
+      &_bad {
+        color: $badRankColor;
+      }
+    }
+  }
+
+}

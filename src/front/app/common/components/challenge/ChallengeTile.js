@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import ChallengeTileInfo from './ChallengeTileInfo';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const ChallengeTile = ({ challenge }) => {
@@ -12,23 +13,19 @@ const ChallengeTile = ({ challenge }) => {
     } = challenge.toJS();
 
     return (
-        <li className="challenge" >
-            <div className="challenge__image" >Image here</div>
-        <span className="challenge__title" >
-            {title}
-        </span>
-            <div className="challenge__user-block" >
-            <span className="challenge__rating" >
-                {rating}
-            </span>
-            <span>
-                { fullName }
-            </span>
-            </div>
-        <span className="challenge__location" >
-            <span className="icon challenge__icon" />
-            {location}
-        </span>
+        <div className="challenge-tile" >
+            <img
+                className="challenge-tile__image"
+                src="http://placekitten.com/70/70"
+            />
+            <ChallengeTileInfo
+                className="challenge-tile__info"
+                title={title}
+                userName={fullName}
+                userRank={rating}
+                location={location}
+            />
+        </div>
         </li>
     );
 };

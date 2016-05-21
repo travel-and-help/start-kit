@@ -1,0 +1,37 @@
+.top-challenge-tile {
+  $height: 190px;
+  $bannerColor: #69BA6D;
+
+  margin-bottom: $challengeGap;
+  border-left: $gBorder;
+  border-right: $gBorder;
+  border-bottom: $gBorder;
+  border-radius: 0 0 $gBorderRadius $gBorderRadius;
+  height: $height;
+  text-align: center;
+
+  &__banner {
+    display: inline-block;
+    margin-top: $challengeGap;
+    border: $gBorder;
+    padding: 4px 8px;
+
+    color: #fff;
+    background-color: $bannerColor;
+    border-radius: $gBorderRadiusSm;
+    font-size: 11px;
+    line-height: 17px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  &__info {
+    color: #fff;
+    font-size: 24px;
+
+    &-wrap {
+      margin-top: 25px;
+      mix-blend-mode: lighten;
+    }
+  }
+}

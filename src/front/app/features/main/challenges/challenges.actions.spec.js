@@ -13,12 +13,16 @@ describe('action/challenges', () => {
 
         dispatch = env.stub();
 
-        promise = env.stub().resolves(challengesList)();
+        const fetchResponse = {
+            json: env.stub().returns(challengesList)
+        };
+
+        promise = env.stub().resolves(fetchResponse)();
 
         api = env.stub().returns(promise);
 
         sut = proxyquire('./challenges.actions', {
-            '../../common/api': api
+            '../../../common/api': api
         });
     });
 

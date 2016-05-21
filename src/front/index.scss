@@ -1,21 +1,18 @@
 /* Mixins & functions */
-@import 'app/common/styles/mixins';
-@import 'app/common/styles/icons';
-
+@import 'app/common/styles/**/*.scss';
 /* 3rd-party */
 @import '../../node_modules/normalize.css/normalize.css';
-
 /* Common components */
-@import 'app/common/components/buttons/IconButton';
-
+@import 'app/common/components/**/*.scss';
 /* Components */
-@import 'app/features/todo/todo-screen';
-@import 'app/features/auth/components/login-screen';
-@import './app/features/navigation/navigation';
-@import 'app/features/challenges/components/index';
+@import 'app/features/**/*.scss';
 
-
+@import url(https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900);
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
 }

@@ -1,0 +1,45 @@
+.navigation-item {
+  $heightDiff: 6px;
+
+  display: block;
+  position: relative;
+  left: 0;
+  margin-top: $heightDiff;
+  border-radius: $gBorderRadius $gBorderRadius 0 0;
+  border: $gBorder;
+  width: 115%;
+  height: 100%;
+
+  &_active {
+    top: -$heightDiff;
+    z-index: 5 !important;
+  }
+
+  &-wrapper {
+    display: table-cell;
+  }
+
+  &_challenges {
+    background: #ffa777;
+    z-index: 4;
+    left: 0;
+  }
+
+  &_awards {
+    background: #ffee93;
+    z-index: 3;
+    left: -5%;
+  }
+
+  &_updates {
+    background: #adf7b6;
+    z-index: 2;
+    left: -10%;
+  }
+
+  &_profile {
+    background: #a0ced9;
+    z-index: 1;
+    left: -15%;
+  }
+}
