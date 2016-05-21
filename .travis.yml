@@ -30,7 +30,7 @@ deploy:
         branch: demo/#1
   - provider: releases
     api_key: "4870c604a46f39f1ff38069cfe8cc839e6af3d07"
-    file: "./platforms/android/build/outputs/apk/android.apk"
+    file: "./package.json"
     skip_cleanup: true
     on:
       tags: true
