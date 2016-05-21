@@ -8,12 +8,12 @@ const mapStateToProps = () => ({});
 const mapDispatchToProps = (dispatch) => ({
     facebookLogin: () => {
         dispatch(login(LOGIN_SERVICES.FACEBOOK)).then(() => {
-            hashHistory.push('challenges');
+            hashHistory.push('main/challenges');
         });
     },
     googleLogin: () => {
         dispatch(login(LOGIN_SERVICES.GOOGLE_PLUS)).then(() => {
-            hashHistory.push('challenges');
+            hashHistory.push('main/challenges');
         });
     }
 });

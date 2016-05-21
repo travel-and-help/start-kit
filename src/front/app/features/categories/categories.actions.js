@@ -33,7 +33,7 @@ export function saveCategories(categories) {
             },
             body: JSON.stringify(categories)
         }).then(() => {
-            hashHistory.push('challenges');
+            hashHistory.push('main/challenges');
         });
     };
 }

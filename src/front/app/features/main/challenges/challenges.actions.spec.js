@@ -13,11 +13,7 @@ describe('action/challenges', () => {
 
         dispatch = env.stub();
 
-        const fetchResponse = {
-            json: env.stub().returns(challengesList)
-        };
-
-        promise = env.stub().resolves(fetchResponse)();
+        promise = env.stub().resolves(challengesList)();
 
         api = env.stub().returns(promise);
 
