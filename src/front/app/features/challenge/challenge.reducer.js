@@ -1,17 +1,14 @@
-import { GET_CHALLENGE, PASS_CHALLENGE } from './challenge.actions';
+import { fromJS, Map } from 'immutable';
+import { GET_CHALLENGE } from './challenge.actions';
 
-const reducer = (state = {}, action = {}) => {
+const initialState = new Map();
+
+const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
-        case GET_CHALLENGE:
-            //console.log(action.challenge,'get');
-            return action.challenge;
-        case PASS_CHALLENGE:
-            //console.log(action.challenge,'pass');
-            return action.challenge;
-        default:
-            //const challenge = {image:'', title:'', level:'', description:'', user:{}};
-            //return Object.assign({}, state, challenge);
-            return state;
+    case GET_CHALLENGE:
+        return fromJS(action.challenge);
+    default:
+        return state;
     }
 };
 

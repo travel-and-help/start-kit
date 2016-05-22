@@ -4,7 +4,7 @@ import { IndexRoute } from 'react-router';
 import Login from './features/login';
 import CategoryTileListContainer from './features/categories/components/CategoryTileListContainer';
 import ChallengeScreenContainer from './features/challenges/components/ChallengeScreenContainer';
-import Challenge from './features/challenge/components/index';
+import ChallengeContainer from './features/challenge/components/ChallengeContainer';
 import TodoScreen from './features/todo/TodoScreen';
 import Awards from './features/awards';
 import Updates from './features/updates';
@@ -15,7 +15,7 @@ export default () => (
         <IndexRoute component={Login} />
         <Route path="login" component={Login} />
         <Route path="challenges" component={ChallengeScreenContainer} />
-        <Route path="challenge/:id" component={Challenge} />
+        <Route path="challenge/:id" component={ChallengeContainer} />
         <Route path="awards" component={Awards} />
         <Route path="updates" component={Updates} />
         <Route path="profile" component={Profile} />

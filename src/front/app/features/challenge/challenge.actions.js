@@ -1,5 +1,5 @@
+import api from '../../common/api';
 export const GET_CHALLENGE = 'GET_CHALLENGE';
-export const PASS_CHALLENGE = 'PASS_CHALLENGE';
 
 function receiveChallenge(challenge) {
     return {
@@ -10,8 +10,7 @@ function receiveChallenge(challenge) {
 
 export function fetchChallenge(id) {
     return function innerFetchChallenge(dispatch) {
-        fetch('http://localhost:9000/api/challenge/' + id)
-        //fetch('/api/challenge' + id)
+        api(`/api/challenge/${id}`)
             .then(response => response.json())
             .then((challenge) => {
                 dispatch(receiveChallenge(challenge));

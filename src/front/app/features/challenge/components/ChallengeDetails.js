@@ -1,9 +1,9 @@
 import React from 'react';
-import IconButton from './../common/IconButton';
+import IconButton from './../../../common/components/buttons/IconButton';
 
-const ChallengeDetails = ({image, title, level, description, user={}}) => (
+const ChallengeDetails = ({ title, level, description, image = '', user = {} }) => (
     <section>
-        <div className="challenge__img" style={{backgroundImage: 'url(' + image + ')'}}></div>
+        <div className="challenge__img" style={{ backgroundImage: `url(${image})` }}></div>
 
         <div className="challenge-info">
 
@@ -11,8 +11,13 @@ const ChallengeDetails = ({image, title, level, description, user={}}) => (
                 <h1 className="challenge-info__title">{title}</h1>
                 <div className="challenge-info-author">
                     <span className="challenge-info-author__label">Created by </span>
-                    <span className="challenge-info-author__name">{user.firstName} {user.lastName}</span>
-                    <span className="challenge-info-author__rating"><i className="icon icon_size-36">star_border</i><sup className="challenge-info-author__rating-val">{user.rating}</sup></span>
+                    <span className="challenge-info-author__name">
+                        {user.firstName} {user.lastName}
+                    </span>
+                    <span className="challenge-info-author__rating">
+                        <i className="icon icon_size-36">star_border</i>
+                        <sup className="challenge-info-author__rating-val">{user.rating}</sup>
+                    </span>
                 </div>
                 <div className="challenge-info-level">
                     <span className="challenge-info-level__label">Challenge Level </span>
@@ -21,10 +26,10 @@ const ChallengeDetails = ({image, title, level, description, user={}}) => (
             </div>
 
             <IconButton
-                title={'accept challenge'}
-                buttonClassName={'challenge-info__button'}
-                iconName={'check_circle'}
-                iconSize={32}
+              title={'accept challenge'}
+              buttonClassName={'challenge-info__button'}
+              iconName={'check_circle'}
+              iconSize={32}
             />
 
             <div className="challenge-info__item challenge-info__item_completed">
@@ -34,10 +39,10 @@ const ChallengeDetails = ({image, title, level, description, user={}}) => (
             </div>
 
             <IconButton
-                title={'share challenge'}
-                buttonClassName={'challenge-info__button'}
-                iconName={'share'}
-                iconSize={32}
+              title={'share challenge'}
+              buttonClassName={'challenge-info__button'}
+              iconName={'share'}
+              iconSize={32}
             />
 
             <p className="challenge-info__description">{description}</p>

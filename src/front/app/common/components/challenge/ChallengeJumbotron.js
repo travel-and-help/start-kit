@@ -1,9 +1,12 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const ChallengeJumbotron = ({ challenge }) => {
-    const { title } = challenge.toJS();
+    const { title, _id } = challenge.toJS();
     return (
+        <Link to={`challenge/${_id}`}>
+
         <li className="topChallenge" >
             <div className="topChallenge__caption" >
                 <p className="topChallenge__title" >
@@ -14,6 +17,8 @@ const ChallengeJumbotron = ({ challenge }) => {
             </span>
             </div>
         </li>
+
+        </Link>
     );
 };
 

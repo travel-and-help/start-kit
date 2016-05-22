@@ -18,8 +18,8 @@ describe('ChallengeTile', () => {
         });
     });
 
-    it('should render tile li element (a sample testcase for a shallow mounting)', () => {
+    it('should render tile Link element (a sample testcase for a shallow mounting)', () => {
         const wrapper = shallow(<ChallengeTile challenge={ challengeMap } />);
-        wrapper.is('li').should.equal(true);
+        wrapper.is('Link').should.equal(true);
     });
 });
