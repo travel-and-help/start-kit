@@ -1,6 +1,6 @@
 'use strict';
 
-const proxyquire = require('proxyquire');
+const proxyquire = require('proxyquire').noCallThru();
 
 describe('categories handler', () => {
     let sut;
@@ -31,5 +31,13 @@ describe('categories handler', () => {
         onFindCallback({}, data);
 
         res.json.should.have.been.calledWith(data);
+    });
+
+    it('should response with 200 status', () => {
+        const res = { sendStatus: env.stub() };
+
+        sut.save({}, res);
+
+        res.sendStatus.should.have.been.calledWith(200);
     });
 });

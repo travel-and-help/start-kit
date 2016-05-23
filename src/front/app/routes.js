@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router';
+import { IndexRoute } from 'react-router';
 import Login from './features/login';
 import CategoryTileListContainer from './features/categories/components/CategoryTileListContainer';
 import ChallengeScreenContainer from './features/challenges/components/ChallengeScreenContainer';
@@ -10,6 +11,7 @@ import ProfileContainer from './features/profile/components/ProfileContainer';
 
 export default () => (
     <Route path="/" >
+        <IndexRoute component={Login} />
         <Route path="login" component={Login} />
         <Route path="challenges" component={ChallengeScreenContainer} />
         <Route path="awards" component={Awards} />

@@ -23,7 +23,7 @@ module.exports = Object.assign({
     },
     postcss: () => ([
         autoprefixer({
-            browsers: ['and_chr 49', 'Android 4.3', 'ios_saf 8.4', 'bb 10', 'ie_mob 11']
+            browsers: ['android 4', 'ios_saf 8']
         })
     ])
 

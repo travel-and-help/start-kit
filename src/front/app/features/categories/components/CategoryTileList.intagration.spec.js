@@ -6,7 +6,8 @@ import CategoryTileList from './CategoryTileList';
 describe('CategoryTileList', () => {
     let categoryList,
         getCategories,
-        onClick,
+        onCategoryClick,
+        onSaveCategoryClick,
         wrapper;
 
     beforeEach(() => {
@@ -17,12 +18,14 @@ describe('CategoryTileList', () => {
         }]);
 
         getCategories = env.stub();
-        onClick = env.stub();
+        onCategoryClick = env.stub();
+        onSaveCategoryClick = env.stub();
 
         wrapper = mount(<CategoryTileList
           categories={ categoryList }
           getCategories={ getCategories }
-          onCLick={ onClick }
+          onCategoryClick={ onCategoryClick }
+          onSaveCategoryClick={ onSaveCategoryClick }
         />);
     });
 
@@ -31,9 +34,15 @@ describe('CategoryTileList', () => {
         wrapper.find('li').at(1).text().should.equal(categoryList.getIn([1, 'name']));
     });
 
-    it('should trigger onClick method on category tile click', () => {
+    it('should trigger onCategoryClick method on category tile click', () => {
         const categoryTile = wrapper.find('li').at(1);
         categoryTile.simulate('click');
-        onClick.should.calledWith(categoryList.getIn([1, 'name']));
+        onCategoryClick.should.calledWith(categoryList.getIn([1, '_id']));
+    });
+
+    it('should pass categories to onSaveCategoryClick method save button click', () => {
+        const categoryTile = wrapper.find('[data-selector="save-categories-btn"]');
+        categoryTile.simulate('click');
+        onSaveCategoryClick.should.calledWith(categoryList);
     });
 });
