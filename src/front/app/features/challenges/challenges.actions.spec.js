@@ -6,7 +6,6 @@ describe('action/challenges', () => {
     let api;
 
     let promise;
-    let fetchResponse;
     let challengesList;
 
     beforeEach(() => {
@@ -14,11 +13,7 @@ describe('action/challenges', () => {
 
         dispatch = env.stub();
 
-        fetchResponse = {
-            json: env.stub().returns(challengesList)
-        };
-
-        promise = env.stub().resolves(fetchResponse)();
+        promise = env.stub().resolves(challengesList)();
 
         api = env.stub().returns(promise);
 

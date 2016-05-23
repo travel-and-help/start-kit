@@ -4,13 +4,15 @@ import storeEnhancers from './enhancers';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import challenges from '../features/challenges/challenges.reducer';
 import categories from '../features/categories/categories.reducer';
+import auth from '../features/auth/auth.reducer';
 
 export default () => {
     const state = createStore(
         combineReducers({
             challenges,
             categories,
-            routing: routerReducer
+            routing: routerReducer,
+            auth
         }),
         storeEnhancers
     );
