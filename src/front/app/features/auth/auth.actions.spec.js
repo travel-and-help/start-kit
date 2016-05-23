@@ -7,7 +7,8 @@ describe('action/auth', () => {
 
     let sut,
         inAppBrowser,
-        localStorage;
+        localStorage,
+        reactRouter;
 
     beforeEach(() => {
 
@@ -18,10 +19,16 @@ describe('action/auth', () => {
             set: env.stub(),
             remove: env.stub()
         };
+        reactRouter = {
+            hashHistory: {
+                push: env.stub()
+            }
+        };
 
         sut = proxyquire('./auth.actions', {
             '../../common/in-app-browser': inAppBrowser,
-            '../../common/local-storage': localStorage
+            '../../common/local-storage': localStorage,
+            'react-router': reactRouter
         });
 
     });
@@ -107,6 +114,15 @@ describe('action/auth', () => {
                     });
             });
 
+            it('should redirect to challenges if success authenticated', () => {
+                browserWrapper.getBody.returns(
+                    env.stub().resolves('{"success":true,"token":"test"}')());
+                loginAction(dispatch)
+                    .finally(() => {
+                        reactRouter.hashHistory.push.should.calledWith('challenges');
+                    });
+            });
+
             it('should dispatch login failed if response does not contains token', () => {
                 browserWrapper.getBody.returns(env.stub().resolves('{"success":false}')());
                 loginAction(dispatch)
@@ -122,5 +138,30 @@ describe('action/auth', () => {
 
         });
 
+        describe('skip', () => {
+            let dispatch,
+                skipAction;
+
+            beforeEach(() => {
+                dispatch = env.stub();
+                skipAction = sut.skip();
+
+            });
+
+            it('should dispatch login skip', () => {
+                skipAction(dispatch);
+                dispatch.should.calledWith({
+                    type: sut.LOGIN_SKIPPED
+                });
+            });
+
+            it('should redirect to challenges', () => {
+                skipAction(dispatch);
+                reactRouter.hashHistory.push.should.calledWith('challenges');
+            });
+
+        });
+
     });
+
 });

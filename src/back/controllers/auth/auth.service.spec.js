@@ -9,7 +9,8 @@ describe('auth.service', () => {
         expressJWT,
         envValues,
         userModel,
-        userInstance;
+        userInstance,
+        mongoose;
 
     const expressJWTResult = function expressJWTResult() {
         return () => {
@@ -30,10 +31,15 @@ describe('auth.service', () => {
         };
         userModel = env.spy(() => (userInstance));
         userModel.findOne = env.stub();
+        userModel.findById = env.stub();
+        mongoose = {
+            model: env.stub().returns(userModel)
+        };
         sut = proxyquire('./auth.service', {
             jsonwebtoken,
             'express-jwt': expressJWT,
-            '../../../../env': envValues
+            '../../../../env': envValues,
+            mongoose
         });
     });
 
@@ -152,6 +158,90 @@ describe('auth.service', () => {
                 err.should.equal(error);
                 done();
             });
+        });
+
+    });
+
+    describe('isAuthenticated', () => {
+
+        it('should return true if authenticated', () => {
+            let result = sut.isAuthenticated.call({
+                auth: {
+                    id: 'testId'
+                }
+            });
+            result.should.equal(true);
+            result = sut.isAuthenticated.call({
+                auth: {}
+            });
+            result.should.equal(false);
+        });
+
+    });
+
+    describe('getCurrentUser', () => {
+
+        it('should return promise', () => {
+            const result = sut.getCurrentUser.call({
+                isAuthenticated: () => (false)
+            });
+            expect(result).to.be.an.instanceof(Promise);
+        });
+
+        it('should resolve with current user', (done) => {
+            const CurrentUser = {
+                _id: 'testId',
+                fullName: 'curUser'
+            };
+            userModel.findById.resolves(CurrentUser);
+            sut.getCurrentUser
+                .call({
+                    isAuthenticated: () => (true),
+                    auth: {
+                        id: 'testId'
+                    }
+                })
+                .then((user) => {
+                    user.should.equal(CurrentUser);
+                })
+                .finally(() => {
+                    userModel.findById.should.calledWith('testId');
+                    done();
+                });
+        });
+
+        it('should reject if not authenticated', () => {
+            sut.getCurrentUser
+                .call({
+                    isAuthenticated: () => (false)
+                })
+                .catch((error) => {
+                    expect(error).to.be.an.instanceof(Error);
+                });
+        });
+
+    });
+
+    describe('restrictUnauthenticated', () => {
+
+        it('should response if unauthenticated', () => {
+            const res = {
+                status: env.stub().returns({
+                    json: env.stub()
+                })
+            };
+            sut.restrictUnauthenticated({
+                isAuthenticated: () => (false)
+            }, res);
+            res.status.should.calledWith(401);
+        });
+
+        it('should move next if authenticated', () => {
+            const next = env.stub();
+            sut.restrictUnauthenticated({
+                isAuthenticated: () => (true)
+            }, {}, next);
+            next.should.calledWith();
         });
 
     });
