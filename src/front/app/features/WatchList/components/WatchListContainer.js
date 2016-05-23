@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import WatchList from './WatchList';
-import { getInitialChallenges } from './watchList.actions';
+import { getInitialChallenges } from './../watchList.actions.js';
 
-const mapStateToProps = ({ challenges }) => ({ challenges });
+const mapStateToProps = ({ watchList }) => ({ challenges: watchList });
 
 const mapDispatchToProps = (dispatch) => ({
     getInitialChallenges: () => {

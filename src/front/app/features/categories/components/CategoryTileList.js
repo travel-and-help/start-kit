@@ -6,7 +6,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 class CategoryTileList extends Component {
     componentDidMount() {
         this.props.getCategories();
-    }   
+    }
 
     render() {
         const { categories, onCategoryClick, onSaveCategoryClick } = this.props;

@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import ChallengeTileList from '../../../common/components/challenge/ChallengeTileList';
+import Navigation from '../../navigation';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { hashHistory } from 'react-router';
 
 class WatchList extends Component {
     componentDidMount() {
@@ -8,13 +11,12 @@ class WatchList extends Component {
 
     render() {
         const { challenges } = this.props;
-
         return (
-            <ul className="challenges__challengeList" >
-                {(challenges || []).map((challenge, index) => (
-                    <div>{ index } { challenge }</div>
-                ))}
-            </ul>
+            <div className="challenges">
+                <div onClick={hashHistory.goBack}>&lt; Watch List</div>
+                <ChallengeTileList challenges={challenges} />
+                <Navigation />
+            </div>
         );
     }
 }

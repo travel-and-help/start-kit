@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const user = require('./../../models/user');
 const challenge = require('./../../models/challenge');
@@ -8,15 +8,16 @@ const getChallengesByUserId = (req, res) => {
     mongoose.set('debug', true);
     user.findById(req.params.id)
         .then(onUser)
-        .then(user => challenge.find({_id: user.wishList}))
-        .then(challenges => res.send(challenges));
+        .then(person => challenge.find({ _id: { $in: person.get('watchList') } }))
+        .then(challenges => res.json(challenges))
+        .catch(err => res.error(err).send());
 
-    function onUser(user) {
-        if (user) {
-            return user;
+    function onUser(person) {
+        if (person) {
+            return person;
         }
         console.log('Can\'t find the user');
-        return {wishList: []};
+        return { wishList: [] };
     }
 };
 

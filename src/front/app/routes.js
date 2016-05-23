@@ -8,7 +8,7 @@ import TodoScreen from './features/todo/TodoScreen';
 import Awards from './features/awards';
 import Updates from './features/updates';
 import Profile from './features/profile';
-import WatchList from './features/WatchList';
+import WatchListContainer from './features/WatchList/components/WatchListContainer';
 
 export default () => (
     <Route path="/" >
@@ -20,6 +20,6 @@ export default () => (
         <Route path="profile" component={Profile} />
         <Route path="todo" component={TodoScreen} />
         <Route path="categories" component={CategoryTileListContainer} />
-        <Route path="watch-list" component={WatchList} />
+        <Route path="watch-list" component={WatchListContainer} />
     </Route>
 );
