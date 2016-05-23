@@ -11,8 +11,7 @@ describe('ChallengeTile', () => {
             title: 'title',
             user: {
                 rating: 42,
-                firstName: 'John',
-                lastName: 'Dou'
+                fullName: 'John Dou'
             },
             location: 'LA'
         });
