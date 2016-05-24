@@ -1,9 +1,8 @@
 import React from 'react';
 
 export default () => (
-    <nav className="nav" >
-        <a className="nav__item nav__item--right" href="#" >
-            <i className="sprite sprite-options" ></i>
-        </a>
-    </nav>
+    <div>
+        <span>Your Profile</span>
+        <button>Click</button>
+    </div>
 );

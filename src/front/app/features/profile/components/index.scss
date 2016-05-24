@@ -1,138 +1,48 @@
-.nav {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    color: #fff;
-    padding: 10px;
-    line-height: 31px;
+$whiteColor: #fff;
+$bgColor : #354A52;
 
-    &__item {
-        &--left {
-            float: left;
-        }
+.user-details {
 
-        &--right {
-            float: right;
-        }
-    }
-}
 
-.user {
-    background-color: #9b9b9b;
-    padding: 15px;
-
-    &__info {
-        list-style: none;
-        padding: 0;
-        text-align: center;
-
-        &__item {
-            display: inline-block;
-            line-height: 120px;
-            color: #fff;
-            text-align: center;
-            font-size: 14px;
-            margin: 0 16px;
-
-            &--rate {
-                line-height: 48px;
-            }
-
-            .sprite, img {
-                vertical-align: middle;
-            }
-        }
+    &__user-info {
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: $bgColor;
     }
 
-    &__name {
-        color: #fff;
-        text-transform: uppercase;
-        text-align: center;
-        font-size: 30px;
-        font-weight: normal;
-        padding: 0;
-        margin: 0 0 40px;
+    &__avatar-block {
+        width: 100%;
+        justify-content: center;
+        display: flex;
+        align-items: center;
     }
 
     &__image {
         border-radius: 50% 50%;
+        width: 100px;
+        height: 100px;
     }
 
-    &__stats {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        text-align: center;
-
-        &__item {
-            display: inline-block;
-            color: #fff;
-            padding: 10px 22px;
-
-            &__value {
-                width: 52px;
-                height: 52px;
-                border: 2px solid #fff;
-                border-radius: 50% 50%;
-                line-height: 48px;
-                font-size: 28px;
-                position: relative;
-                display: inline-block;
-
-                a {
-                    position: absolute;
-                    top: -2px;
-                    left: -2px;
-                }
-            }
-            &__title {
-                font-size: 16px;
-                text-align: center;
-                margin-top: 8px;
-                color: #eee;
-            }
-        }
-    }
-}
-
-.section-container {
-    margin: 4px 0;
-    padding: 10px;
-    background-color: rgb(238,238,238);
-    text-align: left;
-
-    &__title {
-        color: rgb(143, 143, 143);
-        font-weight: normal;
-        margin: 0 0 4px;
-        font-size: 16px;
-    }
-
-    &__description {
-        color: rgb(84, 84, 84);
-        font-size: 18px;
+    &__full-name {
+        color: $whiteColor;
+        display: flex;
+        flex-direction: column;
+        margin: 15px 0;
+        font-size: 25px;
         font-weight: bold;
-        p {
-            margin: 0;
-            font-size: 16px;
-        }
     }
 
-    &--inline {
-        .section-container__title,
-        .section-container__description
-        {
-            display: inline-block;
-        }
+    &__challenges-stats {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
     }
 
-    &__social {
-        list-style: none;
-        margin: 15px 0 0;
+    &__additional-info {
+        border: 1px solid black;
 
-        li {
-            display: inline-block;
-            margin-left: 22px;
-        }
+
     }
 }
