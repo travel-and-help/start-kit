@@ -11,7 +11,6 @@ function receiveChallenge(challenge) {
 export function fetchChallenge(id) {
     return function innerFetchChallenge(dispatch) {
         api(`/api/challenge/${id}`)
-            .then(response => response.json())
             .then((challenge) => {
                 dispatch(receiveChallenge(challenge));
             });

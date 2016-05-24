@@ -40,6 +40,7 @@ const ChallengeTile = ({ challenge }) => {
 ChallengeTile.propTypes = {
     challenge: ImmutablePropTypes.mapContains({
         title: PropTypes.string.isRequired,
+        _id: PropTypes.string.isRequired,
         user: ImmutablePropTypes.mapContains({
             rating: PropTypes.number.isRequired,
             fullName: PropTypes.string.isRequired
