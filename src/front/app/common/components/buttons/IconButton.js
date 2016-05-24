@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 
+/* istanbul ignore next */
 const IconButton = ({
     title,
     iconName,
