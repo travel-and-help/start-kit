@@ -14,5 +14,8 @@
   },
   "plugins": [
     "react"
-  ]
+  ],
+  "rules": {
+    "react/jsx-indent-props": 0
+  }
 }

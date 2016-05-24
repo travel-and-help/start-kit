@@ -1,0 +1,40 @@
+%swipeTransition {
+  transition: margin .1s ease;
+}
+
+@mixin y-transform($y) {
+  margin-left: $y;
+  margin-right: -$y;
+}
+
+.challenge-tile-wrap {
+
+  $swipeOffset: 34px;
+
+  @extend %swipeTransition;
+  position: relative;
+  margin-bottom: $fastenerHeight;
+
+  &__fasteners {
+    @extend %swipeTransition;
+    position: absolute;
+    width: 100%;
+    top: -$fastenerHeight;
+    padding: 0 96px;
+  }
+
+  @mixin swipe($offset) {
+    @include y-transform($offset);
+    + .challenge-tile-wrap > .challenge-tile-wrap__fasteners {
+      @include y-transform($offset);
+    }
+  }
+
+  &_swiped-left {
+    @include swipe(-$swipeOffset);
+  }
+
+  &_swiped-right {
+    @include swipe($swipeOffset);
+  }
+}

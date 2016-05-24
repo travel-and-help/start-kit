@@ -1,0 +1,23 @@
+.top-challenge-banner {
+  width: 140px;
+  margin: 0 auto;
+
+  &__fasteners {
+    margin:  0 26px;
+  }
+
+  &__content {
+    $bannerColor: #69BA6D;
+
+    border: $gBorder;
+    padding: 4px 8px;
+
+    color: #fff;
+    background-color: $bannerColor;
+    border-radius: $gBorderRadiusSm;
+    font-size: 11px;
+    line-height: 17px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+}
