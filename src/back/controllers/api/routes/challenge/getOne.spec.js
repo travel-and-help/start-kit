@@ -10,12 +10,12 @@ describe('challenges getOne', () => {
 
     beforeEach(() => {
 
-        req = {params: {id:1}};
+        req = { params: { id: 1 } };
 
         res = {
             json: env.spy()
         };
-        mockChallenge = {"1":"1", "2":"2"};
+        mockChallenge = { 1: '1', 2: '2' };
 
         challenge = {
             findOne: env.spy((query, cb) => {
@@ -31,7 +31,7 @@ describe('challenges getOne', () => {
     });
 
     it('should find challenge in db', () => {
-        challenge.findOne.should.been.calledWith({_id: req.params.id}, sinon.match.func);
+        challenge.findOne.should.been.calledWith({ _id: req.params.id }, sinon.match.func);
     });
 
     it('should send response with challenge from db', () => {

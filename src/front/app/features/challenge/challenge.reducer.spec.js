@@ -10,9 +10,9 @@ describe('reducer/challenge', () => {
     it('should add challenge to state', () => {
         const action = {
             type: GET_CHALLENGE,
-            challenge: {'1':'1', '2':'2', '3':'3'}
+            challenge: { 1: '1', 2: '2', 3: '3' }
         };
-        const expectedState = {'1':'1', '2':'2', '3':'3'};
+        const expectedState = { 1: '1', 2: '2', 3: '3' };
 
         const currentState = sut(undefined, action);
 
@@ -21,7 +21,7 @@ describe('reducer/challenge', () => {
 
     it('should ignore unknown actionTypes', () => {
         const action = { type: 'unknownType' };
-        const prevState = Map({'1':'1', '2':'2'});
+        const prevState = new Map({ 1: '1', 2: '2' });
         const currentState = sut(prevState, action);
 
         currentState.toJS().should.eqls(prevState.toJS());

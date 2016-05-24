@@ -5,7 +5,7 @@ describe('action/categories', () => {
     let dispatch;
     let api;
     let promise;
-    const challenge = {_id: 1};
+    const challenge = { _id: 1 };
 
     beforeEach(() => {
 
@@ -31,7 +31,7 @@ describe('action/categories', () => {
 
         it('should fetch challenge', () => {
             fetcher(dispatch);
-            api.should.have.been.calledWith('/api/challenge/' + challenge._id).and.callCount(1);
+            api.should.have.been.calledWith(`/api/challenge/${challenge._id}`).and.callCount(1);
         });
 
         it('should dispatch GET_CHALLENGE event with data from response', () => {
@@ -40,7 +40,7 @@ describe('action/categories', () => {
                 const action = dispatch.lastCall.args[0];
                 action.should.eqls({
                     type: sut.GET_CHALLENGE,
-                    challenge: challenge
+                    challenge
                 });
             });
         });
