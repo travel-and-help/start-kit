@@ -31,7 +31,7 @@ const ChallengeTile = ({
                 onSwipedRight={() => onSwiped(RIGHT)}
             >
                 <Fasteners className="challenge-tile-wrap__fasteners" />
-    
+
                 <div className="challenge-tile" >
                     <img
                         className="challenge-tile__image"

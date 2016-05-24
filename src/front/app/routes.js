@@ -10,7 +10,7 @@ export default () => (
     <Route path="/" >
         <IndexRoute component={Login} />
         {mainRoutes()}
-        <Route path="challenge/:id" component={ChallengeContainer} />
         <Route path="categories" component={CategoryTileListContainer} />
+        <Route path="challenge/:id" component={ChallengeContainer} />
     </Route>
 );
