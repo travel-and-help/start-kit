@@ -9,7 +9,7 @@ function receiveChallenge(challenge) {
 }
 
 export function fetchChallenge(id) {
-    return function innerFetchChallenge(dispatch) {
+    return (dispatch) => {
         api(`/api/challenge/${id}`)
             .then((challenge) => {
                 dispatch(receiveChallenge(challenge));

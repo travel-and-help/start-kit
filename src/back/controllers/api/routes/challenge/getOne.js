@@ -2,9 +2,13 @@
 
 const challenge = require('../../models/challenge');
 
-const getOne = (req, res) => {
-    challenge.findOne({ _id: req.params.id }, (err, challengeDetails) => {
-        res.json(challengeDetails);
+const getOne = (req, res, next) => {
+    challenge.findById(req.params.id, (err, challengeDetails) => {
+        if (err) {
+            next(err);
+        } else {
+            res.json(challengeDetails);
+        }
     });
 };
 
