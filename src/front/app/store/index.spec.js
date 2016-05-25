@@ -48,7 +48,7 @@ describe('store', () => {
             redux,
             'react-router': reactRouter,
             'react-router-redux': reactRouterRedux,
-            '../features/challenges/challenges.reducer': challenges,
+            '../features/main/challenges/challenges.reducer': challenges,
             '../features/categories/categories.reducer': categories,
             '../features/auth/auth.reducer': auth,
             './enhancers': storeEnhancers

@@ -3,23 +3,12 @@ import { Route } from 'react-router';
 import { IndexRoute } from 'react-router';
 import Login from './features/auth/components/login-screen-container';
 import CategoryTileListContainer from './features/categories/components/CategoryTileListContainer';
-import ChallengeScreenContainer from './features/challenges/components/ChallengeScreenContainer';
-import TodoScreen from './features/todo/TodoScreen';
-import Awards from './features/awards';
-import Updates from './features/updates';
-import Profile from './features/profile';
-import WatchListContainer from './features/WatchList/components/WatchListContainer';
+import mainRoutes from './features/main/routes';
 
 export default () => (
     <Route path="/" >
         <IndexRoute component={Login} />
-        <Route path="login" component={Login} />
-        <Route path="challenges" component={ChallengeScreenContainer} />
-        <Route path="awards" component={Awards} />
-        <Route path="updates" component={Updates} />
-        <Route path="profile" component={Profile} />
-        <Route path="todo" component={TodoScreen} />
+        {mainRoutes()}
         <Route path="categories" component={CategoryTileListContainer} />
-        <Route path="watch-list" component={WatchListContainer} />
     </Route>
 );

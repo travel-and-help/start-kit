@@ -1,5 +1,6 @@
 import React from 'react';
 
+/* istanbul ignore next */
 const IconButton = ({
     title,
     iconName,
