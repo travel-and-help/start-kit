@@ -132,6 +132,7 @@
     "react-redux": "^4.4.1",
     "react-router": "^2.0.1",
     "react-router-redux": "^4.0.1",
+    "react-swipeable": "^3.4.0",
     "redux": "^3.3.1",
     "redux-thunk": "^2.0.1",
     "whatwg-fetch": "^1.0.0"

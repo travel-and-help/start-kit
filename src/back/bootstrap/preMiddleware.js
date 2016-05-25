@@ -9,4 +9,5 @@ module.exports = (app) => app
     .use(cors())
     .use(bodyParser.json())
     .use(authService.validateJwt)
-    .use(passport.initialize());
+    .use(passport.initialize())
+    .use(authService.initRequest);

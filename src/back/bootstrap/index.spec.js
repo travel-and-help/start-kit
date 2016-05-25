@@ -89,13 +89,5 @@ describe('bootstrap', () => {
         result.should.equal(app);
     });
 
-    it('should extend IncomingMessage', () => {
-        const message = new http.IncomingMessage();
-        message.isAuthenticated();
-        authService.isAuthenticated.should.calledWith();
-        message.getCurrentUser();
-        authService.getCurrentUser.should.calledWith();
-    });
-
 });
 

@@ -1,4 +1,5 @@
 import proxyquire from 'proxyquire';
+import { LOGIN_SERVICES } from '../auth.actions';
 
 describe('LoginScreenContainer', () => {
     let reactRedux,
@@ -40,13 +41,13 @@ describe('LoginScreenContainer', () => {
     it('should map dispatch to prop method facebookLogin', () => {
         const { facebookLogin } = reactRedux.connect.getCall(0).args[1](dispatch);
         facebookLogin();
-        authActions.login.should.calledWith('FACEBOOK');
+        authActions.login.should.calledWith(LOGIN_SERVICES.FACEBOOK);
     });
 
     it('should map dispatch to prop method googleLogin', () => {
         const { googleLogin } = reactRedux.connect.getCall(0).args[1](dispatch);
         googleLogin();
-        authActions.login.should.calledWith('GOOGLE_PLUS');
+        authActions.login.should.calledWith(LOGIN_SERVICES.GOOGLE_PLUS);
     });
 
     it('should map dispatch to prop method skipLogin', () => {

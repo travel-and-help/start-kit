@@ -79,11 +79,17 @@ function restrictUnauthenticated(req, res, next) {
     }
 }
 
+function initRequest(req) {
+    Object.assign(req, {
+        getCurrentUser,
+        isAuthenticated
+    });
+}
+
 module.exports = {
     validateJwt,
     responseAuthToken,
     generateOAuth2VerifyCallback,
-    isAuthenticated,
-    getCurrentUser,
-    restrictUnauthenticated
+    restrictUnauthenticated,
+    initRequest
 };

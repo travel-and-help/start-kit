@@ -165,15 +165,14 @@ describe('auth.service', () => {
     describe('isAuthenticated', () => {
 
         it('should return true if authenticated', () => {
-            let result = sut.isAuthenticated.call({
-                auth: {
-                    id: 'testId'
-                }
-            });
+            const req = {
+                auth: { id: 'testId' }
+            };
+            sut.initRequest(req);
+            let result = req.isAuthenticated();
             result.should.equal(true);
-            result = sut.isAuthenticated.call({
-                auth: {}
-            });
+            req.auth = {};
+            result = req.isAuthenticated();
             result.should.equal(false);
         });
 
@@ -182,9 +181,10 @@ describe('auth.service', () => {
     describe('getCurrentUser', () => {
 
         it('should return promise', () => {
-            const result = sut.getCurrentUser.call({
-                isAuthenticated: () => (false)
-            });
+            const req = {};
+            sut.initRequest(req);
+            req.isAuthenticated = () => (false);
+            const result = req.getCurrentUser();
             expect(result).to.be.an.instanceof(Promise);
         });
 
@@ -194,13 +194,15 @@ describe('auth.service', () => {
                 fullName: 'curUser'
             };
             userModel.findById.resolves(CurrentUser);
-            sut.getCurrentUser
-                .call({
-                    isAuthenticated: () => (true),
-                    auth: {
-                        id: 'testId'
-                    }
-                })
+
+            const req = {
+                auth: {
+                    id: 'testId'
+                }
+            };
+            sut.initRequest(req);
+            req.isAuthenticated = () => (true);
+            req.getCurrentUser()
                 .then((user) => {
                     user.should.equal(CurrentUser);
                 })
@@ -211,10 +213,10 @@ describe('auth.service', () => {
         });
 
         it('should reject if not authenticated', () => {
-            sut.getCurrentUser
-                .call({
-                    isAuthenticated: () => (false)
-                })
+            const req = {};
+            sut.initRequest(req);
+            req.isAuthenticated = () => (false);
+            req.getCurrentUser()
                 .catch((error) => {
                     expect(error).to.be.an.instanceof(Error);
                 });
@@ -245,5 +247,6 @@ describe('auth.service', () => {
         });
 
     });
+
 });
 
