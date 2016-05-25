@@ -6,9 +6,12 @@ describe('ChallengeContainer', () => {
         dispatch,
         wrapWithConnect,
         challengeActionCreator,
-        Challenge;
+        Challenge,
+        id;
 
     beforeEach(() => {
+        id = 'a1';
+
         dispatch = env.stub();
 
         wrapWithConnect = env.stub().returns({});
@@ -40,8 +43,8 @@ describe('ChallengeContainer', () => {
 
     it('should map dispatch to challenge fetching prop method', () => {
         const props = reactRedux.connect.getCall(0).args[1](dispatch);
-        props.getChallenge();
-        dispatch.should.calledWith(challengeActionCreator.fetchChallenge());
+        props.getChallenge(id);
+        dispatch.should.calledWith(challengeActionCreator.fetchChallenge(id));
     });
 
     it('should map to props once', () => {
