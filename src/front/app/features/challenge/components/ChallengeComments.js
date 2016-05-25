@@ -1,6 +1,7 @@
 import React from 'react';
 import IconButton from './../../../common/components/buttons/IconButton';
 
+/* istanbul ignore next */
 const ChallengeComments = () => (
     <div className="challenge-comments">
         <div className="challenge-comments__title">View all 245 comments</div>
