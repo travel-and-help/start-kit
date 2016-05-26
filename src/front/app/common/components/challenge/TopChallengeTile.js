@@ -4,7 +4,6 @@ import ChallengeTileInfo from './ChallengeTileInfo';
 import TopChallengeBanner from './TopChallengeBanner';
 import { Link } from 'react-router';
 
-/* istanbul ignore next */
 const TopChallengeTile = ({ challenge }) => {
     const {
         title,
@@ -21,26 +20,26 @@ const TopChallengeTile = ({ challenge }) => {
         background: `url(${image}) no-repeat`
     };
 
+    /* istanbul ignore next */
     return (
         <Link to={`challenge/${_id}`}>
             <div className="challenge-tile-wrap" >
-                <div
-                    className="top-challenge-tile"
-                    style={style}
-                >
+                <div className="top-challenge-tile" style={style}>
+
                     <TopChallengeBanner />
 
-                <div className="top-challenge-tile__info-wrap" >
-                    <ChallengeTileInfo
-                        className="top-challenge-tile__info"
-                        title={title}
-                        userName={fullName}
-                        userRank={rating}
-                        location={location}
-                    />
+                    <div className="top-challenge-tile__info-wrap" >
+                        <ChallengeTileInfo
+                            className="top-challenge-tile__info"
+                            title={title}
+                            userName={fullName}
+                            userRank={rating}
+                            location={location}
+                        />
+                    </div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };
 
