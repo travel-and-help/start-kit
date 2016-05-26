@@ -4,11 +4,13 @@ import { IndexRoute } from 'react-router';
 import Login from './features/auth/components/login-screen-container';
 import CategoryTileListContainer from './features/categories/components/CategoryTileListContainer';
 import mainRoutes from './features/main/routes';
+import ChallengeContainer from './features/challenge/components/ChallengeContainer';
 
 export default () => (
     <Route path="/" >
         <IndexRoute component={Login} />
         {mainRoutes()}
         <Route path="categories" component={CategoryTileListContainer} />
+        <Route path="challenge/:id" component={ChallengeContainer} />
     </Route>
 );

@@ -7,6 +7,7 @@ describe('store', () => {
         reactRouterRedux,
         challenges,
         categories,
+        challenge,
         user,
         auth,
         storeEnhancers,
@@ -41,6 +42,10 @@ describe('store', () => {
             default: env.stub()
         };
 
+        challenge = {
+            default: env.stub()
+        };
+
         auth = {
             default: env.stub()
         };
@@ -54,6 +59,7 @@ describe('store', () => {
             'react-router': reactRouter,
             'react-router-redux': reactRouterRedux,
             '../features/main/challenges/challenges.reducer': challenges,
+            '../features/challenge/challenge.reducer': challenge,
             '../features/categories/categories.reducer': categories,
             '../features/auth/auth.reducer': auth,
             '../features/profile/profile.reducer': user,
@@ -68,6 +74,7 @@ describe('store', () => {
             .calledWith({
                 auth: auth.default,
                 challenges: challenges.default,
+                challenge: challenge.default,
                 routing: reactRouterRedux.routerReducer,
                 categories: categories.default,
                 user: user.default
