@@ -1,0 +1,48 @@
+$whiteColor: #fff;
+$bgColor : #354A52;
+
+.user-details {
+
+
+    &__user-info {
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: $bgColor;
+    }
+
+    &__avatar-block {
+        width: 100%;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+    }
+
+    &__image {
+        border-radius: 50% 50%;
+        width: 100px;
+        height: 100px;
+    }
+
+    &__full-name {
+        color: $whiteColor;
+        display: flex;
+        flex-direction: column;
+        margin: 15px 0;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    &__challenges-stats {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    &__additional-info {
+        border: 1px solid black;
+
+
+    }
+}

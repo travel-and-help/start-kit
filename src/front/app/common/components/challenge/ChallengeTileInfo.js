@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import rankToType from './rankToType';
 
-const ChallengeTile = ({ title, userName, userRank, location, className }) => (
+const ChallengeTileInfo = ({ title, userName, userRank, location, className }) => (
     <div className={`challenge-tile-info ${className}`} >
         <div className="challenge-tile-info__title" >
             {title}
@@ -28,7 +28,7 @@ const ChallengeTile = ({ title, userName, userRank, location, className }) => (
     </div>
 );
 
-ChallengeTile.propTypes = {
+ChallengeTileInfo.propTypes = {
     title: PropTypes.string.isRequired,
     userName: PropTypes.string.isRequired,
     userRank: PropTypes.number.isRequired,
@@ -36,4 +36,4 @@ ChallengeTile.propTypes = {
     className: PropTypes.string
 };
 
-export default ChallengeTile;
+export default ChallengeTileInfo;

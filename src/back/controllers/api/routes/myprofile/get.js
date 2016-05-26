@@ -37,8 +37,7 @@ const get = (req, res) => {
                     level: 'easy',
                     location: 'Obolon',
                     user: {
-                        firstName: 'Alex',
-                        lastName: 'Torsk',
+                        fullName: 'Alex Torsk',
                         rating: 3
                     },
                     description: 'Lorem ipsum dolor sit amet'
@@ -54,8 +53,7 @@ const get = (req, res) => {
                     level: 'easy',
                     location: 'Obolon',
                     user: {
-                        firstName: 'Alex',
-                        lastName: 'Torsk',
+                        fullName: 'Alex Torsk',
                         rating: 3
                     },
                     description: 'Lorem ipsum dolor sit amet'
@@ -71,8 +69,7 @@ const get = (req, res) => {
                     level: 'easy',
                     location: 'Obolon',
                     user: {
-                        firstName: 'Alex',
-                        lastName: 'Torsk',
+                        fullName: 'Alex Torsk',
                         rating: 3
                     },
                     description: 'Lorem ipsum dolor sit amet'
@@ -88,8 +85,7 @@ const get = (req, res) => {
                     level: 'easy',
                     location: 'Obolon',
                     user: {
-                        firstName: 'Alex',
-                        lastName: 'Torsk',
+                        fullName: 'Alex Torsk',
                         rating: 3
                     },
                     description: 'Lorem ipsum dolor sit amet'
@@ -105,8 +101,7 @@ const get = (req, res) => {
                     level: 'easy',
                     location: 'Obolon',
                     user: {
-                        firstName: 'Alex',
-                        lastName: 'Torsk',
+                        fullName: 'Alex Torsk',
                         rating: 3
                     },
                     description: 'Lorem ipsum dolor sit amet'
@@ -114,8 +109,7 @@ const get = (req, res) => {
             }
         ],
         locations: ['Kiev', 'Odessa'],
-        firstName: 'Anton',
-        lastName: 'Golubev',
+        fullName: 'Alex Torsk',
         rating: 9
     });
 };
