@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ChallengeTileInfo from './ChallengeTileInfo';
 import TopChallengeBanner from './TopChallengeBanner';
-import { Link } from 'react-router';
 
 /* istanbul ignore next */
 const TopChallengeTile = ({ challenge }) => {
@@ -22,26 +21,25 @@ const TopChallengeTile = ({ challenge }) => {
     };
 
     return (
-        <Link to={`challenge/${_id}`}>
-            <div className="challenge-tile-wrap" >
-                <div
-                    className="top-challenge-tile"
-                    style={style}
-                >
-                    <TopChallengeBanner />
+        <div className="challenge-tile-wrap" >
+            <div
+                className="top-challenge-tile"
+                style={style}
+            >
+                <TopChallengeBanner />
 
-                    <div className="top-challenge-tile__info-wrap" >
-                        <ChallengeTileInfo
-                            className="top-challenge-tile__info"
-                            title={title}
-                            userName={firstName}
-                            userRank={rating}
-                            location={location}
-                        />
-                    </div>
+                <div className="top-challenge-tile__info-wrap" >
+                    <ChallengeTileInfo
+                        link={`challenge/${_id}`}
+                        className="top-challenge-tile__info"
+                        title={title}
+                        userName={firstName}
+                        userRank={rating}
+                        location={location}
+                    />
                 </div>
             </div>
-        </Link>
+        </div>
     );
 };
 
