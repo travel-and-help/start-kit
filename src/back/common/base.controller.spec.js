@@ -1,31 +1,33 @@
 'use strict';
 
-let sut;
-let testModel;
+const BaseController = require('./base.controller'),
+    httpMocks = require('node-mocks-http'),
+    mongoose = require('mongoose'),
+    Schema = mongoose.Schema,
+    Q = require('q');
 
-const path = require('path');
-const BaseController = require(path.resolve('./server/shared/base.controller'));
-const httpMocks = require('node-mocks-http');
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const $q = require('q');
+let sut,
+    testModel;
 
-xdescribe('Base Controller Unit Tests:', () => {
+describe('BaseController', () => {
+
     describe('Method get', () => {
 
-        beforeEach((done) => {
+        beforeEach(() => {
             const testSchema = new Schema({ title: String });
             testModel = mongoose.model('testSchema', testSchema);
-            testModel.find = jasmine.createSpy();
+            testModel.paginate = env.stub();
+            testModel.findById = env.stub();
+            testModel.findByIdAndUpdate = env.stub();
+            testModel.remove = env.stub();
             sut = new BaseController(testModel);
-            done();
         });
 
         it('return expected object on get, if success result', (done) => {
-            const findPromise = $q.fcall(function () {
-                return [{ 'test': 'test' }];
-            });
-            testModel.find.andReturn(findPromise);
+            const findPromise = Q.fcall(() => ([
+                { test: 'test' }
+            ]));
+            testModel.paginate.returns(findPromise);
             const request = httpMocks.createRequest({
                 method: 'GET',
                 url: '/',
@@ -34,33 +36,16 @@ xdescribe('Base Controller Unit Tests:', () => {
             const response = httpMocks.createResponse();
             sut.get(request, response)
                 .then(() => {
+                    response.statusCode.should.equal(200);
                     const data = JSON.parse(response._getData());
-                    expect(response.statusCode).toBe(200);
-                    expect(data.status).toBe('success');
-                    expect(data.total).toBe(1);
-                    expect(data.responses).toEqual([{
-                        'test': 'test'
+                    data.should.deep.equal([{
+                        test: 'test'
                     }]);
-                    expect(testModel.find).toHaveBeenCalledWith({ id: 42 });
-                    done();
-                });
-        });
-
-        it('return expected object on get, if exception', (done) => {
-            const findPromise = $q.reject({ 'msg': 'some error' });
-            testModel.find.andReturn(findPromise);
-            const request = httpMocks.createRequest({
-                method: 'GET',
-                url: '/',
-                params: { id: 4 }
-            });
-            const response = httpMocks.createResponse();
-            sut.get(request, response)
-                .then(() => {
-                    const data = JSON.parse(response._getData());
-                    expect(response.statusCode).toBe(404);
-                    expect(data).toEqual({ 'msg': 'some error' });
-                    expect(testModel.find).toHaveBeenCalledWith({ id: 4 });
+                    testModel.paginate.should.calledWith({}, {
+                        page: 0,
+                        limit: 10,
+                        lean: true
+                    });
                     done();
                 });
         });

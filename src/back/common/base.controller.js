@@ -67,7 +67,7 @@ class BaseController {
             .catch((err) => (this.processError(req, res, err)));
     }
 
-    delete(req, res) {
+    remove(req, res) {
         const itemId = req.params.id;
         if (!itemId) {
             res
@@ -89,7 +89,6 @@ class BaseController {
         res
             .status(responseStatus.INTERNAL_SERVER_ERROR)
             .send({
-                success: false,
                 error: err
             });
     }
@@ -97,10 +96,7 @@ class BaseController {
     processSuccess(req, res, result) {
         res
             .status(responseStatus.OK)
-            .json({
-                success: true,
-                response: result
-            });
+            .json(result);
     }
 }
 
