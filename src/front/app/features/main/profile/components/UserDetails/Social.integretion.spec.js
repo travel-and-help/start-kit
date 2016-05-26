@@ -10,7 +10,7 @@ describe('Profile', () => {
         social = fromJS({
             link: 'testLink',
             title: 'testTitle'
-        })
+        });
     });
 
     it('should render Social with correct title', () => {
