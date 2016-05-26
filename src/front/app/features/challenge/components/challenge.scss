@@ -1,0 +1,218 @@
+.challenge-details {
+    $grid-gap: _th-rem(5);
+    $page-padding: _th-rem(15);
+    $colors: (
+        bg_light: #eee,
+        bg_dark: #ddd,
+        text_label: #c0c0c0
+    );
+    $font-sizes: (
+        default: _th-rem(18),
+        header: _th-rem(22)
+    );
+
+
+    position: relative;
+
+    .challenge {
+
+        // Navigation buttons
+        &-nav {
+            $nav-indent: _th-rem(10);
+
+            &__item {
+                position: absolute;
+                top: $nav-indent;
+
+                &_back {
+                    left: $nav-indent * 2;
+                }
+
+                &_watch {
+                    right: $nav-indent * 2;
+                }
+            }
+        }
+
+        // Image
+        &__img {
+            height: _th-rem(250);
+            background-color: map-get($colors, bg_light);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center top;
+        }
+
+        // Info
+        &-info {
+            $button-width: _th-rem(116);
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            &__item,
+            &__button,
+            &__description {
+                margin-top: $grid-gap;
+            }
+
+            &__item {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                flex: 1 1 calc(100% - #{$button-width} - #{$grid-gap});
+                height: _th-rem(100);
+                margin-right: $grid-gap;
+                padding: $page-padding;
+                background-color: map-get($colors, bg_light);
+
+
+                &_created {
+
+                }
+
+                &_completed {
+                    font-size: map-get($font-sizes, default);
+                }
+            }
+
+            &__button {
+                flex: 0 0 $button-width;
+                height: _th-rem(100);
+                outline: 0;
+                font-size: map-get($font-sizes, default);
+                text-align: center;
+                background-color: map-get($colors, bg_dark);
+            }
+
+            &__title {
+                margin: 0;
+                text-transform: uppercase;
+                font-size: map-get($font-sizes, header);
+            }
+
+            &-author {
+
+                &__label {
+                    font-size: map-get($font-sizes, default);
+                    color: map-get($colors, text_label);
+                }
+
+                &__name {
+
+                }
+
+                &__rating {
+                    position: relative;
+                    display: inline-block;
+                    width: _th-rem(36);
+                    height: _th-rem(36);
+                    vertical-align: bottom;
+
+                    &-val {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        vertical-align: bottom;
+                        font-size: 0.7rem;
+                    }
+                }
+            }
+
+            &-level {
+
+                &__label {
+                    font-size: map-get($font-sizes, default);
+                    color: map-get($colors, text_label);
+                }
+
+                &__value {
+                    text-transform: capitalize;
+                }
+            }
+
+            &-completed {
+
+                &__count,
+                &__this-week,
+                &__see-more {
+                    margin: 0;
+                }
+
+                &__count {
+
+                }
+
+                &__this-week {
+
+                }
+
+                &__see-more {
+                    margin-top: $grid-gap;
+                    text-decoration: underline;
+                }
+            }
+
+            &__description {
+                flex: 1;
+                padding: $page-padding;
+                margin-bottom: 0;
+                font-size: map-get($font-sizes, default);
+                background-color: map-get($colors, bg_light);
+            }
+        }
+
+        // Comments
+        &-comments {
+            margin-top: $grid-gap;
+
+            &__title {
+                height: _th-rem(30);
+                padding: 0 $page-padding;
+                line-height: _th-rem(30);
+                background-color: map-get($colors, bg_dark);
+                font-size: map-get($font-sizes, default);
+                font-weight: bold;
+            }
+
+            &__item {
+                padding: $page-padding;
+                font-size: map-get($font-sizes, default);
+            }
+
+            &__author,
+            &__comment {
+                font-size: 1rem;
+                display: block;
+            }
+
+            &__author {
+                font-weight: bold;
+            }
+
+            &__form {
+                margin-top: _th-rem(60);
+                padding: $page-padding;
+            }
+
+            &__input {
+                width: 90%;
+                height: _th-rem(40);
+                line-height: _th-rem(40);
+                padding: 0 _th-rem(10);
+                border: none;
+                outline: none;
+                border-radius: _th-rem(5);
+                vertical-align: middle;
+                background-color: map-get($colors, bg_light);
+            }
+
+            &__submit-button {
+                float: right;
+            }
+        }
+    }
+
+}

@@ -1,5 +1,6 @@
 /* Mixins & functions */
-@import 'app/common/styles/**/*.scss';
+@import 'app/common/styles/mixins';
+@import 'app/common/styles/*';
 /* 3rd-party */
 @import '../../node_modules/normalize.css/normalize.css';
 /* Common components */
