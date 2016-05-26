@@ -44,8 +44,7 @@ describe('Profile', () => {
             categories: [],
             locations: [],
             web: [],
-            firstName: 'testFirstName',
-            lastName: 'testLastName',
+            fullName: 'testFullName',
             photo: 'testPhoto',
             rating: 1
         });
@@ -86,19 +85,19 @@ describe('Profile', () => {
         it('should render correct user`s fullName', () => {
             wrapper
                 .find('.user-details__full-name')
-                .text().should.equal(`${user.get('firstName')}${user.get('lastName')}`);
+                .text().should.equal(user.get('fullName'));
         });
 
         it('should render correct number of challenges', () => {
             wrapper
-                .find('.challenge')
+                .find('.challenge-tile')
                 .length.should.equal(user.get('challenges').size);
         });
 
         it('should render correct number of filtered challenges', () => {
             wrapper
                 .find('.user-details__challenges-container_accepted')
-                .find('.challenge')
+                .find('.challenge-tile')
                 .length.should.equal(acceptedChallenges.length);
         });
     });

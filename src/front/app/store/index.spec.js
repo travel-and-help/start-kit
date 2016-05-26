@@ -62,7 +62,7 @@ describe('store', () => {
             '../features/challenge/challenge.reducer': challenge,
             '../features/categories/categories.reducer': categories,
             '../features/auth/auth.reducer': auth,
-            '../features/profile/profile.reducer': user,
+            '../features/main/profile/profile.reducer': user,
             './enhancers': storeEnhancers
         }).default;
 

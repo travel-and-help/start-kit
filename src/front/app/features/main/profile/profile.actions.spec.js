@@ -6,7 +6,6 @@ describe('action/profile', () => {
     let api;
     let fetcher;
     let promise;
-    let fetchResponse;
     let user;
 
     beforeEach(() => {
@@ -16,16 +15,12 @@ describe('action/profile', () => {
 
         dispatch = env.spy();
 
-        fetchResponse = {
-            json: env.stub().returns(user)
-        };
-
-        promise = env.stub().resolves(fetchResponse)();
+        promise = env.stub().resolves(user)();
 
         api = env.stub().returns(promise);
 
         sut = proxyquire('./profile.actions', {
-            '../../common/api': api
+            '../../../common/api': api
         });
 
         fetcher = sut.getUser();
