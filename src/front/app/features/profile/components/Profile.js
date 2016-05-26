@@ -1,13 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import UserDetailsContainer from './UserDetails/UserDetailsContainer';
+import UserDetails from './UserDetails/UserDetails';
 import Header from './Header';
-import { getUser } from '../profile.actions';
 
 class Profile extends Component {
-    componentWillMount() {
-        const { dispatch } = this.props;
-        dispatch(getUser());
+    componentDidMount() {
+        this.props.getUser();
     }
 
     render() {
@@ -16,7 +14,7 @@ class Profile extends Component {
         return (
             <div className="profile">
                 <Header />
-                {user.size && <UserDetailsContainer user={user} />}
+                {user.size && <UserDetails user={user} />}
             </div>
         );
     }
@@ -24,7 +22,7 @@ class Profile extends Component {
 
 Profile.propTypes = {
     user: ImmutablePropTypes.map.isRequired,
-    dispatch: PropTypes.func.isRequired
+    getUser: PropTypes.func.isRequired
 };
 
 export default Profile;

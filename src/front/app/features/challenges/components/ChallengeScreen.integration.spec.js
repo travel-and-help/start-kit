@@ -26,8 +26,7 @@ describe('ChallengeScreen', () => {
             location: 'SF'
         }]);
 
-        getChallenges = () => {
-        };
+        getChallenges = () => {};
     });
 
     it('should render first challenge in a jumbotron (a test case for full mounting)', () => {

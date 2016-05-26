@@ -6,7 +6,6 @@ describe('ChallengeScreen', () => {
     beforeEach(() => {
         sut = new ChallengeScreen();
         env.spy(sut, 'setState');
-        env.spy(sut, 'render');
     });
 
     it('should set initial state for the menu bar status', () => {
