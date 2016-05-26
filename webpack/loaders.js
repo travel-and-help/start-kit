@@ -10,10 +10,10 @@ module.exports = [
     },
     {
         test: /\.(woff|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'base64-font-loader'
+        loader: 'base64-font'
     },
     {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('css!csscomb!sass!import-glob-loader!postcss')
+        loader: ExtractTextPlugin.extract('css!csscomb!sass!postcss')
     }
 ];
