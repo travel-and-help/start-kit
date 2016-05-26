@@ -11,11 +11,11 @@ describe('reducer/profile', () => {
         const action = {
             type: GET_USER,
             user: {
-              name: 'mockName'
+                name: 'mockName'
             }
         };
         const expectedState = {
-          name: 'mockName'
+            name: 'mockName'
         };
         const currentState = sut(undefined, action);
 
@@ -24,7 +24,7 @@ describe('reducer/profile', () => {
 
     it('should ignore unknown actionTypes', () => {
         const action = { type: 'unknownType' };
-        const state = Map({a: 1});
+        const state = new Map({ a: 1 });
         const currentState = sut(state, action);
 
         currentState.toJS().should.eqls(state.toJS());

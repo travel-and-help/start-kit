@@ -1,11 +1,17 @@
 const proxyquire = require('proxyquire').noCallThru();
 
 describe('action/profile', () => {
-    let sut, dispatch, api, fetcher, promise, fetchResponse, user;
+    let sut;
+    let dispatch;
+    let api;
+    let fetcher;
+    let promise;
+    let fetchResponse;
+    let user;
 
     beforeEach(() => {
         user = {
-          name: 'mockName'
+            name: 'mockName'
         };
 
         dispatch = env.spy();
@@ -32,13 +38,13 @@ describe('action/profile', () => {
     });
 
     it('should dispatch user event with data from response', () => {
-            fetcher(dispatch);
-            return promise.finally(() => {
-                const action = dispatch.lastCall.args[0];
-                action.should.eqls({
-                    type: sut.GET_USER,
-                    user: user
-                });
+        fetcher(dispatch);
+        return promise.finally(() => {
+            const action = dispatch.lastCall.args[0];
+            action.should.eqls({
+                type: sut.GET_USER,
+                user
             });
         });
+    });
 });

@@ -101,5 +101,5 @@ describe('Profile', () => {
                 .find('.challenge')
                 .length.should.equal(acceptedChallenges.length);
         });
-    })
+    });
 });
