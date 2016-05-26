@@ -19,6 +19,6 @@ describe('ChallengeTile', () => {
 
     it('should render tile Link element (a sample testcase for a shallow mounting)', () => {
         const wrapper = shallow(<ChallengeTile challenge={ challengeMap } />);
-        wrapper.is('Swipeable').should.equal(true);
+        wrapper.is('div').should.equal(true);
     });
 });

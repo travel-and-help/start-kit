@@ -1,11 +1,15 @@
 import React, { PropTypes } from 'react';
-import TopChallengeTile from '../../../../common/components/challenge/TopChallengeTile';
-import ChallengeTileList from '../../../../common/components/challenge/ChallengeTileList';
+import TopChallengeTile from './TopChallengeTile';
+import ChallengeTileList from './ChallengeTileList';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class ChallengeScreen extends React.Component {
     componentDidMount() {
         this.props.getChallenges();
+    }
+
+    onScroll(e) {
+        console.log(e);
     }
 
     render() {
@@ -17,7 +21,7 @@ class ChallengeScreen extends React.Component {
 
         /* istanbul ignore next */
         return (
-            <div>
+            <div onScroll={(e) => this.onScroll(e)}>
                 { topChallenge && <TopChallengeTile challenge={ topChallenge } /> }
                 <ChallengeTileList challenges={otherChallenges} />
             </div>
