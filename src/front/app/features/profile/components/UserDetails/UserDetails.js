@@ -78,7 +78,7 @@ const UserDetailsContainer = ({ user }) => {
                 </div>
                 <div className="" >
                     <h4 className="" >Accepted Challenges</h4>
-                    <div className="" >
+                    <div className="user-details__challenges-container_accepted" >
                         <ChallengeList challenges={acceptedChallenges} />
                     </div>
                 </div>
@@ -97,6 +97,7 @@ UserDetailsContainer.propTypes = {
     user: ImmutablePropTypes.mapContains({
         challenges: ImmutablePropTypes.list,
         categories: ImmutablePropTypes.list,
+        locations: ImmutablePropTypes.list,
         web: ImmutablePropTypes.list,
         firstName: PropTypes.string.isRequired,
         lastName: PropTypes.string.isRequired,

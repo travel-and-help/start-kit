@@ -1,47 +1,44 @@
-import { getUser, GET_USER } from './profile.actions';
+const proxyquire = require('proxyquire').noCallThru();
 
 describe('action/profile', () => {
-    let dispatch;
+    let sut, dispatch, api, fetcher, promise, fetchResponse, user;
 
-    describe('#getUser', () => {
-        let fetcher;
-        let promise;
-        let fetchResponse;
-        let user;
+    beforeEach(() => {
+        user = {
+          name: 'mockName'
+        };
 
-        beforeEach(() => {
-            user = {
-              name: 'mockName'
-            };
+        dispatch = env.spy();
 
-            dispatch = env.spy();
+        fetchResponse = {
+            json: env.stub().returns(user)
+        };
 
-            fetchResponse = {
-                json: env.stub().returns(user)
-            };
+        promise = env.stub().resolves(fetchResponse)();
 
-            promise = env.stub().resolves(fetchResponse)();
+        api = env.stub().returns(promise);
 
-            global.fetch = env.stub().returns(promise);
-
-            fetcher = getUser();
+        sut = proxyquire('./profile.actions', {
+            '../../common/api': api
         });
 
-        it('should fetch user', () => {
-            fetcher(dispatch);
+        fetcher = sut.getUser();
+    });
 
-            global.fetch.should.have.been.calledWith('/api/user').and.callCount(1);
-        });
+    it('should fetch user', () => {
+        fetcher(dispatch);
 
-        it('should dispatch user event with data from response', () => {
+        api.should.have.been.calledWith('/api/myprofile').and.callCount(1);
+    });
+
+    it('should dispatch user event with data from response', () => {
             fetcher(dispatch);
             return promise.finally(() => {
                 const action = dispatch.lastCall.args[0];
                 action.should.eqls({
-                    type: GET_USER,
+                    type: sut.GET_USER,
                     user: user
                 });
             });
         });
-    });
 });

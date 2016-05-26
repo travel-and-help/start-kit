@@ -7,6 +7,7 @@ describe('store', () => {
         reactRouterRedux,
         challenges,
         categories,
+        user,
         auth,
         storeEnhancers,
         result;
@@ -44,6 +45,10 @@ describe('store', () => {
             default: env.stub()
         };
 
+        user = {
+            default: env.stub()
+        };
+
         const sut = proxyquire('./index', {
             redux,
             'react-router': reactRouter,
@@ -51,6 +56,7 @@ describe('store', () => {
             '../features/main/challenges/challenges.reducer': challenges,
             '../features/categories/categories.reducer': categories,
             '../features/auth/auth.reducer': auth,
+            '../features/profile/profile.reducer': user,
             './enhancers': storeEnhancers
         }).default;
 
@@ -63,7 +69,8 @@ describe('store', () => {
                 auth: auth.default,
                 challenges: challenges.default,
                 routing: reactRouterRedux.routerReducer,
-                categories: categories.default
+                categories: categories.default,
+                user: user.default
             })
             .and
             .callCount(1);
