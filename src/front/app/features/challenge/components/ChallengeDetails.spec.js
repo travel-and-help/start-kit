@@ -1,22 +1,26 @@
 import React from 'react';
 import ChallengeDetails from './ChallengeDetails';
 import { mount } from 'enzyme';
+import { fromJS } from 'immutable';
 
 describe('ChallengeDetails', () => {
 
     let sut;
+    let challenge;
 
     beforeEach(() => {
-        sut = mount(<ChallengeDetails
-            title="testTitle"
-            level="testLevel"
-            description="testDescription"
-            user={{
+        challenge = fromJS({
+            title: 'testTitle',
+            level: 'testLevel',
+            description: 'testDescription',
+            user: {
                 firstName: 'userName',
                 lastName: 'userLastName',
                 rating: 1
-            }}
-        />);
+            }
+        });
+
+        sut = mount(<ChallengeDetails challenge={challenge} />);
     });
 
     it('should show challenge title', () => {

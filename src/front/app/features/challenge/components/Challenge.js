@@ -1,5 +1,4 @@
-import React, { PropTypes } from 'react';
-import { Component } from 'react';
+import React, { PropTypes, Component } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ChallengeNav from './ChallengeNav';
 import ChallengeDetails from './ChallengeDetails';
@@ -13,12 +12,16 @@ class Challenge extends Component {
         props.getChallenge(id);
     }
 
+    componentWillUnmount() {
+        this.props.getInitialState();
+    }
+
     render() {
         /* istanbul ignore next */
         return (
             <div className="challenge-details">
                 <ChallengeNav />
-                <ChallengeDetails {...this.props.challenge.toJS()} />
+                {this.props.challenge.size && <ChallengeDetails challenge={this.props.challenge} />}
                 <ChallengeComments />
             </div>
         );
@@ -27,7 +30,8 @@ class Challenge extends Component {
 
 Challenge.propTypes = {
     challenge: ImmutablePropTypes.map.isRequired,
-    getChallenge: PropTypes.func.isRequired
+    getChallenge: PropTypes.func.isRequired,
+    getInitialState: PropTypes.func.isRequired
 };
 
 export default Challenge;
