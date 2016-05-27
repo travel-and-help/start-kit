@@ -14,7 +14,7 @@ const CreateFormHeader = () => {
             </button>
 
             <button className="challenge-create__post" type="submit">
-            Post
+                Post
             </button>
 
         </header>

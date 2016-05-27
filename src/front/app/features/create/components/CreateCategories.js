@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-const CreateCategories = ({ categories }) => {
+const CreateCategories = ({ categories, category }) => {
     const categoriesArr = categories.toJS();
 
     return (
         <label className="challenge-create__field">
             Category
 
-            <select className="challenge-create__select-type">
-                <option value="-1"> > </option>
-                { categoriesArr.map((category, index) => (
-                    <option value={category._id} key={index}>{category.name}</option>
+            <select className="challenge-create__select-type" {...category}>
+                <option>Select</option>
+                { categoriesArr.map((cat, index) => (
+                    <option value={JSON.stringify(cat)} key={index}>{cat.name}</option>
                 )) }
             </select>
         </label>
@@ -19,7 +19,8 @@ const CreateCategories = ({ categories }) => {
 };
 
 CreateCategories.propTypes = {
-    categories: ImmutablePropTypes.list.isRequired
+    categories: ImmutablePropTypes.list.isRequired,
+    category: PropTypes.object
 };
 
 

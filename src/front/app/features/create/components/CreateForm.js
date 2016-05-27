@@ -8,18 +8,19 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class CreateForm extends Component {
     componentDidMount() {
-        this.props.getCategories();
+        if (this.props.categories.size === 0) {
+            this.props.getCategories();
+        }
     }
 
     render() {
-        const { fields: { title, description } } = this.props;
-        const { handleSubmit, postChallenge, categories } = this.props;
+        const { fields, handleSubmit, postChallenge, categories } = this.props;
 
         return (
             <section className="challenge-create">
                 <form onSubmit={ handleSubmit(postChallenge) }>
                     <CreateFormHeader />
-<CreateFormBody title={title} description={description} categories={categories} />
+                    <CreateFormBody fields={fields} categories={categories} />
                 </form>
             </section>
         );
@@ -36,6 +37,6 @@ CreateForm.propTypes = {
 
 export default reduxForm({
     form: 'create',
-    fields: ['title', 'description'],
+    fields: ['title', 'description', 'level', 'category', 'image'],
     validate
 })(CreateForm);
