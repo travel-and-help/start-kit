@@ -1,55 +1,77 @@
 .challenge-details {
-    $grid-gap: _th-rem(5);
+    $grid-gap: _th-rem(8);
     $page-padding: _th-rem(15);
     $colors: (
         bg_light: #eee,
         bg_dark: #ddd,
-        text_label: #c0c0c0
+        text_label: #c0c0c0,
+        bg_button: #ffee93,
+        bg_level: #ffa777,
+        main: #4a4a4a
     );
     $font-sizes: (
         default: _th-rem(18),
         header: _th-rem(22)
     );
 
-
     position: relative;
+    color: map_get($colors, main);
+
+    %border-block {
+        padding: $grid-gap;
+        border-radius: _th-rem(5);
+        border: solid _th-rem(1) map_get($colors, main);
+        background-color: #fff;
+    }
+
+    @import './ChallengeNav';
 
     .challenge {
 
-        // Navigation buttons
-        &-nav {
-            $nav-indent: _th-rem(10);
-
-            &__item {
-                position: absolute;
-                top: $nav-indent;
-
-                &_back {
-                    left: $nav-indent * 2;
-                }
-
-                &_watch {
-                    right: $nav-indent * 2;
-                }
-            }
-        }
-
-        // Image
-        &__img {
+        // Details
+        &-header {
+            position: relative;
             height: _th-rem(250);
-            background-color: map-get($colors, bg_light);
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center top;
+
+            &__title {
+                position: absolute;
+                bottom: _th-rem(16);
+                width: 100%;
+                margin: 0;
+                text-align: center;
+                text-transform: uppercase;
+                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+                font-size: map-get($font-sizes, header);
+                color: #ffffff;
+            }
         }
 
         // Info
         &-info {
-            $button-width: _th-rem(116);
+            $button-width: _th-rem(80);
 
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
+            padding: 0 $grid-gap;
+
+            &__inner {
+                display: flex;
+                flex-wrap: wrap;
+
+                &_big {
+                    flex: 1 1 calc(80% - #{$button-width});
+                    align-content: space-between;
+                }
+
+                &_small {
+                    flex: 0 0 $button-width;
+                    align-content: flex-start;
+                }
+            }
 
             &__item,
             &__button,
@@ -61,35 +83,54 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;
-                flex: 1 1 calc(100% - #{$button-width} - #{$grid-gap});
+                flex: 1 1 calc(35% - #{$grid-gap});
                 height: _th-rem(100);
                 margin-right: $grid-gap;
-                padding: $page-padding;
-                background-color: map-get($colors, bg_light);
+                @extend %border-block;
+
+                &_big {
+                    flex: 1 1 calc(65% - #{$grid-gap});
+                }
 
 
                 &_created {
 
                 }
 
-                &_completed {
+                &_description {
+                    flex: 1 1 100%;
+                    height: auto;
+                    margin-right: 0;
+                    margin-bottom: 0;
+                    padding: $page-padding;
                     font-size: map-get($font-sizes, default);
+                    background-color: map-get($colors, bg_light);
+                }
+            }
+
+            &-category {
+                &__name {
+                    text-align: center;
+                }
+            }
+
+            &-completed {
+                color: #fff;
+                background-color: map_get($colors, main);
+
+                &__count {
+                    text-align: center;
                 }
             }
 
             &__button {
-                flex: 0 0 $button-width;
-                height: _th-rem(100);
+                flex: 0 0 100%;
                 outline: 0;
                 font-size: map-get($font-sizes, default);
                 text-align: center;
-                background-color: map-get($colors, bg_dark);
-            }
-
-            &__title {
-                margin: 0;
-                text-transform: uppercase;
-                font-size: map-get($font-sizes, header);
+                color: map-get($colors, main);
+                @extend %border-block;
+                background-color: map-get($colors, bg_button);
             }
 
             &-author {
@@ -121,14 +162,17 @@
                 }
             }
 
-            &-level {
+            &-level,
+            &-completed {
+                height: auto;
+            }
 
-                &__label {
-                    font-size: map-get($font-sizes, default);
-                    color: map-get($colors, text_label);
-                }
+            &-level {
+                background-color: map_get($colors, bg_level);
 
                 &__value {
+                    font-weight: bold;
+                    text-align: center;
                     text-transform: capitalize;
                 }
             }
@@ -155,13 +199,7 @@
                 }
             }
 
-            &__description {
-                flex: 1;
-                padding: $page-padding;
-                margin-bottom: 0;
-                font-size: map-get($font-sizes, default);
-                background-color: map-get($colors, bg_light);
-            }
+
         }
 
         // Comments

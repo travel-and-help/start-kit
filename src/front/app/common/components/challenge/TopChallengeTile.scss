@@ -7,6 +7,8 @@
   border-radius: 0 0 $gBorderRadius $gBorderRadius;
   height: $height;
   text-align: center;
+  background-position: center;
+  background-size: cover;
 
   &__info {
     color: #fff;

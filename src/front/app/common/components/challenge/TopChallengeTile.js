@@ -18,7 +18,7 @@ const TopChallengeTile = ({ challenge }) => {
     } = challenge.toJS();
 
     const style = {
-        background: `url(${image}) no-repeat`
+        backgroundImage: `url(${image})`
     };
 
     return (

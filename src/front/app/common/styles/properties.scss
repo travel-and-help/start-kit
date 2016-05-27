@@ -3,6 +3,6 @@ $gBorderRadiusSm: 5px;
 
 $gBorderThickness: 2px;
 $gBorderColor: #4a4a4a;
-$gBorder: $gBorderThickness solid #4a4a4a;
+$gBorder: $gBorderThickness solid $gBorderColor;
 
 $fastenerHeight: 15px;
