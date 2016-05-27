@@ -1,9 +1,11 @@
 import { open } from '../../common/in-app-browser';
 import { set, remove } from '../../common/local-storage';
+import { hashHistory } from 'react-router';
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const LOGIN_ATTEMPT = 'LOGIN_ATTEMPT';
+export const LOGIN_SKIPPED = 'LOGIN_SKIPPED';
 
 export const LOGIN_SERVICES = Object.freeze({
     FACEBOOK: 'FACEBOOK',
@@ -33,6 +35,11 @@ export function loginFailed(info) {
     };
 }
 
+export function loginSkipped() {
+    return {
+        type: LOGIN_SKIPPED
+    };
+}
 function getServiceUrl(type) {
     const baseUrl = process.env.API_BASE_URL;
     switch (type) {
@@ -43,6 +50,10 @@ function getServiceUrl(type) {
     default:
         throw new Error('Login service is not supported');
     }
+}
+
+function redirect() {
+    hashHistory.push('challenges');
 }
 
 export function login(loginService) {
@@ -70,9 +81,17 @@ export function login(loginService) {
             .then((token) => {
                 dispatch(loginSuccess(token));
             })
+            .then(redirect)
             .catch((error) => {
                 dispatch(loginFailed(error));
             });
     };
 
+}
+
+export function skip() {
+    return (dispatch) => {
+        dispatch(loginSkipped());
+        redirect();
+    };
 }
