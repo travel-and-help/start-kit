@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
 import LoginButton from './login-button';
 
-const LoginScreen = ({ facebookLogin, googleLogin }) => (
+const LoginScreen = ({ facebookLogin, googleLogin, skipLogin }) => (
     <div className="login-screen" >
         <div className="login-screen__logo" >T&H</div>
         <div className="login-screen__slogan" >Make your trip useful</div>
@@ -13,16 +12,17 @@ const LoginScreen = ({ facebookLogin, googleLogin }) => (
                 <LoginButton text="Facebook" onLogin={() => {facebookLogin();}} />
                 <LoginButton text="G+" onLogin={() => {googleLogin();}} />
             </div>
-            <Link to="main/challenges" className="login-screen-actions__skip" >
+            <a className="login-screen-actions__skip" onClick={() => {skipLogin();}} >
                 Skip login
-            </Link>
+            </a>
         </section>
     </div>
 );
 
 LoginScreen.propTypes = {
     googleLogin: PropTypes.func.isRequired,
-    facebookLogin: PropTypes.func.isRequired
+    facebookLogin: PropTypes.func.isRequired,
+    skipLogin: PropTypes.func.isRequired
 };
 
 export default LoginScreen;

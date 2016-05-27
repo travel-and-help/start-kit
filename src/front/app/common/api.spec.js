@@ -10,7 +10,7 @@ describe('app/common/api', () => {
     beforeEach(() => {
 
         reactRouter = {
-            push: env.stub()
+            hashHistory: env.stub()
         };
 
         localStorage = {
@@ -62,6 +62,18 @@ describe('app/common/api', () => {
         sut({})
             .then((response) => {
                 response.should.equal(parsingResult);
+            });
+    });
+
+    it('should redirect to login if unauthenticated', () => {
+        fetchResult = {
+            status: 401,
+            statusText: 'test error'
+        };
+        global.fetch = env.stub().returns(env.stub().resolves(fetchResult)());
+        sut({})
+            .finally(() => {
+                reactRouter.hashHistory.should.calledWith('login');
             });
     });
 
