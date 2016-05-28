@@ -14,7 +14,6 @@ class Challenge extends Component {
     }
 
     render() {
-        /* istanbul ignore next */
         return (
             <div className="challenge-details">
                 <ChallengeNav />

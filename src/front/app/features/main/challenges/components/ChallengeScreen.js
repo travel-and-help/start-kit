@@ -8,20 +8,13 @@ class ChallengeScreen extends React.Component {
         this.props.getChallenges();
     }
 
-    onScroll(e) {
-        console.log(e);
-    }
-
     render() {
-        /* istanbul ignore next */
         const { challenges } = this.props;
-        /* istanbul ignore next */
         const topChallenge = challenges.first(),
             otherChallenges = challenges.slice(1);
 
-        /* istanbul ignore next */
         return (
-            <div onScroll={(e) => this.onScroll(e)}>
+            <div>
                 { topChallenge && <TopChallengeTile challenge={ topChallenge } /> }
                 <ChallengeTileList challenges={otherChallenges} />
             </div>

@@ -14,7 +14,6 @@ const ChallengeTile = ({ challenge }) => {
         },
     } = challenge.toJS();
 
-    /* istanbul ignore next */
     return (
         <div className="challenge-tile" >
             <img

@@ -3,7 +3,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ChallengeTileInfo from '../../../../common/components/challenge/ChallengeTileInfo';
 import TopChallengeBanner from './TopChallengeBanner';
 
-/* istanbul ignore next */
 const TopChallengeTile = ({ challenge }) => {
     const {
         title,

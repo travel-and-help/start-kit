@@ -9,7 +9,6 @@ import ChallengeTileAction from './ChallengeTileAction';
 export default class ChallengeTileList extends React.Component {
 
     static propTypes() {
-        /* istanbul ignore next */
         return {
             challenges: ImmutablePropTypes.list.isRequired,
             addToWatchList: PropTypes.func.isRequired,
@@ -75,7 +74,6 @@ export default class ChallengeTileList extends React.Component {
     render() {
         const { challenges } = this.props;
 
-        /* istanbul ignore next */
         return (
             <div>
                 {challenges.map((challenge, index) => {
