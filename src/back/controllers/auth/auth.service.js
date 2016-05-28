@@ -78,11 +78,12 @@ function restrictUnauthenticated(req, res, next) {
     }
 }
 
-function initRequest(req) {
+function initRequest(req, res, next) {
     Object.assign(req, {
         getCurrentUser,
         isAuthenticated
     });
+    next();
 }
 
 module.exports = {
