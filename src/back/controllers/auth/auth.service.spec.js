@@ -108,13 +108,16 @@ describe('auth.service', () => {
 
         it('should resolve if user exists', (done) => {
             const existingUser = {
-                'testProvided.id': 'profileId'
+                'testProvided.id': 'profileId',
+                save: env.stub()
             };
+            existingUser.save.returns(Promise.resolve(existingUser));
             userModel.findOne.returns(Promise.resolve(existingUser));
             const callback = sut.generateOAuth2VerifyCallback(userModel, providerProperty);
             callback('token', '', {
                 id: 'profileId'
             }, (err, user) => {
+                user.lastLogin.toDateString().should.equal((new Date().toDateString()));
                 user.should.equal(existingUser);
                 done();
             });

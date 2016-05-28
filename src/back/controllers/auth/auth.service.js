@@ -25,23 +25,25 @@ function responseAuthToken(req, res, next) {
 function generateOAuth2VerifyCallback(UserModel, providerProperty) {
     return (accessToken, refreshToken, profile, done) => {
         UserModel.findOne({ [`${providerProperty}.id`]: profile.id })
-            .then((user) => {
+            .then((result) => {
+                let user = result;
                 if (user) {
-                    return user;
+                    user.lastLogin = new Date();
+                } else {
+                    user = new UserModel();
+                    user[providerProperty] = {
+                        id: profile.id,
+                        token: accessToken
+                    };
+                    user.fullName = profile.displayName;
+                    if (profile.photos && profile.photos.length > 0) {
+                        user.photo = profile.photos[0].value;
+                    }
+                    if (profile.emails && profile.emails.length > 0) {
+                        user.email = profile.emails[0].value;
+                    }
                 }
-                const newUser = new UserModel();
-                newUser[providerProperty] = {
-                    id: profile.id,
-                    token: accessToken
-                };
-                newUser.fullName = profile.displayName;
-                if (profile.photos && profile.photos.length > 0) {
-                    newUser.photo = profile.photos[0].value;
-                }
-                if (profile.emails && profile.emails.length > 0) {
-                    newUser.email = profile.emails[0].value;
-                }
-                return newUser.save();
+                return user.save();
             })
             .then((user) => {
                 done(null, user);

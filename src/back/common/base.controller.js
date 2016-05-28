@@ -7,9 +7,6 @@ const mongoose = require('mongoose'),
 class BaseController {
 
     constructor(model) {
-        if (model instanceof mongoose.Schema) {
-            throw new Error('Model should be a mongoose.Schema instance');
-        }
         this._model = model;
     }
 
@@ -69,15 +66,6 @@ class BaseController {
 
     remove(req, res) {
         const itemId = req.params.id;
-        if (!itemId) {
-            res
-                .status(responseStatus.BAD_REQUEST)
-                .send({
-                    success: false,
-                    message: 'id should be passed'
-                });
-            return Q.defer().reject();
-        }
         const model = this.getModel();
         return model
             .remove({ _id: itemId })
@@ -88,7 +76,7 @@ class BaseController {
     processError(req, res, err) {
         res
             .status(responseStatus.INTERNAL_SERVER_ERROR)
-            .send({
+            .json({
                 error: err
             });
     }
