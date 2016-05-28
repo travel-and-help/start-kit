@@ -3,8 +3,7 @@ const jwt = require('jsonwebtoken'),
     expressJwt = require('express-jwt'),
     env = require('../../../../env'),
     http = require('http'),
-    mongoose = require('mongoose'),
-    userModel = mongoose.model('User'),
+    userModel = require('../api/models/user'),
     reqUserProperty = 'auth';
 
 const validateJwt = expressJwt({

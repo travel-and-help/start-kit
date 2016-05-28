@@ -1,6 +1,6 @@
 'use strict';
 
-const proxyquire = require('proxyquire'),
+const proxyquire = require('proxyquire').noCallThru(),
     expect = require('chai').expect;
 
 describe('auth.service', () => {
@@ -9,8 +9,7 @@ describe('auth.service', () => {
         expressJWT,
         envValues,
         userModel,
-        userInstance,
-        mongoose;
+        userInstance;
 
     const expressJWTResult = function expressJWTResult() {
         return () => {
@@ -32,14 +31,11 @@ describe('auth.service', () => {
         userModel = env.spy(() => (userInstance));
         userModel.findOne = env.stub();
         userModel.findById = env.stub();
-        mongoose = {
-            model: env.stub().returns(userModel)
-        };
         sut = proxyquire('./auth.service', {
             jsonwebtoken,
             'express-jwt': expressJWT,
             '../../../../env': envValues,
-            mongoose
+            '../api/models/user': userModel
         });
     });
 
