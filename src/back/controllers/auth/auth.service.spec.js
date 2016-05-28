@@ -164,7 +164,7 @@ describe('auth.service', () => {
             const req = {
                 auth: { id: 'testId' }
             };
-            sut.initRequest(req);
+            sut.initRequest(req, {}, () => {});
             let result = req.isAuthenticated();
             result.should.equal(true);
             req.auth = {};
@@ -178,7 +178,7 @@ describe('auth.service', () => {
 
         it('should return promise', () => {
             const req = {};
-            sut.initRequest(req);
+            sut.initRequest(req, {}, () => {});
             req.isAuthenticated = () => (false);
             const result = req.getCurrentUser();
             expect(result).to.be.an.instanceof(Promise);
@@ -196,7 +196,7 @@ describe('auth.service', () => {
                     id: 'testId'
                 }
             };
-            sut.initRequest(req);
+            sut.initRequest(req, {}, () => {});
             req.isAuthenticated = () => (true);
             req.getCurrentUser()
                 .then((user) => {
@@ -210,7 +210,7 @@ describe('auth.service', () => {
 
         it('should reject if not authenticated', () => {
             const req = {};
-            sut.initRequest(req);
+            sut.initRequest(req, {}, () => {});
             req.isAuthenticated = () => (false);
             req.getCurrentUser()
                 .catch((error) => {
