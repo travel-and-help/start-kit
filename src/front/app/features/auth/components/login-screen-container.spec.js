@@ -22,7 +22,8 @@ describe('LoginScreenContainer', () => {
         };
 
         authActions = {
-            login: env.stub()
+            login: env.stub(),
+            skip: env.stub()
         };
 
         proxyquire('./login-screen-container', {
@@ -47,6 +48,12 @@ describe('LoginScreenContainer', () => {
         const { googleLogin } = reactRedux.connect.getCall(0).args[1](dispatch);
         googleLogin();
         authActions.login.should.calledWith(LOGIN_SERVICES.GOOGLE_PLUS);
+    });
+
+    it('should map dispatch to prop method skipLogin', () => {
+        const { skipLogin } = reactRedux.connect.getCall(0).args[1](dispatch);
+        skipLogin();
+        authActions.skip.should.calledWith();
     });
 
 });
