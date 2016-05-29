@@ -7,7 +7,7 @@ const BaseController = require('./base.controller'),
 let sut,
     testModel;
 
-describe('BaseController', () => {
+describe('ProfileController', () => {
 
     beforeEach(() => {
         testModel = function ModelStub() {
@@ -41,7 +41,7 @@ describe('BaseController', () => {
                         test: 'test'
                     }]);
                     testModel.paginate.should.calledWith({}, {
-                        page: 0,
+                        page: 1,
                         limit: 10,
                         lean: true
                     });
@@ -145,9 +145,12 @@ describe('BaseController', () => {
     describe('Method getById', () => {
 
         it('return expected object on get, if success result', (done) => {
-            const findPromise = Q.fcall(() => ([
-                { test: 'test' }
-            ]));
+            const resultModel = {
+                test: 'test',
+                toObject: env.stub()
+            };
+            resultModel.toObject.returns(resultModel);
+            const findPromise = Q.fcall(() => (resultModel));
             testModel.findById.returns(findPromise);
             const request = httpMocks.createRequest({
                 method: 'GET',
@@ -159,9 +162,9 @@ describe('BaseController', () => {
                 .then(() => {
                     response.statusCode.should.equal(200);
                     const data = JSON.parse(response._getData());
-                    data.should.deep.equal([{
+                    data.should.deep.equal({
                         test: 'test'
-                    }]);
+                    });
                     testModel.findById.should.calledWith(42);
                     done();
                 });

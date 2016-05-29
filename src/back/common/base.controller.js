@@ -1,8 +1,6 @@
 'use strict';
 
-const mongoose = require('mongoose'),
-    Q = require('q'),
-    responseStatus = require('./response-status');
+const responseStatus = require('./response-status');
 
 class BaseController {
 
@@ -24,7 +22,7 @@ class BaseController {
 
     createGetOptions(req) {
         return {
-            page: Number(req.query.page) || 0,
+            page: Number(req.query.page) || 1,
             limit: Number(req.query.limit) || 10,
             lean: true
         };
@@ -51,8 +49,13 @@ class BaseController {
         return model.findById(req.params.id);
     }
 
+    processGetByIdResult(result) {
+        return result.toObject();
+    }
+
     getById(req, res) {
         return this.createFindByIdRequest(req, res)
+            .then((result) => (this.processGetByIdResult(result)))
             .then((result) => (this.processSuccess(req, res, result)))
             .catch((err) => (this.processError(req, res, err)));
     }

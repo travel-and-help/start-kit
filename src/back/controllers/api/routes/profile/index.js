@@ -1,15 +1,19 @@
 'use strict';
 
-const router = require('express').Router(),
-    ProfileController = require('./profile.controller');
+const routerConstructor = require('express').Router,
+    ProfileController = require('./profile.controller'),
+    authService = require('../../../auth/auth.service');
 
 const controller = new ProfileController();
-
+const router = routerConstructor();
 router.route('/')
-    .get(controller.get.bind(controller));
+    .get((req, res) => (controller.get(req, res)));
 
 router.route('/:id')
-    .get(controller.getById.bind(controller))
-    .put(controller.update.bind(controller));
+    .get((req, res) => (controller.getById(req, res)))
+    .post(
+        authService.restrictUnauthenticated,
+        (req, res) => (controller.update(req, res))
+    );
 
 module.exports = router;
