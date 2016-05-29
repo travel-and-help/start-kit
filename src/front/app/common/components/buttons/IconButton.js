@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 /* istanbul ignore next */
 const IconButton = ({
@@ -17,13 +17,13 @@ const IconButton = ({
 );
 
 IconButton.propTypes = {
-    title: React.propTypes.string,
-    iconName: React.propTypes.string.isRequired,
-    clickHandler: React.propTypes.func,
-    iconSize: React.propTypes.number,
-    iconClassName: React.propTypes.string,
-    buttonClassName: React.propTypes.string,
-    buttonType: React.propTypes.string
+    title: PropTypes.string,
+    iconName: PropTypes.string.isRequired,
+    clickHandler: PropTypes.func,
+    iconSize: PropTypes.number,
+    iconClassName: PropTypes.string,
+    buttonClassName: PropTypes.string,
+    buttonType: PropTypes.string
 };
 
 export default IconButton;

@@ -1,13 +1,17 @@
 'use strict';
 const jwt = require('jsonwebtoken'),
     expressJwt = require('express-jwt'),
-    env = require('../../../../env');
+    env = require('../../../../env'),
+    http = require('http'),
+    userModel = require('../api/models/user'),
+    reqUserProperty = 'auth';
 
 const validateJwt = expressJwt({
     secret: env.SESSION_SECRET,
     credentialsRequired: false,
     requestProperty: 'auth'
 });
+const UNAUTHENTICATED_STATUS = 401;
 
 function responseAuthToken(req, res, next) {
     if (!req.user) {
@@ -50,8 +54,42 @@ function generateOAuth2VerifyCallback(UserModel, providerProperty) {
     };
 }
 
+function isAuthenticated() {
+    return !!(this[reqUserProperty] && this[reqUserProperty].id);
+}
+
+function getCurrentUser() {
+    if (!this.isAuthenticated()) {
+        return Promise.reject('User is not authenticated');
+    }
+    return userModel.findById(this[reqUserProperty].id, { fullName: 1, email: 1 });
+}
+
+function restrictUnauthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        next();
+    } else {
+        res
+            .status(UNAUTHENTICATED_STATUS)
+            .json({
+                success: false,
+                message: http.STATUS_CODES[UNAUTHENTICATED_STATUS]
+            });
+    }
+}
+
+function initRequest(req, res, next) {
+    Object.assign(req, {
+        getCurrentUser,
+        isAuthenticated
+    });
+    next();
+}
+
 module.exports = {
     validateJwt,
     responseAuthToken,
-    generateOAuth2VerifyCallback
+    generateOAuth2VerifyCallback,
+    restrictUnauthenticated,
+    initRequest
 };
