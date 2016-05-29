@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import TopChallengeTile from '../../../../common/components/challenge/TopChallengeTile';
-import ChallengeTileList from '../../../../common/components/challenge/ChallengeTileList';
+import TopChallengeTile from './TopChallengeTile';
+import ChallengeTileList from './ChallengeTileList';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class ChallengeScreen extends React.Component {
@@ -9,13 +9,10 @@ class ChallengeScreen extends React.Component {
     }
 
     render() {
-        /* istanbul ignore next */
         const { challenges } = this.props;
-        /* istanbul ignore next */
         const topChallenge = challenges.first(),
             otherChallenges = challenges.slice(1);
 
-        /* istanbul ignore next */
         return (
             <div>
                 { topChallenge && <TopChallengeTile challenge={ topChallenge } /> }

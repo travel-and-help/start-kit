@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-/* istanbul ignore next */
 const NavigationItem = ({ link, iconClass }) => (
     <div className="navigation-item-wrapper" >
         <Link

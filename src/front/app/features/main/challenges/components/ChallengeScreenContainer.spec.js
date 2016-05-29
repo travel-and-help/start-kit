@@ -1,6 +1,6 @@
 import proxyquire from 'proxyquire';
 
-describe('ChallengeScreenContainer', () => {
+describe('app/features/main/challenges ChallengeScreenContainer', () => {
     let sut,
         reactRedux,
         dispatch,

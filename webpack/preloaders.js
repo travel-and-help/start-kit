@@ -3,7 +3,7 @@
 module.exports = [
     {
         test: /\.scss$/,
-        loader: 'import-glob-loader'
+        loader: 'import-glob'
     },
     {
         test: /\.js?$/,
