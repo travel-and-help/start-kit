@@ -51,7 +51,7 @@ describe('google passport', () => {
         });
 
         it('should register google strategy', () => {
-            authService.generateOAuth2VerifyCallback.should.been.calledWith(user, 'googlePlus');
+            authService.generateOAuth2VerifyCallback.should.been.calledWith(user, 'google');
             passportGoogle.OAuth2Strategy.should.been.calledWith({
                 clientID: 'testGoogleId',
                 clientSecret: 'testGoogleSecret',

@@ -14,7 +14,7 @@ exports = module.exports = (User) => {
             callbackURL: `${env.API_BASE_URL}/auth/google-plus/callback`,
             profileFields: ['id', 'displayName', 'photos', 'email']
         },
-        verifyCallback = authService.generateOAuth2VerifyCallback(User, 'googlePlus');
+        verifyCallback = authService.generateOAuth2VerifyCallback(User, 'google');
 
     passport.use(new GooglePlusStrategy(strategyConfig, verifyCallback));
 };
