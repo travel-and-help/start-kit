@@ -1,16 +1,14 @@
 'use strict';
 
 const proxyquire = require('proxyquire').noCallThru();
+const chainable = require('../../../../test/unit/builders/chainable');
 
 describe('controllers/api', () => {
     let sut,
         router;
 
     beforeEach(() => {
-
-        router = {
-            use: env.spy(() => router)
-        };
+        router = chainable(['use']);
 
         const express = {
             Router: env.stub().returns(router)
@@ -22,12 +20,13 @@ describe('controllers/api', () => {
             './routes/challenge': {},
             './routes/categories': {},
             './routes/profile': {},
-            './routes/my': {}
+            './routes/my': 'myRoutes'
         });
     });
 
     it('should export router', () => {
         sut.should.equal(router);
     });
-});
 
+    it('handles route "/my"', () => router.use.should.have.been.calledWith('/my', 'myRoutes'));
+});

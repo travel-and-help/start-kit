@@ -1,6 +1,7 @@
 'use strict';
 
 const proxyquire = require('proxyquire').noCallThru();
+const chainable = require('../../../../../../test/unit/builders/chainable');
 
 describe('my route', () => {
     let authService,
@@ -8,11 +9,7 @@ describe('my route', () => {
         router;
 
     beforeEach(() => {
-        router = [
-            'get',
-            'delete',
-            'use'
-        ].reduce((memo, key) => Object.assign(memo, { [key]: env.stub().returns(memo) }), {});
+        router = chainable(['get', 'delete', 'use']);
         my = {
             getWatchList: 'a function',
             unWatch: 'another function'
