@@ -1,10 +1,8 @@
-.watch-list {
-    .challenge-tile-wrap::before {
-        float: left;
-        content: 'X';
-        margin-left: -25px;
-        padding-top: 35px;
-        font-size: 25px;
-        font-weight: bold;
-    }
+.top-watchlist-tile {
+    border-left: $gBorder;
+    border-right: $gBorder;
+    border-bottom: $gBorder;
+    border-radius: 0 0 $gBorderRadius $gBorderRadius;
+    height: 10px;
+    background: #fff;
 }

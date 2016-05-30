@@ -9,7 +9,8 @@ export function getInitialChallenges() {
 export function unWatch(challenge) {
     return function unWatchChallenge(dispatch) {
         api(`/api/my/wish-list/${challenge.get('_id')}`, { method: 'DELETE' })
-            .finally(() => fetchChallenges(dispatch));
+            .then(() => fetchChallenges(dispatch))
+            .catch(() => fetchChallenges(dispatch));
     };
 }
 
