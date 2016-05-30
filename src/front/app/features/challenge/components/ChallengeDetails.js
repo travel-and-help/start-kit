@@ -1,22 +1,28 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import IconButton from './../../../common/components/buttons/IconButton';
 import Fasteners from './../../../common/components/fasteners/Fasteners';
 
-const ChallengeDetails = ({
-    categories,
-    title,
-    level,
-    location,
-    description,
-    image = '',
-    user = {}
-    }) => (
-    <section>
-        <header className="challenge-header" style={{ backgroundImage: `url(${image})` }}>
-            <h1 className="challenge-header__title">{title}</h1>
-        </header>
+const ChallengeDetails = ({ challenge }) => {
+    const {
+        image,
+        title,
+        level,
+        description,
+        user: {
+            firstName,
+            lastName,
+            rating
+        }
+    } = challenge.toJS();
 
-        <div className="challenge-info">
+    return (
+        <section>
+            <header className="challenge-header" style={{ backgroundImage: `url(${image})` }}>
+                <h1 className="challenge-header__title">{title}</h1>
+            </header>
+
+            <div className="challenge-info">
 
             <div className="challenge-info__inner challenge-info__inner_big">
 
@@ -31,7 +37,7 @@ const ChallengeDetails = ({
                     <div className="challenge-info-author">
                         <span className="challenge-info-author__label">Created by</span>
                         <span className="challenge-info-author__name">
-                            {user.firstName} {user.lastName}
+                            {firstName} {lastName}
                         </span>
                     </div>
                     <p className="challenge-info-location">
@@ -74,13 +80,17 @@ const ChallengeDetails = ({
 );
 
 ChallengeDetails.propTypes = {
-    categories: React.PropTypes.array,
-    image: React.PropTypes.string,
-    title: React.PropTypes.string,
-    level: React.PropTypes.string,
-    location: React.PropTypes.string,
-    description: React.PropTypes.string,
-    user: React.PropTypes.object
+    challenge: ImmutablePropTypes.mapContains({
+        image: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        level: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        user: ImmutablePropTypes.mapContains({
+            firstName: PropTypes.string.isRequired,
+            lastName: PropTypes.string.isRequired,
+            rating: PropTypes.number.isRequired
+        }).isRequired
+    }).isRequired
 };
 
 export default ChallengeDetails;

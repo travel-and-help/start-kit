@@ -1,4 +1,5 @@
 .navigation-item {
+  $assetsBasePath: './app/features/main/navigation/assets/';
   $heightDiff: 6px;
 
   display: block;
@@ -11,9 +12,25 @@
   width: 115%;
   height: 100%;
 
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    opacity: $gOpacity;
+  }
+
   &_active {
     top: -$heightDiff;
     z-index: 5 !important;
+    &::after {
+      opacity: 1;
+    }
   }
 
   &-wrapper {
@@ -24,23 +41,35 @@
     background: #ffa777;
     z-index: 4;
     left: 0;
+    &::after {
+      background: url($assetsBasePath + 'challanges-icon.svg') no-repeat center;
+    }
   }
 
   &_awards {
     background: #ffee93;
     z-index: 3;
     left: -5%;
+    &::after {
+      background: url($assetsBasePath + 'awards-icon.svg')  no-repeat center;
+    }
   }
 
   &_updates {
     background: #adf7b6;
     z-index: 2;
     left: -10%;
+    &::after {
+      background: url($assetsBasePath + 'updates-icon.svg')  no-repeat center;
+    }
   }
 
   &_profile {
     background: #a0ced9;
     z-index: 1;
     left: -15%;
+    &::after {
+      background: url($assetsBasePath + 'profile-icon.svg')  no-repeat center;
+    }
   }
 }

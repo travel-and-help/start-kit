@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import { LOGIN_ATTEMPT, LOGIN_SUCCESS, LOGIN_FAILED } from './auth.actions';
+import { LOGIN_ATTEMPT, LOGIN_SUCCESS, LOGIN_FAILED, LOGIN_SKIPPED } from './auth.actions';
 
 const initialState = fromJS({
     isLoggedIn: false
@@ -20,6 +20,10 @@ export default function user(state = initialState, action) {
         return fromJS({
             isLoggedIn: false,
             info: action.info
+        });
+    case LOGIN_SKIPPED:
+        return fromJS({
+            skipped: true
         });
     default:
         return state;

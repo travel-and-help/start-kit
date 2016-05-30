@@ -45,4 +45,25 @@ describe('action/categories', () => {
             });
         });
     });
+
+    describe('#resetState', () => {
+        let reset;
+
+        beforeEach(() => {
+
+            dispatch = env.spy();
+
+            reset = sut.resetState();
+        });
+
+        it('should dispatch RESET_STATE event', () => {
+            reset(dispatch);
+            return promise.finally(() => {
+                const action = dispatch.lastCall.args[0];
+                action.should.eqls({
+                    type: sut.RESET_STATE
+                });
+            });
+        });
+    });
 });
