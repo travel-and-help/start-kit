@@ -25,11 +25,13 @@ describe('reducer/auth', () => {
     it('should handle LOGIN_SUCCESS', () => {
         const action = {
             type: LOGIN_SUCCESS,
-            token: 'testtoken'
+            token: 'testtoken',
+            userId: 'testUser'
         };
         const expectedState = {
             isLoggedIn: true,
-            token: 'testtoken'
+            token: 'testtoken',
+            userId: 'testUser'
         };
         const currentState = sut(undefined, action);
         currentState.toJS().should.eqls(expectedState);
