@@ -1,16 +1,40 @@
 'use strict';
 
-const proxyquire = require('proxyquire');
+const proxyquire = require('proxyquire').noCallThru();
 
-describe('categories route', () => {
-    it('should get all categories for root', () => {
-        const categories = { getAll: 'smth' };
-        const get = env.stub();
-        const Router = env.stub().returns({ get: get });// eslint-disable-line
+describe('my route', () => {
+    let authService,
+        my,
+        router;
+
+    beforeEach(() => {
+        router = [
+            'get',
+            'delete',
+            'use'
+        ].reduce((memo, key) => Object.assign(memo, { [key]: env.stub().returns(memo) }), {});
+        my = {
+            getWatchList: 'a function',
+            unWatch: 'another function'
+        };
+        authService = { restrictUnauthenticated: env.stub() };
+
         proxyquire('./index', {
-            express: { Router },
-            './categories': categories
+            express: { Router: env.stub().returns(router) },
+            './my': my,
+            '../../../auth/auth.service': authService
         });
-        get.should.have.been.calledWith('/', categories.getAll);
     });
+
+    it('GET-s watch list',
+        () => router.get.should.have.been.calledWith('/wish-list', my.getWatchList)
+    );
+
+    it('DELETE-s challenge',
+        () => router.delete.should.have.been.calledWith('/wish-list/:challengeId', my.unWatch)
+    );
+
+    it('checks authentication',
+        () => router.use.should.have.been.calledWith(authService.restrictUnauthenticated)
+    );
 });

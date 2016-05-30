@@ -10,7 +10,8 @@ describe('store', () => {
         challenge,
         auth,
         storeEnhancers,
-        result;
+        result,
+        watchList;
 
     beforeEach(() => {
 
@@ -49,6 +50,8 @@ describe('store', () => {
             default: env.stub()
         };
 
+        watchList = { default: env.stub() };
+
         const sut = proxyquire('./index', {
             redux,
             'react-router': reactRouter,
@@ -57,7 +60,8 @@ describe('store', () => {
             '../features/challenge/challenge.reducer': challenge,
             '../features/categories/categories.reducer': categories,
             '../features/auth/auth.reducer': auth,
-            './enhancers': storeEnhancers
+            './enhancers': storeEnhancers,
+            '../features/WatchList/watchList.reducer': watchList
         }).default;
 
         result = sut();
@@ -70,7 +74,8 @@ describe('store', () => {
                 challenges: challenges.default,
                 challenge: challenge.default,
                 routing: reactRouterRedux.routerReducer,
-                categories: categories.default
+                categories: categories.default,
+                watchList: watchList.default
             })
             .and
             .callCount(1);

@@ -55,7 +55,6 @@ function generateOAuth2VerifyCallback(UserModel, providerProperty) {
 }
 
 function isAuthenticated() {
-    this[reqUserProperty] = { id: '572af81c1f9056926b4a1634' };
     return !!(this[reqUserProperty] && this[reqUserProperty].id);
 }
 
