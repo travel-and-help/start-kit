@@ -1,27 +1,38 @@
 .challenge-details {
-    $grid-gap: _th-rem(8);
-    $page-padding: _th-rem(15);
+    $grid-gap: _th-rem(15);
+    $page-padding: _th-rem(8);
     $colors: (
         bg_light: #eee,
         bg_dark: #ddd,
         text_label: #c0c0c0,
         bg_button: #ffee93,
         bg_level: #ffa777,
-        main: #4a4a4a
+        main: #4a4a4a,
+        title: #9b9b9b
     );
     $font-sizes: (
-        default: _th-rem(18),
-        header: _th-rem(22)
+        small: _th-rem(12),
+        default: _th-rem(14),
+        header: _th-rem(24)
     );
 
     position: relative;
     color: map_get($colors, main);
 
     %border-block {
-        padding: $grid-gap;
+        padding: $page-padding;
         border-radius: _th-rem(5);
         border: solid _th-rem(1) map_get($colors, main);
+        font-size: map_get($font-sizes, default);
         background-color: #fff;
+
+        &-title {
+            margin: 0 0 $page-padding;
+            text-transform: uppercase;
+            font-size: map_get($font-sizes, default);
+            line-height: 1;
+            color: map_get($colors, title);
+        }
     }
 
     @import './ChallengeNav';
@@ -51,20 +62,27 @@
 
         // Info
         &-info {
-            $button-width: _th-rem(80);
+            $button-width: _th-rem(72);
 
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-between;
             padding: 0 $grid-gap;
+
+            &__fasteners {
+                position: absolute;
+                top: -$grid-gap;
+                left: $grid-gap;
+                right: $grid-gap;
+            }
 
             &__inner {
                 display: flex;
                 flex-wrap: wrap;
+                height: _th-rem(160);
 
                 &_big {
-                    flex: 1 1 calc(80% - #{$button-width});
-                    align-content: space-between;
+                    flex: 1 1 calc(100% - #{$button-width});
+                    align-content: stretch;
                 }
 
                 &_small {
@@ -74,44 +92,51 @@
             }
 
             &__item,
-            &__button,
+            &__button_wrapper,
             &__description {
                 margin-top: $grid-gap;
             }
 
             &__item {
+                position: relative;
                 display: flex;
                 flex-direction: column;
-                justify-content: space-around;
-                flex: 1 1 calc(35% - #{$grid-gap});
-                height: _th-rem(100);
+                justify-content: center;
+                flex: 1 1 5rem;
                 margin-right: $grid-gap;
                 @extend %border-block;
 
                 &_big {
-                    flex: 1 1 calc(65% - #{$grid-gap});
-                }
-
-
-                &_created {
-
-                }
-
-                &_description {
-                    flex: 1 1 100%;
-                    height: auto;
-                    margin-right: 0;
-                    margin-bottom: 0;
-                    padding: $page-padding;
-                    font-size: map-get($font-sizes, default);
-                    background-color: map-get($colors, bg_light);
+                    flex: 1 1 calc(100% - 5rem - (2 * #{$grid-gap}));
                 }
             }
 
+            &__label {
+                margin: 0;
+                font-size: map-get($font-sizes, small);
+            }
+
+            &__text {
+                font-weight: bold;
+            }
+
             &-category {
-                &__name {
-                    text-align: center;
-                }
+                text-align: center;
+            }
+
+            &-author {
+                padding-bottom: $page-padding;
+            }
+
+            &-level {
+                text-align: center;
+                text-transform: uppercase;
+                background-color: map_get($colors, bg_level);
+            }
+
+            &-level,
+            &-completed {
+                height: auto;
             }
 
             &-completed {
@@ -124,131 +149,91 @@
             }
 
             &__button {
-                flex: 0 0 100%;
+                width: 100%;
+                height: 100%;
                 outline: 0;
-                font-size: map-get($font-sizes, default);
                 text-align: center;
                 color: map-get($colors, main);
                 @extend %border-block;
                 background-color: map-get($colors, bg_button);
-            }
 
-            &-author {
-
-                &__label {
-                    font-size: map-get($font-sizes, default);
-                    color: map-get($colors, text_label);
-                }
-
-                &__name {
-
-                }
-
-                &__rating {
+                &_wrapper {
                     position: relative;
-                    display: inline-block;
-                    width: _th-rem(36);
-                    height: _th-rem(36);
-                    vertical-align: bottom;
-
-                    &-val {
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        vertical-align: bottom;
-                        font-size: 0.7rem;
-                    }
+                    flex: 0 0 100%;
+                    height: calc(50% - #{$grid-gap});
                 }
             }
 
-            &-level,
-            &-completed {
+            &-description {
+                flex: 1 1 100%;
                 height: auto;
-            }
+                margin: $grid-gap;
+                @extend %border-block;
 
-            &-level {
-                background-color: map_get($colors, bg_level);
-
-                &__value {
-                    font-weight: bold;
-                    text-align: center;
-                    text-transform: capitalize;
+                &__title {
+                    @extend %border-block-title;
                 }
             }
-
-            &-completed {
-
-                &__count,
-                &__this-week,
-                &__see-more {
-                    margin: 0;
-                }
-
-                &__count {
-
-                }
-
-                &__this-week {
-
-                }
-
-                &__see-more {
-                    margin-top: $grid-gap;
-                    text-decoration: underline;
-                }
-            }
-
-
         }
 
         // Comments
         &-comments {
-            margin-top: $grid-gap;
+            position: relative;
+            @extend %border-block;
+
+            &__wrapper {
+                padding: 0 $grid-gap;
+            }
+
+            &__fasteners {
+                position: absolute;
+                top: -$grid-gap;
+                left: $grid-gap * 2;
+                right: $grid-gap * 2;
+            }
 
             &__title {
-                height: _th-rem(30);
-                padding: 0 $page-padding;
-                line-height: _th-rem(30);
-                background-color: map-get($colors, bg_dark);
-                font-size: map-get($font-sizes, default);
-                font-weight: bold;
+                @extend %border-block-title;
             }
 
             &__item {
-                padding: $page-padding;
-                font-size: map-get($font-sizes, default);
+                padding-bottom: $page-padding;
+                font-size: map-get($font-sizes, small);
             }
 
             &__author,
             &__comment {
-                font-size: 1rem;
                 display: block;
             }
 
-            &__author {
-                font-weight: bold;
-            }
+            &__author {}
 
-            &__form {
-                margin-top: _th-rem(60);
-                padding: $page-padding;
-            }
+            &-form {
+                position: relative;
+                margin-top: $grid-gap;
 
-            &__input {
-                width: 90%;
-                height: _th-rem(40);
-                line-height: _th-rem(40);
-                padding: 0 _th-rem(10);
-                border: none;
-                outline: none;
-                border-radius: _th-rem(5);
-                vertical-align: middle;
-                background-color: map-get($colors, bg_light);
-            }
+                &__fasteners {
+                    position: absolute;
+                    top: -$grid-gap;
+                    left: $grid-gap * 1.5;
+                    right: $grid-gap * 4.5;
+                }
 
-            &__submit-button {
-                float: right;
+                &__input {
+                    width: 85%;
+                    height: _th-rem(40);
+                    line-height: _th-rem(40);
+                    padding: 0 _th-rem(10);
+                    border: none;
+                    outline: none;
+                    border-radius: _th-rem(5);
+                    vertical-align: middle;
+                    background-color: map-get($colors, bg_light);
+                }
+
+                &__submit {
+                    float: right;
+                }
             }
         }
     }

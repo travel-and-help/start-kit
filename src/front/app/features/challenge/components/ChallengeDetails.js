@@ -27,57 +27,68 @@ const ChallengeDetails = ({ challenge }) => {
 
                 <div className="challenge-info__inner challenge-info__inner_big" >
 
-                    <div className="challenge-info__item" >
-                        <Fasteners className="challenge-tile-wrap__fasteners" />
+                    <div className="challenge-info__item challenge-info-category" >
+                        <Fasteners className="challenge-info__fasteners" />
                         <i className="challenge-info-category__icon icon icon_size-36" >group</i>
-                        <span className="challenge-info-category__name" >{categories}</span>
+                        <span className="challenge-info__text" >{categories}</span>
                     </div>
 
 
                     <div className="challenge-info__item challenge-info__item_big" >
+                        <Fasteners className="challenge-info__fasteners" />
                         <div className="challenge-info-author" >
-                            <span className="challenge-info-author__label" >Created by</span>
-                        <span className="challenge-info-author__name" >
-                            {firstName} {lastName}
-                        </span>
+                            <p className="challenge-info__label">Created by</p>
+                            <span className="challenge-info__text">
+                                {firstName} {lastName}
+                            </span>
                         </div>
-                        <p className="challenge-info-location" >
-                            <span className="challenge-info-location__label" >Region</span>
-                            <span className="challenge-info-location__name" >{location}</span>
-                        </p>
+                        <div className="challenge-info-location" >
+                            <p className="challenge-info__label">Region</p>
+                            <span className="challenge-info__text">{location}</span>
+                        </div>
                     </div>
 
-                    <div className="challenge-info__item challenge-info-level" >
-                        <span className="challenge-info-level__value" >{level}</span>
+                    <div className="challenge-info__item challenge-info-level">
+                        <Fasteners className="challenge-info__fasteners" />
+                        <span className="challenge-info__text">{level}</span>
                     </div>
 
                     <div className="challenge-info__item
-                    challenge-info__item_big
-                    challenge-info-completed"
+                        challenge-info__item_big
+                        challenge-info-completed"
                     >
-                        <p className="challenge-info-completed__count" ><b>25</b> completions</p>
+                        <Fasteners className="challenge-info__fasteners" />
+                        <span className="challenge-info-completed__count">
+                            <b>25</b> completions
+                        </span>
                     </div>
                 </div>
 
                 <div className="challenge-info__inner challenge-info__inner_small" >
-                    <IconButton
-                        title={'Accept'}
-                        buttonClassName={'challenge-info__button'}
-                        iconName={'check_circle'}
-                        iconSize={32}
-                    />
+                    <div className="challenge-info__button_wrapper">
+                        <Fasteners className="challenge-info__fasteners" />
+                        <IconButton
+                            title={'Accept'}
+                            buttonClassName={'challenge-info__button'}
+                            iconName={'check_circle'}
+                            iconSize={32}
+                        />
+                    </div>
 
-                    <IconButton
-                        title={'Share'}
-                        buttonClassName={'challenge-info__button'}
-                        iconName={'share'}
-                        iconSize={32}
-                    />
+                    <div className="challenge-info__button_wrapper">
+                        <Fasteners className="challenge-info__fasteners" />
+                        <IconButton
+                            title={'Share'}
+                            buttonClassName={'challenge-info__button'}
+                            iconName={'share'}
+                            iconSize={32}
+                        />
+                    </div>
                 </div>
-
-                <p className="challenge-info__item challenge-info__item_description">
-                    {description}
-                </p>
+            </div>
+            <div className="challenge-info-description">
+                <h2 className="challenge-info-description__title">Description</h2>
+                {description}
             </div>
         </section>
     );
