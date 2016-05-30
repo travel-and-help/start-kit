@@ -21,7 +21,9 @@ describe('ChallengeContainer', () => {
         };
 
         challengeActionCreator = {
-            fetchChallenge: env.stub().returns(Symbol())
+            fetchChallenge: env.stub().returns(Symbol()),
+            resetState: env.stub().returns()
+
         };
 
         Challenge = {
@@ -45,6 +47,12 @@ describe('ChallengeContainer', () => {
         const props = reactRedux.connect.getCall(0).args[1](dispatch);
         props.getChallenge(id);
         dispatch.should.calledWith(challengeActionCreator.fetchChallenge(id));
+    });
+
+    it('should map dispatch to reset state prop method', () => {
+        const props = reactRedux.connect.getCall(0).args[1](dispatch);
+        props.getInitialState();
+        dispatch.should.calledWith(challengeActionCreator.resetState());
     });
 
     it('should map to props once', () => {

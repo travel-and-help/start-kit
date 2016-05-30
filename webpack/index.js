@@ -6,7 +6,8 @@ const
     logEnv = require('../env/log'),
     loaders = require('./loaders'),
     preLoaders = require('./preloaders'),
-    autoprefixer = require('autoprefixer');
+    autoprefixer = require('autoprefixer'),
+    inlineSvg = require('postcss-inline-svg');
 
 logEnv(env);
 
@@ -22,6 +23,7 @@ module.exports = Object.assign({
         loaders
     },
     postcss: () => ([
+        inlineSvg(),
         autoprefixer({
             browsers: ['android 4', 'ios_saf 8']
         })

@@ -1,5 +1,5 @@
 import React from 'react';
-import Fasteners from '../fasteners/Fasteners';
+import Fasteners from '../../../../common/components/fasteners/Fasteners';
 
 /* istanbul ignore next */
 const TopChallengeBanner = () => (

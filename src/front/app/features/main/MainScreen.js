@@ -1,7 +1,6 @@
 import React from 'react';
 import Navigation from './navigation';
 
-/* istanbul ignore next */
 const MainScreen = ({ children }) => (
     <div className="main-screen" >
         <div className="main-screen__menu" >

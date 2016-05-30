@@ -8,7 +8,6 @@ const navigationItemData = [
     'profile'
 ];
 
-/* istanbul ignore next */
 export default () => (
     <div className="navigation" >
         {navigationItemData.map((link, index) => (
