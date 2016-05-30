@@ -26,9 +26,9 @@ describe('LoginScreenContainer', () => {
             skip: env.stub()
         };
 
-        proxyquire('./login-screen-container', {
+        proxyquire('./LoginScreenContainer', {
             'react-redux': reactRedux,
-            './login-screen': loginScreen,
+            './LoginScreen': loginScreen,
             '../auth.actions': authActions
         });
     });
