@@ -1,0 +1,10 @@
+.watch-list {
+    .challenge-tile-wrap::before {
+        float: left;
+        content: 'X';
+        margin-left: -25px;
+        padding-top: 35px;
+        font-size: 25px;
+        font-weight: bold;
+    }
+}

@@ -62,7 +62,7 @@ function getCurrentUser() {
     if (!this.isAuthenticated()) {
         return Promise.reject('User is not authenticated');
     }
-    return userModel.findById(this[reqUserProperty].id, { fullName: 1, email: 1 });
+    return userModel.findById(this[reqUserProperty].id);
 }
 
 function restrictUnauthenticated(req, res, next) {

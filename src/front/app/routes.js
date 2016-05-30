@@ -5,6 +5,7 @@ import Login from './features/auth/components/login-screen-container';
 import CategoryTileListContainer from './features/categories/components/CategoryTileListContainer';
 import mainRoutes from './features/main/routes';
 import ChallengeContainer from './features/challenge/components/ChallengeContainer';
+import WatchListContainer from './features/WatchList/components/WatchListContainer';
 
 export default () => (
     <Route path="/" >
@@ -12,5 +13,6 @@ export default () => (
         {mainRoutes()}
         <Route path="categories" component={CategoryTileListContainer} />
         <Route path="challenge/:id" component={ChallengeContainer} />
+        <Route path="watch-list" component={WatchListContainer} />
     </Route>
 );

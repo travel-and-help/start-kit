@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ChallengeTile from './ChallengeTile';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
@@ -7,7 +7,8 @@ export default class ChallengeTileList extends React.Component {
     static propTypes() {
         /* istanbul ignore next */
         return {
-            challenges: ImmutablePropTypes.list.isRequired
+            challenges: ImmutablePropTypes.list.isRequired,
+            swipeCallback: PropTypes.function
         };
     }
 
@@ -22,10 +23,12 @@ export default class ChallengeTileList extends React.Component {
     onChallengeSwiped(challenge, direction) {
         const { activeChallenge, activeChallengeSwipedDirection } = this.state;
         if (challenge !== activeChallenge) {
-            this.setState({
+            const { swipeCallback } = this.props;
+            const swipe = {
                 activeChallenge: challenge,
                 activeChallengeSwipedDirection: direction
-            });
+            };
+            this.setState(swipe, () => swipeCallback && swipeCallback(swipe));
         } else {
             if (activeChallengeSwipedDirection !== direction) {
                 this.setState({

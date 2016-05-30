@@ -5,7 +5,6 @@ import Awards from './awards';
 import Updates from './updates';
 import Profile from './profile';
 import ChallengeScreenContainer from './challenges/components/ChallengeScreenContainer';
-import WatchListContainer from '../WatchList/components/WatchListContainer';
 
 /* istanbul ignore next */
 export default () => (
@@ -14,6 +13,5 @@ export default () => (
         <Route path="awards" component={Awards} />
         <Route path="updates" component={Updates} />
         <Route path="profile" component={Profile} />
-        <Route path="watch-list" component={WatchListContainer} />
     </Route>
 );
