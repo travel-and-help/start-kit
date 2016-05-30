@@ -29,11 +29,12 @@ export function saveCategories(categories) {
         api('/api/categories', {
             method: 'POST',
             headers: {
-                Accept: 'application/json'
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(categories)
         }).then(() => {
-            hashHistory.push('challenges');
+            hashHistory.push('main/challenges');
         });
     };
 }
