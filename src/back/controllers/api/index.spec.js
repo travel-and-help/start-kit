@@ -17,7 +17,11 @@ describe('controllers/api', () => {
         };
 
         sut = proxyquire('./index', {
-            express
+            express,
+            './routes/challenges': {},
+            './routes/challenge': {},
+            './routes/categories': {},
+            './routes/profile': {}
         });
     });
 

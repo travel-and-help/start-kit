@@ -157,7 +157,7 @@ describe('action/auth', () => {
 
             it('should redirect to challenges', () => {
                 skipAction(dispatch);
-                reactRouter.hashHistory.push.should.calledWith('challenges');
+                reactRouter.hashHistory.push.should.calledWith('main/challenges');
             });
 
         });

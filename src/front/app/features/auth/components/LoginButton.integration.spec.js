@@ -1,8 +1,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import LoginButton from './login-button';
+import LoginButton from './LoginButton';
 
-describe('LoginButton', () => {
+describe('auth LoginButton', () => {
 
     let text,
         onClick,
@@ -11,11 +11,11 @@ describe('LoginButton', () => {
     beforeEach(() => {
         onClick = env.stub();
         text = 'test Button Text';
-        wrapper = mount(<LoginButton text={text} onLogin={ onClick } />);
+        wrapper = mount(<LoginButton text={text} onClick={ onClick } />);
     });
 
     it('should render with text', () => {
-        wrapper.find('.login-button').text().should.equal(text);
+        wrapper.find('.login-button').text().should.equal(`Continue with ${text}`);
     });
 
     it('should trigger onClick method on category tile click', () => {

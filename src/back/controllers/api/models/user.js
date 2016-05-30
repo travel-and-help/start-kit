@@ -1,6 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose'),
+    mongoosePaginate = require('mongoose-paginate'),
     Schema = mongoose.Schema;
 
 const User = new Schema({
@@ -53,5 +54,7 @@ const User = new Schema({
         ref: 'Category'
     }]
 });
+
+User.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('User', User);
