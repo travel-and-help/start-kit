@@ -33,12 +33,13 @@ export function postChallenge(formData) {
                 'Content-Type': 'application/json'
             }),
             body: JSON.stringify(formData) })
-
-            .then(response => response.json())
-            .then((challenge) => {
-                dispatch(receiveChallenge(challenge));
-
-                window.history.back();
+            .then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    dispatch(receiveChallenge(response.json()));
+                    window.history.back();
+                } else {
+                    throw new Error(response.statusText);
+                }
             });
     };
 }
