@@ -9,7 +9,7 @@ const WatchList = proxyquire('./WatchList', {
     'react-router': reactRouter
 }).default;
 
-describe.only('WatchList', () => {
+describe('WatchList', () => {
     let challenges,
         getWatchedChallenges,
         unWatchChallenge,
