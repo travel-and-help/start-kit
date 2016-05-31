@@ -38,7 +38,7 @@ export function postChallenge(formData) {
             .then((challenge) => {
                 dispatch(receiveChallenge(challenge));
 
-                // window.history.back();
+                window.history.back();
             });
     };
 }
