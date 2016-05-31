@@ -9,7 +9,7 @@ const CreateCategories = ({ categories, category }) => {
             Category
 
             <select className="challenge-create__select-type" {...category}>
-                <option>Select</option>
+                <option value="-1">Challange category</option>
                 { categoriesArr.map((cat, index) => (
                     <option value={JSON.stringify(cat)} key={index}>{cat.name}</option>
                 )) }

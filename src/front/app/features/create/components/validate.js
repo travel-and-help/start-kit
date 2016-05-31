@@ -9,6 +9,10 @@ const validate = (values) => {
         errors.description = 'Description is required';
     }
 
+    if (values.category === '-1' || !values.category) {
+        errors.category = 'Description is required';
+    }
+
     return errors;
 };
 
