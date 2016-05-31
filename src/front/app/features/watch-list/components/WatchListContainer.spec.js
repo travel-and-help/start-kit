@@ -58,5 +58,7 @@ describe('WatchListContainer', () => {
 
     it('should return react-redux container', () => sut.default.should.equal(wrapWithConnect()));
 
-    it('passes WatchList to connect', () => wrapWithConnect.should.calledWith(WatchList));
+    it('passes WatchList to connect', () => {
+        wrapWithConnect.should.calledWith(WatchList.default);
+    });
 });

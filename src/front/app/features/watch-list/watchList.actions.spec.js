@@ -55,7 +55,8 @@ describe('watchList.actions', () => {
         });
 
         it('reloads list after delete failed', done => {
-            promise = env.stub().rejects('something went wrong')();
+            const rejected = env.stub().rejects('something went wrong')();
+            api.withArgs(`/api/my/wish-list/${challengeId}`).returns(rejected);
             sut.unWatch(challenge)(dispatch);
             setTimeout(() => {
                 dispatch.should.calledWith({
