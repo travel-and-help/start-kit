@@ -23,7 +23,10 @@ describe('my controller', () => {
             unWatchChallenge: env.stub()
         };
         userPromise = env.stub().resolves();
-        req = { getCurrentUser: env.stub().returns(userPromise) };
+        req = {
+            getCurrentUser: env.stub().returns(userPromise),
+            params: { challengeId: 3 }
+        };
         res = chainable(['json', 'status', 'send']);
     });
 
@@ -52,10 +55,13 @@ describe('my controller', () => {
                 .then(() => done());
         });
 
-        it('passes user from request to unWatch action', () => {
+        it('passes user and challenge id from request to the unWatch action', () => {
             userActions.unWatchChallenge.returns(env.stub().resolves()());
             sut.unWatch(req);
-            userActions.unWatchChallenge.should.have.been.calledWith(userPromise);
+            userActions.unWatchChallenge.should.have.been.calledWith(
+                userPromise,
+                req.params.challengeId
+            );
         });
 
         it('fails on error', done => {
@@ -75,7 +81,7 @@ describe('my controller', () => {
     describe('getWatchList', () => {
         beforeEach(() => {
             sut = proxyquire('./my', {
-                '../../models/challenge': challenge,
+                '../api/models/challenge': challenge,
                 '../../../actions/user': userActions
             });
         });
