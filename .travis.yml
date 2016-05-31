@@ -10,6 +10,7 @@ android:
     - build-tools-23.0.2
     - android-23
 before_script:
+  - cp .env.release .env
   - nvm install $(< .nvmrc)
   - npm install
 script:

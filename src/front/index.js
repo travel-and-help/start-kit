@@ -1,3 +1,6 @@
+import 'babel-polyfill';
+import 'whatwg-fetch';
+
 import './index.scss';
 import main from './app/main';
 

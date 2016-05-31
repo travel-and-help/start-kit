@@ -1,9 +1,11 @@
+import api from '../../common/api';
+
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const TOGGLE_CATEGORY = 'TOGGLE_CATEGORY';
 
 export function getCategories() {
     return function fetchCategories(dispatch) {
-        fetch('/api/categories')
+        api('/api/categories')
             .then(response => response.json())
             .then((categories) => {
                 dispatch({
