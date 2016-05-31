@@ -5,7 +5,7 @@ import Login from './features/auth/components/LoginScreenContainer';
 import CategoryTileListContainer from './features/categories/components/CategoryTileListContainer';
 import mainRoutes from './features/main/routes';
 import ChallengeContainer from './features/challenge/components/ChallengeContainer';
-import WatchListContainer from 'features/watchList/components/WatchListContainer';
+import WatchListContainer from './features/watch-list/components/WatchListContainer';
 
 export default () => (
     <Route path="/" >
