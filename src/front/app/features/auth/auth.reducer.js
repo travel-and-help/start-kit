@@ -14,7 +14,8 @@ export default function user(state = initialState, action) {
     case LOGIN_SUCCESS:
         return fromJS({
             isLoggedIn: true,
-            token: action.token
+            token: action.token,
+            userId: action.userId
         });
     case LOGIN_FAILED:
         return fromJS({

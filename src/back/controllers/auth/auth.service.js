@@ -21,7 +21,8 @@ function responseAuthToken(req, res, next) {
         const token = jwt.sign({ id }, env.SESSION_SECRET, { expiresIn: 60 * 60 * 5 });
         res.json({
             success: true,
-            token
+            token,
+            id
         });
     }
 }
