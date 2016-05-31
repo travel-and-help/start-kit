@@ -26,8 +26,8 @@ function getCategoryIds(categories) {
     const categoryIds = [];
 
     if (categories && categories.length) {
-        categories.forEach((category) => {
-            categoryIds.push(category._id);
+        categories.forEach((item) => {
+            categoryIds.push(item._id);
         });
     }
 
