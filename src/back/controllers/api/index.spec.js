@@ -28,5 +28,5 @@ describe('controllers/api', () => {
         sut.should.equal(router);
     });
 
-    it('handles route "/my"', () => router.use.should.have.been.calledWith('/my', 'myRoutes'));
+    it('handles route "/my"', () => router.use.should.calledWith('/my', 'myRoutes'));
 });

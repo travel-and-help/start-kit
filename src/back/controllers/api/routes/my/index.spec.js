@@ -24,14 +24,14 @@ describe('my route', () => {
     });
 
     it('GET-s watch list',
-        () => router.get.should.have.been.calledWith('/wish-list', my.getWatchList)
+        () => router.get.should.calledWith('/wish-list', my.getWatchList)
     );
 
     it('DELETE-s challenge',
-        () => router.delete.should.have.been.calledWith('/wish-list/:challengeId', my.unWatch)
+        () => router.delete.should.calledWith('/wish-list/:challengeId', my.unWatch)
     );
 
     it('checks authentication',
-        () => router.use.should.have.been.calledWith(authService.restrictUnauthenticated)
+        () => router.use.should.calledWith(authService.restrictUnauthenticated)
     );
 });

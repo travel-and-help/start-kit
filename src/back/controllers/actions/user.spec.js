@@ -23,7 +23,7 @@ describe('user actions service', () => {
         });
     });
 
-    it('removes challenge from watch list', done => {
+    it('removes challenge from watch list', () => {
         const idToUnWatch = 'id#3';
         challengeIds = ['id#1', 'id#2', { toString: () => idToUnWatch }, 'id#4'];
         user.get.returns(challengeIds);
@@ -34,11 +34,8 @@ describe('user actions service', () => {
             }
         });
         const userPromise = env.stub().resolves(user)();
-        sut.unWatchChallenge(userPromise, { toString: () => idToUnWatch })
-            .then(() => {
-                user.set.should.have.been.calledWith('watchList', challengesWithoutUnWatched);
-                done();
-            });
+        return sut.unWatchChallenge(userPromise, { toString: () => idToUnWatch })
+            .then(() => user.set.should.calledWith('watchList', challengesWithoutUnWatched));
     });
 
     it('returns save result', () => {
@@ -46,13 +43,10 @@ describe('user actions service', () => {
         sut.unWatchChallenge(userPromise, 'smth').should.equal(user);
     });
 
-    it('uses saved watch list ids', done => {
+    it('uses saved watch list ids', () => {
         const userPromise = env.stub().resolves(user)();
-        sut.getWatchedChallenges(userPromise)
-            .then(() => {
-                challengeModel.find.should.have.been.calledWith({ _id: { $in: challengeIds } });
-                done();
-            });
+        return sut.getWatchedChallenges(userPromise)
+            .then(() => challengeModel.find.should.calledWith({ _id: { $in: challengeIds } }));
     });
 
     it('returns watched challenges', () => {

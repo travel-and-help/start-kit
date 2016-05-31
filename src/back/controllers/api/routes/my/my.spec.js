@@ -45,20 +45,19 @@ describe('my controller', () => {
             });
         });
 
-        it('responds with action result', done => {
+        it('responds with action result', () => {
             const saveResult = 'something';
             const unWatchPromise = env.stub().resolves(saveResult)();
             userActions.unWatchChallenge.returns(unWatchPromise);
             sut.unWatch(req, res);
-            unWatchPromise
-                .then(() => responseBuilder.ok.should.have.been.calledWith(res, saveResult))
-                .then(() => done());
+            return unWatchPromise
+                .then(() => responseBuilder.ok.should.calledWith(res, saveResult));
         });
 
         it('passes user and challenge id from request to the unWatch action', () => {
             userActions.unWatchChallenge.returns(env.stub().resolves()());
             sut.unWatch(req);
-            userActions.unWatchChallenge.should.have.been.calledWith(
+            userActions.unWatchChallenge.should.calledWith(
                 userPromise,
                 req.params.challengeId
             );
@@ -69,7 +68,7 @@ describe('my controller', () => {
             userActions.unWatchChallenge.returns(env.stub().rejects(error)());
             sut.unWatch(req, res);
             setTimeout(() => {
-                responseBuilder.fail.should.have.been.calledWith(
+                responseBuilder.fail.should.calledWith(
                     res,
                     env.match(value => value.toString().indexOf(error))
                 );
@@ -89,16 +88,15 @@ describe('my controller', () => {
         it('passes user from request to getWatchList action', () => {
             userActions.getWatchedChallenges.returns(env.stub().resolves()());
             sut.getWatchList(req);
-            userActions.getWatchedChallenges.should.have.been.calledWith(userPromise);
+            userActions.getWatchedChallenges.should.calledWith(userPromise);
         });
 
-        it('responds with json-ed challenges', done => {
+        it('responds with json-ed challenges', () => {
             const challengesPromise = env.stub().resolves(challenges)();
             userActions.getWatchedChallenges.returns(challengesPromise);
             sut.getWatchList(req, res);
-            challengesPromise
-                .then(() => res.json.should.have.been.calledWith(challenges))
-                .then(() => done());
+            return challengesPromise
+                .then(() => res.json.should.calledWith(challenges));
         });
 
         describe('when error', () => {
@@ -112,14 +110,14 @@ describe('my controller', () => {
 
             it('sets code 500', done => {
                 setTimeout(() => {
-                    res.status.should.have.been.calledWith(500);
+                    res.status.should.calledWith(500);
                     done();
                 }, 1);
             });
 
             it('sends it', done => {
                 setTimeout(() => {
-                    res.json.should.have.been.calledWith(
+                    res.json.should.calledWith(
                         env.match({ error: env.match(value => value.toString().indexOf(error)) })
                     );
                     done();

@@ -39,7 +39,7 @@ describe('WatchList', () => {
         const button = wrapper.find('button.challenge-nav__item_back');
         button.simulate('click');
         // eslint-disable-next-line no-unused-expressions
-        reactRouter.hashHistory.goBack.should.have.been.called;
+        reactRouter.hashHistory.goBack.should.called;
     });
 
     it('shows challenge', () => {
