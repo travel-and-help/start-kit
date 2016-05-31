@@ -2,7 +2,7 @@ import api from '../../common/api';
 
 export const WATCH_LIST_CHALLENGES_RECEIVED = 'WATCH_LIST_CHALLENGES_RECEIVED';
 
-export function getInitialChallenges() {
+export function getWatchedChallenges() {
     return fetchChallenges;
 }
 

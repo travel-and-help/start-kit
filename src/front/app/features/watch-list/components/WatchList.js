@@ -6,7 +6,7 @@ import IconButton from '../../../common/components/buttons/IconButton';
 
 class WatchList extends Component {
     componentDidMount() {
-        this.props.getInitialChallenges();
+        this.props.getWatchedChallenges();
     }
     render() {
         const { challenges, unWatchChallenge } = this.props;
@@ -35,7 +35,7 @@ class WatchList extends Component {
 
 WatchList.propTypes = {
     challenges: ImmutablePropTypes.list.isRequired,
-    getInitialChallenges: PropTypes.func.isRequired,
+    getWatchedChallenges: PropTypes.func.isRequired,
     unWatchChallenge: PropTypes.func.isRequired
 };
 
