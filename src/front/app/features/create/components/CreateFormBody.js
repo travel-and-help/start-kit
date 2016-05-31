@@ -15,7 +15,11 @@ const CreateFormBody = ({ fields, categories }) => (
         </div>
 
         <div className="challenge-create__title-field-wrapp">
-            <input className="challenge-create__input"
+            <input
+              className={fields.title.error && fields.title.touched ?
+                  'challenge-create__input challenge-create__input_error' :
+                  'challenge-create__input'}
+
               placeholder="Enter title" {...fields.title}
             />
 
@@ -31,7 +35,10 @@ const CreateFormBody = ({ fields, categories }) => (
         />
 
         <textarea
-          className="challenge-create__descr"
+          className={fields.description.error && fields.description.touched ?
+              'challenge-create__descr challenge-create__descr_error' :
+              'challenge-create__descr'}
+
           placeholder="Description" {...fields.description}
         >
         </textarea>
