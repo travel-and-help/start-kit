@@ -53,7 +53,7 @@ function getServiceUrl(type) {
 }
 
 function redirect() {
-    hashHistory.push('challenges');
+    hashHistory.push('main/challenges');
 }
 
 export function login(loginService) {

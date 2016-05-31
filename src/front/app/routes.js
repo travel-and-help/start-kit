@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router';
 import { IndexRoute } from 'react-router';
-import Login from './features/auth/components/login-screen-container';
+import Login from './features/auth/components/LoginScreenContainer';
 import CategoryTileListContainer from './features/categories/components/CategoryTileListContainer';
 import mainRoutes from './features/main/routes';
 import ChallengeContainer from './features/challenge/components/ChallengeContainer';

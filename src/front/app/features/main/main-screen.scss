@@ -8,10 +8,6 @@
 .main-screen {
   $navigationHeight: 66px;
   $menuHeight: 45px;
-  $bgStripeColor: #aaa;
-
-  height: 100vh;
-  background: repeating-linear-gradient(45deg, $bgStripeColor, $bgStripeColor 2px, #fff 0px, #fff 9px);
 
   &__menu {
     border-bottom: $gBorder;
