@@ -6,6 +6,7 @@ import challenges from '../features/main/challenges/challenges.reducer';
 import challenge from '../features/challenge/challenge.reducer';
 import categories from '../features/categories/categories.reducer';
 import auth from '../features/auth/auth.reducer';
+import watchList from '../features/watch-list/watchList.reducer';
 
 export default () => {
     const state = createStore(
@@ -14,7 +15,8 @@ export default () => {
             categories,
             challenge,
             routing: routerReducer,
-            auth
+            auth,
+            watchList
         }),
         storeEnhancers
     );

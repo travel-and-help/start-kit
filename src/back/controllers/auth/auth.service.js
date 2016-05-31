@@ -58,6 +58,7 @@ function generateOAuth2VerifyCallback(UserModel, providerProperty) {
 }
 
 function isAuthenticated() {
+    // this[reqUserProperty] = { id: '572af81c1f9056926b4a1634' };
     return !!(this[reqUserProperty] && this[reqUserProperty].id);
 }
 
@@ -65,7 +66,7 @@ function getCurrentUser() {
     if (!this.isAuthenticated()) {
         return Promise.reject('User is not authenticated');
     }
-    return userModel.findById(this[reqUserProperty].id, { fullName: 1, email: 1 });
+    return userModel.findById(this[reqUserProperty].id);
 }
 
 function restrictUnauthenticated(req, res, next) {
