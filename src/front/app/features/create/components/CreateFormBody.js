@@ -1,85 +1,77 @@
 import React, { PropTypes } from 'react';
 import CreateCategories from './CreateCategories';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import CreateFormError from './CreateFormError';
-
-const levels = ['low', 'middle', 'hight'];
+import CreatePhoto from '../../../common/components/create/CreatePhoto';
+import CreateDatePicker from '../../../common/components/create/CreateDatePicker';
+import CreateTumbler from '../../../common/components/create/CreateTumbler';
+import CreateError from '../../../common/components/create/CreateError';
 
 const CreateFormBody = ({ fields, categories }) => (
     <div className="challenge-create__body">
-        <div className="challenge-create__photo">
-<input type="file" className="challenge-create__photo-download" {...fields.image} value={ null } />
-            <img className="challenge-create__image" src="" />
+        <CreateError message="Hello world!!!" />
+
+        <div className="challenge-create__photo-wrapp">
+            <CreatePhoto />
         </div>
 
-        <input className="challenge-create__input" placeholder="Enter title" {...fields.title} />
-        {fields.title.touched &&
-        fields.title.error &&
-        <CreateFormError message={fields.title.error} />}
+        <div className="challenge-create__title-field-wrapp">
+            <input className="challenge-create__input"
+              placeholder="Enter title" {...fields.title}
+            />
 
-        <div className="challenge-create__septa"></div>
-        <div className="challenge-create__description-title">Description</div>
-        <hr />
-
-<textarea className="challenge-create__descr" placeholder="Description" {...fields.description} >
-</textarea>
-
-        {fields.description.touched && fields.description.error &&
-        <CreateFormError message={fields.description.error} />}
-
-        <div className="challenge-create__titles">Settings</div>
-
-        <CreateCategories categories={categories} category={fields.category} />
-
-        <div className="challenge-create__field">
-            <input type="checkbox" className="challenge-create__checkbox" />
-            <label className="challenge-create__checkbox-title">Repeateble</label>
         </div>
 
-        <label className="challenge-create__field">
-            Start Date
-            <input className="challenge-create__day-input" type="date" />
-        </label>
+        <h2 className="challenge-create__subtitle">
+            Description
+        </h2>
 
-        <label className="challenge-create__field">
-            End Date
-            <input className="challenge-create__day-input" type="date" />
-        </label>
+        <CreateCategories
+          categories={categories}
+          category={fields.category}
+        />
 
-        <div className="challenge-create__titles">Requirements</div>
+        <textarea
+          className="challenge-create__descr"
+          placeholder="Description" {...fields.description}
+        >
+        </textarea>
 
-        <div className="challenge-create__field">
-            <input type="checkbox" className="challenge-create__checkbox" />
-            <label className="challenge-create__checkbox-title">Special skills</label>
-        </div>
+        <h2 className="challenge-create__subtitle">
+            Settings
+        </h2>
 
+        <CreateDatePicker
+          label="Start Date"
+          checked
+          value={fields.startDate}
+        />
 
-        <div className="challenge-create__field">
-            <input type="checkbox" className="challenge-create__checkbox" />
-            <label className="challenge-create__checkbox-title">Spare time</label>
-        </div>
+        <CreateDatePicker
+          label="End Date"
+          value={fields.endDate}
+        />
 
-        <label className="challenge-create__field">
-            Complexity level
+        <CreateTumbler
+          label="Repeateble"
+          disabled
+          cheched
+          value={fields.repeateble}
+        />
 
-            <select {...fields.level}>
-                <option>Select level</option>
+        <h3 className="challenge-create__subtitle">
+            Confirmation
+        </h3>
 
-                {levels.map((levelOption) =>
-                    (<option value={levelOption} key={levelOption}>{levelOption}</option>))
-                }
-            </select>
+        <CreateTumbler
+          label="Location"
+          disabled
+        />
 
-            {fields.level.touched &&
-            fields.level.error &&
-            <CreateFormError message={fields.level.error} />}
-
-        </label>
-
-        <div className="challenge-create__field">
-            <input type="checkbox" className="challenge-create__checkbox" />
-            <label className="challenge-create__checkbox-title">Verification</label>
-        </div>
+        <CreateTumbler
+          label="Photo proof"
+          checked
+          value={fields.proof}
+        />
     </div>
 );
 

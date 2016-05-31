@@ -37,6 +37,6 @@ CreateForm.propTypes = {
 
 export default reduxForm({
     form: 'create',
-    fields: ['title', 'description', 'level', 'category', 'image'],
+    fields: ['title', 'description', 'category', 'startDate', 'endDate', 'repeateble', 'proof'],
     validate
 })(CreateForm);
