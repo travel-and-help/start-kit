@@ -11,7 +11,7 @@ const CreateDatePicker = ({ label, value, checked, disabled }) => (
                 <input type="checkbox"
                   className="create-datepicker__input"
                   disabled={disabled}
-                  checked={checked}
+                  defaultChecked={checked}
                 />
 
                 <div className="create-datepicker__bg"></div>

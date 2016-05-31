@@ -10,7 +10,7 @@ const CreateTumbler = ({ label, value, checked, disabled }) => (
             <input type="checkbox"
               className="create-tumbler__input"
               disabled={disabled}
-              checked={checked}
+              defaultChecked={checked}
               {...value}
             />
 

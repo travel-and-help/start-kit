@@ -4,11 +4,11 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import CreatePhoto from '../../../common/components/create/CreatePhoto';
 import CreateDatePicker from '../../../common/components/create/CreateDatePicker';
 import CreateTumbler from '../../../common/components/create/CreateTumbler';
-import CreateError from '../../../common/components/create/CreateError';
+import CreateError from './CreateError';
 
 const CreateFormBody = ({ fields, categories }) => (
     <div className="challenge-create__body">
-        <CreateError message="Hello world!!!" />
+        <CreateError formFields={fields} />
 
         <div className="challenge-create__photo-wrapp">
             <CreatePhoto />
