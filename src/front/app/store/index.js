@@ -6,7 +6,7 @@ import challenges from '../features/main/challenges/challenges.reducer';
 import challenge from '../features/challenge/challenge.reducer';
 import categories from '../features/categories/categories.reducer';
 import auth from '../features/auth/auth.reducer';
-import watchList from '../features/WatchList/watchList.reducer';
+import watchList from '../features/watchList/watchList.reducer';
 
 export default () => {
     const state = createStore(
