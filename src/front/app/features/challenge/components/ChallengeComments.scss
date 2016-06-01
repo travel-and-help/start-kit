@@ -1,0 +1,80 @@
+.challenge {
+    @import "ChallengeVariables";
+
+    &-comments {
+        position: relative;
+        @extend %border-block;
+
+        &__wrapper {
+            padding: 0 $grid-gap $grid-gap;
+        }
+
+        &__fasteners {
+            position: absolute;
+            top: -$grid-gap;
+            left: $grid-gap * 2;
+            right: $grid-gap * 2;
+        }
+
+        &__title {
+            @extend %border-block-title;
+        }
+
+        &__item {
+            padding-bottom: $page-padding;
+            font-size: map-get($font-sizes, small);
+        }
+
+        &__author,
+        &__comment {
+            display: block;
+        }
+
+        &-form {
+            $input-height: _th-rem(40);
+
+            display: flex;
+            margin-top: $grid-gap;
+
+            &__item {
+                flex: 1 0 auto;
+                position: relative;
+
+                &_submit {
+                    flex: 0 0 $input-height;
+                    margin-left: $grid-gap;
+
+                    .fastener {
+                        position: absolute;
+                        top: 50%;
+                        left: _th-rem(-11);
+                        width: _th-rem(8);
+                        transform: rotate(90deg) translateX(-50%);
+                    }
+                }
+            }
+
+            &__fasteners {
+                position: absolute;
+                top: -$grid-gap;
+                left: $grid-gap * 1.5;
+                right: $grid-gap * 4.5;
+            }
+
+            &__input {
+                width: 100%;
+                height: $input-height;
+                line-height: $input-height;
+                @extend %border-block;
+                border-style: dashed;
+            }
+
+            &__submit {
+                width: $input-height;
+                height: $input-height;
+                @extend %border-block;
+                background-color: map_get($colors, main);
+            }
+        }
+    }
+}

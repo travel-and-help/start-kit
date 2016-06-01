@@ -1,6 +1,6 @@
 'use strict';
 
-const responseStatus = require('./response-status');
+const responseBuilder = require('./response-builder');
 
 class BaseController {
 
@@ -77,17 +77,11 @@ class BaseController {
     }
 
     processError(req, res, err) {
-        res
-            .status(responseStatus.INTERNAL_SERVER_ERROR)
-            .json({
-                error: err
-            });
+        responseBuilder.fail(res, err);
     }
 
     processSuccess(req, res, result) {
-        res
-            .status(responseStatus.OK)
-            .json(result);
+        responseBuilder.ok(res, result);
     }
 }
 

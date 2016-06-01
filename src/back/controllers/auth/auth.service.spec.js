@@ -81,7 +81,8 @@ describe('auth.service', () => {
                 'testSecret', { expiresIn: 18000 });
             res.json.should.been.calledWith({
                 success: true,
-                token
+                token,
+                id: 'testId'
             });
         });
 

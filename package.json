@@ -27,6 +27,8 @@
     "watch:db": "mongod --dbpath .local-db",
     "test:unit": "npm-run-all test:front test:back",
     "test:front": "mocha test/unit/front --compilers js:babel-register",
+    "test:watch-front": "mocha test/unit/front --compilers js:babel-register -w",
+    "test:watch-back": "mocha test/unit/back -w",
     "test:back": "mocha test/unit/back",
     "test:e2e": "protractor protractor.conf.js",
     "test:ci": "npm-run-all -s lint coverage codecov",
@@ -80,6 +82,7 @@
     "nodemon": "^1.9.1",
     "npm-run-all": "^1.5.3",
     "nyc": "^6.1.1",
+    "postcss-inline-svg": "^1.4.0",
     "postcss-loader": "^0.8.2",
     "protractor": "^3.2.2",
     "proxyquire": "^1.7.4",
@@ -91,7 +94,8 @@
     "sinon-as-promised": "^4.0.0",
     "sinon-chai": "^2.8.0",
     "webpack": "^1.12.14",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
+    "webpack-svgstore-plugin": "^2.2.2"
   },
   "engines": {
     "node": "^5.8.0",

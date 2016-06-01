@@ -1,6 +1,6 @@
 import ChallengeTileList from './ChallengeTileList';
 
-describe('app/components/challenge ChallengeTileList', () => {
+describe('app/features/main/challenges ChallengeTileList', () => {
     let sut;
 
     beforeEach(() => {
@@ -17,8 +17,8 @@ describe('app/components/challenge ChallengeTileList', () => {
         });
 
         it('should be swiped in passed direction when no swiped element', () => {
-            sut.onChallengeSwiped(challenge, 'right');
-            sut.getChallengeSwipedDirection(challenge).should.equal('right');
+            sut.onSwiped(challenge, 'right');
+            sut.getSwipedDirection(challenge).should.equal('right');
         });
 
         context('when persist swiped element', () => {
@@ -34,21 +34,21 @@ describe('app/components/challenge ChallengeTileList', () => {
             });
 
             it('should make swiped new challenge when swipe another challenge', () => {
-                sut.onChallengeSwiped(challenge, 'right');
-                sut.getChallengeSwipedDirection(challenge).should.equal('right');
+                sut.onSwiped(challenge, 'right');
+                sut.getSwipedDirection(challenge).should.equal('right');
             });
 
             context('when swipe same challenge', () => {
                 it('should ignore swipe in same direction', () => {
-                    sut.onChallengeSwiped(activeChallenge, activeChallengeSwipedDirection);
-                    sut.getChallengeSwipedDirection(activeChallenge)
+                    sut.onSwiped(activeChallenge, activeChallengeSwipedDirection);
+                    sut.getSwipedDirection(activeChallenge)
                         .should.equal(activeChallengeSwipedDirection);
                 });
 
                 it('should return to initial state when swipe in different direction', () => {
-                    sut.onChallengeSwiped(activeChallenge, 'left');
-                    sut.getChallengeSwipedDirection(activeChallenge).should.equal('');
-                    sut.getChallengeSwipedDirection(challenge).should.equal('');
+                    sut.onSwiped(activeChallenge, 'left');
+                    sut.getSwipedDirection(activeChallenge).should.equal('');
+                    sut.getSwipedDirection(challenge).should.equal('');
                 });
             });
 

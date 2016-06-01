@@ -19,11 +19,14 @@ export function loginAttempt(service) {
     };
 }
 
-export function loginSuccess(token) {
+export function loginSuccess(result) {
+    const token = result.token;
+    const userId = result.id;
     set('token', token);
     return {
         type: LOGIN_SUCCESS,
-        token
+        token,
+        userId
     };
 }
 
@@ -53,7 +56,7 @@ function getServiceUrl(type) {
 }
 
 function redirect() {
-    hashHistory.push('challenges');
+    hashHistory.push('main/challenges');
 }
 
 export function login(loginService) {
@@ -74,12 +77,12 @@ export function login(loginService) {
                     response.toString().replace(/(<([^>]+)>)/ig, '')
                 );
                 if (responseJson.success && responseJson.token) {
-                    return Promise.resolve(responseJson.token);
+                    return Promise.resolve(responseJson);
                 }
                 return Promise.reject(response);
             })
-            .then((token) => {
-                dispatch(loginSuccess(token));
+            .then((result) => {
+                dispatch(loginSuccess(result));
             })
             .then(redirect)
             .catch((error) => {

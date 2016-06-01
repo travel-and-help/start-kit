@@ -5,7 +5,7 @@
 
   &__clip {
     z-index: 2;
-    $size: 10px;
+    $size: _th-rem(10);
     position: absolute;
     left: -$size /2;
     border: $gBorder;
@@ -26,7 +26,7 @@
 
   &__connection {
     position: absolute;
-    left: -1px;
+    left: _th-rem(-1);
     top: 0;
     bottom: 0;
     width: $gBorderThickness;

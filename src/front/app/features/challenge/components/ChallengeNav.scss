@@ -1,0 +1,25 @@
+.challenge {
+
+    &-nav {
+        $nav-indent: _th-rem(10);
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+
+        &__item {
+            position: absolute;
+            z-index: 1;
+            top: $nav-indent;
+
+            &_back {
+                left: $nav-indent;
+            }
+
+            &_watch {
+                right: $nav-indent;
+            }
+        }
+    }
+}

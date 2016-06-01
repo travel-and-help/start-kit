@@ -21,7 +21,8 @@ function responseAuthToken(req, res, next) {
         const token = jwt.sign({ id }, env.SESSION_SECRET, { expiresIn: 60 * 60 * 5 });
         res.json({
             success: true,
-            token
+            token,
+            id
         });
     }
 }
@@ -57,6 +58,7 @@ function generateOAuth2VerifyCallback(UserModel, providerProperty) {
 }
 
 function isAuthenticated() {
+    // this[reqUserProperty] = { id: '572af81c1f9056926b4a1634' };
     return !!(this[reqUserProperty] && this[reqUserProperty].id);
 }
 
@@ -64,7 +66,7 @@ function getCurrentUser() {
     if (!this.isAuthenticated()) {
         return Promise.reject('User is not authenticated');
     }
-    return userModel.findById(this[reqUserProperty].id, { fullName: 1, email: 1 });
+    return userModel.findById(this[reqUserProperty].id);
 }
 
 function restrictUnauthenticated(req, res, next) {

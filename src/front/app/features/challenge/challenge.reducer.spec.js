@@ -1,6 +1,6 @@
 import sut from './challenge.reducer';
 import { Map } from 'immutable';
-import { GET_CHALLENGE } from './challenge.actions';
+import { GET_CHALLENGE, RESET_STATE } from './challenge.actions';
 
 describe('reducer/challenge', () => {
     it('should handle initial state', () => {
@@ -25,6 +25,17 @@ describe('reducer/challenge', () => {
         const currentState = sut(prevState, action);
 
         currentState.toJS().should.eqls(prevState.toJS());
+    });
+
+    it('should reset state', () => {
+        const action = {
+            type: RESET_STATE
+        };
+        const expectedState = new Map();
+
+        const currentState = sut(undefined, action);
+
+        currentState.should.eqls(expectedState);
     });
 
 });
