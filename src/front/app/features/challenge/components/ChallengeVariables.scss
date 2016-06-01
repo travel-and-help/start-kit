@@ -1,0 +1,16 @@
+$grid-gap: _th-rem(15);
+$page-padding: _th-rem(8);
+$colors: (
+    bg_light: #eee,
+    bg_dark: #ddd,
+    text_label: #c0c0c0,
+    bg_button: #ffee93,
+    bg_level: #ffa777,
+    main: #4a4a4a,
+    title: #9b9b9b
+);
+$font-sizes: (
+    small: _th-rem(12),
+    default: _th-rem(14),
+    header: _th-rem(24)
+);
