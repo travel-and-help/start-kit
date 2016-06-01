@@ -1,5 +1,5 @@
 .challenge-details {
-    @import "components/ChallengeVariables";
+    @import "ChallengeVariables";
 
     position: relative;
     color: map_get($colors, main);
@@ -20,7 +20,7 @@
         }
     }
 
-    @import 'components/ChallengeNav';
-    @import 'components/ChallengeDetails';
-    @import 'components/ChallengeComments';
+    @import 'ChallengeNav';
+    @import 'ChallengeDetails';
+    @import 'ChallengeComments';
 }
