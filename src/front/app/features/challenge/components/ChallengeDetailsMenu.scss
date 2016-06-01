@@ -1,0 +1,29 @@
+.challenge-details-menu {
+  position: relative;
+  height: $menuHeight;
+
+  &__menu {
+    .menu__title {
+      @extend %challenge-title;
+      font-weight: bold;
+      text-shadow: 0 _th-rem(1) _th-rem(2) rgba(0, 0, 0, 0.5);
+      font-size: _th-rem(24);
+      letter-spacing: _th-rem(1);
+      color: $gTextInverseColor;
+    }
+  }
+
+  &__bg {
+    position: absolute;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    border-bottom: $gBorder;
+  }
+}
+

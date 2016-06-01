@@ -1,39 +1,20 @@
-%content {
-  margin: 0 auto;
-  width: 100%;
-  padding: 0 9px;
-  overflow-x: hidden;
-}
-
 .main-screen {
-  $navigationHeight: 66px;
-  $menuHeight: 45px;
-
-  &__menu {
-    border-bottom: $gBorder;
-    height: $menuHeight;
-    background: #fff;
-  }
+  $navigationHeight: _th-rem(66);
 
   &__content {
-    @extend %content;
     position: absolute;
-    z-index: 1;
-    top: $menuHeight;
-    left: 0;
-    right: 0;
-    bottom: $navigationHeight - 20px;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch; // smooth scroll
+    top: 0;
+    width: 100%;
+    bottom: $navigationHeight - _th-rem(20);
   }
 
   &__navigation {
-    @extend %content;
     position: fixed;
-    z-index: 2;
+    z-index: 1;
     bottom: -1%;
     right: 0;
     left: 0;
     height: $navigationHeight;
+    padding: 0 _th-rem(9);
   }
 }

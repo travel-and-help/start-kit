@@ -1,8 +1,8 @@
 import React from 'react';
-import ChallengeNav from './ChallengeNav';
+import ChallengeNav from './ChallengeDetailsMenu';
 import { shallow } from 'enzyme';
 
-describe('ChallengeNav', () => {
+describe('ChallengeDetailsMenu', () => {
 
     let wrapper;
 
@@ -15,6 +15,6 @@ describe('ChallengeNav', () => {
     });
 
     it('should render div element as a wrapper with a className challenge-nav', () => {
-        wrapper.is('.challenge-nav').should.equal(true);
+        wrapper.is('.challenge-details-menu').should.equal(true);
     });
 });

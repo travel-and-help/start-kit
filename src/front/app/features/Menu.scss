@@ -1,0 +1,30 @@
+.menu {
+  $topGap: _th-rem(7);
+  $gap: _th-rem(11);
+
+  display: flex;
+  justify-content: space-between;
+  padding-top: $statusBarHeight + $topGap;
+  padding-bottom: $gap;
+  height: $menuHeight;
+
+  &_light {
+    border-bottom: $gBorder;
+    background: $gBgColor;
+  }
+
+  &__title {
+    max-width: _th-rem(265);
+    font-size: _th-rem(20);
+    letter-spacing: _th-rem(0.8);
+    text-transform: uppercase;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__action {
+    padding: 0 $gap;
+    font-size: 0;
+  }
+}

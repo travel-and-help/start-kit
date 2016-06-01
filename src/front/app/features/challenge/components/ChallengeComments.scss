@@ -11,7 +11,7 @@
 
         &__fasteners {
             position: absolute;
-            top: -$grid-gap;
+            top: -$grid-gap - $gBorderThickness;
             left: $grid-gap * 2;
             right: $grid-gap * 2;
         }
@@ -56,7 +56,7 @@
 
             &__fasteners {
                 position: absolute;
-                top: -$grid-gap;
+                top: -$grid-gap - $gBorderThickness;
                 left: $grid-gap * 1.5;
                 right: $grid-gap * 4.5;
             }
