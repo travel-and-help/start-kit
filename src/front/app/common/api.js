@@ -13,8 +13,9 @@ export default function api(url, options = {}) {
         .then(checkHttpStatus)
         .then((response) => response.json())
         .catch(error => {
+            const LOGIN_SCREEN_ROUTE = '/';
             if (error.response.status === 401) {
-                hashHistory.push('login');
+                hashHistory.push(LOGIN_SCREEN_ROUTE);
             }
         });
 }

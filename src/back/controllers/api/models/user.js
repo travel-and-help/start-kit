@@ -28,7 +28,7 @@ const User = new Schema({
     registerDate: { type: Date, required: true, default: Date.now },
     lastLogin: { type: Date, required: true, default: Date.now },
     rating: { type: Number, required: true, default: 0 },
-    wishList: [{
+    watchList: [{
         type: Schema.ObjectId,
         ref: 'Challenge'
     }],
