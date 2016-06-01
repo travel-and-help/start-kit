@@ -1,6 +1,7 @@
 import React from 'react';
 import IconButton from './../../../common/components/buttons/IconButton';
 import Fasteners from './../../../common/components/fasteners/Fasteners';
+import Fastener from './../../../common/components/fasteners/Fastener';
 
 const ChallengeComments = () => (
     <div className="challenge-comments__wrapper">
@@ -24,18 +25,23 @@ const ChallengeComments = () => (
         </div>
 
         <form className="challenge-comments-form">
-            <Fasteners className="challenge-comments-form__fasteners" />
-            <input className="challenge-comments-form__input"
-                   type="text"
-                   placeholder="Tap to write comment"
-            />
-
-            <IconButton
-                buttonClassName={'challenge-comments-form__submit'}
-                iconName={'message'}
-                iconSize={40}
-                buttonType={'submit'}
-            />
+            <div className="challenge-comments-form__item">
+                <Fasteners className="challenge-comments-form__fasteners" />
+                <input className="challenge-comments-form__input"
+                       type="text"
+                       placeholder="Tap to write comment"
+                />
+            </div>
+            <div className="challenge-comments-form__item challenge-comments-form__item_submit">
+                <Fastener />
+                <IconButton
+                    buttonClassName={'challenge-comments-form__submit'}
+                    iconName={'send'}
+                    iconSize={20}
+                    buttonType={'submit'}
+                    iconClassName={'icon_light'}
+                />
+            </div>
         </form>
     </div>
 

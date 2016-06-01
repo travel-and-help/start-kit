@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 const IconButton = ({
-    title,
+    title = '',
     iconName,
     clickHandler,
     iconSize = 24,
@@ -10,7 +10,9 @@ const IconButton = ({
     buttonType = 'button'
     }) => (
     <button type={buttonType} onClick={clickHandler} className={`icon-button  ${buttonClassName}`}>
-        <i className={`icon icon_size-${iconSize} ${iconClassName}`}>{iconName}</i>
+        <svg className={`icon icon_size-${iconSize} ${iconClassName}`}>
+            <use xlinkHref={`icons.svg#th-${iconName}`} />
+        </svg>
         {title}
     </button>
 );

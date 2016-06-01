@@ -19,9 +19,9 @@ class Challenge extends Component {
     render() {
         return (
             <div className="challenge-details">
-                <ChallengeNav />
+                {this.props.challenge.size && <ChallengeNav />}
                 {this.props.challenge.size && <ChallengeDetails challenge={this.props.challenge} />}
-                <ChallengeComments />
+                {this.props.challenge.size && <ChallengeComments />}
             </div>
         );
     }

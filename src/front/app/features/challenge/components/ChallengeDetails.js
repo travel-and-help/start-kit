@@ -30,7 +30,7 @@ const ChallengeDetails = ({ challenge }) => {
                     <div className="challenge-info__item challenge-info-category" >
                         <Fasteners className="challenge-info__fasteners" />
                         <i className="challenge-info-category__icon icon icon_size-36" >group</i>
-                        <span className="challenge-info__text" >{categories}</span>
+                        <span className="challenge-info__text" >{categories[0]}</span>
                     </div>
 
 
@@ -70,8 +70,9 @@ const ChallengeDetails = ({ challenge }) => {
                         <IconButton
                             title={'Accept'}
                             buttonClassName={'challenge-info__button'}
-                            iconName={'check_circle'}
+                            iconName={'accept'}
                             iconSize={32}
+                            iconClassName={'icon_dark'}
                         />
                     </div>
 
@@ -82,6 +83,7 @@ const ChallengeDetails = ({ challenge }) => {
                             buttonClassName={'challenge-info__button'}
                             iconName={'share'}
                             iconSize={32}
+                            iconClassName={'icon_dark'}
                         />
                     </div>
                 </div>
@@ -100,7 +102,7 @@ ChallengeDetails.propTypes = {
         title: PropTypes.string.isRequired,
         level: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
-        categories: PropTypes.array.isRequired,
+        categories: ImmutablePropTypes.list.isRequired,
         location: PropTypes.string.isRequired,
         user: ImmutablePropTypes.mapContains({
             firstName: PropTypes.string.isRequired,
