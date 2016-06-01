@@ -1,0 +1,39 @@
+%content {
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 9px;
+  overflow-x: hidden;
+}
+
+.main-screen {
+  $navigationHeight: 66px;
+  $menuHeight: 45px;
+
+  &__menu {
+    border-bottom: $gBorder;
+    height: $menuHeight;
+    background: #fff;
+  }
+
+  &__content {
+    @extend %content;
+    position: absolute;
+    z-index: 1;
+    top: $menuHeight;
+    left: 0;
+    right: 0;
+    bottom: $navigationHeight - 20px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; // smooth scroll
+  }
+
+  &__navigation {
+    @extend %content;
+    position: fixed;
+    z-index: 2;
+    bottom: -1%;
+    right: 0;
+    left: 0;
+    height: $navigationHeight;
+  }
+}

@@ -1,6 +1,6 @@
 'use strict';
 
-const proxyquire = require('proxyquire');
+const proxyquire = require('proxyquire').noCallThru();
 
 describe('bootstrap', () => {
 
@@ -9,7 +9,9 @@ describe('bootstrap', () => {
         db,
         appEnv,
         result,
-        mongodbUri;
+        mongodbUri,
+        authService,
+        http;
 
     const controllers = {};
     const formattedDbUri = 'mongodb formatted uri';
@@ -29,13 +31,21 @@ describe('bootstrap', () => {
             DB_USER: 'DB_USER',
             DB_PASSWORD: 'DB_PASSWORD'
         };
-
+        authService = {
+            getCurrentUser: env.stub(),
+            isAuthenticated: env.stub()
+        };
+        http = {
+            IncomingMessage: function IncomingMessage() {}
+        };
         const sut = proxyquire('./index', {
             'mongodb-uri': mongodbUri,
             '../controllers': controllers,
             './preMiddleware': premiddleware,
             './db': db,
-            '../../../env': appEnv
+            '../../../env': appEnv,
+            '../controllers/auth/auth.service': authService,
+            http
         });
 
         app = {

@@ -1,0 +1,15 @@
+$gBorderRadius: 10px;
+$gBorderRadiusSm: 5px;
+
+$gBgColor: #fff;
+$gTextColor: #4a4a4a;
+
+$gBgInverseColor: $gTextColor;
+$gTextInverseColor: $gBgColor;
+
+$gBorderThickness: 2px;
+$gBorderColor: $gTextColor;
+$gBorder: $gBorderThickness solid $gBorderColor;
+
+$fastenerHeight: 15px;
+$gOpacity: .85;

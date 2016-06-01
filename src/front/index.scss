@@ -1,17 +1,30 @@
+/* Mixins & functions */
+@import 'app/common/styles/mixins';
+@import 'app/common/styles/*';
+/* 3rd-party */
 @import '../../node_modules/normalize.css/normalize.css';
-@import 'app/features/todo/todo-screen';
-@import 'app/features/login/login-screen';
-@import './app/features/navigation/navigation';
-@import 'app/features/challenges/components/index';
+/* Common components */
+@import 'app/common/components/**/*.scss';
+/* Components */
+@import 'app/features/**/*.scss';
 
 * {
   box-sizing: border-box;
 }
 
-.icon {
-    position: relative;
-    display: inline-block;
-    font-size: inherit;
-    text-align: center;
-    font-family: 'Material Icons';
+body {
+  $stripeGap: _th-rem(9);
+  $bgStripeColor: #aaa;
+
+  height: 100vh;
+  font-family: 'Helvetica Neue', sans-serif;
+  color: $gTextColor;
+  background: repeating-linear-gradient(
+                  45deg,
+                  $bgStripeColor,
+                  $bgStripeColor $gBorderThickness,
+                  $gBgColor 0,
+                  $gBgColor $stripeGap
+  );
+  user-select: none;
 }

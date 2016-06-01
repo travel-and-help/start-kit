@@ -1,0 +1,21 @@
+{
+  "extends": [
+    "airbnb",
+    "./base.json"
+  ],
+  "env": {
+    "browser": true,
+    "commonjs": true
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "react/jsx-indent-props": 0
+  }
+}

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import CategoryTile from './CategoryTile';
+import CategoryTileListSaveBar from './CategoryTileListSaveBar';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class CategoryTileList extends Component {
@@ -8,18 +9,23 @@ class CategoryTileList extends Component {
     }
 
     render() {
-        const { categories, onCLick } = this.props;
+        const { categories, onCategoryClick, onSaveCategoryClick } = this.props;
 
         return (
-            <ul>
-                {categories.map((category, index) => (
-                    <CategoryTile
-                      key={index}
-                      category={category}
-                      onCLick={ () => onCLick(category.get('name')) }
-                    />
-                ))}
-            </ul>
+            <div>
+                <CategoryTileListSaveBar
+                  onClickHandler={() => onSaveCategoryClick(this.props.categories)}
+                />
+                <ul>
+                    {categories.map((category, index) => (
+                        <CategoryTile
+                          key={ index }
+                          category={ category }
+                          onClick={ onCategoryClick }
+                        />
+                    ))}
+                </ul>
+            </div>
         );
     }
 }
@@ -27,7 +33,8 @@ class CategoryTileList extends Component {
 CategoryTileList.propTypes = {
     categories: ImmutablePropTypes.list.isRequired,
     getCategories: PropTypes.func.isRequired,
-    onCLick: PropTypes.func.isRequired
+    onCategoryClick: PropTypes.func.isRequired,
+    onSaveCategoryClick: PropTypes.func.isRequired
 };
 
 export default CategoryTileList;
