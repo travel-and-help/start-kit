@@ -15,8 +15,8 @@ class WatchList extends Component {
                 <div className="main-screen__menu" >
                     <IconButton
                         buttonClassName={'challenge-nav__item challenge-nav__item_back'}
-                        iconName={'keyboard_arrow_left'}
-                        iconSize={40}
+                        iconName={'back'}
+                        iconSize={30}
                         iconClassName={'icon_light'}
                         clickHandler={hashHistory.goBack}
                     />
