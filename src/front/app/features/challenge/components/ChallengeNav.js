@@ -6,15 +6,15 @@ export default () => (
     <div className="challenge-nav">
         <IconButton
           buttonClassName={'challenge-nav__item challenge-nav__item_back'}
-          iconName={'keyboard_arrow_left'}
-          iconSize={40}
+          iconName={'back'}
+          iconSize={30}
           iconClassName={'icon_light'}
           clickHandler={hashHistory.goBack}
         />
         <IconButton
           buttonClassName={'challenge-nav__item challenge-nav__item_watch'}
-          iconName={'bookmark_border'}
-          iconSize={40}
+          iconName={'watchlist'}
+          iconSize={36}
           iconClassName={'icon_light'}
         />
     </div>

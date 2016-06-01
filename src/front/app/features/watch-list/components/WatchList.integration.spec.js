@@ -31,10 +31,6 @@ describe('WatchList', () => {
         />);
     });
 
-    it('has back button', () => {
-        wrapper.find('button').text().should.contain('keyboard_arrow_left');
-    });
-
     it('navigates back', () => {
         const button = wrapper.find('button.challenge-nav__item_back');
         button.simulate('click');

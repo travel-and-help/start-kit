@@ -1,29 +1,26 @@
 .icon {
     position: relative;
     display: inline-block;
-    font-size: inherit;
-    font-family: 'Material Icons';
-    font-style: normal;
-    text-align: center;
 
     $i: 14;
     $selector: '&_size-';
     @while ($i < 50) {
 
     '#{$selector}#{$i}' {
-        font-size: _th-rem($i);
+        width: _th-rem($i);
+        height: _th-rem($i);
     }
 
         $i: $i + 2;
     }
 
     &_dark {
-        text-shadow: 0 0 2px rgba(255,255,255, .5);
-        color: #333;
+        color: #4a4a4a;
+        fill: #4a4a4a;
     }
 
     &_light {
-        text-shadow: 0 0 2px rgba(0,0,0, .5);
         color: #fefefe;
+        fill: #fefefe;
     }
 }

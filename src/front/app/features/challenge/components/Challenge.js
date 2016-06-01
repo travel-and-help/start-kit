@@ -17,13 +17,16 @@ class Challenge extends Component {
     }
 
     render() {
-        return (
-            <div className="challenge-details">
-                <ChallengeNav />
-                {this.props.challenge.size && <ChallengeDetails challenge={this.props.challenge} />}
-                <ChallengeComments />
-            </div>
-        );
+        if (this.props.challenge.size) {
+            return (
+                <div className="challenge-details">
+                    <ChallengeNav />
+                    <ChallengeDetails challenge={this.props.challenge} />
+                    <ChallengeComments />
+                </div>
+            );
+        }
+        return null;
     }
 }
 

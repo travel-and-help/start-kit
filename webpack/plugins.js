@@ -5,7 +5,9 @@ const
     env = require('../env'),
     layout = require('../layout'),
     Html = require('html-webpack-plugin'),
-    ExtractTextPlugin = require('extract-text-webpack-plugin');
+    ExtractTextPlugin = require('extract-text-webpack-plugin'),
+    path = require('path'),
+    SvgStore = require('webpack-svgstore-plugin');
 
 module.exports = [
     new webpack.DefinePlugin({
@@ -20,5 +22,25 @@ module.exports = [
     }),
     new ExtractTextPlugin('app.css', {
         allChunks: true
-    })
+    }),
+    new SvgStore(
+        path.join(layout.src.frontDir, 'app', 'common', 'icons', '*.svg'),
+        '',
+        {
+            name: 'icons.svg',
+            chunk: 'main',
+            prefix: 'th-',
+            svgoOptions: {
+                plugins: [
+                    { collapseGroups: true },
+                    { transformsWithOnePath: true },
+                    { convertPathData: true },
+                    { cleanupIDs: true },
+                    { removeAttrs: {
+                        attrs: ['fill']
+                    }}
+                ]
+            }
+        }
+    )
 ];

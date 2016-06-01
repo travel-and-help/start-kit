@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import IconButton from './../../../common/components/buttons/IconButton';
+import Fasteners from './../../../common/components/fasteners/Fasteners';
 
 const ChallengeDetails = ({ challenge }) => {
     const {
@@ -8,64 +9,92 @@ const ChallengeDetails = ({ challenge }) => {
         title,
         level,
         description,
+        categories,
+        location,
         user: {
             firstName,
-            lastName,
-            rating
+            lastName
         }
     } = challenge.toJS();
 
     return (
         <section>
-            <div
-              className="challenge__img"
-              style={{ backgroundImage: `url(${image})` }}
-            >
+            <header className="challenge-header" style={{ backgroundImage: `url(${image})` }} >
+                <h1 className="challenge-header__title" >{title}</h1>
+            </header>
+
+            <div className="challenge-info" >
+
+                <div className="challenge-info__inner challenge-info__inner_big" >
+
+                    <div className="challenge-info__item challenge-info-category" >
+                        <Fasteners className="challenge-info__fasteners" />
+                        <IconButton
+                            title={categories[0]}
+                            iconName={`category-${categories[0]}`.toLowerCase()}
+                            iconSize={48}
+                            iconClassName={'icon_dark'}
+                        />
+                    </div>
+
+
+                    <div className="challenge-info__item challenge-info__item_big" >
+                        <Fasteners className="challenge-info__fasteners" />
+                        <div className="challenge-info-author" >
+                            <p className="challenge-info__label">Created by</p>
+                            <span className="challenge-info__text">
+                                {firstName} {lastName}
+                            </span>
+                        </div>
+                        <div className="challenge-info-location" >
+                            <p className="challenge-info__label">Region</p>
+                            <span className="challenge-info__text">{location}</span>
+                        </div>
+                    </div>
+
+                    <div className="challenge-info__item challenge-info-level">
+                        <Fasteners className="challenge-info__fasteners" />
+                        <span className="challenge-info__text">{level}</span>
+                    </div>
+
+                    <div className="challenge-info__item
+                        challenge-info__item_big
+                        challenge-info-completed"
+                    >
+                        <Fasteners className="challenge-info__fasteners" />
+                        <span className="challenge-info-completed__count">
+                            <b>25</b> completions
+                        </span>
+                    </div>
+                </div>
+
+                <div className="challenge-info__inner challenge-info__inner_small" >
+                    <div className="challenge-info__button_wrapper">
+                        <Fasteners className="challenge-info__fasteners" />
+                        <IconButton
+                            title={'Accept'}
+                            buttonClassName={'challenge-info__button'}
+                            iconName={'accept'}
+                            iconSize={32}
+                            iconClassName={'icon_dark'}
+                        />
+                    </div>
+
+                    <div className="challenge-info__button_wrapper">
+                        <Fasteners className="challenge-info__fasteners" />
+                        <IconButton
+                            title={'Share'}
+                            buttonClassName={'challenge-info__button'}
+                            iconName={'share'}
+                            iconSize={32}
+                            iconClassName={'icon_dark'}
+                        />
+                    </div>
+                </div>
             </div>
-
-            <div className="challenge-info">
-
-                <div className="challenge-info__item challenge-info__item_created">
-                    <h1 className="challenge-info__title">{title}</h1>
-                    <div className="challenge-info-author">
-                        <span className="challenge-info-author__label">Created by </span>
-                        <span className="challenge-info-author__name">
-                            {firstName} {lastName}
-                        </span>
-                        <span className="challenge-info-author__rating">
-                            <i className="icon icon_size-36">star_border</i>
-                            <sup className="challenge-info-author__rating-val">
-                                {rating}
-                            </sup>
-                        </span>
-                    </div>
-                    <div className="challenge-info-level">
-                        <span className="challenge-info-level__label">Challenge Level </span>
-                        <span className="challenge-info-level__value">{level}</span>
-                    </div>
-                </div>
-
-                <IconButton
-                  title={'accept challenge'}
-                  buttonClassName={'challenge-info__button'}
-                  iconName={'check_circle'}
-                  iconSize={32}
-                />
-
-                <div className="challenge-info__item challenge-info__item_completed">
-                    <p className="challenge-info-completed__count"><b>Completed by 25 people</b></p>
-                    <p className="challenge-info-completed__this-week">3 this week</p>
-                    <a className="challenge-info-completed__see-more" href="">See more details</a>
-                </div>
-
-                <IconButton
-                  title={'share challenge'}
-                  buttonClassName={'challenge-info__button'}
-                  iconName={'share'}
-                  iconSize={32}
-                />
-
-                <p className="challenge-info__description">{description}</p>
+            <div className="challenge-info-description">
+                <h2 className="challenge-info-description__title">Description</h2>
+                {description}
             </div>
         </section>
     );
@@ -77,10 +106,11 @@ ChallengeDetails.propTypes = {
         title: PropTypes.string.isRequired,
         level: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
+        categories: ImmutablePropTypes.list.isRequired,
+        location: PropTypes.string.isRequired,
         user: ImmutablePropTypes.mapContains({
             firstName: PropTypes.string.isRequired,
-            lastName: PropTypes.string.isRequired,
-            rating: PropTypes.number.isRequired
+            lastName: PropTypes.string.isRequired
         }).isRequired
     }).isRequired
 };
