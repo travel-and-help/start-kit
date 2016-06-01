@@ -32,3 +32,15 @@ body {
 a {
     text-decoration: none;
 }
+
+@media only screen and (max-width: 320px) {
+    html {
+        font-size: _th-rem(14);
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    html {
+        font-size: _th-rem(30);
+    }
+}

@@ -22,7 +22,6 @@
         }
     }
 
-    // Info
     &-info {
         $button-width: _th-rem(72);
 
@@ -40,7 +39,7 @@
         &__inner {
             display: flex;
             flex-wrap: wrap;
-            height: _th-rem(160);
+            min-height: _th-rem(160);
 
             &_big {
                 flex: 1 1 calc(100% - #{$button-width});

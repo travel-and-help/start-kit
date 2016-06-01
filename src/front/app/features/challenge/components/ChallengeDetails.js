@@ -29,8 +29,12 @@ const ChallengeDetails = ({ challenge }) => {
 
                     <div className="challenge-info__item challenge-info-category" >
                         <Fasteners className="challenge-info__fasteners" />
-                        <i className="challenge-info-category__icon icon icon_size-36" >group</i>
-                        <span className="challenge-info__text" >{categories[0]}</span>
+                        <IconButton
+                            title={categories[0]}
+                            iconName={`category-${categories[0]}`.toLowerCase()}
+                            iconSize={48}
+                            iconClassName={'icon_dark'}
+                        />
                     </div>
 
 
