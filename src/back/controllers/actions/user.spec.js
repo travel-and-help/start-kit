@@ -23,6 +23,17 @@ describe('user actions service', () => {
         });
     });
 
+    it('adds challenge to watch list', () => {
+        challengeIds = ['id#1', 'id#2'];
+        const newId = 'id#3';
+        user.get.returns(challengeIds);
+        return sut.watchChallenge(env.stub().resolves(user)(), newId)
+            .then(() => user.set.should.calledWith(
+                'watchList',
+                env.match(val => val.should.include.members(challengeIds.concat(newId)))
+            ));
+    });
+
     it('removes challenge from watch list', () => {
         const idToUnWatch = 'id#3';
         challengeIds = ['id#1', 'id#2', { toString: () => idToUnWatch }, 'id#4'];
@@ -38,10 +49,12 @@ describe('user actions service', () => {
             .then(() => user.set.should.calledWith('watchList', challengesWithoutUnWatched));
     });
 
-    it('returns save result', () => {
-        const userPromise = { then: env.stub().returns(user) };
-        sut.unWatchChallenge(userPromise, 'smth').should.equal(user);
-    });
+    ['unWatchChallenge', 'watchChallenge'].forEach(method =>
+        it(`returns user.save() result on ${method}`, () => {
+            const userPromise = { then: env.stub().returns(user) };
+            sut[method](userPromise, 'smth').should.equal(user);
+        })
+    );
 
     it('uses saved watch list ids', () => {
         const userPromise = env.stub().resolves(user)();

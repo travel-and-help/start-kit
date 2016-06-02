@@ -12,7 +12,8 @@ describe('my route', () => {
         router = chainable(['get', 'delete', 'use', 'put']);
         my = {
             getWatchList: 'a function',
-            unWatch: 'another function'
+            unWatch: 'another function',
+            watch: '3rd function'
         };
         authService = { restrictUnauthenticated: env.stub() };
 
@@ -23,11 +24,15 @@ describe('my route', () => {
         });
     });
 
-    it('GET-s watch list',
+    it('GET-s the watch list',
         () => router.get.should.calledWith('/wish-list', my.getWatchList)
     );
 
-    it('DELETE-s challenge',
+    it('PUT-s into the watch list',
+        () => router.put.should.calledWith('/wish-list/:challengeId', my.watch)
+    );
+
+    it('DELETE-s a challenge',
         () => router.delete.should.calledWith('/wish-list/:challengeId', my.unWatch)
     );
 

@@ -3,29 +3,16 @@
 const userActions = require('../../../actions/user');
 const responseBuilder = require('../../../../common/response-builder');
 
-const getWatchList = (req, res) => {
-    userActions
-        .getWatchedChallenges(req.getCurrentUser())
-        .then(challenges => responseBuilder.ok(res, challenges))
-        .catch(err => responseBuilder.fail(res, err));
-};
-
-const unWatch = (req, res) => {
-    userActions
-        .unWatchChallenge(req.getCurrentUser(), req.params.challengeId)
-        .then(savingResult => responseBuilder.ok(res, savingResult))
-        .catch(err => responseBuilder.fail(res, err));
-};
-
-const watch = (req, res) => {
-    userActions
-        .watchChallenge(req.getCurrentUser(), req.params.challengeId)
-        .then(savingResult => responseBuilder.ok(res, savingResult))
-        .catch(err => responseBuilder.fail(res, err));
-};
+function responseFactory(action) {
+    return function responder(req, res) {
+        action(req.getCurrentUser(), req.params.challengeId)
+            .then(actionResult => responseBuilder.ok(res, actionResult))
+            .catch(err => responseBuilder.fail(res, err));
+    };
+}
 
 module.exports = {
-    getWatchList,
-    unWatch,
-    watch
+    getWatchList: responseFactory(userActions.getWatchedChallenges),
+    unWatch: responseFactory(userActions.unWatchChallenge),
+    watch: responseFactory(userActions.watchChallenge)
 };
