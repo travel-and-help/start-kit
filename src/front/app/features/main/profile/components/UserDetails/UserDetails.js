@@ -1,36 +1,25 @@
 import React, { PropTypes } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-// import ChallengeList from '../../../../../features/main/challenges/components/ChallengeTileList';
-// import SocialList from './SocialList';
-
-//
-// const getChallenges = (user, status) => (
-//     user.get('challenges')
-//         .filter(challenge => challenge.get('status') === status)
-//         .map(challenge => challenge.get('challenge'))
-// );
+import { Link } from 'react-router';
+import ChallengeList from '../../../../../features/main/challenges/components/ChallengeTileList';
+import SocialList from './SocialList';
+import Fasteners from '../../../../../common/components/fasteners/Fasteners';
 
 const UserDetailsContainer = ({ user }) => {
     const {
         photo,
         fullName,
-        acceptedChallenges,
-        completedChallenges,
-        createdChallenges,
         // locations,
         // categories,
         rating } = user.toJS();
-
-    // const acceptedChallenges = getChallenges(user, 'accepted'),
-    //     completedChallenges = getChallenges(user, 'completed'),
-    //     createdChallenges = getChallenges(user, 'created');
-
-
+    const createdChallenges = user.get('createdChallenges');
+    const acceptedChallenges = user.get('acceptedChallenges');
+    const completedChallenges = user.get('completedChallenges');
     return (
         <div className="user-details">
             <div className="user-details__user-info">
                 <div className="user-details__avatar-block" >
-                    <span>Icon</span>
+                    <Link to="watch-list" className="user-details__watchlist-link" />
                     <img className="user-details__image" src={photo} title={fullName} />
                     <div className="user-details__rating-container" >
                         <span className="user-details__rating">{rating}</span>
@@ -41,66 +30,96 @@ const UserDetailsContainer = ({ user }) => {
                 <div className="user-details__full-name">
                     {fullName}
                 </div>
+                <div className="user-details__stats-container">
+                    <div className="user-details__stats user-details__stats_created">
+                        <div className="user-details__stats-value
+                                        user-details__stats-value_created"
+                        >
+                            { (createdChallenges && createdChallenges.size) || 0 }
+                        </div>
+                        <span>Created</span>
+                    </div>
+                    <div className="user-details__stats user-details__stats_accepted">
+                        <div className="user-details__stats-value
+                                        user-details__stats-value_accepted"
+                        >
+                            { (completedChallenges && completedChallenges.size) || 0 }
+                        </div>
+                        <span>Accepted</span>
+                    </div>
+                    <div className="user-details__stats user-details__stats_completed">
+                        <div className="user-details__stats-value
+                                        user-details__stats-value_completed"
+                        >
+                            { (acceptedChallenges && acceptedChallenges.size) || 0 }
+                        </div>
+                        <span>Completed</span>
+                    </div>
+                </div>
+            </div>
+            <div className="user-details__additional-info-container">
+                <Fasteners className="challenge-tile-wrap__fasteners" />
+                <div className="user-details__additional-info" >
+                    <div className="user-details__additional-title" >On Web</div>
+                    <SocialList socials={user.get('social')} />
+                </div>
+            </div>
+
+            <div className="user-details__challenges-container">
+                {createdChallenges && createdChallenges.size && (
+                    <div className="user-details__challenges-section">
+                        <h4 className="user-details__challenges-title
+                                    user-details__challenges-title_created"
+                        >
+                            Created Challenges
+                        </h4>
+                        <ChallengeList challenges={ createdChallenges } />
+                        <div className="user-details__challenges-btn-container">
+                            <Fasteners className="challenge-tile-wrap__fasteners" />
+                            <button className="user-details__challenges-btn">Show all</button>
+                        </div>
+                    </div>
+                )}
+                {completedChallenges && completedChallenges.size && (
+                    <div className="user-details__challenges-section">
+                        <h4 className="user-details__challenges-title
+                                    user-details__challenges-title_completed"
+                        >
+                            Completed Challenges
+                        </h4>
+                        <ChallengeList challenges={ completedChallenges } />
+                        <div className="user-details__challenges-btn-container">
+                            <Fasteners className="challenge-tile-wrap__fasteners" />
+                            <button className="user-details__challenges-btn">Show all</button>
+                        </div>
+                    </div>
+                )}
+                {acceptedChallenges && acceptedChallenges.size && (
+                    <div className="user-details__challenges-section">
+                        <h4 className="user-details__challenges-title
+                                    user-details__challenges-title_accepted"
+                        >
+                            Accepted Challenges
+                        </h4>
+                        <ChallengeList challenges={ acceptedChallenges } />
+                        <div className="user-details__challenges-btn-container">
+                            <Fasteners className="challenge-tile-wrap__fasteners" />
+                            <button className="user-details__challenges-btn">Show all</button>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
 };
-// <div className="user-details__challenges-stats">
-//     <div>
-//         <span>Created</span>
-//         <span>{createdChallenges.size}</span>
-//     </div>
-//     <div>
-//         <span>Accepted</span>
-//         <span>{acceptedChallenges.size}</span>
-//     </div>
-//     <div>
-//         <span>Completed</span>
-//         <span>{completedChallenges.size}</span>
-//     </div>
-// </div>
-// <div className="user-details__additional-info">
-//     <div className="" >
-//         <h4 className="" >Locations</h4>
-//         <div className="" >{locations.join(', ')}</div>
-//     </div>
-//     <div className="" >
-//         <h4 className="" >Categories</h4>
-//         <div className="" >{categories.join(', ')}</div>
-//     </div>
-//     <div className="" >
-//         <h4 className="" >Web</h4>
-//         <SocialList socials={user.get('web')} />
-//     </div>
-// </div>
 
-// <div className="user-details__challenges-container">
-//     <div className="" >
-//         <h4 className="" >Created Challenges</h4>
-//         <div className="section-container__description" >
-//             <ChallengeList challenges={createdChallenges} />
-//         </div>
-//     </div>
-//     <div className="" >
-//         <h4 className="" >Accepted Challenges</h4>
-//         <div className="user-details__challenges-container_accepted" >
-//             <ChallengeList challenges={acceptedChallenges} />
-//         </div>
-//     </div>
-//     <div className="section-container" >
-//         <h4 className="" >Completed Challenges</h4>
-//         <div className="" >
-//             <ChallengeList challenges={completedChallenges} />
-//         </div>
-//     </div>
-// </div>
 
 UserDetailsContainer.propTypes = {
     user: ImmutablePropTypes.mapContains({
-        challenges: ImmutablePropTypes.list,
-        categories: ImmutablePropTypes.list,
-        locations: ImmutablePropTypes.list,
-        web: ImmutablePropTypes.list,
+        acceptedChallenges: ImmutablePropTypes.list,
+        completedChallenges: ImmutablePropTypes.list,
+        createdChallenges: ImmutablePropTypes.list,
+        social: ImmutablePropTypes.list,
         fullName: PropTypes.string.isRequired,
         photo: PropTypes.string,
         rating: PropTypes.number

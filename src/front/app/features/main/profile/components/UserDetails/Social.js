@@ -3,14 +3,13 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const Social = ({ social }) => {
     const {
-        title,
-        link
+        type,
+        url
         } = social.toJS();
+    const cssClass = `user-details__social-icon user-details__social-icon_${type}`;
     return (
         <div>
-            <a href={link}>
-                {title}
-            </a>
+            <a href={url} className={ cssClass } />
         </div>
     );
 };

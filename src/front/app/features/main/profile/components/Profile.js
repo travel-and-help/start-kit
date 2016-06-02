@@ -6,17 +6,18 @@ class Profile extends Component {
     componentDidMount() {
         const {
             getUser,
+            getChallenges,
             userId } = this.props;
-        // TODO createdChallenges actions and others
         getUser(userId);
+        getChallenges(userId);
     }
 
     render() {
-        const { user } = this.props;
+        const { user, challenges } = this.props;
 
         return (
             <div className="profile">
-                {user.size && <UserDetails user={user} />}
+                {user.size && <UserDetails user={user} challenges={challenges} />}
             </div>
         );
     }
@@ -24,7 +25,9 @@ class Profile extends Component {
 
 Profile.propTypes = {
     user: ImmutablePropTypes.map.isRequired,
+    challenges: ImmutablePropTypes.list.isRequired,
     getUser: PropTypes.func.isRequired,
+    getChallenges: PropTypes.func.isRequired,
     userId: PropTypes.string.isRequired
 };
 

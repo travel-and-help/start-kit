@@ -3,7 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import Social from './Social';
 
 const SocialList = ({ socials }) => (
-    <div>
+    <div className="user-details__additional-list">
         {socials.map((social, index) => (
             <Social social={ social } key={ index } />
         ))}

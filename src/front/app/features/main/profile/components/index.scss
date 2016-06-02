@@ -1,9 +1,18 @@
 $whiteColor: #fff;
-$ratingColor: #DCDD8E;
+$ratingColor: #ffe12e;
+$completedColor: #adf7b6;
+$acceptedColor: #a0ced9;
+$createdBgColor: #ffee93;
+$completedBgColor: #adf7b6;
 $bgColor : #354A52;
+$ratingIconMeasurement: 32px;
+$imageMeasurement: 120px;
+$statsMeasurement: 50px;
+$socialMeasurement: 25px;
+$assetsBasePath: './app/features/main/profile/assets/';
 
 .user-details {
-
+    margin-bottom: 25px;
 
     &__user-info {
         padding: 15px;
@@ -22,8 +31,8 @@ $bgColor : #354A52;
 
     &__image {
         border-radius: 50% 50%;
-        width: 100px;
-        height: 100px;
+        width: $imageMeasurement;
+        height: $imageMeasurement;
     }
 
     &__full-name {
@@ -31,7 +40,7 @@ $bgColor : #354A52;
         display: flex;
         flex-direction: column;
         margin: 15px 0;
-        font-size: 25px;
+        font-size: 24px;
         font-weight: bold;
     }
 
@@ -41,13 +50,156 @@ $bgColor : #354A52;
         justify-content: space-around;
     }
 
-    &__additional-info {
-        border: 1px solid black;
-
-
-    }
-
     &__rating-container {
+        display: flex;
+        font-size: $ratingIconMeasurement;
         color: $ratingColor;
     }
+
+    &__rating-icon {
+        margin-left: 5px;
+        width: $ratingIconMeasurement;
+        height: $ratingIconMeasurement;
+        background: url($assetsBasePath + 'pizza.svg') no-repeat center;
+    }
+
+    &__watchlist-link {
+        width: 36px;
+        height: 47px;
+        background: url($assetsBasePath + 'watchlist.svg') no-repeat center;
+    }
+
+    &__stats-container {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    &__stats {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 12px;
+
+        &_accepted {
+            color: $acceptedColor;
+        }
+
+        &_created {
+            color: $ratingColor;
+        }
+
+        &_completed {
+            color: $completedColor;
+        }
+    }
+
+    &__stats-value {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: $statsMeasurement;
+        height: $statsMeasurement;
+        font-size: 18px;
+        border-radius: 50%;
+        margin-bottom: 5px;
+
+        &_accepted {
+            border: 1px solid $acceptedColor;
+        }
+
+        &_created {
+            border: 1px solid $ratingColor;
+        }
+
+        &_completed {
+            border: 1px solid $completedColor;
+        }
+    }
+
+    &__additional-info-container {
+        display: flex;
+        flex-direction: column;
+        padding: 24px;
+        margin-top: 11px;
+        position: relative;
+        border-radius: 5px;
+        background-color: #ffffff;
+        border: solid 1px #4a4a4a;
+    }
+
+    &__additional-info {
+        display: flex;
+        width: 100%;
+    }
+
+    &__additional-title {
+        display: flex;
+        width: 40%;
+        line-height: $socialMeasurement;
+        font-size: 13px;
+        letter-spacing: 0.9px;
+        font-weight: bold;
+        color: #9b9b9b;
+        margin: 0;
+    }
+
+    &__additional-list {
+        display: flex;
+        width: 60%;
+    }
+
+    &__social-icon {
+        width: $socialMeasurement;
+        height: $socialMeasurement;
+        display: flex;
+
+        &_GOOGLE_PLUS {
+            background: url($assetsBasePath + 'google.svg') no-repeat center;
+        }
+    }
+
+    &__challenges-section {
+        margin-top: 16px;
+    }
+
+    &__challenges-title {
+        height: 40px;
+        margin: 16px 0;
+        text-align: center;
+        font-size: 18px;
+        color: #4a4a4a;
+        border-radius: 5px;
+        border: solid 1px #4a4a4a;
+        padding: 9px 0;
+
+        &_created {
+            background-color: $createdBgColor;
+        }
+
+        &_completed {
+            background-color: $completedBgColor;
+        }
+
+        &_accepted {
+            background-color: $acceptedColor;
+        }
+    }
+
+    &__challenges-btn {
+        font-weight: bold;
+        background-color: $whiteColor;
+        width: 100%;
+        height: 30px;
+        border-radius: 5px;
+        border: solid 1px #4a4a4a;
+        font-size: 12px;
+        color: #4a4a4a;
+        text-transform: uppercase;
+    }
+
+    &__challenges-btn-container {
+        position: relative;
+    }
 }
+

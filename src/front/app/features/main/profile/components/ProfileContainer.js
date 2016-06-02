@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
-import { getUser } from '../profile.actions';
+import { getUser, getChallenges } from '../profile.actions';
 import Profile from './Profile';
 
-const mapStateToProps = ({ user }) => {
-    const userId = '574e979e8577266100429bdb';
+const mapStateToProps = ({ user, auth }) => {
     return {
-        userId,
+        userId: auth.userId,
         user
     };
 };
@@ -13,6 +12,9 @@ const mapStateToProps = ({ user }) => {
 const mapDispatchToProps = (dispatch) => ({
     getUser: (id) => {
         dispatch(getUser(id));
+    },
+    getChallenges: (id) => {
+        dispatch(getChallenges(id));
     }
 });
 
