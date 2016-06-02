@@ -9,7 +9,7 @@ describe('my route', () => {
         router;
 
     beforeEach(() => {
-        router = chainable(['get', 'delete', 'use']);
+        router = chainable(['get', 'delete', 'use', 'put']);
         my = {
             getWatchList: 'a function',
             unWatch: 'another function'
