@@ -3,9 +3,6 @@ import Navigation from './navigation';
 
 const MainScreen = ({ children }) => (
     <div className="main-screen" >
-        <div className="main-screen__menu" >
-
-        </div>
         <div className="main-screen__content" >
             {children}
         </div>

@@ -1,5 +1,6 @@
-import { List, fromJS } from 'immutable';
 import sut from './watchList.reducer';
+import { WATCH_LIST_CHALLENGES_RECEIVED } from './watchList.actions';
+import { List, fromJS } from 'immutable';
 
 describe('watchList.reducer', () => {
     it('should be empty list on initial state', () => sut(undefined, {}).toJS().should.eql([]));
@@ -8,7 +9,7 @@ describe('watchList.reducer', () => {
 
     it('handles WATCH_LIST_CHALLENGES_RECEIVED', () => {
         const action = {
-            type: 'WATCH_LIST_CHALLENGES_RECEIVED',
+            type: WATCH_LIST_CHALLENGES_RECEIVED,
             challenges: ['watch list']
         };
         sut(undefined, action).should.eql(fromJS(action.challenges));

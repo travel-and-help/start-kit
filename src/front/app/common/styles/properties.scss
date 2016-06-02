@@ -1,3 +1,5 @@
+$statusBarHeight: _th-rem(20);
+
 $gBorderRadius: _th-rem(10);
 $gBorderRadiusSm: _th-rem(5);
 
@@ -12,4 +14,7 @@ $gBorderColor: $gTextColor;
 $gBorder: $gBorderThickness solid $gBorderColor;
 
 $fastenerHeight: _th-rem(15);
+
 $gOpacity: .85;
+
+$menuHeight: _th-rem(64)

@@ -15,12 +15,12 @@
     }
 
     &_dark {
-        color: #4a4a4a;
-        fill: #4a4a4a;
+        color: $gTextColor;
+        fill: $gTextColor;
     }
 
     &_light {
-        color: #fefefe;
-        fill: #fefefe;
+        color: $gTextInverseColor;
+        fill: $gTextInverseColor;
     }
 }

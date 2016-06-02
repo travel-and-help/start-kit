@@ -4,15 +4,15 @@ import { IndexRoute } from 'react-router';
 import Login from './features/auth/components/LoginScreenContainer';
 import CategoryTileListContainer from './features/categories/components/CategoryTileListContainer';
 import mainRoutes from './features/main/routes';
+import profileRoutes from './features/profile-challenges/routes';
 import ChallengeContainer from './features/challenge/components/ChallengeContainer';
-import WatchListContainer from './features/watch-list/components/WatchListContainer';
 
 export default () => (
     <Route path="/" >
         <IndexRoute component={Login} />
         {mainRoutes()}
+        {profileRoutes()}
         <Route path="categories" component={CategoryTileListContainer} />
         <Route path="challenge/:id" component={ChallengeContainer} />
-        <Route path="watch-list" component={WatchListContainer} />
     </Route>
 );

@@ -1,26 +1,35 @@
 .challenge-details {
-    @import "ChallengeVariables";
+  @import "ChallengeVariables";
 
-    position: relative;
-    color: map_get($colors, main);
+  position: relative;
+  color: map_get($colors, main);
 
-    %border-block {
-        padding: $page-padding;
-        border-radius: _th-rem(5);
-        border: solid _th-rem(1) map_get($colors, main);
-        font-size: map_get($font-sizes, default);
-        background-color: #fff;
+  %border-block {
+    padding: $page-padding;
+    border-radius: $gBorderRadius;
+    border: $gBorder;
+    font-size: map_get($font-sizes, default);
+    background-color: $gBgColor;
 
-        &-title {
-            margin: 0 0 $page-padding;
-            text-transform: uppercase;
-            font-size: map_get($font-sizes, default);
-            line-height: 1;
-            color: map_get($colors, title);
-        }
+    &-title {
+      margin: 0 0 $page-padding;
+      text-transform: uppercase;
+      font-size: map_get($font-sizes, default);
+      line-height: 1;
+      color: map_get($colors, title);
     }
+  }
 
-    @import 'ChallengeNav';
-    @import 'ChallengeDetails';
-    @import 'ChallengeComments';
+  %challenge-title {
+    text-transform: uppercase;
+    text-shadow: 0 _th-rem(1) _th-rem(2) rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+    font-size: map-get($font-sizes, header);
+    letter-spacing: _th-rem(1);
+    color: $gTextInverseColor;
+  }
+
+  @import 'ChallengeDetailsMenu';
+  @import 'ChallengeDetails';
+  @import 'ChallengeComments';
 }
