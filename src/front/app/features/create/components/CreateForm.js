@@ -11,6 +11,10 @@ class CreateForm extends Component {
         if (this.props.categories.size === 0) {
             this.props.getCategories();
         }
+
+        this.props.fields.startDate.value = '2016-11-11';
+        this.props.fields.proof.value = false;
+        this.props.fields.repeateble.value = true;
     }
 
     render() {

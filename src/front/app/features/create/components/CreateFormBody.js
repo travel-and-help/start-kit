@@ -49,19 +49,19 @@ const CreateFormBody = ({ fields, categories }) => (
 
         <CreateDatePicker
           label="Start Date"
-          checked
-          value={fields.startDate}
+          date={fields.startDate}
         />
 
         <CreateDatePicker
           label="End Date"
-          value={fields.endDate}
+          date={fields.endDate}
+          minDate={fields.startDate.value}
         />
 
         <CreateTumbler
           label="Repeateble"
           disabled
-          cheched
+          checked
           value={fields.repeateble}
         />
 
@@ -76,7 +76,6 @@ const CreateFormBody = ({ fields, categories }) => (
 
         <CreateTumbler
           label="Photo proof"
-          checked
           value={fields.proof}
         />
     </div>
