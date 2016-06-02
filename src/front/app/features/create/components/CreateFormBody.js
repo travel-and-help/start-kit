@@ -10,23 +10,19 @@ const CreateFormBody = ({ fields, categories }) => (
     <div className="challenge-create__body">
         <CreateError formFields={fields} />
 
-        <div className="challenge-create__photo-wrapp">
-            <CreatePhoto />
-        </div>
+        <CreatePhoto />
 
-        <div className="challenge-create__title-field-wrapp">
-            <input
-              className={fields.title.error && fields.title.touched ?
-                  'challenge-create__input challenge-create__input_error' :
-                  'challenge-create__input'}
+        <input
+          className={fields.title.error && fields.title.touched ?
+              'challenge-create__input challenge-create__input_error' :
+              'challenge-create__input'}
 
-              placeholder="Enter title" {...fields.title}
-            />
+          placeholder="Enter challange name" {...fields.title}
+        />
 
-        </div>
 
         <h2 className="challenge-create__subtitle">
-            Description
+            DESCRIPTION
         </h2>
 
         <CreateCategories
@@ -39,12 +35,12 @@ const CreateFormBody = ({ fields, categories }) => (
               'challenge-create__descr challenge-create__descr_error' :
               'challenge-create__descr'}
 
-          placeholder="Description" {...fields.description}
+          placeholder="Enter description here" {...fields.description}
         >
         </textarea>
 
         <h2 className="challenge-create__subtitle">
-            Settings
+            SETTINGS
         </h2>
 
         <CreateDatePicker

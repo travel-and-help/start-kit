@@ -1,0 +1,254 @@
+$attention_color: #f44336;
+$regular_border_color: #4a4a4a;
+$subtitle_color: #9b9b9b;
+$header_border_color: #dde1e2;
+$text_color: #4a4a4a;
+$post_color: #ddd;
+
+
+.border-box {
+    line-height: 16px;
+    padding: 10px 16px;
+    border: 2px dashed $regular_border_color;
+    font-size: 14px;
+    border-radius: 5px;
+    outline: none;
+
+    &::-webkit-input-placeholder {
+        font-style: italic;
+    }
+}
+
+.label-box {
+    width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    float: left;
+    font-size: 14px;
+    color: $text_color;
+}
+
+.challenge-create {
+    &__body {
+        padding: 0 20px;
+    }
+
+    &__subtitle {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        margin: 50px 0 20px;
+        font-size: 13px;
+        letter-spacing: 0.9px;
+        color: $subtitle_color;
+        font-weight: bold;
+        clear: both;
+        width: 100%;
+    }
+
+    &__input {
+        @extend .border-box;
+        height: 40px;
+        width: 54%;
+        float: right;
+        margin-top: 10px;
+        margin-bottom: 62px;
+    }
+
+    &__descr {
+        @extend .border-box;
+        height: 60px;
+        width: 100%;
+        resize: none;
+    }
+
+    &__input_error,
+    &__descr_error{
+        border-color: $attention_color;
+        color: $attention_color;
+    }
+}
+
+.challenge-create-header {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    height: 42px;
+    line-height: 42px;
+    position: relative;
+    border-bottom: 1px solid $header_border_color;
+    margin-bottom: 24px;
+
+    &__discard,
+    &__post {
+        background: none;
+        border: 0;
+    }
+
+    &__discard {
+        height: 42px;
+        width: 42px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-indent: -9999px;
+        overflow: hidden;
+        display: block;
+        outline: none;
+    }
+
+    &__title {
+        font-size: 20px;
+        letter-spacing: 0.5px;
+        text-align: center;
+        color: $text_color;
+        margin: 0 80px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-transform: uppercase;
+        font-weight: normal;
+    }
+
+    &__post {
+        position: absolute;
+        top: 0;
+        right: 16px;
+        height: 42px;
+        font-size: 14px;
+        color: $post_color;
+    }
+}
+
+.create-error {
+    width: 100%;
+    clear: both;
+    text-align: center;
+    margin-top: -10px;
+
+    &__message {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #fff;
+        letter-spacing: 0.3px;
+        height: 30px;
+        line-height: 30px;
+        padding: 0 17px;
+        background-color: $attention_color;
+        border: solid 1px $regular_border_color;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        display: inline-block;
+
+        &:empty {
+            display: none;
+        }
+    }
+}
+
+.create-category {
+    height: 36px;
+    line-height: 35px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    margin-bottom: 15px;
+
+    &__value {
+        font-size: 14px;
+        color: $text_color;
+        padding: 0 25px 0 16px;
+        text-transform: capitalize;
+    }
+
+    &__select {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+}
+
+.create-category_error {
+    border: 2px dashed #f44336;
+
+    .create-category__value {
+        color: $attention_color;
+        font-style: italic;
+    }
+}
+
+
+.create-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    border: 2px solid $regular_border_color;
+    float: left;
+
+    &_error {
+        border-color: $attention_color;
+    }
+}
+
+.create-tumbler {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    height: 24px;
+    line-height: 24px;
+    overflow: hidden;
+    margin-bottom: 18px;
+
+    &__label {
+        @extend .label-box;
+    }
+
+    &__input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
+
+    &__btn {
+        position: relative;
+        float: left;
+        width: 44px;
+        height: 24px;
+        position: relative;
+    }
+    
+    &__bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: #c0c0c0;
+        z-index: 1;
+    }
+
+    &__input:checked + &__bg {
+        background: #000;
+    }
+}
+
+.create-datepicker {
+    margin-bottom: 18px;
+
+    &__label {
+        @extend .label-box;
+        height: 40px;
+        line-height: 40px;
+    }
+
+    &__field {
+        @extend .border-box;
+        height: 40px;
+    }
+}
