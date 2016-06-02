@@ -17,7 +17,15 @@ const unWatch = (req, res) => {
         .catch(err => responseBuilder.fail(res, err));
 };
 
+const watch = (req, res) => {
+    userActions
+        .watchChallenge(req.getCurrentUser(), req.params.challengeId)
+        .then(savingResult => responseBuilder.ok(res, savingResult))
+        .catch(err => responseBuilder.fail(res, err));
+};
+
 module.exports = {
     getWatchList,
-    unWatch
+    unWatch,
+    watch
 };

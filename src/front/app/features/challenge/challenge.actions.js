@@ -23,6 +23,10 @@ export function fetchChallenge(id) {
     };
 }
 
+export function watchChallenge(challengeId) {
+    return dispatch => api(`/api`)
+}
+
 export function resetState() {
     return (dispatch) => dispatch(receiveInitialState());
 }

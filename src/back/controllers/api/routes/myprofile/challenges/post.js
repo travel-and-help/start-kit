@@ -6,10 +6,8 @@ const postChallenge = (req, res) => {
     user.findOneAndUpdate(
         {},
         { $push: { challenges: req.body.challenge } },
-        {new: true},
-        (err, user) => {
-            res.send(user);
-        }
+        { new: true },
+        (err, person) => res.send(person)
     );
 };
 

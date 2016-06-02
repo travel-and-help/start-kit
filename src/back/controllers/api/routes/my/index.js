@@ -7,4 +7,5 @@ const restrictUnauthenticated = require('../../../auth/auth.service').restrictUn
 module.exports = router()
     .use(restrictUnauthenticated)
     .get('/wish-list', my.getWatchList)
-    .delete('/wish-list/:challengeId', my.unWatch);
+    .delete('/wish-list/:challengeId', my.unWatch)
+    .put('/wish-list/:challengeId', my.watch);
