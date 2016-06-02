@@ -35,7 +35,8 @@ describe('app/common/api', () => {
     it('should prefix url with base api url when pass url as context', () => {
         const context = '/my-url';
         const options = {
-            key: 'val'
+            key: 'val',
+            headers: { Accept: 'application/json', 'Content-Type': 'application/json' }
         };
         sut(context, options);
         fetch.should.been.calledWith('/base-url/my-url', options);
@@ -52,7 +53,11 @@ describe('app/common/api', () => {
         sut('/testUrl');
         fetch.should.been.calledWith('/base-url/testUrl', {
             credentials: 'include',
-            headers: { Authorization: 'Bearer authToken' }
+            headers: {
+                Authorization: 'Bearer authToken',
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }
         });
     });
 
