@@ -1,43 +1,31 @@
 import React, { PropTypes } from 'react';
 
-const CreateDatePicker = ({ label, value, checked, disabled }) => (
+const CreateDatePicker = ({ label, date, disabled, minDate, maxDate }) => (
     <div className="create-datepicker">
         <label className="create-datepicker__label">
             {label}
         </label>
 
         <div className="create-datepicker__field-wrapp">
-            <div className="create-datepicker__btn">
-                <input type="checkbox"
-                  className="create-datepicker__input"
-                  disabled={disabled}
-                  defaultChecked={checked}
-                />
-
-                <div className="create-datepicker__bg"></div>
-            </div>
-
             <input
               type="date"
-              className="create-datepicker__value"
-              {...value}
+              className="create-datepicker__field"
+              disabled={disabled}
+              min={minDate}
+              max={maxDate}
+              {...date}
             />
-
-            <button
-              className="create-datepicker__change-btn"
-              type="button"
-            >
-                Change
-            </button>
         </div>
     </div>
 );
 
+
 CreateDatePicker.propTypes = {
     label: PropTypes.string.isRequired,
-    checked: PropTypes.bool,
     disabled: PropTypes.bool,
-    value: PropTypes.object
+    date: PropTypes.object,
+    minDate: PropTypes.string,
+    maxDate: PropTypes.string
 };
 
 
