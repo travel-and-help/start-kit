@@ -1,6 +1,5 @@
 import React from 'react';
 
-/* istanbul ignore next */
 const Menu = ({ className, leftAction, rightAction, title }) => (
     <div className={`${className} menu`} >
         <div className="menu__action" >

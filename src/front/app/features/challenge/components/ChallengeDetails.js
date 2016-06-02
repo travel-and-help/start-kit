@@ -78,7 +78,6 @@ const ChallengeDetails = ({ challenge }) => {
                             iconName={'accept'}
                             iconSize={32}
                             iconClassName={'icon_dark'}
-                            // clickHandler={hashHistory.goBack}
                         />
                     </div>
 

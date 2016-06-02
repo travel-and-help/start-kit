@@ -47,14 +47,20 @@ class Challenge extends Component {
 
     render() {
 
-        if (this.props.challenge.size) {
+        const { challenge, onWatchChallenge } = this.props;
+
+        if (challenge.size) {
             return (
                 <Layout
-                    menu={<ChallengeDetailsMenu {...this.state.menu} />}
-                    onScroll={ e => this.onScroll(e)}
+                    menu={<ChallengeDetailsMenu
+                        {...Object.assign(this.state.menu, {
+                            onWatchChallenge: () => onWatchChallenge(challenge.get('_id'))
+                        })}
+                    />}
+                    onScroll={e => this.onScroll(e)}
                 >
                     <div className="challenge-details" >
-                        <ChallengeDetails challenge={this.props.challenge} />
+                        <ChallengeDetails challenge={challenge} />
                         <ChallengeComments />
                     </div>
                 </Layout>
@@ -67,6 +73,7 @@ class Challenge extends Component {
 Challenge.propTypes = {
     challenge: ImmutablePropTypes.map.isRequired,
     getChallenge: PropTypes.func.isRequired,
+    onWatchChallenge: PropTypes.func.isRequired,
     getInitialState: PropTypes.func.isRequired
 };
 
