@@ -1,15 +1,16 @@
 import React, { PropTypes } from 'react';
-import ChallengeTile from '../../../../common/components/challenge/ChallengeTile';
+import ChallengeTile from './ChallengeTile';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Swipeable from 'react-swipeable';
-import { LEFT, RIGHT } from './swipeDirections';
-import Fasteners from '../../../../common/components/fasteners/Fasteners';
-import ChallengeTileAction from './ChallengeTileAction';
+import { LEFT, RIGHT, NO } from './swipeDirections';
+import Fasteners from '../fasteners/Fasteners';
+import ChallengeTileAction from '../../../features/main/challenges/components/ChallengeTileAction';
 
 export default class ChallengeTileList extends React.Component {
 
     static propTypes() {
         return {
+            className: PropTypes.string,
             challenges: ImmutablePropTypes.list.isRequired,
             addToWatchList: PropTypes.func.isRequired,
             dismiss: PropTypes.func.isRequired
@@ -27,23 +28,35 @@ export default class ChallengeTileList extends React.Component {
     onSwiped(challenge, direction) {
         const { activeChallenge, activeChallengeSwipedDirection } = this.state;
         if (challenge !== activeChallenge) {
-            this.setState({
-                activeChallenge: challenge,
-                activeChallengeSwipedDirection: direction
-            });
-        } else {
-            if (activeChallengeSwipedDirection !== direction) {
+            if (this.isSwipeDirectionAvailable(direction)) {
                 this.setState({
-                    activeChallenge: null,
-                    activeChallengeSwipedDirection: ''
+                    activeChallenge: challenge,
+                    activeChallengeSwipedDirection: direction
                 });
             }
+        } else if (activeChallengeSwipedDirection !== direction) {
+            this.setState({
+                activeChallenge: null,
+                activeChallengeSwipedDirection: NO
+            });
         }
     }
 
     getSwipedDirection(challenge) {
         const { activeChallenge, activeChallengeSwipedDirection } = this.state;
         return challenge === activeChallenge ? activeChallengeSwipedDirection : '';
+    }
+
+    isSwipeDirectionAvailable(direction) {
+        if (direction === LEFT) {
+            return this.props.addToWatchList;
+        }
+
+        if (direction === RIGHT) {
+            return this.props.dismiss;
+        }
+
+        return null;
     }
 
     renderAction(challenge, swipedDirection) {
@@ -72,7 +85,7 @@ export default class ChallengeTileList extends React.Component {
     }
 
     render() {
-        const { challenges } = this.props;
+        const { challenges, className } = this.props;
 
         return (
             <div>
@@ -83,8 +96,9 @@ export default class ChallengeTileList extends React.Component {
                         <Swipeable
                             key={ index }
                             className={`
-                            challenge-tile-wrap
-                            challenge-tile-wrap_swiped-${swipedDirection}
+                                ${className}
+                                challenge-tile-wrap
+                                challenge-tile-wrap_swiped-${swipedDirection}
                             `}
                             onSwipedLeft={() => this.onSwiped(challenge, LEFT)}
                             onSwipedRight={() => this.onSwiped(challenge, RIGHT)}

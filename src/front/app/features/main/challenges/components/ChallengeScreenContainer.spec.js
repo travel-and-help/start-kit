@@ -1,12 +1,16 @@
 import proxyquire from 'proxyquire';
+import { List } from 'immutable';
 
 describe('app/features/main/challenges ChallengeScreenContainer', () => {
     let sut,
         reactRedux,
+        state,
         dispatch,
         wrapWithConnect,
         challengesActionCreators,
-        ChallengeScreen;
+        ChallengeScreen,
+        mapStateToProps,
+        mapDispatchToProps;
 
     beforeEach(() => {
         dispatch = env.stub();
@@ -30,16 +34,23 @@ describe('app/features/main/challenges ChallengeScreenContainer', () => {
             '../challenges.actions': challengesActionCreators,
             './ChallengeScreen': ChallengeScreen
         });
+
+        mapStateToProps = reactRedux.connect.getCall(0).args[0];
+        mapDispatchToProps = reactRedux.connect.getCall(0).args[1];
+
+        state = { challenges: new List([1, 2]) };
     });
 
     it('should map state challenges to props challenges', () => {
-        const challenges = {};
-        const state = { challenges };
-        reactRedux.connect.getCall(0).args[0](state).should.contains({ challenges });
+        mapStateToProps(state).challenges.toJS().should.deep.equal([2]);
+    });
+
+    it('should map first challenge as top challenge', () => {
+        mapStateToProps(state).topChallenge.should.equal(1);
     });
 
     it('should map dispatch to challenges fetching prop method', () => {
-        const props = reactRedux.connect.getCall(0).args[1](dispatch);
+        const props = mapDispatchToProps(dispatch);
         props.getChallenges();
         dispatch.should.calledWith(challengesActionCreators.fetchChallenges());
     });

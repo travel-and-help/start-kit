@@ -1,11 +1,15 @@
 import React, { PropTypes } from 'react';
+import IconButton from '../../../../common/components/buttons/IconButton';
 
 const ChallengeTileAction = ({ type, text, onClick }) => (
     <div
         className={`challenge-tile-action challenge-tile-action_${type}`}
         onClick={onClick}
     >
-        <i className={`challenge-tile-action__icon challenge-tile-action__icon_${type}`} />
+        <IconButton
+            iconName={type}
+        />
+
         <span className="challenge-tile-action__text" >
             {text}
         </span>
