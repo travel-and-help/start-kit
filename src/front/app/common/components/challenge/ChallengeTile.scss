@@ -11,7 +11,7 @@
 
   &__image {
     position: absolute;
-    $borderRadius: $gBorderRadius - 2;
+    $borderRadius: $gBorderRadius - _th-rem(2);
     height: $height;
     width: $height;
     border-right: $gBorder;
