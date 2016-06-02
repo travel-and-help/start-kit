@@ -20,8 +20,7 @@ describe('controllers/api', () => {
             './routes/challenge': {},
             './routes/categories': {},
             './routes/profile': {},
-            './routes/my': 'myRoutes',
-            './routes/myprofile': 'myRoutes'
+            './routes/my': 'myRoutes'
         });
     });
 
