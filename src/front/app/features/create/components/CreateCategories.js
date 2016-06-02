@@ -3,20 +3,25 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const CreateCategories = ({ categories, category }) => {
     const categoriesArr = categories.toJS();
+    const placeholder = 'Challange category';
 
     return (
-        <label className="create-category">
+        <div className="create-category">
+            <div className="create-category__value">
+                {(category.value !== '') ? JSON.parse(category.value).name : placeholder}
+            </div>
+
             <select className={category.error && category.touched ?
                 'create-category__select create-category__select_error' :
                 'create-category__select' } {...category}
             >
 
-                <option value="-1">Challange category</option>
+                <option value="-1">{placeholder}</option>
                 { categoriesArr.map((cat, index) => (
                     <option value={JSON.stringify(cat)} key={index}>{cat.name}</option>
                 )) }
             </select>
-        </label>
+        </div>
     );
 };
 
