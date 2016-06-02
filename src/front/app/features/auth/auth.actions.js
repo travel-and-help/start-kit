@@ -1,9 +1,11 @@
 import { open } from '../../common/in-app-browser';
 import { set, remove } from '../../common/local-storage';
+import { hashHistory } from 'react-router';
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const LOGIN_ATTEMPT = 'LOGIN_ATTEMPT';
+export const LOGIN_SKIPPED = 'LOGIN_SKIPPED';
 
 export const LOGIN_SERVICES = Object.freeze({
     FACEBOOK: 'FACEBOOK',
@@ -17,11 +19,14 @@ export function loginAttempt(service) {
     };
 }
 
-export function loginSuccess(token) {
+export function loginSuccess(result) {
+    const token = result.token;
+    const userId = result.id;
     set('token', token);
     return {
         type: LOGIN_SUCCESS,
-        token
+        token,
+        userId
     };
 }
 
@@ -33,6 +38,11 @@ export function loginFailed(info) {
     };
 }
 
+export function loginSkipped() {
+    return {
+        type: LOGIN_SKIPPED
+    };
+}
 function getServiceUrl(type) {
     const baseUrl = process.env.API_BASE_URL;
     switch (type) {
@@ -43,6 +53,10 @@ function getServiceUrl(type) {
     default:
         throw new Error('Login service is not supported');
     }
+}
+
+function redirect() {
+    hashHistory.push('main/challenges');
 }
 
 export function login(loginService) {
@@ -63,16 +77,24 @@ export function login(loginService) {
                     response.toString().replace(/(<([^>]+)>)/ig, '')
                 );
                 if (responseJson.success && responseJson.token) {
-                    return Promise.resolve(responseJson.token);
+                    return Promise.resolve(responseJson);
                 }
                 return Promise.reject(response);
             })
-            .then((token) => {
-                dispatch(loginSuccess(token));
+            .then((result) => {
+                dispatch(loginSuccess(result));
             })
+            .then(redirect)
             .catch((error) => {
                 dispatch(loginFailed(error));
             });
     };
 
+}
+
+export function skip() {
+    return (dispatch) => {
+        dispatch(loginSkipped());
+        redirect();
+    };
 }

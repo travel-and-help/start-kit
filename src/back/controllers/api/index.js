@@ -5,4 +5,5 @@ module.exports = router()
     .use('/challenges', require('./routes/challenges'))
     .use('/challenge', require('./routes/challenge'))
     .use('/categories', require('./routes/categories'))
-    .use('/myprofile', require('./routes/myprofile'));
+    .use('/profile', require('./routes/profile'))
+    .use('/my', require('./routes/my'));

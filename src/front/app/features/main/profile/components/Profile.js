@@ -4,7 +4,11 @@ import UserDetails from './UserDetails/UserDetails';
 
 class Profile extends Component {
     componentDidMount() {
-        this.props.getUser();
+        const {
+            getUser,
+            userId } = this.props;
+        // TODO createdChallenges actions and others
+        getUser(userId);
     }
 
     render() {
@@ -20,7 +24,8 @@ class Profile extends Component {
 
 Profile.propTypes = {
     user: ImmutablePropTypes.map.isRequired,
-    getUser: PropTypes.func.isRequired
+    getUser: PropTypes.func.isRequired,
+    userId: PropTypes.string.isRequired
 };
 
 export default Profile;

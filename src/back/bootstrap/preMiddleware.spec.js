@@ -23,7 +23,8 @@ describe('bootstrap pre middleware', () => {
             json: env.stub().returns({})
         };
         authService = {
-            validateJwt: {}
+            validateJwt: {},
+            initRequest: 'initRequest'
         };
         passport = {
             initialize: env.stub().returns(() => {})
@@ -50,6 +51,10 @@ describe('bootstrap pre middleware', () => {
 
     it('should add initialization passport middleware', () => {
         app.use.should.been.calledWith(passport.initialize());
+    });
+
+    it('should add init request middleware', () => {
+        app.use.should.been.calledWith(authService.initRequest);
     });
 
     it('should return app', () => {

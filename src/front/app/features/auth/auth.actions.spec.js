@@ -7,7 +7,8 @@ describe('action/auth', () => {
 
     let sut,
         inAppBrowser,
-        localStorage;
+        localStorage,
+        reactRouter;
 
     beforeEach(() => {
 
@@ -18,10 +19,16 @@ describe('action/auth', () => {
             set: env.stub(),
             remove: env.stub()
         };
+        reactRouter = {
+            hashHistory: {
+                push: env.stub()
+            }
+        };
 
         sut = proxyquire('./auth.actions', {
             '../../common/in-app-browser': inAppBrowser,
-            '../../common/local-storage': localStorage
+            '../../common/local-storage': localStorage,
+            'react-router': reactRouter
         });
 
     });
@@ -87,7 +94,7 @@ describe('action/auth', () => {
 
             it('should close window then get response', () => {
                 browserWrapper.getBody.returns(
-                    env.stub().resolves('{"success":true,"token":"test"}')());
+                    env.stub().resolves('{"success":true,"token":"test","id":"testId"}')());
                 loginAction(dispatch)
                     .finally(() => {
                         expect(browserWrapper.close.should.called);
@@ -97,13 +104,23 @@ describe('action/auth', () => {
 
             it('should dispatch login success if response contains token', () => {
                 browserWrapper.getBody.returns(
-                    env.stub().resolves('{"success":true,"token":"test"}')());
+                    env.stub().resolves('{"success":true,"token":"test","id":"testId"}')());
                 loginAction(dispatch)
                     .finally(() => {
                         dispatch.should.calledWith({
                             type: sut.LOGIN_SUCCESS,
-                            token: 'test1'
+                            token: 'test1',
+                            userId: 'testId'
                         });
+                    });
+            });
+
+            it('should redirect to challenges if success authenticated', () => {
+                browserWrapper.getBody.returns(
+                    env.stub().resolves('{"success":true,"token":"test","id":"testId"}')());
+                loginAction(dispatch)
+                    .finally(() => {
+                        reactRouter.hashHistory.push.should.calledWith('challenges');
                     });
             });
 
@@ -122,5 +139,30 @@ describe('action/auth', () => {
 
         });
 
+        describe('skip', () => {
+            let dispatch,
+                skipAction;
+
+            beforeEach(() => {
+                dispatch = env.stub();
+                skipAction = sut.skip();
+
+            });
+
+            it('should dispatch login skip', () => {
+                skipAction(dispatch);
+                dispatch.should.calledWith({
+                    type: sut.LOGIN_SKIPPED
+                });
+            });
+
+            it('should redirect to challenges', () => {
+                skipAction(dispatch);
+                reactRouter.hashHistory.push.should.calledWith('main/challenges');
+            });
+
+        });
+
     });
+
 });

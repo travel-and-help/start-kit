@@ -1,4 +1,4 @@
-import { LOGIN_ATTEMPT, LOGIN_SUCCESS, LOGIN_FAILED } from './auth.actions';
+import { LOGIN_ATTEMPT, LOGIN_SUCCESS, LOGIN_FAILED, LOGIN_SKIPPED } from './auth.actions';
 import { fromJS } from 'immutable';
 import sut from './auth.reducer';
 
@@ -25,11 +25,13 @@ describe('reducer/auth', () => {
     it('should handle LOGIN_SUCCESS', () => {
         const action = {
             type: LOGIN_SUCCESS,
-            token: 'testtoken'
+            token: 'testtoken',
+            userId: 'testUser'
         };
         const expectedState = {
             isLoggedIn: true,
-            token: 'testtoken'
+            token: 'testtoken',
+            userId: 'testUser'
         };
         const currentState = sut(undefined, action);
         currentState.toJS().should.eqls(expectedState);
@@ -48,6 +50,19 @@ describe('reducer/auth', () => {
 
         currentState.toJS().should.eqls(expectedState);
     });
+
+    it('should handle LOGIN_SKIPPED', () => {
+        const action = {
+            type: LOGIN_SKIPPED
+        };
+        const expectedState = {
+            skipped: true
+        };
+        const currentState = sut(undefined, action);
+
+        currentState.toJS().should.eqls(expectedState);
+    });
+
     it('should ignore unknown actionTypes', () => {
         const action = { type: 'unknownType' };
         const state = fromJS({});

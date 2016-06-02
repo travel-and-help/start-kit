@@ -1,8 +1,12 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 import rankToType from './rankToType';
 
-const ChallengeTileInfo = ({ title, userName, userRank, location, className }) => (
-    <div className={`challenge-tile-info ${className}`} >
+const ChallengeTile = ({ link, title, userName, userRank, location, className }) => (
+    <Link
+        className={`challenge-tile-info ${className}`}
+        to={link}
+    >
         <div className="challenge-tile-info__title" >
             {title}
         </div>
@@ -25,10 +29,11 @@ const ChallengeTileInfo = ({ title, userName, userRank, location, className }) =
             </div>
         </div>
 
-    </div>
+    </Link>
 );
 
-ChallengeTileInfo.propTypes = {
+ChallengeTile.propTypes = {
+    link: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     userName: PropTypes.string.isRequired,
     userRank: PropTypes.number.isRequired,
@@ -36,4 +41,4 @@ ChallengeTileInfo.propTypes = {
     className: PropTypes.string
 };
 
-export default ChallengeTileInfo;
+export default ChallengeTile;

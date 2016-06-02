@@ -6,7 +6,6 @@ import Updates from './updates';
 import ProfileContainer from './profile/components/ProfileContainer';
 import ChallengeScreenContainer from './challenges/components/ChallengeScreenContainer';
 
-/* istanbul ignore next */
 export default () => (
     <Route path="main" component={MainScreen} >
         <Route path="challenges" component={ChallengeScreenContainer} />

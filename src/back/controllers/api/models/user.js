@@ -1,6 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose'),
+    mongoosePaginate = require('mongoose-paginate'),
     Schema = mongoose.Schema;
 
 const User = new Schema({
@@ -27,7 +28,7 @@ const User = new Schema({
     registerDate: { type: Date, required: true, default: Date.now },
     lastLogin: { type: Date, required: true, default: Date.now },
     rating: { type: Number, required: true, default: 0 },
-    wishList: [{
+    watchList: [{
         type: Schema.ObjectId,
         ref: 'Challenge'
     }],
@@ -53,5 +54,7 @@ const User = new Schema({
         ref: 'Category'
     }]
 });
+
+User.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('User', User);

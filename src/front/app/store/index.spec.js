@@ -11,7 +11,8 @@ describe('store', () => {
         user,
         auth,
         storeEnhancers,
-        result;
+        result,
+        watchList;
 
     beforeEach(() => {
 
@@ -50,6 +51,8 @@ describe('store', () => {
             default: env.stub()
         };
 
+        watchList = { default: env.stub() };
+
         user = {
             default: env.stub()
         };
@@ -63,7 +66,8 @@ describe('store', () => {
             '../features/categories/categories.reducer': categories,
             '../features/auth/auth.reducer': auth,
             '../features/main/profile/profile.reducer': user,
-            './enhancers': storeEnhancers
+            './enhancers': storeEnhancers,
+            '../features/watch-list/watchList.reducer': watchList
         }).default;
 
         result = sut();
@@ -77,6 +81,7 @@ describe('store', () => {
                 challenge: challenge.default,
                 routing: reactRouterRedux.routerReducer,
                 categories: categories.default,
+                watchList: watchList.default,
                 user: user.default
             })
             .and

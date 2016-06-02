@@ -1,4 +1,5 @@
 import { get as getFromLocalStorage } from './local-storage';
+import { hashHistory } from 'react-router';
 
 export default function api(url, options = {}) {
     const token = getFromLocalStorage('token');
@@ -10,7 +11,13 @@ export default function api(url, options = {}) {
     }
     return fetch(addBaseApiUrl(url), options)
         .then(checkHttpStatus)
-        .then((response) => response.json());
+        .then((response) => response.json())
+        .catch(error => {
+            const LOGIN_SCREEN_ROUTE = '/';
+            if (error.response.status === 401) {
+                hashHistory.push(LOGIN_SCREEN_ROUTE);
+            }
+        });
 }
 
 function addBaseApiUrl(url) {
