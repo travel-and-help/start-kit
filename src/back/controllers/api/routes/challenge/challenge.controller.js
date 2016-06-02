@@ -42,7 +42,7 @@ class ChallengeController extends BaseController {
     getUsersChallenges(req, res) {
         const page = Number(req.query.page) || 1;
         const limit = Number(req.query.limit) || 3;
-        User.aggregate([
+        return User.aggregate([
             { $unwind: '$challenges' },
             {
                 $match: {
