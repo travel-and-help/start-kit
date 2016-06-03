@@ -23,15 +23,13 @@ export function getChallenges(id) {
         const acceptedUrl = `/api/challenge/user/${id}/status/accepted`;
         const createdUrl = `/api/challenge/user/${id}/status/created`;
         const completedUrl = `/api/challenge/user/${id}/status/completed`;
-        const receiveCallback = (type) => (
-            (response) => {
-                const challenges = response.docs;
-                dispatch({
-                    type,
-                    challenges
-                });
-            }
-        );
+        const receiveCallback = (type) => (response) => {
+            const challenges = response.docs;
+            dispatch({
+                type,
+                challenges
+            });
+        };
         api(acceptedUrl)
             .then(receiveCallback(ACCEPTED_CHALLENGES_RECEIVED));
         api(createdUrl)

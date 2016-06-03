@@ -33,7 +33,7 @@ describe('action/profile', () => {
             return proxyquire('./profile.actions', {
                 '../../../common/api': api
             });
-        }
+        };
     });
 
     describe('User', () => {
