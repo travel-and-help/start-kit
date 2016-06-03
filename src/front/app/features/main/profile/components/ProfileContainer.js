@@ -4,7 +4,7 @@ import Profile from './Profile';
 
 const mapStateToProps = ({ user, auth }) => (
     {
-        userId: auth.userId,
+        userId: auth.get('userId'),
         user
     }
 );
