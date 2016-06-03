@@ -8,16 +8,19 @@
 
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 
   height: 100%;
   border: $gBorder;
   border-radius: $gBorderRadius;
   background-color: $gBgColor;
-  align-items: center;
+
+  &__item {
+    margin: 0;
+  }
 
   &__name {
-    margin-top: _th-rem(40);
-    margin-bottom: 0;
     font-size: _th-rem(24);
     font-weight: bold;
     text-transform: uppercase;
@@ -25,30 +28,19 @@
   }
 
   &__title {
-    margin-bottom: 0;
     padding: 0 _th-rem(22);
     font-size: _th-rem(18);
     font-weight: normal;
     line-height: _th-rem(20);
     text-align: center;
-
-    &_top {
-      margin-top: _th-rem(22);
-    }
-
-    &_bottom {
-      margin-top: _th-rem(51);
-    }
   }
 
   &__logo {
-    margin-top: _th-rem(56);
     content: url($assetsBasePath + 'logo.svg');
   }
 
   &__skip {
     display: block;
-    margin-top: _th-rem(30);
     font-size: _th-rem(14);
     text-align: center;
     cursor: pointer;

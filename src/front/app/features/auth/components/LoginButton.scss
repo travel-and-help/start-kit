@@ -1,12 +1,11 @@
 .login-button {
   display: block;
-  margin-top: _th-rem(30);
+  min-width: _th-rem(231);
+  height: _th-rem(44);
+  padding: 0 _th-rem(15);
   border: $gBorder;
   border-radius: $gBorderRadius;
-  padding: _th-rem(10) _th-rem(15);
-  min-width: _th-rem(231);
   font-size: _th-rem(18);
-  line-height: _th-rem(20);
   color: $gTextColor;
   background-color: #ffee93;
   text-decoration: none;
