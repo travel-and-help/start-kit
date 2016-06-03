@@ -8,6 +8,7 @@ describe('store', () => {
         challenges,
         categories,
         challenge,
+        user,
         auth,
         storeEnhancers,
         result,
@@ -52,6 +53,10 @@ describe('store', () => {
 
         watchList = { default: env.stub() };
 
+        user = {
+            default: env.stub()
+        };
+
         const sut = proxyquire('./index', {
             redux,
             'react-router': reactRouter,
@@ -60,6 +65,7 @@ describe('store', () => {
             '../features/challenge/challenge.reducer': challenge,
             '../features/categories/categories.reducer': categories,
             '../features/auth/auth.reducer': auth,
+            '../features/main/profile/profile.reducer': user,
             './enhancers': storeEnhancers,
             '../features/profile-challenges/watch-list/watchList.reducer': watchList
         }).default;
@@ -75,7 +81,8 @@ describe('store', () => {
                 challenge: challenge.default,
                 routing: reactRouterRedux.routerReducer,
                 categories: categories.default,
-                watchList: watchList.default
+                watchList: watchList.default,
+                user: user.default
             })
             .and
             .callCount(1);

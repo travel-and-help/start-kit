@@ -19,7 +19,7 @@ script:
   - npm run test:ci
 branches:
   only:
-    - demo/#1
+    - demo/#2
     - master
 deploy:
   - provider: heroku
@@ -32,6 +32,7 @@ deploy:
     skip_cleanup: true
     on:
       tags: true
+      branch: demo/#2
 after_deploy:
   - npm run test:e2e
 cache:
