@@ -12,9 +12,14 @@ const CreateError = ({ formFields }) => {
     });
 
     return (
-        <div className="create-error">
+        <div className={(errorMessage === '') ?
+          'create-error create-error_hide' : 'create-error'}
+        >
+
             <div className="create-error__message">
+                <div className="create-error__holder"></div>
                 {errorMessage}
+                <div className="create-error__holder"></div>
             </div>
         </div>
     );
