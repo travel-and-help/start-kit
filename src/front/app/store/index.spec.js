@@ -10,6 +10,7 @@ describe('store', () => {
         challenge,
         user,
         auth,
+        form,
         storeEnhancers,
         result,
         watchList;
@@ -51,6 +52,10 @@ describe('store', () => {
             default: env.stub()
         };
 
+        form = {
+            reducer: env.stub()
+        };
+
         watchList = { default: env.stub() };
 
         user = {
@@ -61,6 +66,7 @@ describe('store', () => {
             redux,
             'react-router': reactRouter,
             'react-router-redux': reactRouterRedux,
+            'redux-form': form,
             '../features/main/challenges/challenges.reducer': challenges,
             '../features/challenge/challenge.reducer': challenge,
             '../features/categories/categories.reducer': categories,
@@ -82,6 +88,7 @@ describe('store', () => {
                 routing: reactRouterRedux.routerReducer,
                 categories: categories.default,
                 watchList: watchList.default,
+                form: form.reducer,
                 user: user.default
             })
             .and
