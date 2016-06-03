@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import UserDetails from './UserDetails/UserDetails';
+import Layout from '../../../Layout';
+import ProfileScreenMenu from './ProfileScreenMenu';
+
 
 class Profile extends Component {
     componentDidMount() {
@@ -16,9 +19,9 @@ class Profile extends Component {
         const { user, challenges } = this.props;
 
         return (
-            <div className="profile">
+            <Layout menu={<ProfileScreenMenu />} >
                 {user.size && <UserDetails user={user} challenges={challenges} />}
-            </div>
+            </Layout>
         );
     }
 }

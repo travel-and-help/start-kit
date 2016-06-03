@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Link } from 'react-router';
-import ChallengeList from '../../../../../features/main/challenges/components/ChallengeTileList';
+import ChallengeList from '../../../../../common/components/challenge/ChallengeTileList';
 import SocialList from './SocialList';
 import Fasteners from '../../../../../common/components/fasteners/Fasteners';
 
