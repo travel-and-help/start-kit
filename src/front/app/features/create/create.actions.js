@@ -1,5 +1,6 @@
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const POST_CHALLENGE = 'POST_CHALLENGE';
+import api from '../../common/api';
 
 function receiveCategories(categories) {
     return {
@@ -17,8 +18,7 @@ function receiveChallenge(challenge) {
 
 export function fetchCategories() {
     return function innerFetchCategories(dispatch) {
-        fetch('/api/categories/')
-            .then(response => response.json())
+        api('/api/categories')
             .then((categories) => {
                 dispatch(receiveCategories(categories));
             });

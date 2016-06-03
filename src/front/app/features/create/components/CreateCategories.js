@@ -9,7 +9,6 @@ const CreateCategories = ({ categories, category }) => {
         <div className={category.error && category.touched ?
           'create-category create-category_error' : 'create-category' }
         >
-
             <div className="create-category__value">
                 {(category.value !== '') ? JSON.parse(category.value).name : placeholder}
             </div>
