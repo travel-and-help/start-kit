@@ -1,0 +1,22 @@
+.top-challenge-tile {
+  $height: _th-rem(190);
+
+  border-left: $gBorder;
+  border-right: $gBorder;
+  border-bottom: $gBorder;
+  border-radius: 0 0 $gBorderRadius $gBorderRadius;
+  height: $height;
+  text-align: center;
+  background-position: center;
+  background-size: cover;
+
+  &__info {
+    color: #fff;
+    font-size: _th-rem(24);
+
+    &-wrap {
+      margin-top: _th-rem(25);
+      mix-blend-mode: lighten;
+    }
+  }
+}

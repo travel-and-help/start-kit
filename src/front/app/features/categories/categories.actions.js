@@ -8,7 +8,6 @@ export const WATCH_CATEGORY = 'WATCH_CATEGORY';
 export function getCategories() {
     return function fetchCategories(dispatch) {
         api('/api/categories')
-            .then(response => response.json())
             .then((categories) => {
                 dispatch({
                     type: GET_CATEGORIES,
@@ -29,12 +28,9 @@ export function saveCategories(categories) {
     return function postCategories() {
         api('/api/categories', {
             method: 'POST',
-            headers: {
-                Accept: 'application/json'
-            },
             body: JSON.stringify(categories)
         }).then(() => {
-            hashHistory.push('challenges');
+            hashHistory.push('main/challenges');
         });
     };
 }

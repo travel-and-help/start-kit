@@ -1,22 +1,26 @@
 'use strict';
 
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'),
+    mongoosePaginate = require('mongoose-paginate');
+
 const Schema = mongoose.Schema;
 
 const Challenge = new Schema({
-    category: { type: String, required: true },
+    categories: [{
+        type: Schema.ObjectId,
+        ref: 'Category'
+    }],
     title: { type: String, required: true },
-    image: { type: String },
-    location: { type: String },
+    image: { type: String, required: true },
+    level: { type: String, required: true },
+    location: { type: String, required: true },
     user: {
-        type: Object,
-        default: {
-            firstName: 'Anton',
-            lastName: 'Golubev',
-            rating: 4
-        }
+        type: Schema.ObjectId,
+        ref: 'Challenge'
     },
     description: { type: String, required: true }
 });
+
+Challenge.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Challenge', Challenge, 'challenges');

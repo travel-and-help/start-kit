@@ -1,0 +1,20 @@
+.main-screen {
+  $navigationHeight: _th-rem(66);
+
+  &__content {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    bottom: $navigationHeight - _th-rem(20);
+  }
+
+  &__navigation {
+    position: fixed;
+    z-index: 1;
+    bottom: -1%;
+    right: 0;
+    left: 0;
+    height: $navigationHeight;
+    padding: 0 _th-rem(9);
+  }
+}

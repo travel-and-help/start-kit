@@ -1,0 +1,26 @@
+.layout {
+  position: relative;
+  height: 100%;
+
+  &__menu {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+  }
+
+  &__content {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    margin: 0 auto;
+    width: 100%;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch; // smooth scroll
+  }
+}

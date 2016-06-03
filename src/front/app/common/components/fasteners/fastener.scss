@@ -1,0 +1,35 @@
+.fastener {
+  position: relative;
+  z-index: 1;
+  height: $fastenerHeight;
+
+  &__clip {
+    z-index: 2;
+    $size: _th-rem(10);
+    position: absolute;
+    left: -$size /2;
+    border: $gBorder;
+    border-radius: $gBorderRadius;
+    width: $size;
+    height: $size;
+
+    background-color: #fff;
+
+    &_top {
+      top: -$size /2;
+    }
+
+    &_bottom {
+      top: $fastenerHeight - $size / 2;
+    }
+  }
+
+  &__connection {
+    position: absolute;
+    left: _th-rem(-1);
+    top: 0;
+    bottom: 0;
+    width: $gBorderThickness;
+    background-color: $gBorderColor;
+  }
+}

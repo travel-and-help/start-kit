@@ -3,4 +3,7 @@ const router = require('express').Router;
 
 module.exports = router()
     .use('/challenges', require('./routes/challenges'))
-    .use('/categories', require('./routes/categories'));
+    .use('/challenge', require('./routes/challenge'))
+    .use('/categories', require('./routes/categories'))
+    .use('/profile', require('./routes/profile'))
+    .use('/my', require('./routes/my'));

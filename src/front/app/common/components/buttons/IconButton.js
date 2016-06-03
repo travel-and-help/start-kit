@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 const IconButton = ({
-    title,
+    title = '',
     iconName,
     clickHandler,
     iconSize = 24,
@@ -10,19 +10,21 @@ const IconButton = ({
     buttonType = 'button'
     }) => (
     <button type={buttonType} onClick={clickHandler} className={`icon-button  ${buttonClassName}`}>
-        <i className={`icon icon_size-${iconSize} ${iconClassName}`}>{iconName}</i>
+        <svg className={`icon icon_size-${iconSize} ${iconClassName}`}>
+            <use xlinkHref={`icons.svg#th-${iconName}`} />
+        </svg>
         {title}
     </button>
 );
 
 IconButton.propTypes = {
-    title: React.propTypes.string,
-    iconName: React.propTypes.string.isRequired,
-    clickHandler: React.propTypes.func,
-    iconSize: React.propTypes.number,
-    iconClassName: React.propTypes.string,
-    buttonClassName: React.propTypes.string,
-    buttonType: React.propTypes.string
+    title: PropTypes.string,
+    iconName: PropTypes.string.isRequired,
+    clickHandler: PropTypes.func,
+    iconSize: PropTypes.number,
+    iconClassName: PropTypes.string,
+    buttonClassName: PropTypes.string,
+    buttonType: PropTypes.string
 };
 
 export default IconButton;

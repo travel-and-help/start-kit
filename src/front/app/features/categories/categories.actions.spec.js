@@ -9,11 +9,7 @@ describe('action/categories', () => {
 
     beforeEach(() => {
 
-        const fetchResponse = {
-            json: env.stub().returns(categoryList)
-        };
-
-        promise = env.stub().resolves(fetchResponse)();
+        promise = env.stub().resolves(categoryList)();
 
         api = env.stub().returns(promise);
 
@@ -75,9 +71,6 @@ describe('action/categories', () => {
         it('should save provided categories', () => {
             const options = {
                 method: 'POST',
-                headers: {
-                    Accept: 'application/json'
-                },
                 body: JSON.stringify(categories)
             };
 
