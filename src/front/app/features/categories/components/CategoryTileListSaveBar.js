@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 const CategoryListSaveBar = ({ onClickHandler }) => (
     <div>
-        <Link to="challenges">
+        <Link to="main/challenges">
             X
         </Link>
         <div>Topics to watch</div>

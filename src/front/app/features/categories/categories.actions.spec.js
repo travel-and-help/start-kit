@@ -71,9 +71,6 @@ describe('action/categories', () => {
         it('should save provided categories', () => {
             const options = {
                 method: 'POST',
-                headers: {
-                    Accept: 'application/json'
-                },
                 body: JSON.stringify(categories)
             };
 
