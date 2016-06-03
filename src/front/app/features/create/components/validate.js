@@ -10,7 +10,7 @@ const validate = (values) => {
     }
 
     if (values.category === '-1' || !values.category) {
-        errors.category = 'Description is required';
+        errors.category = 'Category is required';
     }
 
     return errors;

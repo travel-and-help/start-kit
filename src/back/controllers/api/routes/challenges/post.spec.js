@@ -28,11 +28,7 @@ describe('routes/challenges-post', () => {
             cb(null, mockChallenge);
         });
 
-        Challenge = function() {
-            return {
-                save: save
-            }
-        };
+        Challenge = () => ({ save });
 
         sut = proxyquire('./post', {
             '../../models/challenge': Challenge
@@ -47,6 +43,6 @@ describe('routes/challenges-post', () => {
     });
 
     it('should send response with new challenges from db', () => {
-        res.json.should.been.calledWith(mockChallenge)
+        res.json.should.been.calledWith(mockChallenge);
     });
 });
