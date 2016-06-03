@@ -12,7 +12,8 @@ const Challenge = new Schema({
         type: Object,
         default: {
             firstName: 'Anton',
-            lastName: 'Golubev'
+            lastName: 'Golubev',
+            rating: 4
         }
     },
     description: { type: String, required: true }
