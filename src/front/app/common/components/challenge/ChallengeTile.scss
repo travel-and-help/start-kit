@@ -1,6 +1,6 @@
 .challenge-tile {
 
-  $height: 95px;
+  $height: _th-rem(95);
   box-sizing: content-box;
 
   position: relative;
@@ -10,13 +10,15 @@
   background: #fff;
 
   &__image {
+    $borderRadius: $gBorderRadius - _th-rem(2);
+    align-self: flex-start;
     position: absolute;
-    $borderRadius: $gBorderRadius - 2;
     height: $height;
     width: $height;
     border-right: $gBorder;
-    align-self: flex-start;
     border-radius: $borderRadius 0 0 $borderRadius;
+    background-size: cover;
+    background-position: center;
   }
 
   &__info {

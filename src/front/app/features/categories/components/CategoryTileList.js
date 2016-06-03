@@ -16,7 +16,7 @@ class CategoryTileList extends Component {
                 <CategoryTileListSaveBar
                   onClickHandler={() => onSaveCategoryClick(this.props.categories)}
                 />
-                <ul>
+                <ul className="categories">
                     {categories.map((category, index) => (
                         <CategoryTile
                           key={ index }

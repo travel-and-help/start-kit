@@ -4,6 +4,8 @@ const proxyquire = require('proxyquire').noCallThru();
 
 describe('categories route', () => {
     let categories;
+    let restrictUnauthenticated;
+    let use;
     let post;
     let get;
     let Router;
@@ -15,11 +17,17 @@ describe('categories route', () => {
         };
         post = env.stub();
         get = env.stub().returns({ post });
-        Router = env.stub().returns({ get: get });// eslint-disable-line
+        use = env.stub().returns({ get: get }); // eslint-disable-line
+        Router = env.stub().returns({ use });
         proxyquire('./index', {
             express: { Router },
-            './categories': categories
+            './categories': categories,
+            '../../../auth/auth.service': { restrictUnauthenticated }
         });
+    });
+
+    it('should check user authentication', () => {
+        use.should.have.been.calledWith(restrictUnauthenticated);
     });
 
     it('should get all categories for root', () => {

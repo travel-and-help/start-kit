@@ -4,21 +4,18 @@
     &-header {
         position: relative;
         height: _th-rem(250);
-        border-bottom: _th-rem(1) solid map_get($colors, main);
+        border-bottom: $gBorder;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center top;
 
         &__title {
+            @extend %challenge-title;
             position: absolute;
-            bottom: _th-rem(16);
+            bottom: _th-rem(11);
             width: 100%;
             margin: 0;
             text-align: center;
-            text-transform: uppercase;
-            text-shadow: 0 _th-rem(1) _th-rem(2) rgba(0, 0, 0, 0.5);
-            font-size: map-get($font-sizes, header);
-            color: #ffffff;
         }
     }
 
@@ -31,7 +28,7 @@
 
         &__fasteners {
             position: absolute;
-            top: -$grid-gap;
+            top: -$grid-gap - $gBorderThickness;
             left: $grid-gap;
             right: $grid-gap;
         }

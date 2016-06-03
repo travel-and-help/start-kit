@@ -1,4 +1,4 @@
-$primaryTextSz: 18px;
+$primaryTextSz: _th-rem(18);
 
 %primaryText {
   font-size: $primaryTextSz;
@@ -6,7 +6,7 @@ $primaryTextSz: 18px;
 }
 
 %secondaryText {
-  font-size: 12px;
+  font-size: _th-rem(12);
   font-weight: normal;
 }
 
@@ -28,7 +28,7 @@ $primaryTextSz: 18px;
 
   &__title {
     width: 100%;
-    padding: 5px;
+    padding: _th-rem(5);
     text-transform: uppercase;
   }
 
@@ -42,12 +42,12 @@ $primaryTextSz: 18px;
   }
 
   &__location {
-    padding-right: 20px;
+    padding-right: _th-rem(20);
   }
 
   &__user {
     &-name {
-      padding: 0 5px 0 20px;
+      padding: 0 _th-rem(5) 0 _th-rem(20);
     }
 
     &-rank {

@@ -16,10 +16,10 @@ const ChallengeTile = ({ challenge }) => {
 
     return (
         <div className="challenge-tile" >
-            <img
+            <div
                 className="challenge-tile__image"
-                src={image}
-            />
+                style={{ backgroundImage: `url(${image})` }}
+            ></div>
             <ChallengeTileInfo
                 className="challenge-tile__info"
                 link={`challenge/${_id}`}

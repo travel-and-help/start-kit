@@ -67,7 +67,7 @@ describe('store', () => {
             '../features/auth/auth.reducer': auth,
             '../features/main/profile/profile.reducer': user,
             './enhancers': storeEnhancers,
-            '../features/watch-list/watchList.reducer': watchList
+            '../features/profile-challenges/watch-list/watchList.reducer': watchList
         }).default;
 
         result = sut();

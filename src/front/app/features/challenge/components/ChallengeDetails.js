@@ -41,35 +41,36 @@ const ChallengeDetails = ({ challenge }) => {
                     <div className="challenge-info__item challenge-info__item_big" >
                         <Fasteners className="challenge-info__fasteners" />
                         <div className="challenge-info-author" >
-                            <p className="challenge-info__label">Created by</p>
-                            <span className="challenge-info__text">
+                            <p className="challenge-info__label" >Created by</p>
+                            <span className="challenge-info__text" >
                                 {firstName} {lastName}
                             </span>
                         </div>
                         <div className="challenge-info-location" >
-                            <p className="challenge-info__label">Region</p>
-                            <span className="challenge-info__text">{location}</span>
+                            <p className="challenge-info__label" >Region</p>
+                            <span className="challenge-info__text" >{location}</span>
                         </div>
                     </div>
 
-                    <div className="challenge-info__item challenge-info-level">
+                    <div className="challenge-info__item challenge-info-level" >
                         <Fasteners className="challenge-info__fasteners" />
-                        <span className="challenge-info__text">{level}</span>
+                        <span className="challenge-info__text" >{level}</span>
                     </div>
 
-                    <div className="challenge-info__item
+                    <div
+                        className={`challenge-info__item
                         challenge-info__item_big
-                        challenge-info-completed"
+                        challenge-info-completed`}
                     >
                         <Fasteners className="challenge-info__fasteners" />
-                        <span className="challenge-info-completed__count">
+                        <span className="challenge-info-completed__count" >
                             <b>25</b> completions
                         </span>
                     </div>
                 </div>
 
                 <div className="challenge-info__inner challenge-info__inner_small" >
-                    <div className="challenge-info__button_wrapper">
+                    <div className="challenge-info__button_wrapper" >
                         <Fasteners className="challenge-info__fasteners" />
                         <IconButton
                             title={'Accept'}
@@ -80,7 +81,7 @@ const ChallengeDetails = ({ challenge }) => {
                         />
                     </div>
 
-                    <div className="challenge-info__button_wrapper">
+                    <div className="challenge-info__button_wrapper" >
                         <Fasteners className="challenge-info__fasteners" />
                         <IconButton
                             title={'Share'}
@@ -92,8 +93,8 @@ const ChallengeDetails = ({ challenge }) => {
                     </div>
                 </div>
             </div>
-            <div className="challenge-info-description">
-                <h2 className="challenge-info-description__title">Description</h2>
+            <div className="challenge-info-description" >
+                <h2 className="challenge-info-description__title" >Description</h2>
                 {description}
             </div>
         </section>

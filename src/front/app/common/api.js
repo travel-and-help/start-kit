@@ -3,19 +3,25 @@ import { hashHistory } from 'react-router';
 
 export default function api(url, options = {}) {
     const token = getFromLocalStorage('token');
+    const settings = Object.assign({ headers: {} }, options);
+
     if (token) {
-        Object.assign(options, {
-            credentials: 'include',
-            headers: { Authorization: `Bearer ${token}` }
-        });
+        settings.credentials = 'include';
+        settings.headers.Authorization = `Bearer ${token}`;
     }
-    return fetch(addBaseApiUrl(url), options)
+
+    settings.headers.Accept = 'application/json';
+    settings.headers['Content-Type'] = 'application/json';
+
+    return fetch(addBaseApiUrl(url), settings)
         .then(checkHttpStatus)
         .then((response) => response.json())
         .catch(error => {
             const LOGIN_SCREEN_ROUTE = '/';
             if (error.response.status === 401) {
                 hashHistory.push(LOGIN_SCREEN_ROUTE);
+            } else {
+                throw error;
             }
         });
 }

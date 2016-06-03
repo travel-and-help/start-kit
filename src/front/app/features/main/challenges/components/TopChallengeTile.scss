@@ -1,5 +1,5 @@
 .top-challenge-tile {
-  $height: 190px;
+  $height: _th-rem(190);
 
   border-left: $gBorder;
   border-right: $gBorder;
@@ -12,10 +12,10 @@
 
   &__info {
     color: #fff;
-    font-size: 24px;
+    font-size: _th-rem(24);
 
     &-wrap {
-      margin-top: 25px;
+      margin-top: _th-rem(25);
       mix-blend-mode: lighten;
     }
   }

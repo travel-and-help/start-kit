@@ -1,3 +1,4 @@
+import { WATCH_LIST_CHALLENGES_RECEIVED } from './watchList.actions';
 const proxyquire = require('proxyquire').noCallThru();
 
 describe('watchList.actions', () => {
@@ -10,7 +11,7 @@ describe('watchList.actions', () => {
     beforeEach(() => {
         promise = env.stub().resolves(watchList)();
         api = env.stub().returns(promise);
-        sut = proxyquire('./watchList.actions', { '../../common/api': api });
+        sut = proxyquire('./watchList.actions', { '../../../common/api': api });
     });
 
     describe('getWatchedChallenges', () => {
@@ -25,7 +26,7 @@ describe('watchList.actions', () => {
 
         it('should dispatch categories event with data from response', () => promise
             .finally(() => dispatch.should.calledWith({
-                type: 'WATCH_LIST_CHALLENGES_RECEIVED',
+                type: WATCH_LIST_CHALLENGES_RECEIVED,
                 challenges: watchList
             }))
         );
@@ -49,7 +50,7 @@ describe('watchList.actions', () => {
         it('reloads list after delete', () => {
             sut.unWatch(challenge)(dispatch);
             return promise.finally(() => dispatch.should.calledWith({
-                type: 'WATCH_LIST_CHALLENGES_RECEIVED',
+                type: WATCH_LIST_CHALLENGES_RECEIVED,
                 challenges: watchList
             }));
         });
@@ -60,7 +61,7 @@ describe('watchList.actions', () => {
             sut.unWatch(challenge)(dispatch);
             setTimeout(() => {
                 dispatch.should.calledWith({
-                    type: 'WATCH_LIST_CHALLENGES_RECEIVED',
+                    type: WATCH_LIST_CHALLENGES_RECEIVED,
                     challenges: watchList
                 });
                 done();

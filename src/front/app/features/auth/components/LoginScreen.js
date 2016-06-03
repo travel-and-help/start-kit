@@ -4,17 +4,17 @@ import LoginButton from './LoginButton';
 const LoginScreen = ({ facebookLogin, googleLogin, skipLogin }) => (
     <div className="login-screen-wrap" >
         <div className="login-screen" >
-            <h1 className="login-screen__name" >
+            <h1 className="login-screen__name login-screen__item" >
                 Travel & Help
             </h1>
 
-            <h2 className="login-screen__title login-screen__title_top" >
+            <h2 className="login-screen__title login-screen__item" >
                 The best way to connect with good people around the world.
             </h2>
 
             <img className="login-screen__logo" alt="logo" />
 
-            <h2 className="login-screen__title login-screen__title_bottom" >
+            <h2 className="login-screen__title login-screen__item" >
                 Get help. Give back.
             </h2>
 
@@ -29,7 +29,7 @@ const LoginScreen = ({ facebookLogin, googleLogin, skipLogin }) => (
             />
 
             <div
-                className="login-screen__skip"
+                className="login-screen__skip login-screen__item"
                 onClick={skipLogin}
             >
                 Skip

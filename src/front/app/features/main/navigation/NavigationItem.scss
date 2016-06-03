@@ -23,6 +23,9 @@
     width: 100%;
     height: 100%;
     opacity: $gOpacity;
+    background-size: 50% 50%;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   &_active {
@@ -42,7 +45,7 @@
     z-index: 4;
     left: 0;
     &::after {
-      background: url($assetsBasePath + 'challanges-icon.svg') no-repeat center;
+      background-image: url($assetsBasePath + 'challanges-icon.svg');
     }
   }
 
@@ -51,7 +54,7 @@
     z-index: 3;
     left: -5%;
     &::after {
-      background: url($assetsBasePath + 'awards-icon.svg')  no-repeat center;
+      background-image: url($assetsBasePath + 'awards-icon.svg');
     }
   }
 
@@ -60,7 +63,7 @@
     z-index: 2;
     left: -10%;
     &::after {
-      background: url($assetsBasePath + 'updates-icon.svg')  no-repeat center;
+      background-image: url($assetsBasePath + 'updates-icon.svg');
     }
   }
 
@@ -69,7 +72,7 @@
     z-index: 1;
     left: -15%;
     &::after {
-      background: url($assetsBasePath + 'profile-icon.svg')  no-repeat center;
+      background-image: url($assetsBasePath + 'profile-icon.svg');
     }
   }
 }
