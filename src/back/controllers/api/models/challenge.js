@@ -11,8 +11,7 @@ const Challenge = new Schema({
         ref: 'Category'
     }],
     title: { type: String, required: true },
-    image: { type: String, required: true },
-    level: { type: String, required: true },
+    image: { type: String },
     location: { type: String, required: true },
     user: {
         type: Schema.ObjectId,

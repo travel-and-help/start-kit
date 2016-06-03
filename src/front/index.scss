@@ -8,25 +8,29 @@
 /* Components */
 @import 'app/features/**/*.scss';
 
-* {
-  box-sizing: border-box;
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
 }
 
 #root {
-  $stripeGap: _th-rem(9);
-  $bgStripeColor: #aaa;
+    $stripeGap: _th-rem(9);
+    $bgStripeColor: #aaa;
 
-  height: 100vh;
-  font-family: 'Helvetica Neue', sans-serif;
-  color: $gTextColor;
-  background: repeating-linear-gradient(
-                  45deg,
-                  $bgStripeColor,
-                  $bgStripeColor $gBorderThickness,
-                  $gBgColor 0,
-                  $gBgColor $stripeGap
-  );
-  user-select: none;
+    height: 100vh;
+    font-family: 'Helvetica Neue', sans-serif;
+    color: $gTextColor;
+    background: repeating-linear-gradient(
+            45deg,
+            $bgStripeColor,
+            $bgStripeColor $gBorderThickness,
+            $gBgColor 0,
+            $gBgColor $stripeGap
+    );
+    user-select: none;
 }
 
 a {
