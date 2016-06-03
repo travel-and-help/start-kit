@@ -47,8 +47,8 @@ class Challenge extends Component {
 
     render() {
 
-        const { challenge, onWatchChallenge } = this.props;
-
+        const { challenge, onWatchChallenge, onAccept } = this.props;
+        console.log(onAccept);
         if (challenge.size) {
             return (
                 <Layout
@@ -60,7 +60,10 @@ class Challenge extends Component {
                     onScroll={e => this.onScroll(e)}
                 >
                     <div className="challenge-details" >
-                        <ChallengeDetails challenge={challenge} />
+                        <ChallengeDetails
+                            challenge={challenge}
+                            onAccept={onAccept}
+                        />
                         <ChallengeComments />
                     </div>
                 </Layout>
@@ -74,6 +77,7 @@ Challenge.propTypes = {
     challenge: ImmutablePropTypes.map.isRequired,
     getChallenge: PropTypes.func.isRequired,
     onWatchChallenge: PropTypes.func.isRequired,
+    onAccept: PropTypes.func.isRequired,
     getInitialState: PropTypes.func.isRequired
 };
 

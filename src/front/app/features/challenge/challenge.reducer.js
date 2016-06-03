@@ -1,5 +1,7 @@
 import { fromJS, Map } from 'immutable';
-import { GET_CHALLENGE, RESET_STATE, ADDED_TO_WATCHLIST } from './challenge.actions';
+import {
+    GET_CHALLENGE, RESET_STATE, ADDED_TO_WATCHLIST, ADDED_TO_ACCEPTED_LIST
+} from './challenge.actions';
 
 const initialState = new Map();
 
@@ -10,6 +12,7 @@ const reducer = (state = initialState, action = {}) => {
     case RESET_STATE:
         return initialState;
     case ADDED_TO_WATCHLIST:
+    case ADDED_TO_ACCEPTED_LIST:
     default:
         return state;
     }

@@ -3,7 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import IconButton from './../../../common/components/buttons/IconButton';
 import Fasteners from './../../../common/components/fasteners/Fasteners';
 
-const ChallengeDetails = ({ challenge }) => {
+const ChallengeDetails = ({ challenge, onAccept }) => {
     const {
         image,
         title,
@@ -78,6 +78,7 @@ const ChallengeDetails = ({ challenge }) => {
                             iconName={'accept'}
                             iconSize={32}
                             iconClassName={'icon_dark'}
+                            clickHandler={() => onAccept(challenge.get('_id'))}
                         />
                     </div>
 
@@ -102,6 +103,7 @@ const ChallengeDetails = ({ challenge }) => {
 };
 
 ChallengeDetails.propTypes = {
+    onAccept: PropTypes.func.isRequired,
     challenge: ImmutablePropTypes.mapContains({
         image: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
