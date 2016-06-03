@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
-import Layout from '../../Layout';
-import CreateChallengeMenu from './CreateChallengeMenu';
-import CreateChallengeForm from './CreateChallengeForm';
+import CreateFormHeader from './CreateFormHeader';
+import CreateFormBody from './CreateFormBody';
 import validate from './validate';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-class CreateChallengeScreen extends Component {
+
+class CreateForm extends Component {
     componentDidMount() {
         if (this.props.categories.size === 0) {
             this.props.getCategories();
@@ -17,22 +17,17 @@ class CreateChallengeScreen extends Component {
         const { fields, handleSubmit, postChallenge, categories } = this.props;
 
         return (
-            <form
-                className="challenge-create"
-                onSubmit={ handleSubmit(postChallenge) }
-            >
-                <Layout menu={<CreateChallengeMenu />} >
-                    <CreateChallengeForm
-                        fields={fields}
-                        categories={categories}
-                    />
-                </Layout>
-            </form>
+            <section className="challenge-create">
+                <form onSubmit={ handleSubmit(postChallenge) }>
+                    <CreateFormHeader />
+                    <CreateFormBody fields={fields} categories={categories} />
+                </form>
+            </section>
         );
     }
 }
 
-CreateChallengeScreen.propTypes = {
+CreateForm.propTypes = {
     fields: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     getCategories: PropTypes.func.isRequired,
@@ -44,4 +39,4 @@ export default reduxForm({
     form: 'create',
     fields: ['title', 'description', 'category', 'startDate', 'endDate', 'repeateble', 'proof'],
     validate
-})(CreateChallengeScreen);
+})(CreateForm);
