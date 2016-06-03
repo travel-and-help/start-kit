@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 const LoginButton = ({ text, onClick }) => (
     <button
-        className="login-button"
+        className="login-button login-screen__item"
         type="button"
         onClick={onClick}
     >
