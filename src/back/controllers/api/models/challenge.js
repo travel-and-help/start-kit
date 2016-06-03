@@ -6,10 +6,15 @@ const Schema = mongoose.Schema;
 const Challenge = new Schema({
     category: { type: String, required: true },
     title: { type: String, required: true },
-    image: { type: String, required: true },
-    level: { type: String, required: true },
+    image: { type: String },
     location: { type: String },
-    user: { type: Object },
+    user: {
+        type: Object,
+        default: {
+            firstName: 'Anton',
+            lastName: 'Golubev'
+        }
+    },
     description: { type: String, required: true }
 });
 

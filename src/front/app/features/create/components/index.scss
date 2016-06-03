@@ -16,6 +16,7 @@ $post_color: #ddd;
 
     &::-webkit-input-placeholder {
         font-style: italic;
+        opacity: 1;
     }
 }
 
@@ -80,6 +81,7 @@ $post_color: #ddd;
     &__post {
         background: none;
         border: 0;
+        outline: 0;
     }
 
     &__discard {
