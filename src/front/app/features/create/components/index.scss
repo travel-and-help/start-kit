@@ -13,6 +13,7 @@ $post_color: #ddd;
     font-size: 14px;
     border-radius: 5px;
     outline: none;
+    height: 40px;
 
     &::-webkit-input-placeholder {
         font-style: italic;
@@ -28,6 +29,8 @@ $post_color: #ddd;
     float: left;
     font-size: 14px;
     color: $text_color;
+    height: 40px;
+    line-height: 40px;
 }
 
 .challenge-create {
@@ -49,7 +52,7 @@ $post_color: #ddd;
     &__input {
         @extend .border-box;
         height: 40px;
-        width: 54%;
+        width: 64%;
         float: right;
         margin-top: 10px;
         margin-bottom: 62px;
@@ -251,6 +254,5 @@ $post_color: #ddd;
 
     &__field {
         @extend .border-box;
-        height: 40px;
     }
 }
