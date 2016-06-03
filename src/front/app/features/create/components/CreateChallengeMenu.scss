@@ -1,0 +1,11 @@
+.create-challenge-menu {
+  $post_color: #ddd;
+
+  border-bottom: $gBorderThickness solid #dde1e2;
+  background: $gBgColor;
+
+  &__post {
+    font-size: _th-rem(14);
+    color: $post_color;
+  }
+}

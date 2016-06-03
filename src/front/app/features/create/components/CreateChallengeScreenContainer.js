@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import CreateForm from './CreateForm';
+import CreateChallengeScreen from './CreateChallengeScreen';
 import { fetchCategories, postChallenge } from '../create.actions';
 
 const mapStateToProps = ({ categories }) => ({ categories });
@@ -13,5 +13,5 @@ const mapDispatchToProps = (dispatch) => ({
     }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateForm);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateChallengeScreen);
 
