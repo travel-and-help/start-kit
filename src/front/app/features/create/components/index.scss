@@ -1,0 +1,256 @@
+$attention_color: #f44336;
+$regular_border_color: #4a4a4a;
+$subtitle_color: #9b9b9b;
+$header_border_color: #dde1e2;
+$text_color: #4a4a4a;
+$assetsBasePath: './app/features/create/components/assets/';
+
+.border-box {
+  line-height: _th-rem(16);
+  padding: _th-rem(10) _th-rem(16);
+  border: $gBorder;
+  font-size: _th-rem(14);
+  border-radius: $gBorderRadius;
+  outline: none;
+  height: _th-rem(40);
+
+  &::-webkit-input-placeholder {
+    font-style: italic;
+    opacity: 1;
+  }
+}
+
+.label-box {
+  width: _th-rem(130);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  float: left;
+  font-size: _th-rem(14);
+  color: $text_color;
+}
+
+.challenge-create {
+  height: 100%;
+  background: #fff;
+
+  &__body {
+    $gap: _th-rem(20);
+
+    padding: $gap;
+    padding-top: ($menuHeight + $gap);
+  }
+
+  &__subtitle {
+    margin: _th-rem(50) 0 _th-rem(20);
+    font-size: _th-rem(13);
+    letter-spacing: _th-rem(.9);
+    color: $subtitle_color;
+    font-weight: bold;
+    clear: both;
+    width: 100%;
+  }
+
+  &__input {
+    @extend .border-box;
+    border-style: dashed;
+    height: _th-rem(40);
+    width: 64%;
+    float: right;
+    margin-top: _th-rem(10);
+    margin-bottom: _th-rem(62);
+  }
+
+  &__descr {
+    @extend .border-box;
+    border-style: dashed;
+    height: _th-rem(60);
+    width: 100%;
+    resize: none;
+  }
+
+  &__input_error,
+  &__descr_error {
+    border-color: $attention_color;
+    color: $attention_color;
+  }
+}
+
+.create-error {
+  width: 100%;
+  clear: both;
+  text-align: center;
+  margin-top: _th-rem(-10);
+
+  &_hide {
+    display: none;
+  }
+
+  &__message {
+    font-size: _th-rem(14);
+    color: #fff;
+    letter-spacing: _th-rem(.3);
+    height: _th-rem(30);
+    line-height: _th-rem(29);
+    padding: 0 _th-rem(17);
+    background-color: $attention_color;
+    border: $gBorder;
+    border-radius: _th-rem(4);
+    margin-bottom: _th-rem(10);
+    display: inline-block;
+    position: relative;
+  }
+
+  &__holder {
+    width: 0;
+    height: _th-rem(15);
+    border-left: $gBorder;
+    position: absolute;
+    top: _th-rem(-15);
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      border: $gBorder;
+      height: _th-rem(10);
+      width: _th-rem(10);
+      border-radius: 100%;
+      left: _th-rem(-6);
+      background: #fff;
+    }
+
+    &:before {
+      top: _th-rem(-6);
+    }
+
+    &:after {
+      bottom: _th-rem(-4);
+    }
+
+    &:first-child {
+      left: _th-rem(40);
+    }
+
+    &:last-child {
+      right: _th-rem(40);
+    }
+  }
+}
+
+.create-category {
+  height: _th-rem(36);
+  line-height: _th-rem(35);
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  border-radius: _th-rem(5);
+  border: _th-rem(2) solid transparent;
+  margin-bottom: _th-rem(15);
+  background: url($assetsBasePath + 'create-category-arrow.svg') no-repeat right _th-rem(16) center;
+
+  &__value {
+    font-size: _th-rem(14);
+    color: $text_color;
+    padding: 0 _th-rem(25) 0 _th-rem(16);
+    text-transform: capitalize;
+  }
+
+  &__select {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+}
+
+.create-category_error {
+  border: _th-rem(2) dashed #f44336;
+  background-image: url($assetsBasePath + 'create-category-arrow-invalid.svg');
+
+  .create-category__value {
+    color: $attention_color;
+    font-style: italic;
+  }
+}
+
+.create-photo {
+  width: _th-rem(80);
+  height: _th-rem(80);
+  border-radius: 100%;
+  border: $gBorder;
+  float: left;
+  background: url($assetsBasePath + 'create-photo.svg') no-repeat center;
+
+  &_error {
+    border-color: $attention_color;
+    background-image: url($assetsBasePath + 'create-photo-invalid.svg');
+  }
+}
+
+.create-tumbler {
+  height: _th-rem(24);
+  line-height: _th-rem(24);
+  overflow: hidden;
+  margin-bottom: _th-rem(18);
+
+  &__label {
+    @extend .label-box;
+    height: _th-rem(24);
+    line-height: _th-rem(24);
+  }
+
+  &__input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+
+  &__btn {
+    position: relative;
+    float: left;
+    width: _th-rem(44);
+    height: _th-rem(24);
+  }
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background: url($assetsBasePath + 'create-tumbler.svg') no-repeat center;
+  }
+
+  &__input:checked + &__bg {
+    background-image: url($assetsBasePath + 'create-tumbler-active.svg');
+  }
+
+  &__input:disabled + &__bg {
+    opacity: .6;
+  }
+}
+
+.create-datepicker {
+  margin-bottom: _th-rem(18);
+
+  &__label {
+    @extend .label-box;
+    height: _th-rem(40);
+    line-height: _th-rem(40);
+  }
+
+  &__field {
+    @extend .border-box;
+  }
+}

@@ -6,6 +6,8 @@ import CategoryTileListContainer from './features/categories/components/Category
 import mainRoutes from './features/main/routes';
 import profileRoutes from './features/profile-challenges/routes';
 import ChallengeContainer from './features/challenge/components/ChallengeContainer';
+import CreateChallengeScreenContainer
+    from './features/create/components/CreateChallengeScreenContainer';
 
 export default () => (
     <Route path="/" >
@@ -14,5 +16,6 @@ export default () => (
         {profileRoutes()}
         <Route path="categories" component={CategoryTileListContainer} />
         <Route path="challenge/:id" component={ChallengeContainer} />
+        <Route path="create" component={CreateChallengeScreenContainer} />
     </Route>
 );

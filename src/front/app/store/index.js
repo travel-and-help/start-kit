@@ -8,6 +8,7 @@ import categories from '../features/categories/categories.reducer';
 import auth from '../features/auth/auth.reducer';
 import user from '../features/main/profile/profile.reducer';
 import watchList from '../features/profile-challenges/watch-list/watchList.reducer';
+import { reducer as formReducer } from 'redux-form';
 
 export default () => {
     const state = createStore(
@@ -16,6 +17,7 @@ export default () => {
             categories,
             challenge,
             auth,
+            form: formReducer,
             user,
             watchList,
             routing: routerReducer

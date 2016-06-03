@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import Menu from '../../../Menu';
 import IconButton from '../../../../common/components/buttons/IconButton';
 
@@ -11,10 +12,12 @@ const searchAction = (
 );
 
 const addAction = (
-    <IconButton
-        iconName="add"
-        iconSize={24}
-    />
+    <Link to={'/create'}>
+        <IconButton
+            iconName="add"
+            iconSize={24}
+        />
+    </Link>
 );
 
 const ChallengeScreenMenu = () => (
