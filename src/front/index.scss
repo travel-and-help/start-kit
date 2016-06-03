@@ -1,4 +1,14 @@
+/* Mixins & functions */
+@import 'app/common/styles/mixins';
+@import 'app/common/styles/icons';
+
+/* 3rd-party */
 @import '../../node_modules/normalize.css/normalize.css';
+
+/* Common components */
+@import 'app/common/components/buttons/IconButton';
+
+/* Components */
 @import 'app/features/todo/todo-screen';
 @import 'app/features/login/login-screen';
 @import './app/features/navigation/navigation';
@@ -14,10 +24,7 @@ html {
     box-sizing: inherit;
 }
 
-.icon {
-    position: relative;
-    display: inline-block;
-    font-size: inherit;
-    text-align: center;
-    font-family: 'Material Icons';
+
+* {
+    box-sizing: border-box;
 }

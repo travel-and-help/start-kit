@@ -1,7 +1,9 @@
+import { hashHistory } from 'react-router';
+
 import api from '../../common/api';
 
 export const GET_CATEGORIES = 'GET_CATEGORIES';
-export const TOGGLE_CATEGORY = 'TOGGLE_CATEGORY';
+export const WATCH_CATEGORY = 'WATCH_CATEGORY';
 
 export function getCategories() {
     return function fetchCategories(dispatch) {
@@ -16,10 +18,23 @@ export function getCategories() {
     };
 }
 
-export function toggleCategory(name) {
-    // TODO: implement toggle category functionality
+export function watchCategory(categoryId) {
     return {
-        type: TOGGLE_CATEGORY,
-        name
+        type: WATCH_CATEGORY,
+        categoryId
+    };
+}
+
+export function saveCategories(categories) {
+    return function postCategories() {
+        api('/api/categories', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json'
+            },
+            body: JSON.stringify(categories)
+        }).then(() => {
+            hashHistory.push('challenges');
+        });
     };
 }

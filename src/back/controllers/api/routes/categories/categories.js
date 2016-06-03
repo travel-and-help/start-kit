@@ -8,6 +8,12 @@ const getAll = (req, res) => {
     });
 };
 
+const save = (req, res) => {
+    // TODO: Implement save categories functionality
+    res.sendStatus(200);
+};
+
 module.exports = {
-    getAll
+    getAll,
+    save
 };
