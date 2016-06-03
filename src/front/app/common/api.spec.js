@@ -95,4 +95,19 @@ describe('app/common/api', () => {
             });
     });
 
+    it('populates status error through a promise chain', done => {
+        const onError = env.stub();
+        const response = {
+            statusText: 'some text',
+            status: 300
+        };
+        global.fetch = env.stub().returns(env.stub().resolves(response)());
+        sut({}).catch(onError);
+        setTimeout(() => {
+            onError.should.calledWith(
+                env.match(value => value.toString().indexOf(response.statusText) > -1)
+            );
+            done();
+        }, 1);
+    });
 });

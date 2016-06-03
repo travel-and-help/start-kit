@@ -20,6 +20,8 @@ export default function api(url, options = {}) {
             const LOGIN_SCREEN_ROUTE = '/';
             if (error.response.status === 401) {
                 hashHistory.push(LOGIN_SCREEN_ROUTE);
+            } else {
+                throw error;
             }
         });
 }

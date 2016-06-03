@@ -20,6 +20,7 @@ describe('my controller', () => {
         challenges = [];
         userActions = {
             getWatchedChallenges: env.stub(),
+            watchChallenge: env.stub(),
             unWatchChallenge: env.stub()
         };
         userPromise = env.stub().resolves();
@@ -30,7 +31,12 @@ describe('my controller', () => {
         res = chainable(['json', 'status', 'send']);
     });
 
-    describe('unWatch', () => {
+    [
+        { controller: 'unWatch', model: 'unWatchChallenge' },
+        { controller: 'watch', model: 'watchChallenge' }
+    ].forEach(methods => describe(`${methods.controller}()`, () => {
+        const controllerMethod = methods.controller;
+        const modelMethod = methods.model;
         let responseBuilder;
 
         beforeEach(() => {
@@ -47,17 +53,17 @@ describe('my controller', () => {
 
         it('responds with action result', () => {
             const saveResult = 'something';
-            const unWatchPromise = env.stub().resolves(saveResult)();
-            userActions.unWatchChallenge.returns(unWatchPromise);
-            sut.unWatch(req, res);
-            return unWatchPromise
+            const actionPromise = env.stub().resolves(saveResult)();
+            userActions[modelMethod].returns(actionPromise);
+            sut[controllerMethod](req, res);
+            return actionPromise
                 .then(() => responseBuilder.ok.should.calledWith(res, saveResult));
         });
 
         it('passes user and challenge id from request to the unWatch action', () => {
-            userActions.unWatchChallenge.returns(env.stub().resolves()());
-            sut.unWatch(req);
-            userActions.unWatchChallenge.should.calledWith(
+            userActions[modelMethod].returns(env.stub().resolves()());
+            sut[controllerMethod](req);
+            userActions[modelMethod].should.calledWith(
                 userPromise,
                 req.params.challengeId
             );
@@ -65,17 +71,17 @@ describe('my controller', () => {
 
         it('fails on error', done => {
             const error = 'smth went wrong';
-            userActions.unWatchChallenge.returns(env.stub().rejects(error)());
-            sut.unWatch(req, res);
+            userActions[modelMethod].returns(env.stub().rejects(error)());
+            sut[controllerMethod](req, res);
             setTimeout(() => {
                 responseBuilder.fail.should.calledWith(
                     res,
                     env.match(value => value.toString().indexOf(error))
                 );
                 done();
-            }, 1);
+            });
         });
-    });
+    }));
 
     describe('getWatchList', () => {
         beforeEach(() => {

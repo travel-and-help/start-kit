@@ -22,8 +22,8 @@ describe('ChallengeContainer', () => {
 
         challengeActionCreator = {
             fetchChallenge: env.stub().returns(Symbol()),
-            resetState: env.stub().returns()
-
+            resetState: env.stub().returns(),
+            watchChallenge: env.stub()
         };
 
         Challenge = {
@@ -47,6 +47,33 @@ describe('ChallengeContainer', () => {
         const props = reactRedux.connect.getCall(0).args[1](dispatch);
         props.getChallenge(id);
         dispatch.should.calledWith(challengeActionCreator.fetchChallenge(id));
+    });
+
+    describe('on watch action', () => {
+        let challengeId,
+            watchAction;
+
+        beforeEach(() => {
+            challengeId = 'someChallengeId';
+            watchAction = 'an action';
+            challengeActionCreator.watchChallenge.returns(watchAction);
+        });
+
+        it('calls dispatch', () => reactRedux.connect.should.calledWith(
+            env.match.any,
+            env.match(mapDispatchToProps => {
+                mapDispatchToProps(dispatch).onWatchChallenge(challengeId);
+                return dispatch.should.calledWith(watchAction);
+            })
+        ));
+
+        it('passes challenge id', () => reactRedux.connect.should.calledWith(
+            env.match.any,
+            env.match(mapDispatchToProps => {
+                mapDispatchToProps(dispatch).onWatchChallenge(challengeId);
+                return challengeActionCreator.watchChallenge.should.calledWith(challengeId);
+            })
+        ));
     });
 
     it('should map dispatch to reset state prop method', () => {

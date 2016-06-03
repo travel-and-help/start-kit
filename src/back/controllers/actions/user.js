@@ -17,7 +17,18 @@ function unWatchChallenge(userPromise, challengeId) {
     });
 }
 
+function watchChallenge(userPromise, challengeId) {
+    return userPromise.then(user => {
+        user.set(
+            'watchList',
+            user.get('watchList').reduce((list, id) => [...list, id], [challengeId])
+        );
+        return user.save();
+    });
+}
+
 module.exports = {
     getWatchedChallenges,
-    unWatchChallenge
+    unWatchChallenge,
+    watchChallenge
 };
