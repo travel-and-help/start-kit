@@ -95,7 +95,7 @@ const UserDetailsContainer = ({ user }) => {
                     </div>
                 )}
                 {acceptedChallenges && acceptedChallenges.size && (
-                    <div className="user-details__challenges-section">
+                    <div className="user-details__challenges-section_accepted">
                         <h4 className="user-details__challenges-title
                                     user-details__challenges-title_accepted"
                         >

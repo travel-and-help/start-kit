@@ -6,49 +6,36 @@ import Profile from './Profile';
 describe('Profile', () => {
     let user,
         getUser,
+        getChallenges,
         acceptedChallenges;
 
     beforeEach(() => {
 
         acceptedChallenges = [
-            {
-                status: 'accepted',
-                challenge: {
-                    user: {}
-                }
-            },
-            {
-                status: 'accepted',
-                challenge: {
-                    user: {}
-                }
-            }
+            { user: {} },
+            { user: {} },
+            { user: {} },
+            { user: {} }
         ];
 
         user = fromJS({
-            challenges: [
-                ...acceptedChallenges,
-                {
-                    status: 'created',
-                    challenge: {
-                        user: {}
-                    }
-                },
-                {
-                    status: 'completed',
-                    challenge: {
-                        user: {}
-                    }
-                }
+            acceptedChallenges,
+            createdChallenges: [
+                { user: {} },
+                { user: {} },
+                { user: {} }
             ],
-            categories: [],
-            locations: [],
-            web: [],
+            completedChallenges: [
+                { user: {} },
+                { user: {} }
+            ],
+            social: [],
             fullName: 'testFullName',
             photo: 'testPhoto',
             rating: 1
         });
 
+        getChallenges = env.spy();
         getUser = env.spy();
     });
 
@@ -57,13 +44,18 @@ describe('Profile', () => {
         const wrapper = render(<Profile
             user={ user }
             getUser={ getUser }
+            getChallenges={ getChallenges }
         />);
         wrapper.find('.user-details').length.should.equal(0);
     });
 
     it('should get User when mounted ONCE', () => {
         user = new Map();
-        mount(<Profile user={ user } getUser={ getUser } />);
+        mount(<Profile
+            user={ user }
+            getUser={ getUser }
+            getChallenges={ getChallenges }
+        />);
         getUser.should.been.callCount(1);
     });
 
@@ -74,6 +66,7 @@ describe('Profile', () => {
             wrapper = render(<Profile
                 user={ user }
                 getUser={ getUser }
+                getChallenges={ getChallenges }
             />);
         });
 
@@ -89,14 +82,16 @@ describe('Profile', () => {
         });
 
         it('should render correct number of challenges', () => {
+            const expectedSize = user.get('acceptedChallenges').size +
+                user.get('completedChallenges').size + user.get('createdChallenges').size;
             wrapper
                 .find('.challenge-tile')
-                .length.should.equal(user.get('challenges').size);
+                .length.should.equal(expectedSize);
         });
 
         it('should render correct number of filtered challenges', () => {
             wrapper
-                .find('.user-details__challenges-container_accepted')
+                .find('.user-details__challenges-section_accepted')
                 .find('.challenge-tile')
                 .length.should.equal(acceptedChallenges.length);
         });

@@ -2,12 +2,12 @@ import { connect } from 'react-redux';
 import { getUser, getChallenges } from '../profile.actions';
 import Profile from './Profile';
 
-const mapStateToProps = ({ user, auth }) => {
-    return {
+const mapStateToProps = ({ user, auth }) => (
+    {
         userId: auth.userId,
         user
-    };
-};
+    }
+);
 
 const mapDispatchToProps = (dispatch) => ({
     getUser: (id) => {

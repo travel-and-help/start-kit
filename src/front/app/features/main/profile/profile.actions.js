@@ -20,36 +20,24 @@ export function getUser(id) {
 
 export function getChallenges(id) {
     return function fetchUserChallenges(dispatch) {
-        const acceptedUrl = `http://localhost:9000/api/challenge/user/${id}/status/accepted`;
-        const createdUrl = `http://localhost:9000/api/challenge/user/${id}/status/created`;
-        const completedUrl = `http://localhost:9000/api/challenge/user/${id}/status/completed`;
-        fetch(acceptedUrl)
-            .then((response) => response.json())
-            .then((response) => {
+        const acceptedUrl = `/api/challenge/user/${id}/status/accepted`;
+        const createdUrl = `/api/challenge/user/${id}/status/created`;
+        const completedUrl = `/api/challenge/user/${id}/status/completed`;
+        const receiveCallback = (type) => (
+            (response) => {
                 const challenges = response.docs;
                 dispatch({
-                    type: ACCEPTED_CHALLENGES_RECEIVED,
+                    type,
                     challenges
                 });
-            });
-        fetch(createdUrl)
-            .then((response) => response.json())
-            .then((response) => {
-                const challenges = response.docs;
-                dispatch({
-                    type: CREATED_CHALLENGES_RECEIVED,
-                    challenges
-                });
-            });
-        fetch(completedUrl)
-            .then((response) => response.json())
-            .then((response) => {
-                const challenges = response.docs;
-                dispatch({
-                    type: COMPLETED_CHALLENGES_RECEIVED,
-                    challenges
-                });
-            });
+            }
+        );
+        api(acceptedUrl)
+            .then(receiveCallback(ACCEPTED_CHALLENGES_RECEIVED));
+        api(createdUrl)
+            .then(receiveCallback(CREATED_CHALLENGES_RECEIVED));
+        api(completedUrl)
+            .then(receiveCallback(COMPLETED_CHALLENGES_RECEIVED));
     };
 }
 

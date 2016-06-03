@@ -8,22 +8,27 @@ describe('Profile', () => {
 
     beforeEach(() => {
         social = fromJS({
-            link: 'testLink',
-            title: 'testTitle'
+            url: 'testLink',
+            type: 'testTitle'
         });
     });
 
     it('should render Social with correct title', () => {
+        const socialType = social.get('type');
+        const cssClass = `user-details__social-icon_${socialType}`;
+
         const wrapper = render(<Social
             social={ social }
         />);
-        wrapper.find('a').text().should.equal(social.get('title'));
+
+        const check = () => (wrapper.find(cssClass).text().should.exist);
+        check();
     });
 
     it('should render Social with correct link', () => {
         const wrapper = render(<Social
             social={ social }
         />);
-        wrapper.find('a').attr('href').should.equal(social.get('link'));
+        wrapper.find('a').attr('href').should.equal(social.get('url'));
     });
 });

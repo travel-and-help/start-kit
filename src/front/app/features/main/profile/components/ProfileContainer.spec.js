@@ -6,9 +6,12 @@ describe('ProfileContainer', () => {
         dispatch,
         wrapWithConnect,
         profileActionCreators,
-        Profile;
+        Profile,
+        userId;
 
     beforeEach(() => {
+        userId = 'testId';
+
         dispatch = env.stub();
 
         wrapWithConnect = env.stub().returns({});
@@ -18,7 +21,8 @@ describe('ProfileContainer', () => {
         };
 
         profileActionCreators = {
-            getUser: env.stub().returns(Symbol())
+            getUser: env.stub().returns(Symbol()),
+            getChallenges: env.stub().returns(Symbol())
         };
 
         Profile = {
@@ -34,14 +38,25 @@ describe('ProfileContainer', () => {
 
     it('should map state user to props user', () => {
         const user = {};
-        const state = { user };
-        reactRedux.connect.getCall(0).args[0](state).should.contains({ user });
+        const state = {
+            user,
+            auth: {
+                userId
+            }
+        };
+        reactRedux.connect.getCall(0).args[0](state).should.contains({ user, userId });
+    });
+
+    it('should map dispatch to user fetching prop method', () => {
+        const props = reactRedux.connect.getCall(0).args[1](dispatch);
+        props.getUser(userId);
+        dispatch.should.calledWith(profileActionCreators.getUser(userId));
     });
 
     it('should map dispatch to challenges fetching prop method', () => {
         const props = reactRedux.connect.getCall(0).args[1](dispatch);
-        props.getUser();
-        dispatch.should.calledWith(profileActionCreators.getUser());
+        props.getChallenges(userId);
+        dispatch.should.calledWith(profileActionCreators.getChallenges(userId));
     });
 
     it('should map to props once', () => {
