@@ -9,7 +9,8 @@ describe('routes/challenges-post', () => {
         res,
         save,
         mockChallenge,
-        Challenge;
+        Challenge,
+        mockModel;
 
     beforeEach(() => {
         mockChallenge = {
@@ -28,7 +29,11 @@ describe('routes/challenges-post', () => {
             cb(null, mockChallenge);
         });
 
-        Challenge = () => ({ save });
+        mockModel = {
+            save
+        };
+
+        Challenge = env.stub().returns(mockModel);
 
         sut = proxyquire('./post', {
             '../../models/challenge': Challenge
