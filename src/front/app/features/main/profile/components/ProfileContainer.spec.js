@@ -41,7 +41,7 @@ describe('ProfileContainer', () => {
         const state = {
             user,
             auth: {
-                userId
+                get: () => userId
             }
         };
         reactRedux.connect.getCall(0).args[0](state).should.contains({ user, userId });
