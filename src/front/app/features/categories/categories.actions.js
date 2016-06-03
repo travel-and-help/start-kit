@@ -28,12 +28,9 @@ export function saveCategories(categories) {
     return function postCategories() {
         api('/api/categories', {
             method: 'POST',
-            headers: {
-                Accept: 'application/json'
-            },
             body: JSON.stringify(categories)
         }).then(() => {
-            hashHistory.push('challenges');
+            hashHistory.push('main/challenges');
         });
     };
 }

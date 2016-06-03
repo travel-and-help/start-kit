@@ -19,6 +19,28 @@ describe('action/categories', () => {
 
     });
 
+    describe('#watchChallenge', () => {
+        let fetcher;
+
+        beforeEach(() => {
+            dispatch = env.spy();
+            fetcher = sut.watchChallenge(challenge._id);
+        });
+
+        it('should fetch challenge', () => {
+            fetcher(dispatch);
+            api.should.calledWith(`/api/my/wish-list/${challenge._id}`, { method: 'PUT' });
+        });
+
+        it('should dispatch GET_CHALLENGE event with data from response', () => {
+            fetcher(dispatch);
+            return promise.finally(() => dispatch.should.calledWith({
+                type: 'ADDED_TO_WATCHLIST',
+                challengeId: challenge._id
+            }));
+        });
+    });
+
     describe('#fetchChallenge', () => {
         let fetcher;
 

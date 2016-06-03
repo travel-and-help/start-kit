@@ -35,7 +35,8 @@ describe('app/common/api', () => {
     it('should prefix url with base api url when pass url as context', () => {
         const context = '/my-url';
         const options = {
-            key: 'val'
+            key: 'val',
+            headers: { Accept: 'application/json', 'Content-Type': 'application/json' }
         };
         sut(context, options);
         fetch.should.been.calledWith('/base-url/my-url', options);
@@ -52,7 +53,11 @@ describe('app/common/api', () => {
         sut('/testUrl');
         fetch.should.been.calledWith('/base-url/testUrl', {
             credentials: 'include',
-            headers: { Authorization: 'Bearer authToken' }
+            headers: {
+                Authorization: 'Bearer authToken',
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }
         });
     });
 
@@ -90,4 +95,19 @@ describe('app/common/api', () => {
             });
     });
 
+    it('populates status error through a promise chain', done => {
+        const onError = env.stub();
+        const response = {
+            statusText: 'some text',
+            status: 300
+        };
+        global.fetch = env.stub().returns(env.stub().resolves(response)());
+        sut({}).catch(onError);
+        setTimeout(() => {
+            onError.should.calledWith(
+                env.match(value => value.toString().indexOf(response.statusText) > -1)
+            );
+            done();
+        }, 1);
+    });
 });
