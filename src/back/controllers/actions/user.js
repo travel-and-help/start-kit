@@ -43,7 +43,7 @@ function acceptChallenge(userPromise, challengeId) {
             user
                 .get('challenges')
                 .filter(task => task.status !== STATUS_ACCEPTED && challengeId !== task.challenge)
-                .reduce((list, task) => [...list, task], newlyAccepted)
+                .reduce((list, task) => [...list, task], [newlyAccepted])
         );
         return user.save();
     });
