@@ -43,7 +43,7 @@ const UserDetailsContainer = ({ user }) => {
                         <div className="user-details__stats-value
                                         user-details__stats-value_accepted"
                         >
-                            { (completedChallenges && completedChallenges.size) || 0 }
+                            { (acceptedChallenges && acceptedChallenges.size) || 0 }
                         </div>
                         <span>Accepted</span>
                     </div>
@@ -51,7 +51,7 @@ const UserDetailsContainer = ({ user }) => {
                         <div className="user-details__stats-value
                                         user-details__stats-value_completed"
                         >
-                            { (acceptedChallenges && acceptedChallenges.size) || 0 }
+                            { (completedChallenges && completedChallenges.size) || 0 }
                         </div>
                         <span>Completed</span>
                     </div>
