@@ -17,6 +17,15 @@ const ChallengeDetails = ({ challenge, onAccept }) => {
         }
     } = challenge.toJS();
 
+    let actionTitle = 'Accept';
+    let actionIconName = 'accept';
+    let clickHandler = () => onAccept(challenge.get('_id'));
+    if (challenge.get('isAccepted')) {
+        actionTitle = 'Complete';
+        clickHandler = () => {};
+        actionIconName = 'complete';
+    }
+
     return (
         <section>
             <header className="challenge-header" style={{ backgroundImage: `url(${image})` }} >
@@ -73,12 +82,12 @@ const ChallengeDetails = ({ challenge, onAccept }) => {
                     <div className="challenge-info__button_wrapper" >
                         <Fasteners className="challenge-info__fasteners" />
                         <IconButton
-                            title={'Accept'}
+                            title={actionTitle}
                             buttonClassName={'challenge-info__button'}
-                            iconName={'accept'}
+                            iconName={actionIconName}
                             iconSize={32}
                             iconClassName={'icon_dark'}
-                            clickHandler={() => onAccept(challenge.get('_id'))}
+                            clickHandler={clickHandler}
                         />
                     </div>
 

@@ -27,22 +27,14 @@ export function fetchChallenge(id) {
 
 export function watchChallenge(challengeId) {
     return dispatch => api(`/api/my/wish-list/${challengeId}`, { method: 'PUT' })
-        .then(() => {
-            dispatch({ type: ADDED_TO_WATCHLIST, challengeId });
-            // eslint-disable-next-line no-alert
-            window.alert('The challenge has been added to your watch list.');
-        })
+        .then(() => dispatch({ type: ADDED_TO_WATCHLIST, challengeId }))
         // eslint-disable-next-line no-alert
         .catch(alert.bind(null, 'Unable to add the challenge =('));
 }
 
 export function acceptChallenge(challengeId) {
     return dispatch => api(`/api/my/accepted-challenges/${challengeId}`, { method: 'PUT' })
-        .then(() => {
-            dispatch({ type: ADDED_TO_ACCEPTED_LIST, challengeId });
-            // eslint-disable-next-line no-alert
-            window.alert('Challenge accepted!');
-        })
+        .then(() => dispatch({ type: ADDED_TO_ACCEPTED_LIST, challengeId }))
         // eslint-disable-next-line no-alert
         .catch(alert.bind(null, 'Unable to accept the challenge =('));
 }

@@ -26,6 +26,9 @@ class Challenge extends Component {
         const id = props.params.id;
 
         props.getChallenge(id);
+        if (props.userId) {
+            props.getUser(props.userId);
+        }
     }
 
     componentWillUnmount() {
@@ -48,13 +51,13 @@ class Challenge extends Component {
     render() {
 
         const { challenge, onWatchChallenge, onAccept } = this.props;
-        console.log(onAccept);
         if (challenge.size) {
             return (
                 <Layout
                     menu={<ChallengeDetailsMenu
                         {...Object.assign(this.state.menu, {
-                            onWatchChallenge: () => onWatchChallenge(challenge.get('_id'))
+                            onWatchChallenge: () => onWatchChallenge(challenge.get('_id')),
+                            isWatched: challenge.get('isWatched')
                         })}
                     />}
                     onScroll={e => this.onScroll(e)}
