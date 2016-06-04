@@ -27,7 +27,7 @@ export function fetchCategories() {
 
 export function postChallenge(formData) {
     return function innerPostCategories(dispatch) {
-        fetch('/api/challenges/', {
+        api('/api/challenges/', {
             method: 'POST',
             headers: new Headers({
                 'Content-Type': 'application/json'
