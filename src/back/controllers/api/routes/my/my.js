@@ -14,5 +14,6 @@ function responseFactory(action) {
 module.exports = {
     getWatchList: responseFactory(userActions.getWatchedChallenges),
     unWatch: responseFactory(userActions.unWatchChallenge),
+    acceptChallenge: responseFactory(userActions.acceptChallenge),
     watch: responseFactory(userActions.watchChallenge)
 };

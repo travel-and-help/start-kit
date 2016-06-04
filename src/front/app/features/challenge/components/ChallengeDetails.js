@@ -3,7 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import IconButton from './../../../common/components/buttons/IconButton';
 import Fasteners from './../../../common/components/fasteners/Fasteners';
 
-const ChallengeDetails = ({ challenge }) => {
+const ChallengeDetails = ({ challenge, onAccept }) => {
     const {
         image,
         title,
@@ -16,6 +16,15 @@ const ChallengeDetails = ({ challenge }) => {
             lastName
         }
     } = challenge.toJS();
+
+    let actionTitle = 'Accept';
+    let actionIconName = 'accept';
+    let clickHandler = () => onAccept(challenge.get('_id'));
+    if (challenge.get('isAccepted')) {
+        actionTitle = 'Complete';
+        clickHandler = () => {};
+        actionIconName = 'complete';
+    }
 
     return (
         <section>
@@ -73,11 +82,12 @@ const ChallengeDetails = ({ challenge }) => {
                     <div className="challenge-info__button_wrapper" >
                         <Fasteners className="challenge-info__fasteners" />
                         <IconButton
-                            title={'Accept'}
+                            title={actionTitle}
                             buttonClassName={'challenge-info__button'}
-                            iconName={'accept'}
+                            iconName={actionIconName}
                             iconSize={32}
                             iconClassName={'icon_dark'}
+                            clickHandler={clickHandler}
                         />
                     </div>
 
@@ -102,6 +112,7 @@ const ChallengeDetails = ({ challenge }) => {
 };
 
 ChallengeDetails.propTypes = {
+    onAccept: PropTypes.func.isRequired,
     challenge: ImmutablePropTypes.mapContains({
         image: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,

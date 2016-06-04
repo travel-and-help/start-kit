@@ -20,13 +20,14 @@ const rightAction = onWatch => (
 
 rightAction.propTypes = { onWatch: PropTypes.func.isRequired };
 
-const ChallengeDetailsMenu = ({ isBgVisible, bgImage, title, onWatchChallenge }) => {
+const ChallengeDetailsMenu = ({ isBgVisible, bgImage, title, onWatchChallenge, isWatched }) => {
+    const watchAction = !isWatched ? rightAction(onWatchChallenge) : '<i />';
     const menu = (
         <Menu
             className="challenge-details-menu__menu"
             title={isBgVisible ? title : ''}
             leftAction={leftAction}
-            rightAction={rightAction(onWatchChallenge)}
+            rightAction={watchAction}
         />
     );
 
@@ -51,7 +52,8 @@ ChallengeDetailsMenu.propTypes = {
     isBgVisible: PropTypes.bool.isRequired,
     bgImage: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    onWatchChallenge: PropTypes.func.isRequired
+    onWatchChallenge: PropTypes.func.isRequired,
+    isWatched: PropTypes.bool.isRequired
 };
 
 export default ChallengeDetailsMenu;
