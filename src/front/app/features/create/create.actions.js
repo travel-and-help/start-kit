@@ -35,7 +35,7 @@ export function postChallenge(formData) {
             body: JSON.stringify(formData) })
             .then((response) => {
                 if (response.status >= 200 && response.status < 300) {
-                    dispatch(receiveChallenge(response.json()));
+                    dispatch(receiveChallenge(response));
                     window.history.back();
                 } else {
                     throw new Error(response.statusText);
