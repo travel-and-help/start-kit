@@ -21,7 +21,7 @@ class CreateForm extends Component {
             formData.user = user;
             formData.categories = [JSON.parse(data.category)._id];
 
-            // TODO: remove after demo/#2
+            // TODO: remove after demo #2
             formData.location = 'Kyiv';
             formData.image = 'http://placekitten.com/400/400';
             formData.level = 'easy';
