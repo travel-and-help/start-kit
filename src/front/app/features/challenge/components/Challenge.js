@@ -22,12 +22,25 @@ class Challenge extends Component {
     }
 
     componentDidMount() {
-        const props = this.props;
-        const id = props.params.id;
+        const {
+            getChallenge,
+            getUser,
+            userId,
+            userReceived,
+            user,
+            getAcceptedChallenges,
+            getWishList } = this.props;
+        const { id } = this.props.params;
 
-        props.getChallenge(id);
-        if (props.userId) {
-            props.getUser(props.userId);
+        getChallenge(id);
+        if (userId) {
+            getUser(userId);
+        }
+
+        if (user) {
+            userReceived(user);
+            getAcceptedChallenges(userId);
+            getWishList(userId);
         }
     }
 
@@ -57,7 +70,7 @@ class Challenge extends Component {
                     menu={<ChallengeDetailsMenu
                         {...Object.assign(this.state.menu, {
                             onWatchChallenge: () => onWatchChallenge(challenge.get('_id')),
-                            isWatched: challenge.get('isWatched')
+                            isWatched: false
                         })}
                     />}
                     onScroll={e => this.onScroll(e)}
@@ -78,7 +91,14 @@ class Challenge extends Component {
 
 Challenge.propTypes = {
     challenge: ImmutablePropTypes.map.isRequired,
+    user: ImmutablePropTypes.map,
+    getUser: PropTypes.func.isRequired,
+    userId: PropTypes.string,
     getChallenge: PropTypes.func.isRequired,
+    getAcceptedChallenges: PropTypes.func.isRequired,
+    getWishList: PropTypes.func.isRequired,
+    userReceived: PropTypes.func.isRequired,
+    params: PropTypes.object,
     onWatchChallenge: PropTypes.func.isRequired,
     onAccept: PropTypes.func.isRequired,
     getInitialState: PropTypes.func.isRequired

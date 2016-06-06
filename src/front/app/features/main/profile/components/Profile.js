@@ -16,11 +16,11 @@ class Profile extends Component {
     }
 
     render() {
-        const { user, challenges } = this.props;
+        const { user } = this.props;
 
         return (
             <Layout menu={<ProfileScreenMenu />} >
-                {user.size && <UserDetails user={user} challenges={challenges} />}
+                {user.size && <UserDetails user={user} />}
             </Layout>
         );
     }
@@ -28,7 +28,6 @@ class Profile extends Component {
 
 Profile.propTypes = {
     user: ImmutablePropTypes.map.isRequired,
-    challenges: ImmutablePropTypes.list.isRequired,
     getUser: PropTypes.func.isRequired,
     getChallenges: PropTypes.func.isRequired,
     userId: PropTypes.string.isRequired

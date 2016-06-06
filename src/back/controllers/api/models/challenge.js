@@ -15,7 +15,7 @@ const Challenge = new Schema({
     location: { type: String },
     user: {
         type: Schema.ObjectId,
-        ref: 'Challenge'
+        ref: 'User'
     },
     description: { type: String, required: true }
 });

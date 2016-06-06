@@ -27,7 +27,7 @@ class ChallengeScreen extends React.Component {
 }
 
 ChallengeScreen.propTypes = {
-    topChallenge: ImmutablePropTypes.map.isRequired,
+    topChallenge: ImmutablePropTypes.map,
     challenges: ImmutablePropTypes.list.isRequired,
     getChallenges: PropTypes.func.isRequired
 };

@@ -1,18 +1,33 @@
 import api from '../../common/api';
+
 export const GET_CHALLENGE = 'GET_CHALLENGE';
 export const RESET_STATE = 'RESET_STATE';
 export const ADDED_TO_WATCHLIST = 'ADDED_TO_WATCHLIST';
 export const ADDED_TO_ACCEPTED_LIST = 'ADDED_TO_ACCEPTED_LIST';
+export const USER_RECEIVED = 'USER_RECEIVED';
+export const ACCEPTED_RECEIVED = 'ACCEPTED_RECEIVED';
+export const WATCHLIST_RECEIVED = 'WATCHLIST_RECEIVED';
 
-function receiveChallenge(challenge) {
-    return {
+const receiveChallenge = (challenge) => (
+    {
         type: GET_CHALLENGE,
         challenge
-    };
-}
-function receiveInitialState() {
+    }
+);
+
+const receivedAccepted = (challenges) => (
+    {
+        type: ACCEPTED_RECEIVED,
+        challenges
+    }
+);
+
+const receiveInitialState = () => ({ type: RESET_STATE });
+
+export function userReceived(user) {
     return {
-        type: RESET_STATE
+        type: USER_RECEIVED,
+        user
     };
 }
 
@@ -41,4 +56,26 @@ export function acceptChallenge(challengeId) {
 
 export function resetState() {
     return (dispatch) => dispatch(receiveInitialState());
+}
+
+export function getAcceptedChallenges(userId) {
+    return (dispatch) => {
+        api(`/api/challenge/user/${userId}/status/accepted`)
+            .then(response => response.docs)
+            .then((challenges) => {
+                dispatch(receivedAccepted(challenges));
+            });
+    };
+}
+
+export function getWishList() {
+    return function innerGetWish(dispatch) {
+        api('/api/my/wish-list')
+            .then(challenges => {
+                dispatch({
+                    type: WATCHLIST_RECEIVED,
+                    challenges
+                });
+            });
+    };
 }
