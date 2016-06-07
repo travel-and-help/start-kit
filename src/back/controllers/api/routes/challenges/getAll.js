@@ -6,7 +6,8 @@ const getAll = (req, res) => {
     challenge
         .find({})
         .populate('user')
-        .exec((err, challenges) => {
+        .exec()
+        .then((challenges) => {
             res.json(challenges);
         });
 };
