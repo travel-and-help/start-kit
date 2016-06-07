@@ -4,7 +4,6 @@ export const GET_CHALLENGE = 'GET_CHALLENGE';
 export const RESET_STATE = 'RESET_STATE';
 export const ADDED_TO_WATCHLIST = 'ADDED_TO_WATCHLIST';
 export const ADDED_TO_ACCEPTED_LIST = 'ADDED_TO_ACCEPTED_LIST';
-export const USER_RECEIVED = 'USER_RECEIVED';
 export const ACCEPTED_RECEIVED = 'ACCEPTED_RECEIVED';
 export const WATCHLIST_RECEIVED = 'WATCHLIST_RECEIVED';
 
@@ -23,13 +22,6 @@ const receivedAccepted = (challenges) => (
 );
 
 const receiveInitialState = () => ({ type: RESET_STATE });
-
-export function userReceived(user) {
-    return {
-        type: USER_RECEIVED,
-        user
-    };
-}
 
 export function fetchChallenge(id) {
     return (dispatch) => {
