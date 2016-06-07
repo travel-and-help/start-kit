@@ -21,7 +21,8 @@ class ChallengeController extends BaseController {
                 location: 1,
                 categories: 1,
                 user: 1
-            }
+            },
+            populate: 'user'
         });
         return baserOptions;
     }

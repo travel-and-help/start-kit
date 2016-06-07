@@ -26,8 +26,6 @@ class Challenge extends Component {
             getChallenge,
             getUser,
             userId,
-            userReceived,
-            user,
             getAcceptedChallenges,
             getWishList } = this.props;
         const { id } = this.props.params;
@@ -35,10 +33,6 @@ class Challenge extends Component {
         getChallenge(id);
         if (userId) {
             getUser(userId);
-        }
-
-        if (user) {
-            userReceived(user);
             getAcceptedChallenges(userId);
             getWishList(userId);
         }
@@ -70,7 +64,7 @@ class Challenge extends Component {
                     menu={<ChallengeDetailsMenu
                         {...Object.assign(this.state.menu, {
                             onWatchChallenge: () => onWatchChallenge(challenge.get('_id')),
-                            isWatched: false
+                            isWatched: challenge.get('isWatched')
                         })}
                     />}
                     onScroll={e => this.onScroll(e)}

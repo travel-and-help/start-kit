@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
+import { hashHistory } from 'react-router';
 import CreateFormHeader from './CreateFormHeader';
 import CreateFormBody from './CreateFormBody';
 import validate from './validate';
@@ -8,8 +9,12 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class CreateForm extends Component {
     componentDidMount() {
-        if (this.props.categories.size === 0) {
-            this.props.getCategories();
+        const { categories, user, getCategories } = this.props;
+        if (!user) {
+            hashHistory.push('/');
+        }
+        if (categories.size === 0) {
+            getCategories();
         }
     }
 
@@ -46,7 +51,7 @@ CreateForm.propTypes = {
     getCategories: PropTypes.func.isRequired,
     postChallenge: PropTypes.func.isRequired,
     categories: ImmutablePropTypes.list.isRequired,
-    user: PropTypes.string.isRequired
+    user: PropTypes.string
 };
 
 export default reduxForm({

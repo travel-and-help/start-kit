@@ -8,10 +8,7 @@ const ChallengeTile = ({ challenge }) => {
         _id,
         image,
         location,
-        user: {
-            rating,
-            fullName
-        },
+        user,
     } = challenge.toJS();
 
     return (
@@ -24,8 +21,8 @@ const ChallengeTile = ({ challenge }) => {
                 className="challenge-tile__info"
                 link={`challenge/${_id}`}
                 title={title}
-                userName={fullName}
-                userRank={rating}
+                userName={user.fullName}
+                userRank={user.rating}
                 location={location}
             />
         </div>

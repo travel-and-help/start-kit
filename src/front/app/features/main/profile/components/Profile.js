@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { hashHistory } from 'react-router';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import UserDetails from './UserDetails/UserDetails';
 import Layout from '../../../Layout';
@@ -11,8 +12,12 @@ class Profile extends Component {
             getUser,
             getChallenges,
             userId } = this.props;
-        getUser(userId);
-        getChallenges(userId);
+        if (!userId) {
+            hashHistory.push('/');
+        } else {
+            getUser(userId);
+            getChallenges(userId);
+        }
     }
 
     render() {
@@ -20,17 +25,19 @@ class Profile extends Component {
 
         return (
             <Layout menu={<ProfileScreenMenu />} >
-                {user.size && <UserDetails user={user} />}
+                <div>
+                    { user.size && <UserDetails user={user} /> }
+                </div>
             </Layout>
         );
     }
 }
 
 Profile.propTypes = {
-    user: ImmutablePropTypes.map.isRequired,
+    user: ImmutablePropTypes.map,
     getUser: PropTypes.func.isRequired,
     getChallenges: PropTypes.func.isRequired,
-    userId: PropTypes.string.isRequired
+    userId: PropTypes.string
 };
 
 export default Profile;

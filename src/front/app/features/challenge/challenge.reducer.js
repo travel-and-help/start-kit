@@ -15,11 +15,19 @@ const reducer = (state = initialState, action = {}) => {
     case RESET_STATE:
         return initialState;
     case USER_RECEIVED:
-        return upsertCurrentUser(action.user, state);
-    case ACCEPTED_RECEIVED:
-        return state.setIn(['currentUser', 'acceptedChallenges'], fromJS(action.challenges));
-    case WATCHLIST_RECEIVED:
-        return state.setIn(['currentUser', 'watchList'], fromJS(action.challenges));
+        return state.set('currentUser', fromJS(action.user));
+    case ACCEPTED_RECEIVED: {
+        const isAccepted = action.challenges.find(challenge => (
+            challenge._id === state.get('_id'))
+        );
+        return state.set('isAccepted', !!isAccepted);
+    }
+    case WATCHLIST_RECEIVED: {
+        const isWatched = action.challenges.find(challenge => (
+            challenge._id === state.get('_id'))
+        );
+        return state.set('isWatched', !!isWatched);
+    }
     case ADDED_TO_WATCHLIST:
         return state.set('isWatched', true);
     case ADDED_TO_ACCEPTED_LIST:
@@ -29,27 +37,13 @@ const reducer = (state = initialState, action = {}) => {
     }
 };
 
-function combine(state) {
-    const watchList = state.getIn(['currentUser', 'watchList']);
-    const accepted = state.getIn(['currentUser', 'acceptedChallenges']);
-    if (watchList) {
-        state.set('isWatched', watchList.indexOf(state.get('_id')) > -1);
-    }
-    if (accepted) {
-        state.set('isAccepted', accepted.indexOf(state.get('_id')) > -1);
-    }
-    return state;
-}
-
-function upsertCurrentUser(user, state) {
-    const newState = fromJS({ currentUser: user });
-    return state.size ? combine(state.set('currentUser', user)) : newState;
-}
-
 function upsertChallenge(challenge, state) {
     const newState = fromJS(challenge);
     const currentUser = state.get('currentUser');
-    return currentUser.size ? combine(newState.set('currentUser', currentUser)) : newState;
+    if (currentUser && currentUser.size) {
+        newState.set('currentUser', currentUser);
+    }
+    return newState;
 }
 
 export default reducer;
