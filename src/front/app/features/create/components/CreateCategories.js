@@ -9,14 +9,13 @@ const CreateCategories = ({ categories, category }) => {
         <div className={category.error && category.touched ?
           'create-category create-category_error' : 'create-category' }
         >
-
             <div className="create-category__value">
                 {(category.value !== '') ? JSON.parse(category.value).name : placeholder}
             </div>
 
             <select className="create-category__select" {...category}>
                 <option value="">{placeholder}</option>
-                { categoriesArr.map((cat, index) => (
+                { categoriesArr && categoriesArr.map((cat, index) => (
                     <option value={JSON.stringify(cat)} key={index}>{cat.name}</option>
                 )) }
             </select>

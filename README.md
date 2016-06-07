@@ -2,7 +2,7 @@ Travel and Help [![Build Status](https://travis-ci.org/travel-and-help/start-kit
 =========
 Travel and Help is a mobile application, which lets travelers perform some social activities called challenges in chosen city or country. Challenge makers will have the possibility to create social challenges and they will be posted after verification.
 
-* Web site: https://start-kit.herokuapp.com/#/login
+* Web site: https://start-kit.herokuapp.com
 * Travis-CI: https://travis-ci.org/travel-and-help/start-kit
 * Sauce Labs: https://saucelabs.com/beta/dashboard/tests
 * Design mockups: https://projects.invisionapp.com/share/Q66S0N79F#/screens

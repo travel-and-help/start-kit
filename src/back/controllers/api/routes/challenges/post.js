@@ -3,9 +3,9 @@
 const Challenge = require('../../models/challenge');
 
 const post = (req, res) => {
-    const challenge = new Challenge(req.body);
+    const model = new Challenge(req.body);
 
-    challenge.save((err, challenge) => {
+    model.save((err, challenge) => {
         if (!err) {
             res.json(challenge);
         } else {

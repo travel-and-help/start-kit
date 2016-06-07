@@ -1,27 +1,43 @@
 'use strict';
 
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose'),
+    mongoosePaginate = require('mongoose-paginate'),
+    Schema = mongoose.Schema;
 
 const User = new Schema({
     photo: { type: String },
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
-    registerDate: { type: Date, required: true },
-    lastLogin: { type: Date, required: true },
-    rating: { type: Number, required: true },
-    wishList: [{
+    fullName: {
+        type: String,
+        required: true
+    },
+    email: String,
+    facebook: {
+        id: {
+            type: String,
+            index: true
+        },
+        token: String
+    },
+    google: {
+        id: {
+            type: String,
+            index: true
+        },
+        token: String
+    },
+    registerDate: { type: Date, default: Date.now },
+    lastLogin: { type: Date, default: Date.now },
+    rating: { type: Number, default: 0 },
+    watchList: [{
         type: Schema.ObjectId,
         ref: 'Challenge'
     }],
     challenges: [{
         status: {
-            type: String,
-            required: true
+            type: String
         },
         date: {
-            type: Date,
-            required: true
+            type: Date
         },
         challenge: {
             type: Schema.ObjectId,
@@ -36,5 +52,7 @@ const User = new Schema({
         ref: 'Category'
     }]
 });
+
+User.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('User', User);

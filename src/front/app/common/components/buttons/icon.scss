@@ -1,0 +1,26 @@
+.icon {
+    position: relative;
+    display: inline-block;
+
+    $i: 14;
+    $selector: '&_size-';
+    @while ($i < 50) {
+
+    '#{$selector}#{$i}' {
+        width: _th-rem($i);
+        height: _th-rem($i);
+    }
+
+        $i: $i + 2;
+    }
+
+    &_dark {
+        color: $gTextColor;
+        fill: $gTextColor;
+    }
+
+    &_light {
+        color: $gTextInverseColor;
+        fill: $gTextInverseColor;
+    }
+}

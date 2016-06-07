@@ -1,0 +1,48 @@
+.login-screen {
+  $assetsBasePath: './app/features/auth/components/assets/';
+
+  &-wrap {
+    padding: _th-rem(38) _th-rem(14);
+    height: 100vh;
+  }
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  height: 100%;
+  border: $gBorder;
+  border-radius: $gBorderRadius;
+  background-color: $gBgColor;
+
+  &__item {
+    margin: 0;
+  }
+
+  &__name {
+    font-size: _th-rem(24);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: _th-rem(1);
+  }
+
+  &__title {
+    padding: 0 _th-rem(22);
+    font-size: _th-rem(18);
+    font-weight: normal;
+    line-height: _th-rem(20);
+    text-align: center;
+  }
+
+  &__logo {
+    content: url($assetsBasePath + 'logo.svg');
+  }
+
+  &__skip {
+    display: block;
+    font-size: _th-rem(14);
+    text-align: center;
+    cursor: pointer;
+  }
+}

@@ -9,7 +9,8 @@ describe('routes/challenges-post', () => {
         res,
         save,
         mockChallenge,
-        Challenge;
+        Challenge,
+        mockModel;
 
     beforeEach(() => {
         mockChallenge = {
@@ -28,11 +29,11 @@ describe('routes/challenges-post', () => {
             cb(null, mockChallenge);
         });
 
-        Challenge = function() {
-            return {
-                save: save
-            }
+        mockModel = {
+            save
         };
+
+        Challenge = env.stub().returns(mockModel);
 
         sut = proxyquire('./post', {
             '../../models/challenge': Challenge
@@ -47,6 +48,6 @@ describe('routes/challenges-post', () => {
     });
 
     it('should send response with new challenges from db', () => {
-        res.json.should.been.calledWith(mockChallenge)
+        res.json.should.been.calledWith(mockChallenge);
     });
 });

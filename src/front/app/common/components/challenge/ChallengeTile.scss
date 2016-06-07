@@ -1,0 +1,27 @@
+.challenge-tile {
+
+  $height: _th-rem(95);
+  box-sizing: content-box;
+
+  position: relative;
+  border: $gBorder;
+  border-radius: $gBorderRadius;
+  height: $height;
+  background: #fff;
+
+  &__image {
+    $borderRadius: $gBorderRadius - _th-rem(2);
+    align-self: flex-start;
+    position: absolute;
+    height: $height;
+    width: $height;
+    border-right: $gBorder;
+    border-radius: $borderRadius 0 0 $borderRadius;
+    background-size: cover;
+    background-position: center;
+  }
+
+  &__info {
+    padding-left: $height;
+  }
+}

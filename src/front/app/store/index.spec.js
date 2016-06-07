@@ -7,8 +7,13 @@ describe('store', () => {
         reactRouterRedux,
         challenges,
         categories,
+        challenge,
+        user,
+        auth,
+        form,
         storeEnhancers,
-        result;
+        result,
+        watchList;
 
     beforeEach(() => {
 
@@ -39,13 +44,36 @@ describe('store', () => {
             default: env.stub()
         };
 
+        challenge = {
+            default: env.stub()
+        };
+
+        auth = {
+            default: env.stub()
+        };
+
+        form = {
+            reducer: env.stub()
+        };
+
+        watchList = { default: env.stub() };
+
+        user = {
+            default: env.stub()
+        };
+
         const sut = proxyquire('./index', {
             redux,
             'react-router': reactRouter,
             'react-router-redux': reactRouterRedux,
-            '../features/challenges/challenges.reducer': challenges,
+            'redux-form': form,
+            '../features/main/challenges/challenges.reducer': challenges,
+            '../features/challenge/challenge.reducer': challenge,
             '../features/categories/categories.reducer': categories,
-            './enhancers': storeEnhancers
+            '../features/auth/auth.reducer': auth,
+            '../features/main/profile/profile.reducer': user,
+            './enhancers': storeEnhancers,
+            '../features/profile-challenges/watch-list/watchList.reducer': watchList
         }).default;
 
         result = sut();
@@ -54,9 +82,14 @@ describe('store', () => {
     it('should combine challenges and routing reducers once', () => {
         redux.combineReducers.should
             .calledWith({
+                auth: auth.default,
                 challenges: challenges.default,
+                challenge: challenge.default,
                 routing: reactRouterRedux.routerReducer,
-                categories: categories.default
+                categories: categories.default,
+                watchList: watchList.default,
+                form: form.reducer,
+                user: user.default
             })
             .and
             .callCount(1);
