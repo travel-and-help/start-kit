@@ -3,7 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const CreateCategories = ({ categories, category }) => {
     const categoriesArr = categories.toJS();
-    const placeholder = 'Challange category';
+    const placeholder = 'Challenge category';
 
     return (
         <div className={category.error && category.touched ?
