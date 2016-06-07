@@ -11,7 +11,7 @@ const ChallengeDetails = ({ challenge, onAccept }) => {
         description,
         categories,
         location,
-        currentUser
+        user: { fullName }
     } = challenge.toJS();
 
     let actionTitle = 'Accept';
@@ -49,7 +49,7 @@ const ChallengeDetails = ({ challenge, onAccept }) => {
                         <div className="challenge-info-author" >
                             <p className="challenge-info__label" >Created by</p>
                             <span className="challenge-info__text" >
-                                {currentUser && currentUser.fullName}
+                                {fullName}
                             </span>
                         </div>
                         <div className="challenge-info-location" >
@@ -118,8 +118,6 @@ ChallengeDetails.propTypes = {
         categories: ImmutablePropTypes.list.isRequired,
         location: PropTypes.string.isRequired,
         user: ImmutablePropTypes.mapContains({
-        //    firstName: PropTypes.string.isRequired,
-        //    lastName: PropTypes.string.isRequired
             fullName: PropTypes.string
         }).isRequired
     }).isRequired

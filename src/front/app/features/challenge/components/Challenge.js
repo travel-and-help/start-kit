@@ -85,13 +85,11 @@ class Challenge extends Component {
 
 Challenge.propTypes = {
     challenge: ImmutablePropTypes.map.isRequired,
-    user: ImmutablePropTypes.map,
     getUser: PropTypes.func.isRequired,
     userId: PropTypes.string,
     getChallenge: PropTypes.func.isRequired,
     getAcceptedChallenges: PropTypes.func.isRequired,
     getWishList: PropTypes.func.isRequired,
-    userReceived: PropTypes.func.isRequired,
     params: PropTypes.object,
     onWatchChallenge: PropTypes.func.isRequired,
     onAccept: PropTypes.func.isRequired,
