@@ -29,17 +29,10 @@ export function postChallenge(formData) {
     return function innerPostCategories(dispatch) {
         api('/api/challenges/', {
             method: 'POST',
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            }),
             body: JSON.stringify(formData) })
             .then((response) => {
-                if (response.status >= 200 && response.status < 300) {
-                    dispatch(receiveChallenge(response));
-                    window.history.back();
-                } else {
-                    throw new Error(response.statusText);
-                }
+                dispatch(receiveChallenge(response));
+                window.history.back();
             });
     };
 }
