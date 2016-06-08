@@ -1,6 +1,8 @@
+import { hashHistory } from 'react-router';
+import api from '../../common/api';
+
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const POST_CHALLENGE = 'POST_CHALLENGE';
-import api from '../../common/api';
 
 function receiveCategories(categories) {
     return {
@@ -34,12 +36,8 @@ export function postChallenge(formData) {
             }),
             body: JSON.stringify(formData) })
             .then((response) => {
-                if (response.status >= 200 && response.status < 300) {
-                    dispatch(receiveChallenge(response));
-                    window.history.back();
-                } else {
-                    throw new Error(response.statusText);
-                }
+                dispatch(receiveChallenge(response));
+                hashHistory.goBack();
             });
     };
 }

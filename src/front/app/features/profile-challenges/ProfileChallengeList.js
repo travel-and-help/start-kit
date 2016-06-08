@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { hashHistory } from 'react-router';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Layout from '../Layout';
 import Menu from './ProfileChallengeMenu';
@@ -7,7 +8,11 @@ import ChallengeTileList from '../../common/components/challenge/ChallengeTileLi
 class ProfileChallengeList extends Component {
 
     componentDidMount() {
-        this.props.getChallenges();
+        const { getChallenges, user } = this.props;
+        getChallenges();
+        if (!user) {
+            hashHistory.push('/');
+        }
     }
 
     render() {
@@ -32,6 +37,7 @@ ProfileChallengeList.propTypes = {
     challenges: ImmutablePropTypes.list.isRequired,
     getChallenges: PropTypes.func.isRequired,
     addToWatchList: PropTypes.func,
+    user: PropTypes.string,
     dismiss: PropTypes.func
 };
 

@@ -16,8 +16,8 @@ const Social = ({ social }) => {
 
 Social.propTypes = {
     social: ImmutablePropTypes.mapContains({
-        title: PropTypes.string.isRequired,
-        link: PropTypes.string.isRequired
+        type: PropTypes.string.isRequired,
+        url: PropTypes.string.isRequired
     }).isRequired
 };
 

@@ -22,12 +22,19 @@ class Challenge extends Component {
     }
 
     componentDidMount() {
-        const props = this.props;
-        const id = props.params.id;
+        const {
+            getChallenge,
+            getUser,
+            userId,
+            getAcceptedChallenges,
+            getWishList } = this.props;
+        const { id } = this.props.params;
 
-        props.getChallenge(id);
-        if (props.userId) {
-            props.getUser(props.userId);
+        getChallenge(id);
+        if (userId) {
+            getUser(userId);
+            getAcceptedChallenges(userId);
+            getWishList(userId);
         }
     }
 
@@ -78,7 +85,12 @@ class Challenge extends Component {
 
 Challenge.propTypes = {
     challenge: ImmutablePropTypes.map.isRequired,
+    getUser: PropTypes.func.isRequired,
+    userId: PropTypes.string,
     getChallenge: PropTypes.func.isRequired,
+    getAcceptedChallenges: PropTypes.func.isRequired,
+    getWishList: PropTypes.func.isRequired,
+    params: PropTypes.object,
     onWatchChallenge: PropTypes.func.isRequired,
     onAccept: PropTypes.func.isRequired,
     getInitialState: PropTypes.func.isRequired
