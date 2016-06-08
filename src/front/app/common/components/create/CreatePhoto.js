@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 const cameraError = (message) => {
-    alert(`Failed because: ${message}`);
+    console.log(`Failed because: ${message}`);
 };
 
 class CreatePhoto extends Component {
@@ -11,6 +11,7 @@ class CreatePhoto extends Component {
             inlineStyle: {}
         };
         this.cameraSuccess = this.cameraSuccess.bind(this);
+        this.onClick = this.onClick.bind(this);
     }
 
     onClick() {
