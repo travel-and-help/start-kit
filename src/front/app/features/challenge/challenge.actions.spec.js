@@ -101,7 +101,9 @@ describe('action/categories', () => {
 
         it('should fetch accepted challenges', () => {
             fetcher(dispatch);
-            api.should.have.been.calledWith(`/api/challenge/user/${userId}/status/accepted`).and.callCount(1);
+            api.should.have.been
+                .calledWith(`/api/challenge/user/${userId}/status/accepted`)
+                .and.callCount(1);
         });
 
         it('should dispatch ACCEPTED_RECEIVED event with data from response', () => {
@@ -153,7 +155,9 @@ describe('action/categories', () => {
 
         it('should fetch challenge', () => {
             fetcher(dispatch);
-            api.should.have.been.calledWith(`/api/my/accepted-challenges/${challenge._id}`).and.callCount(1);
+            api.should.have.been
+                .calledWith(`/api/my/accepted-challenges/${challenge._id}`)
+                .and.callCount(1);
         });
 
         it('should dispatch ADDED_TO_ACCEPTED_LIST event with data from response', () => {
