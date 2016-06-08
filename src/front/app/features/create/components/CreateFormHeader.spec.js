@@ -1,4 +1,3 @@
-import proxyquire from 'proxyquire';
 import React from 'react';
 import CreateFormHeader from './CreateFormHeader';
 import { mount } from 'enzyme';
