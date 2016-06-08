@@ -51,12 +51,14 @@ describe('Profile', () => {
 
     it('should get User when mounted ONCE', () => {
         user = new Map();
+        const userId = 'userId';
         mount(<Profile
             user={ user }
+            userId={ userId }
             getUser={ getUser }
             getChallenges={ getChallenges }
         />);
-        getUser.should.been.callCount(1);
+        getUser.should.been.calledWith(userId).and.callCount(1);
     });
 
 

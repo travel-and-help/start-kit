@@ -3,7 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import IconButton from './../../../common/components/buttons/IconButton';
 import Fasteners from './../../../common/components/fasteners/Fasteners';
 
-const ChallengeDetails = ({ challenge }) => {
+const ChallengeDetails = ({ challenge, onAccept }) => {
     const {
         image,
         title,
@@ -11,15 +11,21 @@ const ChallengeDetails = ({ challenge }) => {
         description,
         categories,
         location,
-        user: {
-            firstName,
-            lastName
-        }
+        user
     } = challenge.toJS();
 
+    let actionTitle = 'Accept';
+    let actionIconName = 'accept';
+    let clickHandler = () => onAccept(challenge.get('_id'));
+    if (challenge.get('isAccepted')) {
+        actionTitle = 'Complete';
+        clickHandler = () => {};
+        actionIconName = 'complete';
+    }
+    const inlineStyle = image ? { backgroundImage: `url(${image})` } : {};
     return (
         <section>
-            <header className="challenge-header" style={{ backgroundImage: `url(${image})` }} >
+            <header className="challenge-header" style={inlineStyle} >
                 <h1 className="challenge-header__title" >{title}</h1>
             </header>
 
@@ -29,12 +35,12 @@ const ChallengeDetails = ({ challenge }) => {
 
                     <div className="challenge-info__item challenge-info-category" >
                         <Fasteners className="challenge-info__fasteners" />
-                        <IconButton
+                        {categories && categories[0] && <IconButton
                             title={categories[0]}
                             iconName={`category-${categories[0]}`.toLowerCase()}
                             iconSize={48}
                             iconClassName={'icon_dark'}
-                        />
+                        />}
                     </div>
 
 
@@ -43,7 +49,7 @@ const ChallengeDetails = ({ challenge }) => {
                         <div className="challenge-info-author" >
                             <p className="challenge-info__label" >Created by</p>
                             <span className="challenge-info__text" >
-                                {firstName} {lastName}
+                                {user && user.fullName}
                             </span>
                         </div>
                         <div className="challenge-info-location" >
@@ -73,11 +79,12 @@ const ChallengeDetails = ({ challenge }) => {
                     <div className="challenge-info__button_wrapper" >
                         <Fasteners className="challenge-info__fasteners" />
                         <IconButton
-                            title={'Accept'}
+                            title={actionTitle}
                             buttonClassName={'challenge-info__button'}
-                            iconName={'accept'}
+                            iconName={actionIconName}
                             iconSize={32}
                             iconClassName={'icon_dark'}
+                            clickHandler={clickHandler}
                         />
                     </div>
 
@@ -102,17 +109,17 @@ const ChallengeDetails = ({ challenge }) => {
 };
 
 ChallengeDetails.propTypes = {
+    onAccept: PropTypes.func.isRequired,
     challenge: ImmutablePropTypes.mapContains({
-        image: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        level: PropTypes.string.isRequired,
+        image: PropTypes.string,
+        title: PropTypes.string,
+        level: PropTypes.string,
         description: PropTypes.string.isRequired,
         categories: ImmutablePropTypes.list.isRequired,
         location: PropTypes.string.isRequired,
         user: ImmutablePropTypes.mapContains({
-            firstName: PropTypes.string.isRequired,
-            lastName: PropTypes.string.isRequired
-        }).isRequired
+            fullName: PropTypes.string
+        })
     }).isRequired
 };
 

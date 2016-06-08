@@ -11,12 +11,12 @@ const Challenge = new Schema({
         ref: 'Category'
     }],
     title: { type: String, required: true },
-    image: { type: String, required: true },
-    level: { type: String, required: true },
-    location: { type: String, required: true },
+    image: { type: String },
+    location: { type: String },
     user: {
         type: Schema.ObjectId,
-        ref: 'Challenge'
+        ref: 'User',
+        required: true
     },
     description: { type: String, required: true }
 });

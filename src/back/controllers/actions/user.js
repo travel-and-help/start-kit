@@ -21,14 +21,42 @@ function watchChallenge(userPromise, challengeId) {
     return userPromise.then(user => {
         user.set(
             'watchList',
-            user.get('watchList').reduce((list, id) => [...list, id], [challengeId])
+            user
+                .get('watchList')
+                .filter(taskId => taskId.toString() !== challengeId)
+                .reduce((list, id) => [...list, id], [challengeId])
         );
         return user.save();
     });
 }
 
+function acceptChallenge(userPromise, challengeId) {
+    const STATUS_ACCEPTED = 'accepted';
+    const newlyAccepted = {
+        status: STATUS_ACCEPTED,
+        date: new Date(),
+        challenge: challengeId
+    };
+    return userPromise.then(user => {
+        user.set(
+            'challenges',
+            user
+                .get('challenges')
+                .filter(acceptedDuplicates)
+                .reduce((list, task) => [...list, task], [newlyAccepted])
+        );
+        return user.save();
+    });
+
+    function acceptedDuplicates(task) {
+        const isAccepted = task.status === STATUS_ACCEPTED;
+        return !isAccepted || (isAccepted && challengeId !== task.challenge.toString());
+    }
+}
+
 module.exports = {
     getWatchedChallenges,
     unWatchChallenge,
-    watchChallenge
+    watchChallenge,
+    acceptChallenge
 };

@@ -22,10 +22,20 @@ class Challenge extends Component {
     }
 
     componentDidMount() {
-        const props = this.props;
-        const id = props.params.id;
+        const {
+            getChallenge,
+            getUser,
+            userId,
+            getAcceptedChallenges,
+            getWishList } = this.props;
+        const { id } = this.props.params;
 
-        props.getChallenge(id);
+        getChallenge(id);
+        if (userId) {
+            getUser(userId);
+            getAcceptedChallenges(userId);
+            getWishList(userId);
+        }
     }
 
     componentWillUnmount() {
@@ -47,20 +57,23 @@ class Challenge extends Component {
 
     render() {
 
-        const { challenge, onWatchChallenge } = this.props;
-
+        const { challenge, onWatchChallenge, onAccept } = this.props;
         if (challenge.size) {
             return (
                 <Layout
                     menu={<ChallengeDetailsMenu
                         {...Object.assign(this.state.menu, {
-                            onWatchChallenge: () => onWatchChallenge(challenge.get('_id'))
+                            onWatchChallenge: () => onWatchChallenge(challenge.get('_id')),
+                            isWatched: challenge.get('isWatched')
                         })}
                     />}
                     onScroll={e => this.onScroll(e)}
                 >
                     <div className="challenge-details" >
-                        <ChallengeDetails challenge={challenge} />
+                        <ChallengeDetails
+                            challenge={challenge}
+                            onAccept={onAccept}
+                        />
                         <ChallengeComments />
                     </div>
                 </Layout>
@@ -72,8 +85,14 @@ class Challenge extends Component {
 
 Challenge.propTypes = {
     challenge: ImmutablePropTypes.map.isRequired,
+    getUser: PropTypes.func.isRequired,
+    userId: PropTypes.string,
     getChallenge: PropTypes.func.isRequired,
+    getAcceptedChallenges: PropTypes.func.isRequired,
+    getWishList: PropTypes.func.isRequired,
+    params: PropTypes.object,
     onWatchChallenge: PropTypes.func.isRequired,
+    onAccept: PropTypes.func.isRequired,
     getInitialState: PropTypes.func.isRequired
 };
 

@@ -7,29 +7,31 @@ describe('routes/challenges-getAll', () => {
         mockChallenges;
 
     beforeEach(() => {
-
         const req = {};
-
         res = {
             json: env.spy()
         };
         mockChallenges = [1, 2, 3];
-
-        challenge = {
-            find: env.spy((query, cb) => {
-                cb(null, mockChallenges);
-            })
+        const mockResponse = {
+            then: (successCb) => (successCb(mockChallenges))
         };
-
+        const returnedExec = {
+            exec: env.stub().returns(mockResponse)
+        };
+        const returnedPopulate = {
+            populate: env.stub().returns(returnedExec)
+        };
+        challenge = {
+            find: env.stub().returns(returnedPopulate)
+        };
         const sut = proxyquire('./getAll', {
             '../../models/challenge': challenge
         });
-
         sut(req, res);
     });
 
     it('should find challenges in db', () => {
-        challenge.find.should.been.calledWith({}, sinon.match.func);
+        challenge.find.should.been.calledWith({});
     });
 
     it('should send response with challenges from db', () => {

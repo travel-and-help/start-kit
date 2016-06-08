@@ -25,21 +25,19 @@ const User = new Schema({
         },
         token: String
     },
-    registerDate: { type: Date, required: true, default: Date.now },
-    lastLogin: { type: Date, required: true, default: Date.now },
-    rating: { type: Number, required: true, default: 0 },
+    registerDate: { type: Date, default: Date.now },
+    lastLogin: { type: Date, default: Date.now },
+    rating: { type: Number, default: 0 },
     watchList: [{
         type: Schema.ObjectId,
         ref: 'Challenge'
     }],
     challenges: [{
         status: {
-            type: String,
-            required: true
+            type: String
         },
         date: {
-            type: Date,
-            required: true
+            type: Date
         },
         challenge: {
             type: Schema.ObjectId,

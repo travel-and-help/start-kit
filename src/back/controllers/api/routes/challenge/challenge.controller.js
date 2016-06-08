@@ -21,7 +21,8 @@ class ChallengeController extends BaseController {
                 location: 1,
                 categories: 1,
                 user: 1
-            }
+            },
+            populate: 'user'
         });
         return baserOptions;
     }
@@ -36,7 +37,8 @@ class ChallengeController extends BaseController {
                 location: 1,
                 categories: 1,
                 user: 1
-            });
+            })
+            .populate('user');
     }
 
     getUsersChallenges(req, res) {
@@ -69,6 +71,7 @@ class ChallengeController extends BaseController {
                     _id: { $in: challengeIds }
                 }, options);
             })
+            .then(result => result.docs)
             .then((result) => (this.processSuccess(req, res, result)))
             .catch((err) => (this.processError(req, res, err)));
     }

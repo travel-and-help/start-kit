@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import WatchList from '../ProfileChallengeList';
 import { getWatchedChallenges, unWatch } from './watchList.actions';
 
-const mapStateToProps = ({ watchList }) => ({
+const mapStateToProps = ({ watchList, auth }) => ({
+    user: auth.get('userId'),
     menuTitle: 'watch list',
     challenges: watchList
 });

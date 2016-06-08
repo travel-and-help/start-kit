@@ -9,7 +9,7 @@ describe('app/common/components/challenge/ChallengeTileInfo', () => {
 
     beforeEach(() => {
 
-        rankToType = env.stub().withArgs('1').returns('rankType');
+        rankToType = env.stub().returns('rankType');
 
         const ChallengeTileInfo = proxyquire('./ChallengeTileInfo', {
             './rankToType': rankToType
@@ -45,7 +45,7 @@ describe('app/common/components/challenge/ChallengeTileInfo', () => {
     });
 
     it('should show user rank type', () => {
-        sut.find('.challenge-tile-info__user-rank.challenge-tile-info__user-rank_rankType')
+        sut.find('.challenge-tile-info__user-rank_rankType')
             .text().should.equal('1');
     });
 

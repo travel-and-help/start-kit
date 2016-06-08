@@ -19,7 +19,7 @@ const UserDetailsContainer = ({ user }) => {
         <div className="user-details">
             <div className="user-details__user-info">
                 <div className="user-details__avatar-block" >
-                    <Link to="watch-list" className="user-details__watchlist-link" />
+                    <Link to="/profile/watch-list" className="user-details__watchlist-link" />
                     <img className="user-details__image" src={photo} title={fullName} />
                     <div className="user-details__rating-container" >
                         <span className="user-details__rating">{rating}</span>
@@ -43,7 +43,7 @@ const UserDetailsContainer = ({ user }) => {
                         <div className="user-details__stats-value
                                         user-details__stats-value_accepted"
                         >
-                            { (completedChallenges && completedChallenges.size) || 0 }
+                            { (acceptedChallenges && acceptedChallenges.size) || 0 }
                         </div>
                         <span>Accepted</span>
                     </div>
@@ -51,7 +51,7 @@ const UserDetailsContainer = ({ user }) => {
                         <div className="user-details__stats-value
                                         user-details__stats-value_completed"
                         >
-                            { (acceptedChallenges && acceptedChallenges.size) || 0 }
+                            { (completedChallenges && completedChallenges.size) || 0 }
                         </div>
                         <span>Completed</span>
                     </div>
