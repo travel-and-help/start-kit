@@ -18,6 +18,10 @@ class CreateForm extends Component {
         }
     }
 
+    goBack() {
+        hashHistory.goBack();
+    }
+
     render() {
         const { fields, handleSubmit, postChallenge, categories, user } = this.props;
 
@@ -37,7 +41,7 @@ class CreateForm extends Component {
         return (
             <section className="challenge-create">
                 <form onSubmit={ handleSubmit(extendPostChallenge) }>
-                    <CreateFormHeader />
+                    <CreateFormHeader onDiscardClick={this.goBack} />
                     <CreateFormBody fields={fields} categories={categories} />
                 </form>
             </section>
