@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import CreateCategories from './CreateCategories';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import CreatePhoto from '../../../common/components/create/CreatePhoto';
 import CreateDatePicker from '../../../common/components/create/CreateDatePicker';
 import CreateTumbler from '../../../common/components/create/CreateTumbler';
 import CreateError from './CreateError';
@@ -10,7 +9,7 @@ const CreateFormBody = ({ fields, categories }) => (
     <div className="challenge-create__body">
         <CreateError formFields={fields} />
 
-        <CreatePhoto />
+        <div className="create-photo"></div>
 
         <input
           className={fields.title.error && fields.title.touched ?
@@ -19,7 +18,6 @@ const CreateFormBody = ({ fields, categories }) => (
 
           placeholder="Enter challange name" {...fields.title}
         />
-
 
         <h2 className="challenge-create__subtitle">
             DESCRIPTION

@@ -31,9 +31,6 @@ export function postChallenge(formData) {
     return function innerPostCategories(dispatch) {
         api('/api/challenges/', {
             method: 'POST',
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            }),
             body: JSON.stringify(formData) })
             .then((response) => {
                 dispatch(receiveChallenge(response));

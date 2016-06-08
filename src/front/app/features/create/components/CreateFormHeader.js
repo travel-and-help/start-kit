@@ -1,26 +1,26 @@
-import React from 'react';
-import { hashHistory } from 'react-router';
+import React, { PropTypes } from 'react';
 
+const CreateFormHeader = ({ onDiscardClick }) => (
+    <header className="challenge-create-header">
+        <h1 className="challenge-create-header__title">Create Challenge</h1>
 
-const CreateFormHeader = () => {
-    const discard = () => {
-        hashHistory.goBack();
-    };
+        <button
+          className="challenge-create-header__discard"
+          type="button"
+          onClick={onDiscardClick}
+        >
 
-    return (
-        <header className="challenge-create-header">
-            <h1 className="challenge-create-header__title">Create Challenge</h1>
+            Discard
+        </button>
 
-            <button className="challenge-create-header__discard" type="button" onClick={ discard }>
-                Discard
-            </button>
+        <button className="challenge-create-header__post" type="submit">
+            Post
+        </button>
+    </header>
+);
 
-            <button className="challenge-create-header__post" type="submit">
-                Post
-            </button>
-        </header>
-    );
+CreateFormHeader.propTypes = {
+    onDiscardClick: PropTypes.func
 };
-
 
 export default CreateFormHeader;
