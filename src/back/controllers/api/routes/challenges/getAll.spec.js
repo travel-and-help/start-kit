@@ -14,7 +14,7 @@ describe('routes/challenges-getAll', () => {
             json: env.spy()
         };
         mockChallenges = [1, 2, 3];
-        
+
         const mockResponse = {
             then: (successCb) => (successCb(mockChallenges))
         };
@@ -22,7 +22,7 @@ describe('routes/challenges-getAll', () => {
         const returnedExec = {
             exec: env.stub().returns(mockResponse)
         };
-        
+
         const returnedPopulate = {
             populate: env.stub().returns(returnedExec)
         };
