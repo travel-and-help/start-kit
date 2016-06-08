@@ -42,11 +42,16 @@ function acceptChallenge(userPromise, challengeId) {
             'challenges',
             user
                 .get('challenges')
-                .filter(task => task.status !== STATUS_ACCEPTED && challengeId !== task.challenge)
+                .filter(acceptedDuplicates)
                 .reduce((list, task) => [...list, task], [newlyAccepted])
         );
         return user.save();
     });
+
+    function acceptedDuplicates(task) {
+        const isAccepted = task.status === STATUS_ACCEPTED;
+        return !isAccepted || (isAccepted && challengeId !== task.challenge.toString());
+    }
 }
 
 module.exports = {

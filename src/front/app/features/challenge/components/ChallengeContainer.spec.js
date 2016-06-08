@@ -39,8 +39,12 @@ describe('ChallengeContainer', () => {
 
     it('should map state challenge to props challenge', () => {
         const challenge = {};
-        const state = { challenge };
-        reactRedux.connect.getCall(0).args[0](state).should.contains({ challenge });
+        const userId = 'userId';
+        const auth = {
+            get: env.stub().returns(userId)
+        };
+        const state = { challenge, auth };
+        reactRedux.connect.getCall(0).args[0](state).should.contains({ challenge, userId });
     });
 
     it('should map dispatch to challenge fetching prop method', () => {
