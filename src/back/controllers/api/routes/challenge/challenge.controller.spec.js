@@ -66,7 +66,8 @@ describe('controllers/api/ChallengeController', () => {
                             location: 1,
                             categories: 1,
                             user: 1
-                        }
+                        },
+                        populate: 'user'
                     });
                     done();
                 });
@@ -83,8 +84,11 @@ describe('controllers/api/ChallengeController', () => {
             };
             resultModel.toObject.returns(resultModel);
             const findPromise = Q.fcall(() => (resultModel));
+            const returnPopulate = {
+                populate: env.stub().returns(findPromise)
+            };
             const challengeRequestObject = {
-                select: env.stub().returns(findPromise)
+                select: env.stub().returns(returnPopulate)
             };
             challengeModel.findById.returns(challengeRequestObject);
             const request = httpMocks.createRequest({

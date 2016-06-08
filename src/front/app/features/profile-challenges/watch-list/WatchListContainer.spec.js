@@ -26,7 +26,11 @@ describe('WatchListContainer', () => {
 
     it('maps state and dispatch to props', () => {
         const watchList = ['challenges'];
-        const state = { watchList };
+        const userId = 'userId';
+        const auth = {
+            get: env.stub().returns(userId)
+        };
+        const state = { watchList, auth };
         reactRedux.connect.should.calledWith(
             env.match(mapStateToProps => mapStateToProps(state).challenges === watchList),
             env.match(

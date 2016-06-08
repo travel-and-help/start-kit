@@ -17,8 +17,7 @@ describe('ChallengeDetails', () => {
             categories: [],
             location: '',
             user: {
-                firstName: 'userName',
-                lastName: 'userLastName'
+                fullName: 'userName userLastName'
             }
         });
 
@@ -31,12 +30,12 @@ describe('ChallengeDetails', () => {
     });
 
     it('should show challenge level', () => {
-        sut.find('.challenge-info-level .challenge-info__text')
+        sut.find('.challenge-info-level').find('.challenge-info__text')
             .text().should.equal('testLevel');
     });
 
     it('should show user firstName and lastName', () => {
-        sut.find('.challenge-info-author .challenge-info__text')
+        sut.find('.challenge-info-author').find('.challenge-info__text')
             .text().should.equal('userName userLastName');
     });
 });
