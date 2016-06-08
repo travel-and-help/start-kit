@@ -7,23 +7,23 @@ import {
 
 const initialState = new Map();
 
-const reducer = (state = initialState, action = {}) => {
+const checkChallenges = (challenges, state) => (
+    challenges.find(challenge => (
+        challenge._id === state.get('_id'))
+    )
+);
+
+const reducer = (state = initialState, action) => {
     switch (action.type) {
     case GET_CHALLENGE:
         return state.mergeDeep(fromJS(action.challenge));
     case RESET_STATE:
         return initialState;
     case ACCEPTED_RECEIVED: {
-        const isAccepted = action.challenges.find(challenge => (
-            challenge._id === state.get('_id'))
-        );
-        return state.set('isAccepted', !!isAccepted);
+        return state.set('isAccepted', !!checkChallenges(action.challenges, state));
     }
     case WATCHLIST_RECEIVED: {
-        const isWatched = action.challenges.find(challenge => (
-            challenge._id === state.get('_id'))
-        );
-        return state.set('isWatched', !!isWatched);
+        return state.set('isWatched', !!checkChallenges(action.challenges, state));
     }
     case ADDED_TO_WATCHLIST:
         return state.set('isWatched', true);

@@ -53,7 +53,6 @@ export function resetState() {
 export function getAcceptedChallenges(userId) {
     return (dispatch) => {
         api(`/api/challenge/user/${userId}/status/accepted`)
-            .then(response => response.docs)
             .then((challenges) => {
                 dispatch(receivedAccepted(challenges));
             });

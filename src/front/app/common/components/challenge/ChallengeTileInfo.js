@@ -3,8 +3,10 @@ import { Link } from 'react-router';
 import rankToType from './rankToType';
 
 const ChallengeTile = ({ link, title, userName, userRank, location, className }) => {
-    const rankCssClass = `challenge-tile-info__user-rank 
-        challenge-tile-info__user-rank_${rankToType(userRank)}`;
+    const rankCssClass = `
+        challenge-tile-info__user-rank
+        challenge-tile-info__user-rank_${rankToType(userRank)}
+    `;
     return (
         <Link
             className={`challenge-tile-info ${className}`}

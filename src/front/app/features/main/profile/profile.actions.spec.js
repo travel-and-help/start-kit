@@ -9,7 +9,6 @@ describe('action/profile', () => {
     let user;
     let userId;
     let challenges;
-    let challengesResponse;
     let executeSut;
 
     beforeEach(() => {
@@ -18,10 +17,6 @@ describe('action/profile', () => {
         };
 
         challenges = [];
-
-        challengesResponse = {
-            docs: challenges
-        };
 
         userId = 'testId';
 
@@ -63,7 +58,7 @@ describe('action/profile', () => {
 
     describe('Challenges', () => {
         beforeEach(() => {
-            sut = executeSut(challengesResponse);
+            sut = executeSut(challenges);
             fetcher = sut.getChallenges(userId);
         });
 
