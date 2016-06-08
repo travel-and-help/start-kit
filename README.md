@@ -26,3 +26,23 @@ To execute end-to-end (e2e) tests, use:
     npm run test:e2e
 
 To learn more about npm scripts, use [npm scripts guide](https://docs.npmjs.com/misc/scripts)
+
+
+
+
+#11 Challenge Mngm
+ steps:
+ * Create complete challengepage
+ * * Create main layout: Submit button, Close button, Add Photo, description field, share social media(?)
+ * create rest endpoint for submiting challenge
+ * * Create Submit button
+ * * Create Close button => widnow is closed, user stays at previous page, challenge is not completed.
+ * * Create "Add Photo" => user has an ability to upload photo and it will be related to this challenge
+ * * Create description field (design hadn't one)
+ * * 'add photo' option with *legend* ?
+ 
+ * Create 'More challenges like this' section
+ * * create rest service for getting Challenges like this
+ * * create UI list of Challenges
+ 
+  
