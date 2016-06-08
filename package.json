@@ -112,7 +112,7 @@
       "reports/",
       "target/"
     ],
-    "lines": 95,
+    "lines": 91,
     "check-coverage": true
   },
   "dependencies": {
