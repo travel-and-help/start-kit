@@ -35,8 +35,8 @@ const ChallengeTile = ({ link, title, userName, userRank, location, className })
 ChallengeTile.propTypes = {
     link: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    userName: PropTypes.string.isRequired,
-    userRank: PropTypes.number.isRequired,
+    userName: PropTypes.string,
+    userRank: PropTypes.number,
     location: PropTypes.string.isRequired,
     className: PropTypes.string
 };

@@ -53,7 +53,7 @@ ChallengeDetailsMenu.propTypes = {
     bgImage: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     onWatchChallenge: PropTypes.func.isRequired,
-    isWatched: PropTypes.bool.isRequired
+    isWatched: PropTypes.bool
 };
 
 export default ChallengeDetailsMenu;

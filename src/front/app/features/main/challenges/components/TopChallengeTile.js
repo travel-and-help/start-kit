@@ -10,7 +10,7 @@ const TopChallengeTile = ({ challenge }) => {
         image,
         user: {
             rating,
-            firstName
+            fullName
         },
         location
     } = challenge.toJS();
@@ -32,7 +32,7 @@ const TopChallengeTile = ({ challenge }) => {
                         link={`challenge/${_id}`}
                         className="top-challenge-tile__info"
                         title={title}
-                        userName={firstName}
+                        userName={fullName}
                         userRank={rating}
                         location={location}
                     />
@@ -48,7 +48,7 @@ TopChallengeTile.propTypes = {
         _id: PropTypes.string.isRequired,
         user: ImmutablePropTypes.mapContains({
             rating: PropTypes.number.isRequired,
-            firstName: PropTypes.string.isRequired
+            fullName: PropTypes.string.isRequired
         }).isRequired,
         location: PropTypes.string.isRequired
     }).isRequired

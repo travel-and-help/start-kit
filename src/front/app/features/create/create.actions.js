@@ -1,6 +1,8 @@
+import { hashHistory } from 'react-router';
+import api from '../../common/api';
+
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const POST_CHALLENGE = 'POST_CHALLENGE';
-import api from '../../common/api';
 
 function receiveCategories(categories) {
     return {
@@ -32,7 +34,7 @@ export function postChallenge(formData) {
             body: JSON.stringify(formData) })
             .then((response) => {
                 dispatch(receiveChallenge(response));
-                window.history.back();
+                hashHistory.goBack();
             });
     };
 }

@@ -1,8 +1,10 @@
 import React from 'react';
+import { hashHistory } from 'react-router';
+
 
 const CreateFormHeader = () => {
     const discard = () => {
-        window.history.back();
+        hashHistory.goBack();
     };
 
     return (
