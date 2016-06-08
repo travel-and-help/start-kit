@@ -12,7 +12,7 @@ describe('action/create', () => {
 
     describe('#fetchCategories', () => {
         let fetcher;
-       const categoryList = ['mockedCategories'];
+        const categoryList = ['mockedCategories'];
 
         beforeEach(() => {
             promise = env.stub().resolves(categoryList)();

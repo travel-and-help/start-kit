@@ -15,7 +15,13 @@ describe('CreateDatePicker', () => {
 
     beforeEach(() => {
         sut = mount(
-            <CreateDatePicker label={mock.label} date={mock.date} disabled={mock.disabled} minDate={mock.minDate} maxDate={mock.maxDate} />
+            <CreateDatePicker
+              label={mock.label}
+              date={mock.date}
+              disabled={mock.disabled}
+              minDate={mock.minDate}
+              maxDate={mock.maxDate}
+            />
         );
     });
 

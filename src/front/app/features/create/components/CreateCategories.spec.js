@@ -7,7 +7,6 @@ describe('CreateCategories', () => {
     let sut;
     let categoriesMock;
     let categoryMock;
-    let categoryObj;
 
     beforeEach(() => {
         categoryMock = {

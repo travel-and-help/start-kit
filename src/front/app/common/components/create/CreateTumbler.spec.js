@@ -13,7 +13,14 @@ describe('CreateTumbler', () => {
     };
 
     beforeEach(() => {
-        sut = mount(<CreateTumbler label={mock.label} checked={mock.checked} value={mock.value} disabled={mock.disabled} />);
+        sut = mount(
+            <CreateTumbler
+              label={mock.label}
+              checked={mock.checked}
+              value={mock.value}
+              disabled={mock.disabled}
+            />
+        );
     });
 
     it('should contains label', () => {

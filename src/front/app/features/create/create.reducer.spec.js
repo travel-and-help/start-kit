@@ -1,4 +1,4 @@
-import { Map, fromJS } from 'immutable';
+import { Map } from 'immutable';
 import { GET_CATEGORIES, POST_CHALLENGE } from './create.actions';
 import sut from './create.reducer';
 
