@@ -10,7 +10,9 @@ const CompleteChallenge = () => (
                   type="button"
                 >Submit</button>
             </Header>
-            <CompleteForm />
+            <div className="challenge-screen__content">
+                <CompleteForm />
+            </div>
         </form>
     </section>
 );
