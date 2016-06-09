@@ -34,9 +34,9 @@ export function postChallenge(formData) {
             file: formData.image
         };
         const headers = new Headers({
-            "Content-Type": "multipart/form-data"
+            'Content-Type': 'multipart/form-data'
         });
-        fetch(`${baseUrl}picture`,  {
+        fetch(`${baseUrl}picture`, {
             method: 'POST',
             headers,
             body: JSON.stringify(hostingRequest) })
@@ -45,7 +45,7 @@ export function postChallenge(formData) {
             .then(image => {
                 api('/api/challenges/', {
                     method: 'POST',
-                    body: JSON.stringify({...formData, image}) })
+                    body: JSON.stringify({ ...formData, image }) })
                     .then((response) => {
                         dispatch(receiveChallenge(response));
                         hashHistory.goBack();
