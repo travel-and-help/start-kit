@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 const cameraError = (message) => {
     console.log(`Failed because: ${message}`);
@@ -23,6 +23,7 @@ class CreatePhoto extends Component {
     }
 
     cameraSuccess(imageData) {
+        this.createInput.value = imageData;
         this.setState({
             inlineStyle: {
                 background: `url(data:image;base64,${imageData})`,
@@ -33,13 +34,25 @@ class CreatePhoto extends Component {
 
     render() {
         const { inlineStyle } = this.state;
+        const { image } = this.props;
         return (
-            <div className="create-photo"
-                 onClick={ this.onClick }
+            <div className={image.error && image.touched ?
+                'create-photo create-photo_error' :
+                'create-photo'}
                  style={ inlineStyle }
-            ></div>
+                 onClick={ this.onClick }
+            >
+                <input hidden
+                    {...image}
+                    ref={(ref) => { this.createInput = ref; }}
+                />
+            </div>
         );
     }
 }
+
+CreatePhoto.propTypes = {
+    image: PropTypes.object
+};
 
 export default CreatePhoto;

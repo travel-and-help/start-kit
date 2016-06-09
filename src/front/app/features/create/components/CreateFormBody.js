@@ -6,75 +6,87 @@ import CreatePhoto from '../../../common/components/create/CreatePhoto';
 import CreateTumbler from '../../../common/components/create/CreateTumbler';
 import CreateError from './CreateError';
 
-const CreateFormBody = ({ fields, categories }) => (
-    <div className="challenge-create__body">
-        <CreateError formFields={fields} />
+const CreateFormBody = ({ fields, categories }) => {
+    const {
+        image,
+        title,
+        category,
+        description,
+        startDate,
+        endDate,
+        repeateble,
+        proof
+        } = fields;
+    return (
+        <div className="challenge-create__body">
+            <CreateError formFields={fields} />
 
-        <CreatePhoto />
+            <CreatePhoto image={image} />
 
-        <input
-          className={fields.title.error && fields.title.touched ?
+            <input
+                className={title.error && title.touched ?
               'challenge-create__input challenge-create__input_error' :
               'challenge-create__input'}
 
-          placeholder="Enter challange name" {...fields.title}
-        />
+                placeholder="Enter challange name" {...title}
+            />
 
-        <h2 className="challenge-create__subtitle">
-            DESCRIPTION
-        </h2>
+            <h2 className="challenge-create__subtitle">
+                DESCRIPTION
+            </h2>
 
-        <CreateCategories
-          categories={categories}
-          category={fields.category}
-        />
+            <CreateCategories
+                categories={categories}
+                category={category}
+            />
 
         <textarea
-          className={fields.description.error && fields.description.touched ?
+            className={description.error && description.touched ?
               'challenge-create__descr challenge-create__descr_error' :
               'challenge-create__descr'}
 
-          placeholder="Enter description here" {...fields.description}
+            placeholder="Enter description here" {...description}
         >
         </textarea>
 
-        <h2 className="challenge-create__subtitle">
-            SETTINGS
-        </h2>
+            <h2 className="challenge-create__subtitle">
+                SETTINGS
+            </h2>
 
-        <CreateDatePicker
-          label="Start Date"
-          date={fields.startDate}
-        />
+            <CreateDatePicker
+                label="Start Date"
+                date={startDate}
+            />
 
-        <CreateDatePicker
-          label="End Date"
-          date={fields.endDate}
-          minDate={fields.startDate.value}
-        />
+            <CreateDatePicker
+                label="End Date"
+                date={endDate}
+                minDate={startDate.value}
+            />
 
-        <CreateTumbler
-          label="Repeateble"
-          disabled
-          checked
-          value={fields.repeateble}
-        />
+            <CreateTumbler
+                label="Repeateble"
+                disabled
+                checked
+                value={repeateble}
+            />
 
-        <h3 className="challenge-create__subtitle">
-            Confirmation
-        </h3>
+            <h3 className="challenge-create__subtitle">
+                Confirmation
+            </h3>
 
-        <CreateTumbler
-          label="Location"
-          disabled
-        />
+            <CreateTumbler
+                label="Location"
+                disabled
+            />
 
-        <CreateTumbler
-          label="Photo proof"
-          value={fields.proof}
-        />
-    </div>
-);
+            <CreateTumbler
+                label="Photo proof"
+                value={proof}
+            />
+        </div>
+    );
+};
 
 
 CreateFormBody.propTypes = {

@@ -9,6 +9,10 @@ const validate = (values) => {
         errors.description = 'Description is required';
     }
 
+    if (!values.image) {
+        errors.image = 'Image is required';
+    }
+
     if (values.category === '-1' || !values.category) {
         errors.category = 'Category is required';
     }
