@@ -24,7 +24,7 @@ function watchChallenge(userPromise, challengeId) {
             user
                 .get('watchList')
                 .filter(taskId => taskId.toString() !== challengeId)
-                .reduce((list, id) => [...list, id], [challengeId])
+                .reduce((list, id) => list.concat(id), [challengeId])
         );
         return user.save();
     });
@@ -43,7 +43,7 @@ function acceptChallenge(userPromise, challengeId) {
             user
                 .get('challenges')
                 .filter(acceptedDuplicates)
-                .reduce((list, task) => [...list, task], [newlyAccepted])
+                .reduce((list, task) => list.concat(task), [newlyAccepted])
         );
         return user.save();
     });
