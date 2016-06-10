@@ -6,10 +6,11 @@ const request = require('request');
 const newPost = (req, res) => {
     const baseHostingUrl = 'http://ec2-52-35-85-119.us-west-2.compute.amazonaws.com:8080/';
     const url = `${baseHostingUrl}picture`;
-    const imageBuffer = new Buffer(req.body.image, 'base64');
+    const body = req.body;
+    const imageBuffer = new Buffer(body.image, 'base64');
     const formData = {
         file: {
-            value:  imageBuffer,
+            value: imageBuffer,
             options: {
                 filename: `travelAndHelp${imageBuffer.length}`,
                 contentType: 'image'
@@ -21,10 +22,10 @@ const newPost = (req, res) => {
             url,
             formData
         },
-        (err, httpResponse, respBody) => {
-            if (!err){
-                req.body.image = `${baseHostingUrl}${respBody.path}`;
-                const model = new Challenge(req.body);
+        (error, httpResponse, respBody) => {
+            if (!error) {
+                body.image = `${baseHostingUrl}${respBody.path}`;
+                const model = new Challenge(body);
 
                 model.save((err, challenge) => {
                     if (!err) {
