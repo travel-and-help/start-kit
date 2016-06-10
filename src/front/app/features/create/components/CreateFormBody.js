@@ -17,6 +17,7 @@ const CreateFormBody = ({ fields, categories }) => {
         repeateble,
         proof
         } = fields;
+
     return (
         <div className="challenge-create__body">
             <CreateError formFields={fields} />
@@ -37,7 +38,7 @@ const CreateFormBody = ({ fields, categories }) => {
 
             <CreateCategories
                 categories={categories}
-                category={category}
+                {...category}
             />
 
         <textarea

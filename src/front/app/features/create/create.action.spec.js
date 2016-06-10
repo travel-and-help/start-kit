@@ -1,40 +1,46 @@
 const proxyquire = require('proxyquire').noCallThru();
+const q = require('q');
 
 describe('action/create', () => {
-    let sut;
-    let dispatch;
-    let api;
-    let promise;
+    let sut,
+        router,
+        api,
+        promise,
+        dispatch;
 
     beforeEach(() => {
 
+        router = {
+             goBack: env.spy(),
+             push: env.spy()
+        };
+
+        dispatch = env.spy();
     });
 
+    const executeSut = (resolveValue) => {
+        promise = env.stub().resolves(resolveValue)();
+
+        api = env.stub().returns(promise);
+
+        return proxyquire('./create.actions', {
+            '../../common/api': api,
+            'react-router-redux': router
+        });
+    };
+
     describe('#fetchCategories', () => {
-        let fetcher;
         const categoryList = ['mockedCategories'];
-
         beforeEach(() => {
-            promise = env.stub().resolves(categoryList)();
-
-            api = env.stub().returns(promise);
-
-            sut = proxyquire('./create.actions', {
-                '../../common/api': api
-            });
-
-            dispatch = env.spy();
-
-            fetcher = sut.fetchCategories();
+            sut = executeSut(categoryList);
+            sut.fetchCategories()(dispatch);
         });
 
         it('should fetch categories', () => {
-            fetcher(dispatch);
             api.should.have.been.calledWith('/api/categories').and.callCount(1);
         });
 
         it('should dispatch categories event with data from response', () => {
-            fetcher(dispatch);
             return promise.finally(() => {
                 const action = dispatch.lastCall.args[0];
                 action.should.eqls({
@@ -45,27 +51,13 @@ describe('action/create', () => {
         });
     });
 
-
     describe('#postChallenge', () => {
-        let rut;
-        let challengeMock;
-
+        const challengeMock = {
+            name: 'mockChallenge'
+        };
         beforeEach(() => {
-            challengeMock = {
-                name: 'mockChallenge'
-            };
-
-            promise = env.stub().resolves(challengeMock)();
-
-            api = env.stub().returns(promise);
-
-            sut = proxyquire('./create.actions', {
-                '../../common/api': api
-            });
-
-            dispatch = env.spy();
-
-            rut = sut.postChallenge(challengeMock);
+            sut = executeSut(challengeMock);
+            sut.postChallenge(challengeMock)(dispatch);
         });
 
         it('should post challenge', () => {
@@ -74,16 +66,12 @@ describe('action/create', () => {
                 body: JSON.stringify(challengeMock)
             };
 
-            rut();
-
-            api.should.have.been.calledWith('/api/challenges/', options).and.callCount(1);
+            api.should.have.been.calledWith('/api/challenges', options).and.callCount(1);
         });
 
         it('should dispatch challenge event with data from response', () => {
-            rut(dispatch);
-
             return promise.finally(() => {
-                const action = dispatch.lastCall.args[0];
+                const action = dispatch.firstCall.args[0];
                 action.should.eqls({
                     type: sut.POST_CHALLENGE,
                     challenge: challengeMock

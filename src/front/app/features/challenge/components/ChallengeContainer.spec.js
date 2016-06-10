@@ -1,4 +1,5 @@
 import proxyquire from 'proxyquire';
+import { fromJS } from 'immutable';
 
 describe('ChallengeContainer', () => {
     let sut,
@@ -38,8 +39,12 @@ describe('ChallengeContainer', () => {
     });
 
     it('should map state challenge to props challenge', () => {
-        const challenge = {};
         const userId = 'userId';
+        const challenge = fromJS({
+            user: {
+                id: userId
+            }
+        });
         const auth = {
             get: env.stub().returns(userId)
         };

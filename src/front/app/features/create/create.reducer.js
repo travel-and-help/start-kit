@@ -3,7 +3,7 @@ import { GET_CATEGORIES, POST_CHALLENGE } from './create.actions';
 
 const initialState = new Map();
 
-const reducer = (state = initialState, action = {}) => {
+const reducer = (state = initialState, action) => {
     switch (action.type) {
     case GET_CATEGORIES:
         return state.set('categories', fromJS(action.categories));
