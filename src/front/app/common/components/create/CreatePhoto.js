@@ -24,6 +24,8 @@ class CreatePhoto extends Component {
 
     cameraSuccess(imageData) {
         this.createInput.value = imageData;
+        this.createInput.focus();
+        this.createInput.blur();
         this.setState({
             inlineStyle: {
                 background: `url(data:image;base64,${imageData})`,
@@ -40,11 +42,12 @@ class CreatePhoto extends Component {
                 'create-photo create-photo_error' :
                 'create-photo'}
                  style={ inlineStyle }
-                 onClick={ this.onClick }
+                 onClick= { this.onClick }
             >
-                <input hidden
-                    {...image}
+                <input className="create-photo__input"
+                    type="text"
                     ref={(ref) => { this.createInput = ref; }}
+                    {...image}
                 />
             </div>
         );

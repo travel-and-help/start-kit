@@ -239,6 +239,10 @@ $assetsBasePath: './app/features/create/components/assets/';
         border-color: $attention_color;
         background-image: url($assetsBasePath + 'create-photo-invalid.svg');
     }
+
+    &__input {
+        opacity: 0;
+    }
 }
 
 .create-tumbler {

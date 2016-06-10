@@ -29,27 +29,12 @@ export function fetchCategories() {
 
 export function postChallenge(formData) {
     return function innerPostChallenge(dispatch) {
-        const baseUrl = 'http://ec2-52-35-85-119.us-west-2.compute.amazonaws.com:8080/';
-        const hostingRequest = {
-            file: formData.image
-        };
-        const headers = new Headers({
-            'Content-Type': 'multipart/form-data'
-        });
-        fetch(`${baseUrl}picture`, {
+        api('/api/challenges/', {
             method: 'POST',
-            headers,
-            body: JSON.stringify(hostingRequest) })
-            .then(response => response.json())
-            .then(response => `${baseUrl}${response.path}`)
-            .then(image => {
-                api('/api/challenges/', {
-                    method: 'POST',
-                    body: JSON.stringify({ ...formData, image }) })
-                    .then((response) => {
-                        dispatch(receiveChallenge(response));
-                        hashHistory.goBack();
-                    });
+            body: JSON.stringify(formData) })
+            .then((response) => {
+                dispatch(receiveChallenge(response));
+                hashHistory.goBack();
             });
     };
 }
