@@ -5,11 +5,7 @@ import CompleteForm from './CompleteForm';
 const CompleteChallenge = () => (
     <section className="challenge-complete">
         <form >
-            <Header title="Challenge completed">
-                <button className="header__action"
-                  type="button"
-                >Submit</button>
-            </Header>
+            <Header title="Challenge completed" />
             <div className="challenge-screen__content">
                 <CompleteForm />
             </div>
