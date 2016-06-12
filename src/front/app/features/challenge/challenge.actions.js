@@ -46,6 +46,15 @@ export function acceptChallenge(challengeId) {
         .catch(alert.bind(null, 'Unable to accept the challenge =('));
 }
 
+export function completeChallenge(id, data) {
+    return () => api(`/api/challenge/${id}/complete`,
+        {
+            method: 'POST',
+            body: data
+        }
+    );
+}
+
 export function resetState() {
     return (dispatch) => dispatch(receiveInitialState());
 }
