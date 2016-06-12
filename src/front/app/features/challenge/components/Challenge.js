@@ -57,7 +57,7 @@ class Challenge extends Component {
 
     render() {
 
-        const { challenge, onWatchChallenge, onAccept } = this.props;
+        const { challenge, onWatchChallenge, onAccept, onComplete } = this.props;
         if (challenge.size) {
             return (
                 <Layout
@@ -73,6 +73,7 @@ class Challenge extends Component {
                         <ChallengeDetails
                             challenge={challenge}
                             onAccept={onAccept}
+                            onComplete={onComplete}
                         />
                         <ChallengeComments />
                     </div>
@@ -93,6 +94,7 @@ Challenge.propTypes = {
     params: PropTypes.object,
     onWatchChallenge: PropTypes.func.isRequired,
     onAccept: PropTypes.func.isRequired,
+    onComplete: PropTypes.func.isRequired,
     getInitialState: PropTypes.func.isRequired
 };
 

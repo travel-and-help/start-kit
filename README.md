@@ -40,9 +40,11 @@ To learn more about npm scripts, use [npm scripts guide](https://docs.npmjs.com/
  * * Create "Add Photo" => user has an ability to upload photo and it will be related to this challenge
  * * Create description field (design hadn't one)
  * * 'add photo' option with *legend* ?
- 
+
  * Create 'More challenges like this' section
  * * create rest service for getting Challenges like this
  * * create UI list of Challenges
- 
-  
+ * Create more sufficient image uploading
+ * * use s3 streaming to upload images
+ * * compress images for Web
+

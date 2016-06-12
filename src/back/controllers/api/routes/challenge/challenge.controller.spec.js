@@ -177,4 +177,13 @@ describe('controllers/api/ChallengeController', () => {
         });
 
     });
+
+    describe('Method complete', () => {
+
+        it('should complete challenge for current user', () => {
+
+        });
+
+    });
+
 });
