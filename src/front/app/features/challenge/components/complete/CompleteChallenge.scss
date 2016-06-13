@@ -1,3 +1,5 @@
+$moreListTitleColor: #acf7bc;
+
 .challenge-complete {
     &__body {
         position: relative;
@@ -33,5 +35,20 @@
         display: inline-block;
         text-align: center;
         margin: 0 40px;
+    }
+
+    &__more-list-title {
+        margin-top: 20px;
+        position: relative;
+        height: 2rem;
+        border: .125rem solid #4a4a4a;
+        border-radius: .625rem;
+        text-transform: uppercase;
+        text-align: center;
+        background-color: $moreListTitleColor;
+        font-size: _th-rem(18);
+        line-height: _th-rem(33);
+        font-weight: 700;
+        letter-spacing: _th-rem(1);
     }
 }
