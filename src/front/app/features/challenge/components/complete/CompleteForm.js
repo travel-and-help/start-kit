@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 
-
 const CreateFormBody = ({ handleSubmit, id }) => (
     <form onSubmit={(formData) => handleSubmit(id, formData)}>
         <div className="challenge-complete__body">
@@ -15,6 +14,9 @@ const CreateFormBody = ({ handleSubmit, id }) => (
                <div className="share-facebook"></div>
             <h5 type="submit">Submit</h5></div>
             </div>
+            <div className="challenge-complete__more-list-title">
+                More challenges
+            </div>
         </div>
     </form>
 );
@@ -25,3 +27,4 @@ CreateFormBody.propTypes = {
 };
 
 export default CreateFormBody;
+
