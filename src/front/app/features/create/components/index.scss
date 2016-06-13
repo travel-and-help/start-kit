@@ -230,8 +230,8 @@ $assetsBasePath: './app/features/create/components/assets/';
 .create-photo {
     width: 80px;
     height: 80px;
-    border-radius: 100%;
-    border: 2px solid $regular_border_color;
+    //border-radius: 100%;
+    //border: 2px solid $regular_border_color;
     float: left;
     background: url($assetsBasePath + 'create-photo.svg') no-repeat center;
 
@@ -239,6 +239,13 @@ $assetsBasePath: './app/features/create/components/assets/';
         border-color: $attention_color;
         background-image: url($assetsBasePath + 'create-photo-invalid.svg');
     }
+}
+
+.share-facebook {
+    width: 80px;
+    height: 80px;
+    float: right;
+    background: url($assetsBasePath + 'share-facebook.svg') no-repeat center;
 }
 
 .create-tumbler {

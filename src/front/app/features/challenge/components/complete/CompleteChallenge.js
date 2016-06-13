@@ -10,9 +10,7 @@ const CompleteChallenge = ({ similarChallenges, handleSubmit, goBack, id }) => (
             <CompleteForm handleSubmit={handleSubmit} id={id} />
         </div>
         <div className="user-details__challenges-section_accepted">
-            <h4>
-                More challenges
-            </h4>
+
             <ChallengeList challenges={ similarChallenges } />
         </div>
     </section>
