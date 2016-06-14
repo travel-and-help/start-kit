@@ -31,7 +31,6 @@ class CreateForm extends Component {
             formData.categories = [JSON.parse(data.category)._id];
             formData.location = 'Kyiv';
             formData.level = 'easy';
-            console.log('fromData before sending', JSON.stringify(data, null, 2));
 
             postChallenge(formData);
         };

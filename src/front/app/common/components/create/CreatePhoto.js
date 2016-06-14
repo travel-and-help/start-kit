@@ -24,10 +24,8 @@ class CreatePhoto extends Component {
 
     cameraSuccess(imageData) {
         this.createInput.value = imageData;
-        console.log('imagedata from callback', imageData);
         this.createInput.focus();
         this.createInput.blur();
-        console.log('input value', this.createInput.value);
         this.setState({
             inlineStyle: {
                 background: `url(data:image;base64,${imageData})`,
