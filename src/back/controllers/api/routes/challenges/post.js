@@ -24,18 +24,18 @@ const newPost = (req, res) => {
         (error, httpResponse, respBody) => {
             if (!error && respBody) {
                 const path = JSON.parse(respBody).path;
-                body.image = `$http://ec2-52-35-85-119.us-west-2.compute.amazonaws.com:8080/${path}`;
-                const model = new Challenge(body);
+                const newBody = JSON.parse(JSON.stringify(body));
+                newBody.image = `$http://ec2-52-35-85-119.us-west-2.compute.amazonaws.com:8080/${path}`;
+                const model = new Challenge(newBody);
 
                 model.save((err, challenge) => {
                     if (!err) {
                         res.json(challenge);
-                    } else {
-                        res.status(400).send(err);
                     }
+                    res.json(err);
                 });
             }
-            res.json('bad response from external hosting');
+            console.log('bad response from external hosting');
         }
     );
 };
