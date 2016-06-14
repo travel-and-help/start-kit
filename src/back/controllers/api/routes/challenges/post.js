@@ -6,7 +6,8 @@ const request = require('request');
 const newPost = (req, res) => {
     const baseHostingUrl = 'http://ec2-52-35-85-119.us-west-2.compute.amazonaws.com:8080/';
     const url = `${baseHostingUrl}picture`;
-    const imageBuffer = new Buffer(req.body.image, 'base64');
+    const body = req.body;
+    const imageBuffer = new Buffer(body.image, 'base64');
     const formData = {
         file: {
             value: imageBuffer,
@@ -23,8 +24,6 @@ const newPost = (req, res) => {
         },
         (error, httpResponse, respBody) => {
             if (!error && respBody && respBody.path) {
-                console.log(respBody, respBody.path);
-                const body = JSON.parse(JSON.stringify(req.body));
                 body.image = `${baseHostingUrl}${respBody.path}`;
                 const model = new Challenge(body);
 
@@ -36,7 +35,7 @@ const newPost = (req, res) => {
                     }
                 });
             }
-            res.json('no response from hosting');
+            res.json('bad response from external hosting');
         }
     );
 };
