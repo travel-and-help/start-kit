@@ -22,8 +22,9 @@ const newPost = (req, res) => {
             formData
         },
         (error, httpResponse, respBody) => {
-            if (!error && respBody && respBody.path) {
-                body.image = `$http://ec2-52-35-85-119.us-west-2.compute.amazonaws.com:8080/${respBody.path}`;
+            if (!error && respBody) {
+                const path =  JSON.parse(respBody).path;
+                body.image = `$http://ec2-52-35-85-119.us-west-2.compute.amazonaws.com:8080/${path}`;
                 const model = new Challenge(body);
 
                 model.save((err, challenge) => {
