@@ -4,9 +4,7 @@ const Challenge = require('../../models/challenge');
 const request = require('request');
 
 const newPost = (req, res) => {
-    const baseHostingUrl = 'http://ec2-52-35-85-119.us-west-2.compute.amazonaws.com:8080/';
-    const url = `${baseHostingUrl}picture`;
-    const body = req.body;
+    let body = req.body;
     const imageBuffer = new Buffer(body.image, 'base64');
     const formData = {
         file: {
@@ -17,6 +15,7 @@ const newPost = (req, res) => {
             }
         }
     };
+    const url = 'http://ec2-52-35-85-119.us-west-2.compute.amazonaws.com:8080/picture';
     request.post(
         {
             url,
@@ -24,7 +23,7 @@ const newPost = (req, res) => {
         },
         (error, httpResponse, respBody) => {
             if (!error && respBody && respBody.path) {
-                body.image = `${baseHostingUrl}${respBody.path}`;
+                body.image = `$http://ec2-52-35-85-119.us-west-2.compute.amazonaws.com:8080/${respBody.path}`;
                 const model = new Challenge(body);
 
                 model.save((err, challenge) => {
