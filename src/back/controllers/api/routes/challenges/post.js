@@ -4,7 +4,7 @@ const Challenge = require('../../models/challenge');
 const request = require('request');
 
 const newPost = (req, res) => {
-    let body = req.body;
+    const body = req.body;
     const imageBuffer = new Buffer(body.image, 'base64');
     const formData = {
         file: {
