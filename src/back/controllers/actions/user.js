@@ -4,7 +4,10 @@ const challenge = require('../api/models/challenge');
 
 function getWatchedChallenges(userPromise) {
     return userPromise
-        .then(user => challenge.find({ _id: { $in: user.get('watchList') } }));
+        .then(user => challenge
+            .find({ _id: { $in: user.get('watchList') } })
+            .populate('user')
+        );
 }
 
 function unWatchChallenge(userPromise, challengeId) {
@@ -24,7 +27,7 @@ function watchChallenge(userPromise, challengeId) {
             user
                 .get('watchList')
                 .filter(taskId => taskId.toString() !== challengeId)
-                .reduce((list, id) => [...list, id], [challengeId])
+                .reduce((list, id) => list.concat(id), [challengeId])
         );
         return user.save();
     });
@@ -43,7 +46,7 @@ function acceptChallenge(userPromise, challengeId) {
             user
                 .get('challenges')
                 .filter(acceptedDuplicates)
-                .reduce((list, task) => [...list, task], [newlyAccepted])
+                .reduce((list, task) => list.concat(task), [newlyAccepted])
         );
         return user.save();
     });
