@@ -32,10 +32,10 @@ const newPost = (req, res) => {
                     if (!err) {
                         res.json(challenge);
                     }
-                    res.json(err);
+                    res.status(500).send(err);
                 });
             }
-            console.log('bad response from external hosting');
+            res.status(500).send(error);
         }
     );
 };
