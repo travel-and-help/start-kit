@@ -8,7 +8,7 @@ const
 module.exports = {
     devtool: 'eval',
     eslint: {
-        failOnError: true
+        failOnError: false
     },
     plugins: [].concat(
         new webpack.HotModuleReplacementPlugin(),
