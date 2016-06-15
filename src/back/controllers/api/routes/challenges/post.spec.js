@@ -24,8 +24,13 @@ describe('routes/challenges-post', () => {
             body: mockChallenge
         };
 
+        const mockRes = {
+            send: env.stub()
+        };
+
         res = {
-            json: env.spy()
+            json: env.spy(),
+            status: env.stub().returns(mockRes)
         };
 
         save = env.spy((cb) => {
