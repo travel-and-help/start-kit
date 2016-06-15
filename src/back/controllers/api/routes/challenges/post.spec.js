@@ -38,9 +38,9 @@ describe('routes/challenges-post', () => {
 
         imgRemotePath = 'imgRemotePath';
 
-        const postMockResp = {
+        const postMockResp = JSON.stringify({
             path: imgRemotePath
-        };
+        });
 
         request = {
             post: env.spy((opt, cb) => {

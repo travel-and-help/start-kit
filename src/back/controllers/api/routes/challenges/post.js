@@ -2,10 +2,10 @@
 
 const Challenge = require('../../models/challenge');
 const request = require('request');
+const imageHostingUrl = require('../../../../../../env').IMAGE_HOSTING_URL;
 
-const newPost = (req, res) => {
-    const baseHostingUrl = 'http://ec2-52-35-85-119.us-west-2.compute.amazonaws.com:8080/';
-    const url = `${baseHostingUrl}picture`;
+const newPost = (req, res, next) => {
+    const url = `${imageHostingUrl}/picture`;
     const body = req.body;
     const imageBuffer = new Buffer(body.image, 'base64');
     const formData = {
@@ -17,25 +17,30 @@ const newPost = (req, res) => {
             }
         }
     };
+
     request.post(
         {
             url,
             formData
         },
         (error, httpResponse, respBody) => {
-            if (!error && respBody && respBody.path) {
-                body.image = `${baseHostingUrl}${respBody.path}`;
-                const model = new Challenge(body);
+            if (error) {
+                next(error);
+            } else if (respBody) {
+                const path = JSON.parse(respBody).path;
+                body.image = `${imageHostingUrl}/${path}`;
 
-                model.save((err, challenge) => {
-                    if (!err) {
-                        res.json(challenge);
+                const model = new Challenge(body);
+                model.save((saveError, challenge) => {
+                    if (saveError) {
+                        next(saveError);
                     } else {
-                        res.status(400).send(err);
+                        res.json(challenge);
                     }
                 });
+            } else {
+                next(new Error('ExternalServiceError'));
             }
-            res.json('bad response from external hosting');
         }
     );
 };
