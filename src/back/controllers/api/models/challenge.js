@@ -10,7 +10,7 @@ const Challenge = new Schema({
         type: Schema.ObjectId,
         ref: 'Category'
     }],
-    title: { type: String},
+    title: { type: String },
     image: { type: String },
     location: { type: String },
     user: {
