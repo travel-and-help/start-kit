@@ -25,7 +25,7 @@ const newPost = (req, res) => {
             if (!error && respBody) {
                 const path = JSON.parse(respBody).path;
                 const newBody = JSON.parse(JSON.stringify(body));
-                newBody.image = `$http://ec2-52-35-85-119.us-west-2.compute.amazonaws.com:8080/${path}`;
+                newBody.image = `http://ec2-52-35-85-119.us-west-2.compute.amazonaws.com:8080/${path}`;
                 const model = new Challenge(newBody);
 
                 model.save((err, challenge) => {
