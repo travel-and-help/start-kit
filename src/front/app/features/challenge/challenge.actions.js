@@ -65,7 +65,7 @@ export function completeChallenge(id, data) {
 }
 
 export function fetchSimilarChallenge(id) {
-    return dispatch => api(`/api/challenge/search?similar=${id}`, {method: 'GET'})
+    return dispatch => api(`/api/challenge/search?similar=${id}`, { method: 'GET' })
         .then((challenges) => {
             dispatch(receiveSimilarChallenges(id, challenges));
         });

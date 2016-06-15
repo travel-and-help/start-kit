@@ -6,7 +6,8 @@ describe('controllers/api/challenge', () => {
     let sut,
         router,
         challengeController,
-        controllerInstance;
+        controllerInstance,
+        authService;
 
     beforeEach(() => {
 
@@ -16,6 +17,7 @@ describe('controllers/api/challenge', () => {
             post: env.spy(() => router),
             route: env.spy(() => router)
         };
+        authService = { restrictUnauthenticated: env.stub() };
 
         controllerInstance = {
             getById: env.spy(),
@@ -36,7 +38,8 @@ describe('controllers/api/challenge', () => {
 
         sut = proxyquire('./index', {
             express,
-            './challenge.controller': challengeController
+            './challenge.controller': challengeController,
+            '../../../auth/auth.service': authService
         });
     });
 
@@ -68,7 +71,7 @@ describe('controllers/api/challenge', () => {
 
     it('should register complete challenge router', () => {
         router.route.should.calledWith('/:id/complete');
-        const onCompleteCallback = router.post.lastCall.args[0];
+        const onCompleteCallback = router.post.lastCall.args[1];
         onCompleteCallback({}, {});
         controllerInstance.complete.should.calledWith({}, {});
     });

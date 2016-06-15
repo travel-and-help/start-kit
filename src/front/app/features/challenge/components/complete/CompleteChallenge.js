@@ -52,7 +52,7 @@ class CompleteChallenge extends Component {
                 <Header title="Challenge completed" onDiscardClick={this.goBack} />
                 <div className="challenge-screen__content">
                     <CompleteForm handleSubmit={this.handleSubmit} />
-                    <div className="user-details__challenges-section_accepted">
+                    <div className="challenge-complete__more-list">
                         <div className="challenge-complete__more-list-title">
                             More challenges
                         </div>
@@ -69,4 +69,4 @@ CompleteChallenge.propTypes = {
     params: PropTypes.object,
     dispatch: PropTypes.func.isRequired
 };
-export default connect(({ challenge }) => ({ challenge }))(CompleteChallenge)
+export default connect(({ challenge }) => ({ challenge }))(CompleteChallenge);
