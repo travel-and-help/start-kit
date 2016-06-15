@@ -32,19 +32,13 @@ To learn more about npm scripts, use [npm scripts guide](https://docs.npmjs.com/
 
 #11 Challenge Mngm
  steps:
- * Create complete challengepage
- * * Create main layout: Submit button, Close button, Add Photo, description field, share social media(?)
- * create rest endpoint for submiting challenge
- * * Create Submit button
- * * Create Close button => widnow is closed, user stays at previous page, challenge is not completed.
- * * Create "Add Photo" => user has an ability to upload photo and it will be related to this challenge
- * * Create description field (design hadn't one)
- * * 'add photo' option with *legend* ?
-
- * Create 'More challenges like this' section
+ * create layout and design
+ * create unit tests
+ * upload image
+ * user rating
+ * redirect after complete
+ * complete challenge from different places
  * * create rest service for getting Challenges like this
- * * create UI list of Challenges
  * Create more sufficient image uploading
  * * use s3 streaming to upload images
  * * compress images for Web
-
