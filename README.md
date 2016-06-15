@@ -26,19 +26,3 @@ To execute end-to-end (e2e) tests, use:
     npm run test:e2e
 
 To learn more about npm scripts, use [npm scripts guide](https://docs.npmjs.com/misc/scripts)
-
-
-
-
-#11 Challenge Mngm
- steps:
- * create layout and design
- * create unit tests
- * upload image
- * user rating
- * redirect after complete
- * complete challenge from different places
- * * create rest service for getting Challenges like this
- * Create more sufficient image uploading
- * * use s3 streaming to upload images
- * * compress images for Web

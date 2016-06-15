@@ -9,8 +9,5 @@ describe('features/challenge/components/complete/CompleteChallenge', () => {
         sut = mount(<CompleteChallenge />);
     });
 
-    it('should contains submit button', () => {
-        sut.find('.header__action').text().should.equal('Submit');
-    });
 
 });

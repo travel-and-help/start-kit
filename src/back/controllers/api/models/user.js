@@ -57,26 +57,25 @@ const User = new Schema({
 });
 
 User.methods.completeChallenge = function completeChallenge(challengeId) {
-    const model = this.model('User');
     const that = this;
-    this.update({
-       $pull: {
-           "challenges": {
-               "challenge": challengeId,
-               "status": STATUS_ACCEPTED
-           }
-       }
-   })
-   .then(() => {
-       return that.update({
-          $push: {
-              "challenges": {
-                  "challenge": challengeId,
-                  "status": STATUS_COMPLETED
-              }
-          }
-      })
-  });
+    const removeUpdateConfig = {
+        $pull: {
+            challenges: {
+                challenge: challengeId,
+                status: STATUS_ACCEPTED
+            }
+        }
+    };
+    const inserUpdateConfig = {
+        $push: {
+            challenges: {
+                challenge: challengeId,
+                status: STATUS_COMPLETED
+            }
+        }
+    };
+    this.update(removeUpdateConfig)
+        .then(() => that.update(inserUpdateConfig));
 };
 
 User.plugin(mongoosePaginate);

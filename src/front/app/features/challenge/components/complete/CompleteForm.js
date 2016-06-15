@@ -13,7 +13,7 @@ const CreateFormBody = ({ handleSubmit }) => (
                 </div>
             </div>
             <div className="challenge-complete__submit-wrapper">
-               <button className="challenge-complete__submit-btn">Submit</button>
+               <button className="challenge-complete__submit-btn" type="submit">Submit</button>
             </div>
         </div>
     </form>
