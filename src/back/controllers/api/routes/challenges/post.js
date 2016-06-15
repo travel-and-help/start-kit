@@ -2,7 +2,7 @@
 
 const Challenge = require('../../models/challenge');
 const request = require('request');
-const imageHostingUrl = require('../../../../../../env').IMAGE_HOSTING_URL;
+const imageHostingUrl = require('../../../../../../../env').IMAGE_HOSTING_URL;
 
 const newPost = (req, res, next) => {
     const url = `${imageHostingUrl}/picture`;
