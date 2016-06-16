@@ -35,7 +35,7 @@ describe('reducer/challenge', () => {
         };
         const expectedState = fromJS({
             similar: {
-                '42': []
+                42: []
             }
         });
 
