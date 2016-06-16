@@ -46,7 +46,7 @@ class CreateForm extends Component {
         } = this.props;
 
         const extendPostChallenge = (data) => {
-            if (challenge) {
+            if (challenge && challenge.size) {
                 const ignoredFields = ['user', '_id'];
                 const immutableData = fromJS(data);
                 const formData = immutableData
