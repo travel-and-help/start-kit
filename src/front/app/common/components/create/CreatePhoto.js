@@ -49,7 +49,7 @@ class CreatePhoto extends Component {
         }
 
         return (
-            <div className='create-photo'
+            <div className="create-photo"
                  style={ inlineStyle }
                  onClick={ this.onClick }
             >
