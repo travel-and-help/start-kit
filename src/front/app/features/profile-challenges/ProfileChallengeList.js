@@ -16,15 +16,21 @@ class ProfileChallengeList extends Component {
     }
 
     render() {
-        const { menuTitle, challenges, dismiss, addToWatchList } = this.props;
+        const {
+            menuTitle,
+            challenges,
+            dismiss,
+            leftSwipeAction
+        } = this.props;
 
         return (
             <Layout menu={<Menu title={menuTitle} />} >
                 <div className="profile-challenge-list" >
                     <ChallengeTileList
                         challenges={challenges}
-                        addToWatchList={addToWatchList}
+                        // addToWatchList={onAccept}
                         dismiss={dismiss}
+                        leftSwipeAction={leftSwipeAction}
                     />
                 </div>
             </Layout>
@@ -36,7 +42,11 @@ ProfileChallengeList.propTypes = {
     menuTitle: PropTypes.string.isRequired,
     challenges: ImmutablePropTypes.list.isRequired,
     getChallenges: PropTypes.func.isRequired,
-    addToWatchList: PropTypes.func,
+    leftSwipeAction: ImmutablePropTypes.mapContains({
+        action: PropTypes.func,
+        type: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired
+    }).isRequired,
     user: PropTypes.string,
     dismiss: PropTypes.func
 };
