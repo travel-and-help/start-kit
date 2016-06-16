@@ -7,7 +7,7 @@ const imageHostingUrl = require('../../../../../../env').IMAGE_HOSTING_URL;
 const newPost = (req, res, next) => {
     const url = `${imageHostingUrl}/picture`;
     const body = req.body;
-    const imageBuffer = new Buffer(body.image, 'base64');
+    const imageBuffer = body.image ? new Buffer(body.image, 'base64') : '';
     const formData = {
         file: {
             value: imageBuffer,
