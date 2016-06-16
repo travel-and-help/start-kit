@@ -1,6 +1,6 @@
 import { fromJS, Map } from 'immutable';
 import {
-    GET_CHALLENGE, RESET_STATE, ADDED_TO_WATCHLIST,
+    GET_CHALLENGE, GET_SIMILAR_CHALLENGE, RESET_STATE, ADDED_TO_WATCHLIST,
     ADDED_TO_ACCEPTED_LIST, ACCEPTED_RECEIVED,
     WATCHLIST_RECEIVED
 } from './challenge.actions';
@@ -17,6 +17,12 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
     case GET_CHALLENGE:
         return state.mergeDeep(fromJS(action.challenge));
+    case GET_SIMILAR_CHALLENGE:
+        return state.mergeDeep(fromJS({
+            similar: {
+                [action.id]: action.challenges
+            }
+        }));
     case RESET_STATE:
         return initialState;
     case ACCEPTED_RECEIVED: {

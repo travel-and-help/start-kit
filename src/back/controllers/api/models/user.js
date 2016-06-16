@@ -1,4 +1,6 @@
 'use strict';
+const STATUS_ACCEPTED = 'accepted';
+const STATUS_COMPLETED = 'completed';
 
 const mongoose = require('mongoose'),
     mongoosePaginate = require('mongoose-paginate'),
@@ -37,7 +39,8 @@ const User = new Schema({
             type: String
         },
         date: {
-            type: Date
+            type: Date,
+            default: Date.now
         },
         challenge: {
             type: Schema.ObjectId,
@@ -52,6 +55,28 @@ const User = new Schema({
         ref: 'Category'
     }]
 });
+
+User.methods.completeChallenge = function completeChallenge(challengeId) {
+    const that = this;
+    const removeUpdateConfig = {
+        $pull: {
+            challenges: {
+                challenge: challengeId,
+                status: STATUS_ACCEPTED
+            }
+        }
+    };
+    const inserUpdateConfig = {
+        $push: {
+            challenges: {
+                challenge: challengeId,
+                status: STATUS_COMPLETED
+            }
+        }
+    };
+    this.update(removeUpdateConfig)
+        .then(() => that.update(inserUpdateConfig));
+};
 
 User.plugin(mongoosePaginate);
 

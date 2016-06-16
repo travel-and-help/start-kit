@@ -3,7 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import IconButton from './../../../common/components/buttons/IconButton';
 import Fasteners from './../../../common/components/fasteners/Fasteners';
 
-const ChallengeDetails = ({ challenge, onAccept }) => {
+const ChallengeDetails = ({ challenge, onAccept, onComplete }) => {
     const {
         image,
         title,
@@ -19,7 +19,7 @@ const ChallengeDetails = ({ challenge, onAccept }) => {
     let clickHandler = () => onAccept(challenge.get('_id'));
     if (challenge.get('isAccepted')) {
         actionTitle = 'Complete';
-        clickHandler = () => {};
+        clickHandler = () => onComplete(challenge.get('_id'));
         actionIconName = 'complete';
     }
     const inlineStyle = image ? { backgroundImage: `url(${image})` } : {};
@@ -110,6 +110,7 @@ const ChallengeDetails = ({ challenge, onAccept }) => {
 
 ChallengeDetails.propTypes = {
     onAccept: PropTypes.func.isRequired,
+    onComplete: PropTypes.func.isRequired,
     challenge: ImmutablePropTypes.mapContains({
         image: PropTypes.string,
         title: PropTypes.string,

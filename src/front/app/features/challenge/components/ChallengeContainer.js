@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { hashHistory } from 'react-router';
 import {
     fetchChallenge,
     resetState,
@@ -24,7 +25,8 @@ const mapDispatchToProps = dispatch => ({
     getAcceptedChallenges: userId => dispatch(getAcceptedChallenges(userId)),
     getInitialState: () => dispatch(resetState()),
     onWatchChallenge: challengeId => dispatch(watchChallenge(challengeId)),
-    onAccept: challengeId => dispatch(acceptChallenge(challengeId))
+    onAccept: challengeId => dispatch(acceptChallenge(challengeId)),
+    onComplete: challengeId => hashHistory.push(`complete-challenge/${challengeId}`)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Challenge);

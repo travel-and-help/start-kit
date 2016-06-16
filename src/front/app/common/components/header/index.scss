@@ -1,0 +1,56 @@
+$header_border_color: #dde1e2;
+$text_color: #4a4a4a;
+$post_color: #ddd;
+$background-color: #fff;
+$assetsBasePath: './app/common/icons/';
+
+.header {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    height: 42px;
+    line-height: 42px;
+    position: relative;
+    border-bottom: 1px solid $header_border_color;
+    margin-bottom: 24px;
+    background-color: $background-color;
+
+    &__discard,
+    &__action {
+        background: none;
+        border: 0;
+        outline: 0;
+    }
+
+    &__discard {
+        height: 42px;
+        width: 42px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-indent: -9999px;
+        overflow: hidden;
+        display: block;
+        outline: none;
+        background: url($assetsBasePath + 'back.svg') no-repeat center;
+    }
+
+    &__title {
+        font-size: 20px;
+        letter-spacing: 0.5px;
+        text-align: center;
+        color: $text_color;
+        margin: 0 80px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-transform: uppercase;
+        font-weight: normal;
+    }
+
+    &__action {
+        position: absolute;
+        top: 0;
+        right: 16px;
+        height: 42px;
+        font-size: 14px;
+        color: $post_color;
+    }
+}
