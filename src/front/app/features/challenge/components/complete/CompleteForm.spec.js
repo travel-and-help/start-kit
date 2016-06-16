@@ -10,7 +10,7 @@ describe('features/challenge/components/complete/CompleteForm', () => {
 
     beforeEach(() => {
         subminHandler = env.stub();
-        sut = shallow(<CompleteForm handleSubmit={subminHandler}/>);
+        sut = shallow(<CompleteForm handleSubmit={subminHandler} />);
     });
 
     it('should contains add photo option', () => {
