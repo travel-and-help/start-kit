@@ -3,22 +3,25 @@ import WatchList from '../ProfileChallengeList';
 import { getWatchedChallenges, unWatch, acceptChallenge } from './watchList.actions';
 import { Map } from 'immutable';
 
-const leftSwipeAction = new Map({
-    text: 'Accept',
-    type: 'accept'
-});
-
 const mapStateToProps = ({ watchList, auth }) => ({
     user: auth.get('userId'),
     menuTitle: 'watch list',
-    challenges: watchList,
-    leftSwipeAction
+    challenges: watchList
 });
 
 const mapDispatchToProps = (dispatch) => ({
     getChallenges: () => dispatch(getWatchedChallenges()),
-    dismiss: challenge => dispatch(unWatch(challenge)),
-    accept: leftSwipeAction.set('action', challenge => dispatch(acceptChallenge(challenge)))
+    leftSwipe: new Map({
+        text: 'Accept',
+        type: 'accept',
+        action: challenge => dispatch(acceptChallenge(challenge))
+    }),
+    rightSwipe: new Map({
+        text: 'Dismiss',
+        type: 'dismiss',
+        action: challenge => dispatch(unWatch(challenge))
+    })
 });
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(WatchList);

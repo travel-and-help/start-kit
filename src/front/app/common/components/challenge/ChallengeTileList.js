@@ -12,9 +12,12 @@ export default class ChallengeTileList extends React.Component {
         return {
             className: PropTypes.string,
             challenges: ImmutablePropTypes.list.isRequired,
-            addToWatchList: PropTypes.func.isRequired,
-            dismiss: PropTypes.func.isRequired,
-            leftSwipeAction: ImmutablePropTypes.mapContains({
+            leftSwipe: ImmutablePropTypes.mapContains({
+                action: PropTypes.func.isRequired,
+                type: PropTypes.string,
+                text: PropTypes.string
+            }).isRequired,
+            rightSwipe: ImmutablePropTypes.mapContains({
                 action: PropTypes.func.isRequired,
                 type: PropTypes.string,
                 text: PropTypes.string
@@ -54,12 +57,11 @@ export default class ChallengeTileList extends React.Component {
 
     isSwipeDirectionAvailable(direction) {
         if (direction === LEFT) {
-            // return this.props.addToWatchList;
-            return this.props.leftSwipeAction.action;
+            return this.props.leftSwipe;
         }
 
         if (direction === RIGHT) {
-            return this.props.dismiss;
+            return this.props.rightSwipe;
         }
 
         return null;
@@ -68,26 +70,23 @@ export default class ChallengeTileList extends React.Component {
     renderAction(challenge, swipedDirection) {
 
         if (swipedDirection === LEFT) {
+            const leftSwipe = this.props.leftSwipe.toJS();
             return (
-                // <ChallengeTileAction
-                //     type="watch"
-                //     text="To watchlist"
-                //     onClick={() => this.props.addToWatchList(challenge)}
-                // />
                 <ChallengeTileAction
-                    type={this.props.leftSwipeAction.type}
-                    text={this.props.leftSwipeAction.text}
-                    onClick={() => this.props.leftSwipeAction.action(challenge)}
+                    type={leftSwipe.type}
+                    text={leftSwipe.text}
+                    onClick={() => leftSwipe.action(challenge)}
                 />
             );
         }
 
         if (swipedDirection === RIGHT) {
+            const rightSwipe = this.props.rightSwipe.toJS();
             return (
                 <ChallengeTileAction
-                    type="dismiss"
-                    text="Dismiss"
-                    onClick={() => this.props.dismiss(challenge)}
+                    type={rightSwipe.type}
+                    text={rightSwipe.text}
+                    onClick={() => rightSwipe.action(challenge)}
                 />
             );
         }
