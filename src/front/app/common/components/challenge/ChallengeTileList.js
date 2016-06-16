@@ -13,7 +13,12 @@ export default class ChallengeTileList extends React.Component {
             className: PropTypes.string,
             challenges: ImmutablePropTypes.list.isRequired,
             addToWatchList: PropTypes.func.isRequired,
-            dismiss: PropTypes.func.isRequired
+            dismiss: PropTypes.func.isRequired,
+            leftSwipeAction: ImmutablePropTypes.mapContains({
+                action: PropTypes.func.isRequired,
+                type: PropTypes.string,
+                text: PropTypes.string
+            }).isRequired
         };
     }
 
@@ -49,7 +54,8 @@ export default class ChallengeTileList extends React.Component {
 
     isSwipeDirectionAvailable(direction) {
         if (direction === LEFT) {
-            return this.props.addToWatchList;
+            // return this.props.addToWatchList;
+            return this.props.leftSwipeAction.action;
         }
 
         if (direction === RIGHT) {
@@ -63,10 +69,15 @@ export default class ChallengeTileList extends React.Component {
 
         if (swipedDirection === LEFT) {
             return (
+                // <ChallengeTileAction
+                //     type="watch"
+                //     text="To watchlist"
+                //     onClick={() => this.props.addToWatchList(challenge)}
+                // />
                 <ChallengeTileAction
-                    type="watch"
-                    text="To watchlist"
-                    onClick={() => this.props.addToWatchList(challenge)}
+                    type={this.props.leftSwipeAction.type}
+                    text={this.props.leftSwipeAction.text}
+                    onClick={() => this.props.leftSwipeAction.action(challenge)}
                 />
             );
         }
