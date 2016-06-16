@@ -1,8 +1,15 @@
 import { connect } from 'react-redux';
 import CreateForm from './CreateForm';
-import { fetchCategories, postChallenge } from '../create.actions';
+import { fetchCategories, postChallenge, updateChallenge } from '../create.actions';
+import { resetState } from '../../challenge/challenge.actions';
 
-const mapStateToProps = ({ categories, auth }) => ({ categories, user: auth.get('userId') });
+const mapStateToProps = ({ categories, auth, challenge }) => (
+    {
+        challenge,
+        categories,
+        user: auth.get('userId')
+    }
+);
 
 const mapDispatchToProps = (dispatch) => ({
     getCategories: () => {
@@ -10,7 +17,11 @@ const mapDispatchToProps = (dispatch) => ({
     },
     postChallenge: (challenge) => {
         dispatch(postChallenge(challenge));
-    }
+    },
+    updateChallenge: (data, id) => {
+        dispatch(updateChallenge(data, id));
+    },
+    resetState
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateForm);

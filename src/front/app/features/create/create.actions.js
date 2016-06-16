@@ -31,7 +31,8 @@ export function postChallenge(formData) {
     return function innerPostChallenge(dispatch) {
         api('/api/challenges/', {
             method: 'POST',
-            body: JSON.stringify(formData) })
+            body: JSON.stringify(formData)
+        })
             .then((response) => {
                 dispatch(receiveChallenge(response));
                 hashHistory.goBack();
@@ -39,3 +40,19 @@ export function postChallenge(formData) {
     };
 }
 
+export function updateChallenge(formData, id) {
+    return function innerUpdateChallenge(dispatch) {
+        if (formData.size) {
+            api(`/api/challenges/${id}`, {
+                method: 'PUT',
+                body: JSON.stringify(formData)
+            })
+                .then((response) => {
+                    dispatch(receiveChallenge(response));
+                    hashHistory.goBack();
+                });
+        } else {
+            hashHistory.push('/main/challenges');
+        }
+    };
+}

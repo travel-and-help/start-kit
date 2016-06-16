@@ -57,7 +57,7 @@ class Challenge extends Component {
 
     render() {
 
-        const { challenge, onWatchChallenge, onAccept, onComplete } = this.props;
+        const { challenge, onWatchChallenge, onAccept, onComplete, userId } = this.props;
         if (challenge.size) {
             return (
                 <Layout
@@ -74,6 +74,7 @@ class Challenge extends Component {
                             challenge={challenge}
                             onAccept={onAccept}
                             onComplete={onComplete}
+                            currentUser={userId}
                         />
                         <ChallengeComments />
                     </div>

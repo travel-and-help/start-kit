@@ -18,6 +18,7 @@ export default () => (
         <Route path="categories" component={CategoryTileListContainer} />
         <Route path="challenge/:id" component={ChallengeContainer} />
         <Route path="create" component={CreateFormContainer} />
+        <Route path="edit/:challengeId" component={CreateFormContainer} />
         <Route path="complete-challenge/:id" component={CompleteChallenge} />
     </Route>
 );

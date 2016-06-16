@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
+import { hashHistory } from 'react-router';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import IconButton from './../../../common/components/buttons/IconButton';
 import Fasteners from './../../../common/components/fasteners/Fasteners';
 
-const ChallengeDetails = ({ challenge, onAccept, onComplete }) => {
+const ChallengeDetails = ({ challenge, onAccept, onComplete, currentUser }) => {
     const {
+        _id,
         image,
         title,
         level,
@@ -12,15 +14,24 @@ const ChallengeDetails = ({ challenge, onAccept, onComplete }) => {
         categories,
         location,
         user
-    } = challenge.toJS();
+        } = challenge.toJS();
 
-    let actionTitle = 'Accept';
-    let actionIconName = 'accept';
-    let clickHandler = () => onAccept(challenge.get('_id'));
-    if (challenge.get('isAccepted')) {
+    let actionTitle,
+        actionIconName,
+        clickHandler;
+
+    if (currentUser === user._id) {
+        actionTitle = 'Edit';
+        clickHandler = () => hashHistory.push(`/edit/${_id}`);
+        actionIconName = 'edit';
+    } else if (challenge.get('isAccepted')) {
         actionTitle = 'Complete';
         clickHandler = () => onComplete(challenge.get('_id'));
         actionIconName = 'complete';
+    } else {
+        actionTitle = 'Accept';
+        actionIconName = 'accept';
+        clickHandler = () => onAccept(challenge.get('_id'));
     }
     const inlineStyle = image ? { backgroundImage: `url(${image})` } : {};
     return (
@@ -121,7 +132,8 @@ ChallengeDetails.propTypes = {
         user: ImmutablePropTypes.mapContains({
             fullName: PropTypes.string
         })
-    }).isRequired
+    }).isRequired,
+    currentUser: PropTypes.string
 };
 
 export default ChallengeDetails;

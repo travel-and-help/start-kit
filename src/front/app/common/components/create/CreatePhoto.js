@@ -35,18 +35,29 @@ class CreatePhoto extends Component {
     }
 
     render() {
-        const { inlineStyle } = this.state;
+        let inlineStyle;
         const { image } = this.props;
+        const imageUrl = image.value;
+        if (imageUrl) {
+            inlineStyle = {
+                ...this.state.inlineStyle,
+                background: `url(${imageUrl})`,
+                backgroundSize: 'cover'
+            };
+        } else {
+            inlineStyle = this.state.inlineStyle;
+        }
+
         return (
             <div className={image.error && image.touched ?
                 'create-photo create-photo_error' :
                 'create-photo'}
                  style={ inlineStyle }
-                 onClick= { this.onClick }
+                 onClick={ this.onClick }
             >
                 <input className="create-photo__input"
-                    type="text"
-                    ref={(ref) => { this.createInput = ref; }}
+                       type="text"
+                       ref={(ref) => { this.createInput = ref; }}
                     {...image}
                 />
             </div>
