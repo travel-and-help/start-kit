@@ -37,4 +37,15 @@
       fill: $gTextColor;
     }
   }
+
+  &_accept {
+    color: $gTextColor;
+    background-color: rgba(255, 238, 147, $gOpacity);
+    .icon {
+      width: _th-rem(24);
+      height: _th-rem(24);
+      color: $gTextColor;
+      fill: $gTextColor;
+    }
+  }
 }
