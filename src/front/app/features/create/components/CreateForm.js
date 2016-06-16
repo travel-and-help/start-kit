@@ -93,7 +93,7 @@ const mapStateToProps = ({ challenge, auth }) => {
     const initialValues = {
         ...challenge.toJS(),
         category: categories && categories[0],
-        user: auth.userId
+        user: auth.get('userId')
     };
     return { initialValues };
 

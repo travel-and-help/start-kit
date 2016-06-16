@@ -49,9 +49,7 @@ class CreatePhoto extends Component {
         }
 
         return (
-            <div className={image.error && image.touched ?
-                'create-photo create-photo_error' :
-                'create-photo'}
+            <div className='create-photo'
                  style={ inlineStyle }
                  onClick={ this.onClick }
             >
