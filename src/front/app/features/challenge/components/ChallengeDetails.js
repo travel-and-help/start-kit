@@ -16,6 +16,8 @@ const ChallengeDetails = ({ challenge, onAccept, onComplete, currentUser }) => {
         user
         } = challenge.toJS();
 
+    const defaultButtonClassName = 'challenge-info__button';
+
     let actionTitle,
         actionIconName,
         clickHandler,
@@ -24,16 +26,17 @@ const ChallengeDetails = ({ challenge, onAccept, onComplete, currentUser }) => {
     if (currentUser === user._id) {
         actionTitle = 'Edit';
         clickHandler = () => hashHistory.push(`/edit/${_id}`);
+        buttonClassName = `${defaultButtonClassName} ${defaultButtonClassName}_edit`;
         actionIconName = 'edit';
     } else if (challenge.get('isAccepted')) {
         actionTitle = 'Complete';
-        buttonClassName = 'challenge-info__button challenge-info__button_accepted';
+        buttonClassName = `${defaultButtonClassName} ${defaultButtonClassName}_accepted`;
         clickHandler = () => onComplete(challenge.get('_id'));
         actionIconName = 'complete';
     } else {
         actionTitle = 'Accept';
         actionIconName = 'accept';
-        buttonClassName = 'challenge-info__button';
+        buttonClassName = defaultButtonClassName;
         clickHandler = () => onAccept(challenge.get('_id'));
     }
     const inlineStyle = image ? { backgroundImage: `url(${image})` } : {};
