@@ -14,14 +14,16 @@ const ChallengeDetails = ({ challenge, onAccept }) => {
         user
     } = challenge.toJS();
 
+    const defaultButtonClassName = 'challenge-info__button';
+    
     let actionTitle = 'Accept',
         actionIconName = 'accept',
-        buttonClassName = 'challenge-info__button',
+        buttonClassName,
         clickHandler = () => onAccept(challenge.get('_id'));
 
     if (challenge.get('isAccepted')) {
         actionTitle = 'Complete';
-        buttonClassName += ' challenge-info__button_accepted';
+        buttonClassName = `${defaultButtonClassName} ${defaultButtonClassName}_accepted`;
         clickHandler = () => {};
         actionIconName = 'complete';
     }
