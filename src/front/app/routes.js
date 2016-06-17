@@ -7,6 +7,8 @@ import mainRoutes from './features/main/routes';
 import profileRoutes from './features/profile-challenges/routes';
 import ChallengeContainer from './features/challenge/components/ChallengeContainer';
 import CreateFormContainer from './features/create/components/CreateFormContainer';
+import CompleteChallenge from
+    './features/challenge/components/complete/CompleteChallenge';
 
 export default () => (
     <Route path="/" >
@@ -16,5 +18,7 @@ export default () => (
         <Route path="categories" component={CategoryTileListContainer} />
         <Route path="challenge/:id" component={ChallengeContainer} />
         <Route path="create" component={CreateFormContainer} />
+        <Route path="edit/:challengeId" component={CreateFormContainer} />
+        <Route path="complete-challenge/:id" component={CompleteChallenge} />
     </Route>
 );

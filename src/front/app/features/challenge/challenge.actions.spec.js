@@ -171,4 +171,51 @@ describe('action/categories', () => {
             });
         });
     });
+
+    describe('#completeChallenge', () => {
+        let fetcher;
+
+        beforeEach(() => {
+            sut = executeSut();
+            dispatch = env.spy();
+            fetcher = sut.completeChallenge(42, {});
+        });
+
+        it('should complete challenge', () => {
+            fetcher(dispatch);
+            api.should.have.been
+                .calledWith('/api/challenge/42/complete')
+                .and.callCount(1);
+        });
+
+    });
+
+    describe('#fetchSimilarChallenge', () => {
+        let fetcher;
+
+        beforeEach(() => {
+            sut = executeSut([]);
+            dispatch = env.spy();
+            fetcher = sut.fetchSimilarChallenge(42);
+        });
+
+        it('should fetch similar challenges', () => {
+            fetcher(dispatch);
+            api.should.have.been
+                .calledWith('/api/challenge/search?similar=42')
+                .and.callCount(1);
+        });
+
+        it('should dispatch GET_SIMILAR_CHALLENGE event with data from response', () => {
+            fetcher(dispatch);
+            return promise.finally(() => {
+                const action = dispatch.lastCall.args[0];
+                action.should.eqls({
+                    type: sut.GET_SIMILAR_CHALLENGE,
+                    id: 42,
+                    challenges: []
+                });
+            });
+        });
+    });
 });

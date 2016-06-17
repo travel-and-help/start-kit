@@ -10,19 +10,27 @@ describe('routes/challenges-post', () => {
         save,
         mockChallenge,
         Challenge,
-        mockModel;
+        mockModel,
+        request,
+        imgRemotePath;
 
     beforeEach(() => {
         mockChallenge = {
-            title: 'Test Title'
+            title: 'Test Title',
+            image: 'testImage'
         };
 
         req = {
             body: mockChallenge
         };
 
+        const mockRes = {
+            send: env.stub()
+        };
+
         res = {
-            json: env.spy()
+            json: env.spy(),
+            status: env.stub().returns(mockRes)
         };
 
         save = env.spy((cb) => {
@@ -33,10 +41,23 @@ describe('routes/challenges-post', () => {
             save
         };
 
+        imgRemotePath = 'imgRemotePath';
+
+        const postMockResp = JSON.stringify({
+            path: imgRemotePath
+        });
+
+        request = {
+            post: env.spy((opt, cb) => {
+                cb(null, {}, postMockResp);
+            })
+        };
+
         Challenge = env.stub().returns(mockModel);
 
         sut = proxyquire('./post', {
-            '../../models/challenge': Challenge
+            '../../models/challenge': Challenge,
+            request
         });
 
         sut(req, res);

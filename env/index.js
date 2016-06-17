@@ -24,4 +24,5 @@ module.exports = {
     FACEBOOK_SECRET: getenv('FACEBOOK_SECRET', ''),
     GOOGLE_PLUS_ID: getenv('GOOGLE_PLUS_ID', ''),
     GOOGLE_PLUS_SECRET: getenv('GOOGLE_PLUS_SECRET', ''),
+    IMAGE_HOSTING_URL: getenv('IMAGE_HOSTING_URL', '')
 };

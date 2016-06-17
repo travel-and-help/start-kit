@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
+import { hashHistory } from 'react-router';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import IconButton from './../../../common/components/buttons/IconButton';
 import Fasteners from './../../../common/components/fasteners/Fasteners';
 
-const ChallengeDetails = ({ challenge, onAccept }) => {
+const ChallengeDetails = ({ challenge, onAccept, onComplete, currentUser }) => {
     const {
+        _id,
         image,
         title,
         level,
@@ -12,20 +14,28 @@ const ChallengeDetails = ({ challenge, onAccept }) => {
         categories,
         location,
         user
-    } = challenge.toJS();
+        } = challenge.toJS();
 
-    let actionTitle = 'Accept',
-        actionIconName = 'accept',
-        buttonClassName = 'challenge-info__button',
-        clickHandler = () => onAccept(challenge.get('_id'));
+    let actionTitle,
+        actionIconName,
+        clickHandler,
+        buttonClassName;
 
-    if (challenge.get('isAccepted')) {
+    if (currentUser === user._id) {
+        actionTitle = 'Edit';
+        clickHandler = () => hashHistory.push(`/edit/${_id}`);
+        actionIconName = 'edit';
+    } else if (challenge.get('isAccepted')) {
         actionTitle = 'Complete';
-        buttonClassName += ' challenge-info__button_accepted';
-        clickHandler = () => {};
+        buttonClassName = 'challenge-info__button challenge-info__button_accepted';
+        clickHandler = () => onComplete(challenge.get('_id'));
         actionIconName = 'complete';
+    } else {
+        actionTitle = 'Accept';
+        actionIconName = 'accept';
+        buttonClassName = 'challenge-info__button';
+        clickHandler = () => onAccept(challenge.get('_id'));
     }
-
     const inlineStyle = image ? { backgroundImage: `url(${image})` } : {};
     return (
         <section>
@@ -114,6 +124,7 @@ const ChallengeDetails = ({ challenge, onAccept }) => {
 
 ChallengeDetails.propTypes = {
     onAccept: PropTypes.func.isRequired,
+    onComplete: PropTypes.func.isRequired,
     challenge: ImmutablePropTypes.mapContains({
         image: PropTypes.string,
         title: PropTypes.string,
@@ -124,7 +135,8 @@ ChallengeDetails.propTypes = {
         user: ImmutablePropTypes.mapContains({
             fullName: PropTypes.string
         })
-    }).isRequired
+    }).isRequired,
+    currentUser: PropTypes.string
 };
 
 export default ChallengeDetails;

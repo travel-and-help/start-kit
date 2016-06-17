@@ -1,22 +1,31 @@
 import React, { PropTypes } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-const CreateCategories = ({ categories, category }) => {
+const CreateCategories = ({ categories, value, ...rest }) => {
     const categoriesArr = categories.toJS();
     const placeholder = 'Challenge category';
+    const parseValue = (val, collection = []) => (
+        collection
+            .find((cat) => cat._id === val)
+            .name
+    );
 
     return (
-        <div className={category.error && category.touched ?
+        <div className={rest.error && rest.touched ?
           'create-category create-category_error' : 'create-category' }
         >
-            <div className="create-category__value">
-                {(category.value !== '') ? JSON.parse(category.value).name : placeholder}
+            <div className="create-category__value" >
+                {value && parseValue(value, categoriesArr) || placeholder}
             </div>
-
-            <select className="create-category__select" {...category}>
-                <option value="">{placeholder}</option>
+            <select className="create-category__select"
+                    value={value}
+                {...rest}
+            >
+                <option value="" >{placeholder}</option>
                 { categoriesArr && categoriesArr.map((cat, index) => (
-                    <option value={JSON.stringify(cat)} key={index}>{cat.name}</option>
+                    <option value={cat._id} key={index} >
+                        {cat.name}
+                    </option>
                 )) }
             </select>
         </div>
@@ -25,8 +34,8 @@ const CreateCategories = ({ categories, category }) => {
 
 CreateCategories.propTypes = {
     categories: ImmutablePropTypes.list.isRequired,
-    category: PropTypes.object
+    category: PropTypes.object,
+    value: PropTypes.string
 };
-
 
 export default CreateCategories;

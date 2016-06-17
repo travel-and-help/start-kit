@@ -2,6 +2,7 @@ import sut from './challenge.reducer';
 import { Map, fromJS } from 'immutable';
 import {
     GET_CHALLENGE,
+    GET_SIMILAR_CHALLENGE,
     RESET_STATE,
     ADDED_TO_WATCHLIST,
     ADDED_TO_ACCEPTED_LIST,
@@ -20,6 +21,23 @@ describe('reducer/challenge', () => {
             challenge: { 1: '1', 2: '2', 3: '3' }
         };
         const expectedState = fromJS({ 1: '1', 2: '2', 3: '3' });
+
+        const currentState = sut(undefined, action);
+
+        currentState.should.eqls(expectedState);
+    });
+
+    it('should add similar challenges to state', () => {
+        const action = {
+            type: GET_SIMILAR_CHALLENGE,
+            id: 42,
+            challenges: []
+        };
+        const expectedState = fromJS({
+            similar: {
+                42: []
+            }
+        });
 
         const currentState = sut(undefined, action);
 

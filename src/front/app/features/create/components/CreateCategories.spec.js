@@ -19,7 +19,7 @@ describe('CreateCategories', () => {
             name: 'test category'
         }]);
 
-        sut = mount(<CreateCategories categories={categoriesMock} category={categoryMock} />);
+        sut = mount(<CreateCategories categories={categoriesMock} {...categoryMock} />);
     });
 
     it('should has error class', () => {
@@ -28,12 +28,16 @@ describe('CreateCategories', () => {
     });
 
     it('should has a placeholder', () => {
-        sut.find('.create-category__select option').first()
+        sut.find('.create-category__select')
+            .find('option')
+            .first()
             .text().should.equal('Challenge category');
     });
 
     it('should render an options', () => {
-        sut.find('.create-category__select option').last()
+        sut.find('.create-category__select')
+            .find('option')
+            .last()
             .text().should.equal('test category');
     });
 });
