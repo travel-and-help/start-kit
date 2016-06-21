@@ -56,7 +56,7 @@ describe('CreatePhoto', () => {
             const imageData = 'imageData';
             onSuccessCallBack(imageData);
 
-            sut.find('.create-photo__input').get(0).value.should.equal(imageData);
+            sut.find('.create-photo').get(0).value.should.equal(imageData);
         });
     });
 });

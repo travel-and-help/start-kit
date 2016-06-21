@@ -21,7 +21,7 @@ const CreateFormBody = ({ fields, categories }) => {
         <div className="challenge-create__body">
             <CreateError formFields={fields} />
 
-            <CreatePhoto image={image} />
+            <CreatePhoto {...image} />
 
             <input
                 className={title.error && title.touched ?

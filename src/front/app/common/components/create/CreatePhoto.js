@@ -23,8 +23,12 @@ class CreatePhoto extends Component {
     }
 
     cameraSuccess(imageData) {
-        this.createInput.value = imageData;
-        this.createInput.onChange(imageData);
+        const input = this.createInput;
+        input.value = imageData;
+        const event = new Event('input', {
+            bubbles: true
+        });
+        input.dispatchEvent(event);
         this.setState({
             inlineStyle: {
                 background: `url(data:image;base64,${imageData})`,
@@ -35,26 +39,26 @@ class CreatePhoto extends Component {
 
     render() {
         const { inlineStyle } = this.state;
-        const { image } = this.props;
+        const { onChange, error, touched, ...rest } = this.props;
         return (
-            <div className={image.error && image.touched ?
+            <input className={error && touched ?
                 'create-photo create-photo_error' :
                 'create-photo'}
-                 style={ inlineStyle }
-                 onClick= { this.onClick }
-            >
-                <input className="create-photo__input"
-                    type="text"
-                    ref={(ref) => { this.createInput = ref; }}
-                    {...image}
-                />
-            </div>
+                   type="text"
+                   ref={(ref) => { this.createInput = ref; }}
+                   style={ inlineStyle }
+                   {...rest}
+                   onClick= { this.onClick }
+                   onChange={ onChange }
+            />
         );
     }
 }
 
 CreatePhoto.propTypes = {
-    image: PropTypes.object
+    onChange: PropTypes.func,
+    error: PropTypes.bool,
+    touched: PropTypes.bool
 };
 
 export default CreatePhoto;
