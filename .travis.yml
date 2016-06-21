@@ -32,7 +32,6 @@ deploy:
     skip_cleanup: true
     on:
       tags: true
-      branch: demo/#2
 after_deploy:
   - npm run test:e2e
 cache:
