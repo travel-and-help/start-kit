@@ -4,7 +4,10 @@ const challenge = require('../api/models/challenge');
 
 function getWatchedChallenges(userPromise) {
     return userPromise
-        .then(user => challenge.find({ _id: { $in: user.get('watchList') } }));
+        .then(user => challenge
+            .find({ _id: { $in: user.get('watchList') } })
+            .populate('user')
+        );
 }
 
 function unWatchChallenge(userPromise, challengeId) {
