@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
-const cameraError = (message) => {
-    console.log(`Failed because: ${message}`);
+const cameraError = (/* message */) => {
+    // TODO camera Error handling
 };
 
 class CreatePhoto extends Component {
@@ -24,8 +24,7 @@ class CreatePhoto extends Component {
 
     cameraSuccess(imageData) {
         this.createInput.value = imageData;
-        this.createInput.focus();
-        this.createInput.blur();
+        this.createInput.onChange(imageData);
         this.setState({
             inlineStyle: {
                 background: `url(data:image;base64,${imageData})`,
