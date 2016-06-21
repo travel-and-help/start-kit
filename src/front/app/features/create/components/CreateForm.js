@@ -29,10 +29,7 @@ class CreateForm extends Component {
             const formData = data;
             formData.user = user;
             formData.categories = [JSON.parse(data.category)._id];
-
-            // TODO: remove after demo #2
             formData.location = 'Kyiv';
-            formData.image = 'http://placekitten.com/400/400';
             formData.level = 'easy';
 
             postChallenge(formData);
@@ -68,7 +65,8 @@ export default reduxForm({
         'endDate',
         'repeateble',
         'proof',
-        'user'
+        'user',
+        'image'
     ],
     validate
 })(CreateForm);
