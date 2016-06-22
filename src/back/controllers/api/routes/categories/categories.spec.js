@@ -64,11 +64,11 @@ describe('categories handler', () => {
 
             onCategoryFindCallback = categoryModel.find.lastCall.args[1];
 
-            onCategoryFindCallback({}, data);
+            onCategoryFindCallback(null, data);
 
             onUserFindCallback = userModel.findById.lastCall.args[1];
 
-            onUserFindCallback({}, userData);
+            onUserFindCallback(null, userData);
         });
 
         it('should return all categories', () => {
