@@ -1,0 +1,107 @@
+$moreListTitleColor: #acf7bc;
+$assetsBasePath: './app/common/icons/';
+
+$regular_border_color: #4a4a4a;
+
+.challenge-complete {
+    &__body {
+        position: relative;
+        box-sizing: content-box;
+        border: .125rem solid #4a4a4a;
+        border-radius: .625rem;
+        background: #fff;
+    }
+    &__body-title {
+        display: flex;
+        flex-direction: column;
+        color: #505050;
+        text-align: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.125rem;
+        padding: 1rem 0 1rem 0;
+        width: 100%;
+    }
+    &__content {
+        position: absolute;
+        top: 4rem;
+        left: 0;
+        padding: 0 .5625rem;
+        width: 100%;
+    }
+    &__icons {
+        width: 100%;
+        text-align: center;
+    }
+    &__icon {
+        display: inline-block;
+        text-align: center;
+        margin: 0 1.5rem;
+    }
+    &__submit-wrapper {
+        margin: .9375rem 0rem .59375rem 0rem;
+    }
+
+    &__submit-btn {
+        margin: 0 auto;
+        display: inherit;
+        background-color: #4a4a4a;
+        color: #ffffff;
+        border-radius: .3125rem;
+        border: none;
+        padding: .3125rem 1.45625rem .3125rem .55rem;
+        position: relative;
+        font-size: .5rem;
+
+        &:after {
+            background: url($assetsBasePath + 'send.svg') no-repeat center;
+            content: '';
+            position: absolute;
+            width: .6875rem;
+            height: .6875rem;
+            top: .25rem;
+            right: .55rem;
+            background-size: contain;
+            display: block;
+        }
+    }
+
+    &__more-list-title {
+        margin-top: 20px;
+        margin-bottom: .9375rem;
+        position: relative;
+        height: 2rem;
+        border: .125rem solid #4a4a4a;
+        border-radius: .625rem;
+        text-transform: uppercase;
+        text-align: center;
+        background-color: $moreListTitleColor;
+        font-size: _th-rem(18);
+        line-height: _th-rem(33);
+        font-weight: 700;
+        letter-spacing: _th-rem(1);
+    }
+
+    .create-photo {
+        width: 5rem;
+        height: 1.1rem;
+        padding-top: 3rem;
+        border-radius: 100%;
+        border: none;
+        float: left;
+        font-size: 0.5625rem;
+        background: url($assetsBasePath + 'create-photo.svg') no-repeat center;
+
+    }
+
+    .share-facebook {
+        width: 5rem;
+        height: 1.1rem;
+        padding-top: 3rem;
+        border-radius: 100%;
+        border: none;
+        float: left;
+        font-size: 0.5625rem;
+        background: url($assetsBasePath + 'share-facebook.svg') no-repeat center;
+    }
+}
