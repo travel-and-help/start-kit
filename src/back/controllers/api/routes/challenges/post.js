@@ -1,48 +1,31 @@
 'use strict';
 
 const Challenge = require('../../models/challenge');
-const request = require('request');
-const imageHostingUrl = require('../../../../../../env').IMAGE_HOSTING_URL;
+const imageService = require('../../../../common/imageService');
 
-const newPost = (req, res, next) => {
-    const url = `${imageHostingUrl}/picture`;
+const post = (req, res, next) => {
     const body = req.body;
-    const imageBuffer = new Buffer(body.image, 'base64');
-    const formData = {
-        file: {
-            value: imageBuffer,
-            options: {
-                filename: `travelAndHelp${imageBuffer.length}`,
-                contentType: 'image'
-            }
-        }
+    const imageOptions = {
+        image: body.image,
+        category: body.categories[0]
     };
 
-    request.post(
-        {
-            url,
-            formData
-        },
-        (error, httpResponse, respBody) => {
-            if (error) {
-                next(error);
-            } else if (respBody) {
-                const path = JSON.parse(respBody).path;
-                body.image = `${imageHostingUrl}/${path}`;
+    imageService
+        .saveImage(imageOptions)
+        .then((imagePath) => {
+            body.image = imagePath;
 
-                const model = new Challenge(body);
-                model.save((saveError, challenge) => {
-                    if (saveError) {
-                        next(saveError);
-                    } else {
-                        res.json(challenge);
-                    }
-                });
-            } else {
-                next(new Error('ExternalServiceError'));
-            }
-        }
-    );
+            const model = new Challenge(body);
+
+            model.save((saveError, challenge) => {
+                if (saveError) {
+                    next(saveError);
+                } else {
+                    res.json(challenge);
+                }
+            });
+        }, next);
+
 };
 
-module.exports = newPost;
+module.exports = post;

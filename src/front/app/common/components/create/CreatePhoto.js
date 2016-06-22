@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
-const cameraError = (message) => {
-    console.log(`Failed because: ${message}`);
+const cameraError = (/* message */) => {
+    // TODO camera Error handling
 };
 
 class CreatePhoto extends Component {
@@ -23,9 +23,12 @@ class CreatePhoto extends Component {
     }
 
     cameraSuccess(imageData) {
-        this.createInput.value = imageData;
-        this.createInput.focus();
-        this.createInput.blur();
+        const input = this.createInput;
+        input.value = imageData;
+        const event = new Event('input', {
+            bubbles: true
+        });
+        input.dispatchEvent(event);
         this.setState({
             inlineStyle: {
                 background: `url(data:image;base64,${imageData})`,
@@ -35,36 +38,27 @@ class CreatePhoto extends Component {
     }
 
     render() {
-        let inlineStyle;
-        const { image } = this.props;
-        const imageUrl = image.value;
-        if (imageUrl) {
-            inlineStyle = {
-                ...this.state.inlineStyle,
-                background: `url(${imageUrl})`,
-                backgroundSize: 'cover'
-            };
-        } else {
-            inlineStyle = this.state.inlineStyle;
-        }
-
+        const { inlineStyle } = this.state;
+        const { onChange, error, touched, ...rest } = this.props;
         return (
-            <div className='create-photo'
-                 style={ inlineStyle }
-                 onClick={ this.onClick }
-            >
-                <input className="create-photo__input"
-                       type="text"
-                       ref={(ref) => { this.createInput = ref; }}
-                    {...image}
-                />
-            </div>
+            <input className={error && touched ?
+                'create-photo create-photo_error' :
+                'create-photo'}
+                   type="text"
+                   ref={(ref) => { this.createInput = ref; }}
+                   style={ inlineStyle }
+                   {...rest}
+                   onClick= { this.onClick }
+                   onChange={ onChange }
+            />
         );
     }
 }
 
 CreatePhoto.propTypes = {
-    image: PropTypes.object
+    onChange: PropTypes.func,
+    error: PropTypes.bool,
+    touched: PropTypes.bool
 };
 
 export default CreatePhoto;

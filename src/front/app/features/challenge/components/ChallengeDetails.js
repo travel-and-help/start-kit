@@ -16,6 +16,8 @@ const ChallengeDetails = ({ challenge, onAccept, onComplete, currentUser }) => {
         user
         } = challenge.toJS();
 
+    const defaultButtonClassName = 'challenge-info__button';
+
     let actionTitle,
         actionIconName,
         clickHandler;
@@ -26,13 +28,16 @@ const ChallengeDetails = ({ challenge, onAccept, onComplete, currentUser }) => {
         actionIconName = 'edit';
     } else if (challenge.get('isAccepted')) {
         actionTitle = 'Complete';
+        buttonClassName = `${defaultButtonClassName} ${defaultButtonClassName}_accepted`;
         clickHandler = () => onComplete(challenge.get('_id'));
         actionIconName = 'complete';
     } else {
-        actionTitle = 'Accept';
-        actionIconName = 'accept';
+        actionTitle = 'Accept',
+        actionIconName = 'accept',
+        buttonClassName = defaultButtonClassName,
         clickHandler = () => onAccept(challenge.get('_id'));
     }
+
     const inlineStyle = image ? { backgroundImage: `url(${image})` } : {};
     return (
         <section>
@@ -91,7 +96,7 @@ const ChallengeDetails = ({ challenge, onAccept, onComplete, currentUser }) => {
                         <Fasteners className="challenge-info__fasteners" />
                         <IconButton
                             title={actionTitle}
-                            buttonClassName={'challenge-info__button'}
+                            buttonClassName={buttonClassName}
                             iconName={actionIconName}
                             iconSize={32}
                             iconClassName={'icon_dark'}

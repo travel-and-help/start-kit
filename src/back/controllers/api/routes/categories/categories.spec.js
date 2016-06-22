@@ -13,7 +13,8 @@ describe('categories handler', () => {
             find: env.stub()
         };
         userModel = {
-            find: env.stub()
+            find: env.stub(),
+            findById: env.stub()
         };
         updateStub = env.stub();
         userModel.find.returns({ update: updateStub });
@@ -23,22 +24,52 @@ describe('categories handler', () => {
         });
     });
 
-    it('should return all data from model', () => {
-        sut.getAll();
-        categoryModel.find.should.have.been.calledWith({});
-    });
+    describe('getAll', () => {
+        let res;
+        let req;
+        let next;
+        let data;
+        let userData;
+        let onCategoryFindCallback;
+        let onUserFindCallback;
+        let expectedData;
 
-    it('should return data as parsed json', () => {
-        const res = { json: env.stub() };
-        const data = 'data';
+        beforeEach(() => {
+            expectedData = [
+                { _id: 1, name: 'name1', checked: true },
+                { _id: 2, name: 'name2' }
+            ];
+            res = {
+                json: env.stub(),
+                sendStatus: env.stub()
+            };
+            req = {
+                user: { _id: 1 }
+            };
+            next = env.stub();
+            data = [{ _id: 1, name: 'name1' }, { _id: 2, name: 'name2' }];
+            userData = {
+                categories: [1]
+            };
 
-        sut.getAll({}, res);
+            sut.getAll(req, res, next);
 
-        const onFindCallback = categoryModel.find.lastCall.args[1];
+            onCategoryFindCallback = categoryModel.find.lastCall.args[1];
 
-        onFindCallback({}, data);
+            onCategoryFindCallback({}, data);
 
-        res.json.should.have.been.calledWith(data);
+            onUserFindCallback = userModel.findById.lastCall.args[1];
+
+            onUserFindCallback({}, userData);
+        });
+
+        it('should return all categories', () => {
+            categoryModel.find.should.have.been.calledWith({});
+        });
+
+        it('should mark user saved categories as checked', () => {
+            res.json.should.have.been.calledWith(expectedData);
+        });
     });
 
     describe('save', () => {
@@ -46,6 +77,7 @@ describe('categories handler', () => {
         let categoryIds;
         let req;
         let res;
+        let next;
 
         beforeEach(() => {
             categories = [
@@ -59,11 +91,12 @@ describe('categories handler', () => {
                 body: categories
             };
             res = {
-                sendStatus: env.stub(),
+                json: env.stub(),
                 status: env.stub()
             };
+            next = env.stub();
 
-            sut.save(req, res);
+            sut.save(req, res, next);
         });
 
         it('should save user categories', () => {
@@ -71,21 +104,21 @@ describe('categories handler', () => {
             updateStub.should.have.been.calledWith({ categories: categoryIds }, sinon.match.func);
         });
 
-        it('should respond with status 200 in case of no errors', () => {
+        it('should respond with valid json in case of no errors', () => {
             const updateCallback = updateStub.lastCall.args[1];
 
             updateCallback();
 
-            res.status.should.have.been.calledWith(200);
+            res.json.should.have.been.calledWith({ saved: true });
         });
 
-        it('should send status 500 in case of error', () => {
+        it('should pass error to error handler', () => {
             const updateCallback = updateStub.lastCall.args[1];
             const error = true;
 
             updateCallback(error);
 
-            res.sendStatus.should.have.been.calledWith(500);
+            next.should.have.been.calledWith(error);
         });
     });
 });

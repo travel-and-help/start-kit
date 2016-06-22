@@ -2,65 +2,70 @@
 
 const proxyquire = require('proxyquire');
 
-
 describe('routes/challenges-post', () => {
     let sut,
         req,
         res,
+        next,
         save,
         mockChallenge,
         Challenge,
         mockModel,
-        request,
-        imgRemotePath;
+        imageService,
+        saveImageResp;
 
     beforeEach(() => {
-        mockChallenge = {
-            title: 'Test Title',
-            image: 'testImage'
-        };
-
-        req = {
-            body: mockChallenge
-        };
-
-        const mockRes = {
-            send: env.stub()
-        };
-
         res = {
-            json: env.spy(),
-            status: env.stub().returns(mockRes)
+            json: env.spy()
         };
 
         save = env.spy((cb) => {
             cb(null, mockChallenge);
         });
 
+        next = env.spy();
+
         mockModel = {
             save
         };
 
-        imgRemotePath = 'imgRemotePath';
+        const image = 'image';
 
-        const postMockResp = JSON.stringify({
-            path: imgRemotePath
-        });
+        mockChallenge = {
+            categories: [
+                'testCategory'
+            ]
+        };
 
-        request = {
-            post: env.spy((opt, cb) => {
-                cb(null, {}, postMockResp);
-            })
+        req = {
+            body: {
+                image,
+                categories: [
+                    'testCategory'
+                ]
+            }
         };
 
         Challenge = env.stub().returns(mockModel);
 
+        saveImageResp = 'testImagePath';
+
+        const mockPromise = {
+            then: (cb) => {
+                cb(saveImageResp);
+            }
+        };
+
+        imageService = {
+            saveImage: env.stub().returns(mockPromise)
+        };
+
         sut = proxyquire('./post', {
             '../../models/challenge': Challenge,
-            request
+            '../../../../common/imageService': imageService
         });
 
-        sut(req, res);
+        sut(req, res, next);
     });
 
 
@@ -70,5 +75,30 @@ describe('routes/challenges-post', () => {
 
     it('should send response with new challenges from db', () => {
         res.json.should.been.calledWith(mockChallenge);
+    });
+
+    it('should call save image service with category', () => {
+        imageService.saveImage
+            .should.been.calledWith(
+                sinon.match({
+                    category: req.body.categories[0]
+                })
+            );
+    });
+
+    it('should create challenge with correct image', () => {
+        Challenge
+            .should.been.calledWith(
+                sinon.match({ image: saveImageResp })
+            );
+    });
+
+    it('should pass to middleware error thaht arrises from save', () => {
+        const error = 'error';
+        const saveCallBack = save.lastCall.args[0];
+
+        saveCallBack(error);
+
+        next.should.been.calledWith(error);
     });
 });

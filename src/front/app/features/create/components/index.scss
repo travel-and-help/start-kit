@@ -234,9 +234,13 @@ $assetsBasePath: './app/features/create/components/assets/';
     border: 2px solid $regular_border_color;
     float: left;
     background: url($assetsBasePath + 'create-photo.svg') no-repeat center;
+    font-size: 0;
+    outline: none;
 
-    &__input {
-        opacity: 0;
+
+    &_error {
+        border-color: $attention_color;
+        background-image: url($assetsBasePath + 'create-photo-invalid.svg');
     }
 }
 
