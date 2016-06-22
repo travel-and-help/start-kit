@@ -7,7 +7,7 @@ const bodyParser = require('body-parser'),
 
 module.exports = (app) => app
     .use(cors())
-    .use(bodyParser.json({ limit: '5mb' }))
+    .use(bodyParser.json({ limit: '50mb' }))
     .use(authService.validateJwt)
     .use(passport.initialize())
     .use(authService.initRequest);
