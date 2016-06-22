@@ -1,17 +1,17 @@
 import React from 'react';
-import CreateFormHeader from './CreateFormHeader';
+import FormHeader from './FormHeader';
 import { mount } from 'enzyme';
 const chai = require('chai'),
     expect = chai.expect;
 
-describe('CreateFormHeader', () => {
+xdescribe('FormHeader', () => {
     let sut;
     let goBack;
 
     beforeEach(() => {
         goBack = env.stub();
 
-        sut = mount(<CreateFormHeader onDiscardClick={goBack} />);
+        sut = mount(<FormHeader headerTitle="Create Challenge" />);
     });
 
     it('should contains page title', () => {

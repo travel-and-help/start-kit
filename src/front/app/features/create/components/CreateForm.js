@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import { hashHistory } from 'react-router';
 import { fromJS } from 'immutable';
-import CreateFormHeader from './CreateFormHeader';
 import CreateFormBody from './CreateFormBody';
 import { fetchChallenge } from '../../challenge/challenge.actions';
 import validate from './validate';
@@ -15,7 +14,7 @@ class CreateForm extends Component {
             user,
             getCategories,
             getChallenge } = this.props;
-        const challengeId = this.props.params.challengeId;
+        const challengeId = this.props.challengeId;
         if (!user) {
             hashHistory.push('/');
         }
@@ -29,10 +28,6 @@ class CreateForm extends Component {
 
     componentWillUnmount() {
         this.props.resetState();
-    }
-
-    goBack() {
-        hashHistory.goBack();
     }
 
     render() {
@@ -64,12 +59,9 @@ class CreateForm extends Component {
         };
 
         return (
-            <section className="challenge-create" >
                 <form onSubmit={ handleSubmit(extendPostChallenge) } >
-                    <CreateFormHeader onDiscardClick={this.goBack} />
                     <CreateFormBody fields={fields} categories={categories} />
                 </form>
-            </section>
         );
     }
 }
@@ -84,7 +76,7 @@ CreateForm.propTypes = {
     resetState: PropTypes.func.isRequired,
     categories: ImmutablePropTypes.list.isRequired,
     challenge: ImmutablePropTypes.map,
-    params: PropTypes.object,
+    challengeId: PropTypes.string,
     user: PropTypes.string
 };
 
