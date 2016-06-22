@@ -25,6 +25,14 @@ describe('categories handler', () => {
     });
 
     describe('getAll', () => {
+        it('should return all categories', () => {
+            sut.getAll();
+
+            categoryModel.find.should.have.been.calledWith({});
+        });
+    });
+
+    describe('getUserSavedCategories', () => {
         let res;
         let req;
         let next;
@@ -52,7 +60,7 @@ describe('categories handler', () => {
                 categories: [1]
             };
 
-            sut.getAll(req, res, next);
+            sut.getUserSavedCategories(req, res, next);
 
             onCategoryFindCallback = categoryModel.find.lastCall.args[1];
 

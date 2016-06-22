@@ -4,6 +4,14 @@ const categoryModel = require('./../../models/category');
 const userModel = require('./../../models/user');
 
 const getAll = (req, res, next) => {
+    categoryModel.find({}, (err, categories) => {
+        if (err) next(next);
+
+        res.json(categories);
+    });
+};
+
+const getUserSavedCategories = (req, res, next) => {
     categoryModel.find({}, (err, foundCategories) => {
         if (err) next(err);
 
@@ -61,5 +69,6 @@ function checkUserSavedCategories(user, foundCategories) {
 
 module.exports = {
     getAll,
+    getUserSavedCategories,
     save
 };
