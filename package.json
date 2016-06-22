@@ -34,7 +34,7 @@
     "test:ci": "npm-run-all -s lint coverage codecov",
     "lint:front": "eslint src/front",
     "lint:back": "eslint src/back",
-    "cordova:prepare": "PLATFORM=cordova npm run build && cordova prepare",
+    "cordova:prepare": "cross-env PLATFORM=cordova npm run build && cordova prepare",
     "cordova:build": "npm run cordova:prepare && cordova build",
     "cordova:emulate": "npm run cordova:prepare && cordova emulate",
     "cordova:device": "npm run cordova:prepare && cordova run --device"
@@ -61,6 +61,7 @@
     "chalk": "^1.1.1",
     "codecov": "^1.0.1",
     "cordova": "^6.1.1",
+    "cross-env": "^1.0.8",
     "css-loader": "^0.23.1",
     "csscomb-loader": "0.0.2",
     "dotenv": "^2.0.0",

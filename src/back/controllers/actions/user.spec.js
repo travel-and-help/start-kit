@@ -12,7 +12,10 @@ describe('user actions service', () => {
     beforeEach(() => {
         challengeIds = ['id#1'];
         saveResult = 'something has been saved... or not';
-        challengeModel = { find: env.stub().returns(challengeIds) };
+        challengeModel = {
+            find: env.stub().returns(challengeModel),
+            populate: env.stub().returns(challengeIds)
+        };
         user = {
             save: env.stub().returns(saveResult),
             set: env.stub()

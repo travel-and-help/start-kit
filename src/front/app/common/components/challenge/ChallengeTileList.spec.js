@@ -86,17 +86,17 @@ describe('app/common/components/challenge ChallengeTileList', () => {
 
         beforeEach(() => {
             sut.props = {
-                addToWatchList: {},
-                dismiss: {}
+                leftSwipe: {},
+                rightSwipe: {}
             };
         });
 
-        it('left swipe should be available when challenge can be added to watch list', () => {
-            sut.isSwipeDirectionAvailable(LEFT).should.equal(sut.props.addToWatchList);
+        it('left swipe should be available when challenge can be swiped right', () => {
+            sut.isSwipeDirectionAvailable(LEFT).should.equal(sut.props.leftSwipe);
         });
 
-        it('right swipe should be available when challenge can be dismisses', () => {
-            sut.isSwipeDirectionAvailable(RIGHT).should.equal(sut.props.dismiss);
+        it('right swipe should be available when challenge can be swiped right', () => {
+            sut.isSwipeDirectionAvailable(RIGHT).should.equal(sut.props.rightSwipe);
         });
 
     });
