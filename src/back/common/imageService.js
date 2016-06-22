@@ -19,12 +19,15 @@ const imageService = () => {
                 }
             }
         };
+        console.dir(formData);
         request.post(
             {
                 url,
                 formData
             },
             (error, httpResponse, respBody) => {
+                console.dir(error);
+                console.dir(respBody);
                 if (error) {
                     deferred.reject(error);
                 } else if (respBody) {
