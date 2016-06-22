@@ -36,7 +36,8 @@ describe('WatchListContainer', () => {
             env.match(
                 mapDispatchToProps => mapDispatchToProps(dispatch).should.all.keys({
                     getChallenges: env.match.func,
-                    dismiss: env.match.func
+                    leftSwipe: env.match.map,
+                    rightSwipe: env.match.map
                 }))
         );
     });
@@ -47,16 +48,16 @@ describe('WatchListContainer', () => {
         dispatch.should.calledWith(watchListActions.getWatchedChallenges());
     });
 
-    it('maps dismiss dispatching to props', () => {
-        const { dismiss } = reactRedux.connect.lastCall.args[1](dispatch);
-        dismiss();
+    it('maps rightSwipe dispatching to props', () => {
+        const { rightSwipe } = reactRedux.connect.lastCall.args[1](dispatch);
+        rightSwipe.toJS().action();
         dispatch.should.calledWith(watchListActions.unWatch());
     });
 
     it('passes challenge to unWatch', () => {
-        const { dismiss } = reactRedux.connect.lastCall.args[1](dispatch);
+        const { rightSwipe } = reactRedux.connect.lastCall.args[1](dispatch);
         const challenge = { a: 'challenge' };
-        dismiss(challenge);
+        rightSwipe.toJS().action(challenge);
         watchListActions.unWatch.should.calledWith(challenge);
     });
 
