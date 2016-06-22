@@ -20,11 +20,13 @@ const ChallengeDetails = ({ challenge, onAccept, onComplete, currentUser }) => {
 
     let actionTitle,
         actionIconName,
-        clickHandler;
+        clickHandler,
+        buttonClassName;
 
     if (currentUser === user._id) {
         actionTitle = 'Edit';
         clickHandler = () => hashHistory.push(`/edit/${_id}`);
+        buttonClassName = defaultButtonClassName;
         actionIconName = 'edit';
     } else if (challenge.get('isAccepted')) {
         actionTitle = 'Complete';
@@ -32,9 +34,9 @@ const ChallengeDetails = ({ challenge, onAccept, onComplete, currentUser }) => {
         clickHandler = () => onComplete(challenge.get('_id'));
         actionIconName = 'complete';
     } else {
-        actionTitle = 'Accept',
-        actionIconName = 'accept',
-        buttonClassName = defaultButtonClassName,
+        actionTitle = 'Accept';
+        actionIconName = 'accept';
+        buttonClassName = defaultButtonClassName;
         clickHandler = () => onAccept(challenge.get('_id'));
     }
 
