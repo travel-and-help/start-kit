@@ -70,10 +70,10 @@ describe('challenges/controller', () => {
         });
     });
 
-    describe('get', () => {
+    describe('getAll', () => {
         beforeEach(() => {
             req = {};
-            sut.get(req, res);
+            sut.getAll(req, res);
         });
 
         it('should find challenges in db', () => {

@@ -3,7 +3,7 @@ import { List, fromJS } from 'immutable';
 import proxyquire from 'proxyquire';
 import { mount } from 'enzyme';
 
-describe('CreateForm', () => {
+xdescribe('CreateForm', () => {
     let CreateForm,
         push,
         categories,
