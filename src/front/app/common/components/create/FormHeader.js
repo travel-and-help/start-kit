@@ -1,14 +1,15 @@
 import React, { PropTypes } from 'react';
-import { hashHistory } from 'react-router';
+import { connect } from 'react-redux';
+import { goBack } from 'react-router-redux';
 
-const CreateFormHeader = ({ headerTitle }) => (
+const CreateFormHeader = ({ headerTitle, back }) => (
     <header className="challenge-create-header">
         <h1 className="challenge-create-header__title">{ headerTitle }</h1>
 
         <button
           className="challenge-create-header__discard"
           type="button"
-          onClick={ () => hashHistory.goBack() }
+          onClick={ back }
         >
 
             Discard
@@ -21,7 +22,12 @@ const CreateFormHeader = ({ headerTitle }) => (
 );
 
 CreateFormHeader.propTypes = {
-    headerTitle: PropTypes.string
+    headerTitle: PropTypes.string,
+    back: PropTypes.func
 };
 
-export default CreateFormHeader;
+const mapDispatchToProps = dispatch => ({
+    back: () => dispatch(goBack())
+});
+
+export default connect(null, mapDispatchToProps)(CreateFormHeader);
