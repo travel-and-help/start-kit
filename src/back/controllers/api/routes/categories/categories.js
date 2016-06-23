@@ -4,19 +4,33 @@ const categoryModel = require('./../../models/category');
 const userModel = require('./../../models/user');
 
 const getAll = (req, res, next) => {
-    categoryModel.find({}, (err, foundCategories) => {
-        if (err) next(err);
-
-        const userId = req.user._id;
-        let categories;
-
-        userModel.findById(userId, (error, user) => {
-            if (error) next(error);
-
-            categories = checkUserSavedCategories(user, foundCategories);
-
+    categoryModel.find({}, (err, categories) => {
+        if (err) {
+            next(next);
+        } else {
             res.json(categories);
-        });
+        }
+    });
+};
+
+const getUserSavedCategories = (req, res, next) => {
+    categoryModel.find({}, (err, foundCategories) => {
+        if (err) {
+            next(err);
+        } else {
+            const userId = req.user._id;
+            let categories;
+
+            userModel.findById(userId, (error, user) => {
+                if (error) {
+                    next(error);
+                } else {
+                    categories = checkUserSavedCategories(user, foundCategories);
+
+                    res.json(categories);
+                }
+            });
+        }
     });
 };
 
@@ -27,9 +41,11 @@ const save = (req, res, next) => {
     userModel.find({ _id: userId }).update({
         categories: categoryIds
     }, (err) => {
-        if (err) next(err);
-
-        res.json({ saved: true });
+        if (err) {
+            next(err);
+        } else {
+            res.json({ saved: true });
+        }
     });
 };
 
@@ -61,5 +77,6 @@ function checkUserSavedCategories(user, foundCategories) {
 
 module.exports = {
     getAll,
+    getUserSavedCategories,
     save
 };
