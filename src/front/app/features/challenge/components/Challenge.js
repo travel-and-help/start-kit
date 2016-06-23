@@ -32,9 +32,9 @@ class Challenge extends Component {
 
         getChallenge(id);
         if (userId) {
-            getUser(userId);
-            getAcceptedChallenges(userId);
-            getWishList(userId);
+            getUser();
+            getAcceptedChallenges();
+            getWishList();
         }
     }
 

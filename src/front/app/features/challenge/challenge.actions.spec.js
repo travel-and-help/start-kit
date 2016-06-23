@@ -1,16 +1,12 @@
 const proxyquire = require('proxyquire').noCallThru();
 
 describe('action/categories', () => {
+    const challenge = { _id: 1 };
     let sut;
     let dispatch;
     let api;
     let promise;
-    const userId = 'userId';
-    const challenge = { _id: 1 };
-    const challenges = [
-        { _id: 1 },
-        { _id: 2 }
-    ];
+
     const executeSut = (apiReturnedValue) => {
         promise = env.stub().resolves(apiReturnedValue)();
 
@@ -85,60 +81,6 @@ describe('action/categories', () => {
                 const action = dispatch.lastCall.args[0];
                 action.should.eqls({
                     type: sut.RESET_STATE
-                });
-            });
-        });
-    });
-
-    describe('#getAcceptedChallenges', () => {
-        let fetcher;
-
-        beforeEach(() => {
-            sut = executeSut(challenges);
-            dispatch = env.spy();
-            fetcher = sut.getAcceptedChallenges(userId);
-        });
-
-        it('should fetch accepted challenges', () => {
-            fetcher(dispatch);
-            api.should.have.been
-                .calledWith(`/api/challenge/user/${userId}/status/accepted`)
-                .and.callCount(1);
-        });
-
-        it('should dispatch ACCEPTED_RECEIVED event with data from response', () => {
-            fetcher(dispatch);
-            return promise.finally(() => {
-                const action = dispatch.lastCall.args[0];
-                action.should.eqls({
-                    type: sut.ACCEPTED_RECEIVED,
-                    challenges
-                });
-            });
-        });
-    });
-
-    describe('#getWishList', () => {
-        let fetcher;
-
-        beforeEach(() => {
-            sut = executeSut(challenges);
-            dispatch = env.spy();
-            fetcher = sut.getWishList();
-        });
-
-        it('should fetch wishList challenges', () => {
-            fetcher(dispatch);
-            api.should.have.been.calledWith('/api/my/wish-list').and.callCount(1);
-        });
-
-        it('should dispatch WATCHLIST_RECEIVED event with data from response', () => {
-            fetcher(dispatch);
-            return promise.finally(() => {
-                const action = dispatch.lastCall.args[0];
-                action.should.eqls({
-                    type: sut.WATCHLIST_RECEIVED,
-                    challenges
                 });
             });
         });

@@ -1,12 +1,9 @@
 import api from '../../common/api';
-
 export const GET_CHALLENGE = 'GET_CHALLENGE';
 export const GET_SIMILAR_CHALLENGE = 'GET_SIMILAR_CHALLENGE';
 export const RESET_STATE = 'RESET_STATE';
 export const ADDED_TO_WATCHLIST = 'ADDED_TO_WATCHLIST';
 export const ADDED_TO_ACCEPTED_LIST = 'ADDED_TO_ACCEPTED_LIST';
-export const ACCEPTED_RECEIVED = 'ACCEPTED_RECEIVED';
-export const WATCHLIST_RECEIVED = 'WATCHLIST_RECEIVED';
 
 const receiveChallenge = (challenge) => (
     {
@@ -19,13 +16,6 @@ const receiveSimilarChallenges = (id, challenges) => (
     {
         type: GET_SIMILAR_CHALLENGE,
         id,
-        challenges
-    }
-);
-
-const receivedAccepted = (challenges) => (
-    {
-        type: ACCEPTED_RECEIVED,
         challenges
     }
 );
@@ -73,25 +63,4 @@ export function fetchSimilarChallenge(id) {
 
 export function resetState() {
     return (dispatch) => dispatch(receiveInitialState());
-}
-
-export function getAcceptedChallenges(userId) {
-    return (dispatch) => {
-        api(`/api/challenge/user/${userId}/status/accepted`)
-            .then((challenges) => {
-                dispatch(receivedAccepted(challenges));
-            });
-    };
-}
-
-export function getWishList() {
-    return function innerGetWish(dispatch) {
-        api('/api/my/wish-list')
-            .then(challenges => {
-                dispatch({
-                    type: WATCHLIST_RECEIVED,
-                    challenges
-                });
-            });
-    };
 }
