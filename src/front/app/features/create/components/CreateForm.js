@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import { hashHistory } from 'react-router';
 import { fromJS } from 'immutable';
+import FormHeader from '../../../common/components/create/FormHeader';
 import CreateFormBody from './CreateFormBody';
 import { fetchChallenge } from '../../challenge/challenge.actions';
 import validate from './validate';
@@ -37,11 +38,12 @@ class CreateForm extends Component {
             updateChallenge,
             postChallenge,
             categories,
+            headerTitle,
             challenge
         } = this.props;
 
         const extendPostChallenge = (data) => {
-            if (challenge) {
+            if (challenge && challenge.size) {
                 const ignoredFields = ['user', '_id'];
                 const immutableData = fromJS(data);
                 const formData = immutableData
@@ -59,9 +61,10 @@ class CreateForm extends Component {
         };
 
         return (
-                <form onSubmit={ handleSubmit(extendPostChallenge) } >
-                    <CreateFormBody fields={fields} categories={categories} />
-                </form>
+            <form onSubmit={ handleSubmit(extendPostChallenge) } >
+                <FormHeader headerTitle={headerTitle} />
+                <CreateFormBody fields={fields} categories={categories} />
+            </form>
         );
     }
 }
@@ -77,6 +80,7 @@ CreateForm.propTypes = {
     categories: ImmutablePropTypes.list.isRequired,
     challenge: ImmutablePropTypes.map,
     challengeId: PropTypes.string,
+    headerTitle: PropTypes.string,
     user: PropTypes.string
 };
 

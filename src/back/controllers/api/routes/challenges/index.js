@@ -1,12 +1,9 @@
 'use strict';
 
 const router = require('express').Router;
-const getAll = require('./getAll');
-const post = require('./post');
-const put = require('./put');
-
+const controller = require('./controller');
 
 module.exports = router()
-    .get('/', getAll)
-    .put('/:id', put)
-    .post('/', post);
+    .get('/', controller.get)
+    .put('/:id', controller.edit)
+    .post('/', controller.create);

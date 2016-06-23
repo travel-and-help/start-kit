@@ -76,7 +76,7 @@ describe('action/create', () => {
 
             rut();
 
-            api.should.have.been.calledWith('/api/challenges/', options).and.callCount(1);
+            api.should.have.been.calledWith('/api/challenges', options).and.callCount(1);
         });
 
         it('should dispatch challenge event with data from response', () => {

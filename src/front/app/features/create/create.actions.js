@@ -29,7 +29,7 @@ export function fetchCategories() {
 
 export function postChallenge(formData) {
     return function innerPostChallenge(dispatch) {
-        api('/api/challenges/', {
+        api('/api/challenges', {
             method: 'POST',
             body: JSON.stringify(formData)
         })
