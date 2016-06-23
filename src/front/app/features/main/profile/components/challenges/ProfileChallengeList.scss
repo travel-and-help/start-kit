@@ -5,6 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     margin: 16px 0;
     height: $size;
     border: $gBorder;
@@ -28,9 +29,7 @@
 
   &__btn {
     $size: _th-rem(30);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
     height: $size;
     width: 100%;
     border-radius: $gBorderRadius;

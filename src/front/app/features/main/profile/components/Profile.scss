@@ -6,7 +6,6 @@ $imageMeasurement: 120px;
   $assetsBasePath: './app/features/main/profile/assets/';
 
   padding-top: $menuHeight;
-  margin-bottom: 25px;
 
   &__user-info {
     $profileBgColor: #354a52;
@@ -61,7 +60,7 @@ $imageMeasurement: 120px;
 
   &__content {
     padding: 0 _th-rem(9);
-    margin-bottom: $navigationHeight;
+    padding-bottom: $navigationHeight;
   }
 
 }
