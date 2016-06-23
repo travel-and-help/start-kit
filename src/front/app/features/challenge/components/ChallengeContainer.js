@@ -8,7 +8,7 @@ import {
     getAcceptedChallenges,
     getWishList
 } from '../challenge.actions';
-import { getUser } from '../../main/profile/profile.actions';
+import { load } from '../../main/profile/profile.actions';
 import Challenge from './Challenge';
 
 const mapStateToProps = ({ challenge, auth }) => (
@@ -21,7 +21,7 @@ const mapStateToProps = ({ challenge, auth }) => (
 const mapDispatchToProps = dispatch => ({
     getChallenge: id => dispatch(fetchChallenge(id)),
     getWishList: () => dispatch(getWishList()),
-    getUser: userId => dispatch(getUser(userId)),
+    getUser: () => dispatch(load()),
     getAcceptedChallenges: userId => dispatch(getAcceptedChallenges(userId)),
     getInitialState: () => dispatch(resetState()),
     onWatchChallenge: challengeId => dispatch(watchChallenge(challengeId)),

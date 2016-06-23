@@ -1,6 +1,6 @@
 import React from 'react';
-import Menu from '../../../Menu';
-import IconButton from '../../../../common/components/buttons/IconButton';
+import Menu from '../../Menu';
+import IconButton from '../../../common/components/buttons/IconButton';
 
 const configAction = (
     <IconButton

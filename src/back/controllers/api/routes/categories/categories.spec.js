@@ -19,8 +19,8 @@ describe('categories handler', () => {
         updateStub = env.stub();
         userModel.find.returns({ update: updateStub });
         sut = proxyquire('./categories', {
-            './../../models/category': categoryModel,
-            './../../models/user': userModel
+            '../../../../models/category': categoryModel,
+            '../../../../models/user': userModel
         });
     });
 

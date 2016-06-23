@@ -1,31 +1,31 @@
 import { createStore, combineReducers } from 'redux';
-import { hashHistory } from 'react-router';
+import historyImpl from './history';
 import storeEnhancers from './enhancers';
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+import { syncHistoryWithStore, routerReducer as routing } from 'react-router-redux';
 import challenges from '../features/main/challenges/challenges.reducer';
 import challenge from '../features/challenge/challenge.reducer';
 import categories from '../features/categories/categories.reducer';
 import auth from '../features/auth/auth.reducer';
-import user from '../features/main/profile/profile.reducer';
-import watchList from '../features/profile-challenges/watch-list/watchList.reducer';
-import { reducer as formReducer } from 'redux-form';
+import profile from '../features/main/profile/profile.reducer';
+import profileChallenges from '../features/profile-challenges/profileChallenges.store';
+import { reducer as form } from 'redux-form';
 
 export default () => {
     const state = createStore(
         combineReducers({
+            ...profileChallenges,
             challenges,
             categories,
             challenge,
             auth,
-            form: formReducer,
-            user,
-            watchList,
-            routing: routerReducer
+            form,
+            profile,
+            routing
         }),
         storeEnhancers
     );
 
-    const history = syncHistoryWithStore(hashHistory, state);
+    const history = syncHistoryWithStore(historyImpl, state);
 
     return {
         state,

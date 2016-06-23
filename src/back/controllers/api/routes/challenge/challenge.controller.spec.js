@@ -12,18 +12,16 @@ let sut,
 describe('controllers/api/ChallengeController', () => {
 
     beforeEach(() => {
-        userModel = function ModelStub() {
-        };
+        userModel = env.stub();
         userModel.aggregate = env.stub();
-        challengeModel = function ModelStub() {
-        };
+        challengeModel = env.stub();
         challengeModel.paginate = env.stub();
         challengeModel.findById = env.stub();
         challengeModel.prototype.save = env.stub();
         challengeModel.findByIdAndUpdate = env.stub();
         challengeModel.remove = env.stub();
-        const userPath = path.resolve('./controllers/api/models/user');
-        const challengePath = path.resolve('./controllers/api/models/challenge');
+        const userPath = path.resolve('./models/user');
+        const challengePath = path.resolve('./models/challenge');
         const baseControllerPath = path.resolve('./common/base.controller');
 
         const ProfileController = proxyquire('./challenge.controller', {
@@ -107,70 +105,6 @@ describe('controllers/api/ChallengeController', () => {
                         location: 1,
                         categories: 1,
                         user: 1
-                    });
-                    done();
-                });
-        });
-
-    });
-
-    describe('Method getUsersChallenges', () => {
-
-        let aggregateQuery;
-
-        it('should get users challenges by category', (done) => {
-            aggregateQuery = {
-                skip: env.spy(() => aggregateQuery),
-                limit: env.spy(() => aggregateQuery),
-                sort: env.spy(() => aggregateQuery),
-                exec: env.spy(() => Q.fcall(() => ({})))
-            };
-            userModel.aggregate.returns(aggregateQuery);
-            const request = httpMocks.createRequest({
-                method: 'GET',
-                url: '/',
-                params: { id: 42 },
-                query: {}
-            });
-            const response = httpMocks.createResponse();
-            sut.getUsersChallenges(request, response)
-                .then(() => {
-                    userModel.aggregate.should.calledWith();
-                    aggregateQuery.skip.should.calledWith(0);
-                    aggregateQuery.limit.should.calledWith(3);
-                    aggregateQuery.sort.should.calledWith({ date: 'desc' });
-                    aggregateQuery.exec.should.calledWith();
-                    done();
-                });
-        });
-
-        it('should select challenges with user ids', (done) => {
-            const challengeIds = [
-                { challenge: 'test1' },
-                { challenge: 'test2' },
-                { challenge: 'test3' }
-            ];
-            aggregateQuery = {
-                skip: env.spy(() => aggregateQuery),
-                limit: env.spy(() => aggregateQuery),
-                sort: env.spy(() => aggregateQuery),
-                exec: env.spy(() => Q.fcall(() => challengeIds))
-            };
-            userModel.aggregate.returns(aggregateQuery);
-            const request = httpMocks.createRequest({
-                method: 'GET',
-                url: '/',
-                params: { id: 42 },
-                query: {
-                    page: 2,
-                    limit: 4
-                }
-            });
-            const response = httpMocks.createResponse();
-            sut.getUsersChallenges(request, response)
-                .then(() => {
-                    challengeModel.paginate.should.calledWith({
-                        _id: { $in: ['test1', 'test2', 'test3'] }
                     });
                     done();
                 });

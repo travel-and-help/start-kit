@@ -1,0 +1,69 @@
+$whiteColor: #fff;
+$ratingIconSize: 32px;
+$imageMeasurement: 120px;
+
+.profile {
+  $assetsBasePath: './app/features/main/profile/assets/';
+
+  padding-top: $menuHeight;
+  margin-bottom: 25px;
+
+  &__user-info {
+    $profileBgColor: #354a52;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $profileBgColor;
+  }
+
+  &__avatar-block {
+    width: 100%;
+    justify-content: space-around;
+    display: flex;
+    align-items: center;
+  }
+
+  &__image {
+    border-radius: 50% 50%;
+    width: $imageMeasurement;
+    height: $imageMeasurement;
+  }
+
+  &__full-name {
+    color: $whiteColor;
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  &__rating-container {
+    display: flex;
+    align-items: center;
+    font-size: $ratingIconSize;
+    color: $acceptedColor;
+  }
+
+  &__rating-icon {
+    margin-left: 5px;
+    width: $ratingIconSize;
+    height: $ratingIconSize;
+    background: url($assetsBasePath + 'pizza.svg') no-repeat center;
+  }
+
+  &__watchlist-link {
+    width: 36px;
+    height: 47px;
+    background: url($assetsBasePath + 'watchlist.svg') no-repeat center;
+  }
+
+  &__content {
+    padding: 0 _th-rem(9);
+    margin-bottom: $navigationHeight;
+  }
+
+}
+
+

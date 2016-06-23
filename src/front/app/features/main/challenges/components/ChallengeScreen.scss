@@ -1,6 +1,7 @@
 .challenge-screen {
   &__content {
     position: absolute;
+    margin-bottom: $navigationHeight - $fastenerHeight;
     top: $menuHeight;
     left: 0;
     width: 100%;

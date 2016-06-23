@@ -19,6 +19,7 @@
     @extend %swipeTransition;
     position: absolute;
     width: 100%;
+    left: 0;
     top: -$fastenerHeight;
     padding: 0 _th-rem(96);
   }

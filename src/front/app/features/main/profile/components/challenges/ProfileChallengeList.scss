@@ -1,0 +1,61 @@
+.profile-challenge-list {
+
+  &__title {
+    $size: _th-rem(40);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 16px 0;
+    height: $size;
+    border: $gBorder;
+    border-radius: $gBorderRadius;
+    color: $gTextColor;
+    font-size: _th-rem(18);
+    text-transform: uppercase;
+
+    &_created {
+      background-color: $createdColor;
+    }
+
+    &_completed {
+      background-color: $completedColor;
+    }
+
+    &_accepted {
+      background-color: $acceptedColor;
+    }
+  }
+
+  &__btn {
+    $size: _th-rem(30);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: $size;
+    width: 100%;
+    border-radius: $gBorderRadius;
+    border: $gBorder;
+    font-size: _th-rem(12);
+    font-weight: bold;
+    background-color: $gBgColor;
+    color: $gTextColor;
+    text-transform: uppercase;
+  }
+
+  &__btn-wrap {
+    position: relative;
+  }
+
+  &__empty {
+    $size: _th-rem(100);
+    text-align: center;
+    height: $size;
+    width: 100%;
+    padding: _th-rem(26) _th-rem(69);
+    border-radius: $gBorderRadius;
+    border: $gBorder;
+    font-size: _th-rem(18);
+    background-color: $gBgColor;
+    color: $gTextColor;
+  }
+}

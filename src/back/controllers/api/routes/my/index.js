@@ -8,5 +8,8 @@ module.exports = router()
     .use(restrictUnauthenticated)
     .get('/wish-list', my.getWatchList)
     .put('/wish-list/:challengeId', my.watch)
+    .delete('/wish-list/:challengeId', my.unWatch)
+    .get('/accepted-challenges', my.getAcceptedChallenges)
     .put('/accepted-challenges/:challengeId', my.acceptChallenge)
-    .delete('/wish-list/:challengeId', my.unWatch);
+    .get('/created-challenges', my.getCreatedChallenges)
+    .get('/completed-challenges', my.getCompletedChallenges);

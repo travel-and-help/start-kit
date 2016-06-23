@@ -1,17 +1,17 @@
-import proxyquire from 'proxyquire';
+const proxyquire = require('proxyquire').noCallThru();
 
 describe('ProfileContainer', () => {
+    const Profile = 'Profile';
+
     let sut,
+        loadable,
         reactRedux,
         dispatch,
         wrapWithConnect,
-        profileActionCreators,
-        Profile,
-        userId;
+        profileActions,
+        watchListActions;
 
     beforeEach(() => {
-        userId = 'testId';
-
         dispatch = env.stub();
 
         wrapWithConnect = env.stub().returns({});
@@ -20,43 +20,44 @@ describe('ProfileContainer', () => {
             connect: env.stub().returns(wrapWithConnect)
         };
 
-        profileActionCreators = {
-            getUser: env.stub().returns(Symbol()),
-            getChallenges: env.stub().returns(Symbol())
+        profileActions = {
+            load: env.stub().returns(Symbol())
         };
 
-        Profile = {
-            default: Symbol()
+
+        watchListActions = {
+            navigate: env.stub().returns('navigateToWatchList')
         };
+
+        loadable = env.stub().returnsArg(0);
 
         sut = proxyquire('./ProfileContainer', {
+            '../../../../common/components/loadable': loadable,
             'react-redux': reactRedux,
-            '../profile.actions': profileActionCreators,
-            './Profile': Profile
+            '../profile.actions': profileActions,
+            './Profile': Profile,
+            '../../../profile-challenges/watch-list/watchList.actions': watchListActions
         });
     });
 
     it('should map state user to props user', () => {
-        const user = {};
+        const profile = {};
         const state = {
-            user,
-            auth: {
-                get: () => userId
-            }
+            profile
         };
-        reactRedux.connect.getCall(0).args[0](state).should.contains({ user, userId });
+        reactRedux.connect.getCall(0).args[0](state).should.contains({ profile });
     });
 
-    it('should map dispatch to user fetching prop method', () => {
+    it('should load profile on component load', () => {
         const props = reactRedux.connect.getCall(0).args[1](dispatch);
-        props.getUser(userId);
-        dispatch.should.calledWith(profileActionCreators.getUser(userId));
+        props.onLoad();
+        dispatch.should.calledWith(profileActions.load());
     });
 
-    it('should map dispatch to challenges fetching prop method', () => {
+    it('should navigate to watch list when user click on it', () => {
         const props = reactRedux.connect.getCall(0).args[1](dispatch);
-        props.getChallenges(userId);
-        dispatch.should.calledWith(profileActionCreators.getChallenges(userId));
+        props.onWatchListClick();
+        dispatch.should.calledWith(watchListActions.navigate());
     });
 
     it('should map to props once', () => {
@@ -64,7 +65,7 @@ describe('ProfileContainer', () => {
     });
 
     it('should wrap Profile component', () => {
-        wrapWithConnect.should.calledWith(Profile.default)
+        wrapWithConnect.should.calledWith(Profile)
             .and
             .callCount(1);
     });

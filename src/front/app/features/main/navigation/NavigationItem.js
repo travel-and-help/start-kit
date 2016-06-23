@@ -2,13 +2,11 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const NavigationItem = ({ link, iconClass }) => (
-    <div className="navigation-item-wrapper" >
-        <Link
-          className={`navigation-item navigation-item_${iconClass}`}
-          activeClassName="navigation-item_active"
-          to={link}
-        />
-    </div>
+    <Link
+        className={`navigation-item navigation-item_${iconClass}`}
+        activeClassName="navigation-item_active"
+        to={link}
+    />
 );
 
 NavigationItem.propTypes = {

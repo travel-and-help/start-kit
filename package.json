@@ -13,6 +13,8 @@
   "scripts": {
     "start": "npm-run-all start:front start:back",
     "watch": "npm-run-all -p watch:*",
+    "watch-server": "npm-run-all -p watch-server:front watch:db watch:back",
+    "watch-server:front": "webpack --config webpack/index.js --watch",
     "build": "webpack --config webpack/index.js",
     "test": "npm-run-all test:front test:back",
     "coverage": "nyc npm test",
@@ -58,6 +60,7 @@
     "babel-register": "^6.7.2",
     "base64-font-loader": "0.0.3",
     "chai": "^3.5.0",
+    "chai-enzyme": "^0.5.0",
     "chalk": "^1.1.1",
     "codecov": "^1.0.1",
     "cordova": "^6.1.1",

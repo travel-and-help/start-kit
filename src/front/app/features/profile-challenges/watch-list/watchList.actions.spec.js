@@ -14,24 +14,6 @@ describe('watchList.actions', () => {
         sut = proxyquire('./watchList.actions', { '../../../common/api': api });
     });
 
-    describe('getWatchedChallenges', () => {
-        beforeEach(() => {
-            dispatch = env.spy();
-            sut.getWatchedChallenges()(dispatch);
-        });
-
-        it('should fetch watch list', () =>
-            api.should.calledWith('/api/my/wish-list').and.callCount(1)
-        );
-
-        it('should dispatch categories event with data from response', () => promise
-            .finally(() => dispatch.should.calledWith({
-                type: WATCH_LIST_CHALLENGES_RECEIVED,
-                challenges: watchList
-            }))
-        );
-    });
-
     describe('unWatch', () => {
         let challengeId;
         let challenge;

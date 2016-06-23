@@ -1,7 +1,7 @@
 'use strict';
 
 const router = require('express').Router;
-const User = require('./api/models/user');
+const User = require('../models/user');
 
 module.exports = router()
     .use('/api', require('./api'))
