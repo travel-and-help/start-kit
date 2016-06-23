@@ -1,10 +1,9 @@
 import React, { PropTypes } from 'react';
-import { hashHistory } from 'react-router';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import IconButton from './../../../common/components/buttons/IconButton';
 import Fasteners from './../../../common/components/fasteners/Fasteners';
 
-const ChallengeDetails = ({ challenge, onAccept, onComplete, currentUser }) => {
+const ChallengeDetails = ({ challenge, onAccept, onComplete, canEdit, onEdit }) => {
     const {
         _id,
         image,
@@ -23,21 +22,21 @@ const ChallengeDetails = ({ challenge, onAccept, onComplete, currentUser }) => {
         clickHandler,
         buttonClassName;
 
-    if (currentUser === user._id) {
+    if (canEdit) {
         actionTitle = 'Edit';
-        clickHandler = () => hashHistory.push(`/edit/${_id}`);
+        clickHandler = () => onEdit(_id);
         buttonClassName = defaultButtonClassName;
         actionIconName = 'edit';
     } else if (challenge.get('isAccepted')) {
         actionTitle = 'Complete';
         buttonClassName = `${defaultButtonClassName} ${defaultButtonClassName}_accepted`;
-        clickHandler = () => onComplete(challenge.get('_id'));
+        clickHandler = () => onComplete(_id);
         actionIconName = 'complete';
     } else {
         actionTitle = 'Accept';
         actionIconName = 'accept';
         buttonClassName = defaultButtonClassName;
-        clickHandler = () => onAccept(challenge.get('_id'));
+        clickHandler = () => onAccept(_id);
     }
 
     const inlineStyle = image ? { backgroundImage: `url(${image})` } : {};
@@ -129,6 +128,7 @@ const ChallengeDetails = ({ challenge, onAccept, onComplete, currentUser }) => {
 ChallengeDetails.propTypes = {
     onAccept: PropTypes.func.isRequired,
     onComplete: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired,
     challenge: ImmutablePropTypes.mapContains({
         image: PropTypes.string,
         title: PropTypes.string,
@@ -140,7 +140,7 @@ ChallengeDetails.propTypes = {
             fullName: PropTypes.string
         })
     }).isRequired,
-    currentUser: PropTypes.string
+    canEdit: PropTypes.bool
 };
 
 export default ChallengeDetails;

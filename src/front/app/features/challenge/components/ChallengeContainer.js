@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { hashHistory } from 'react-router';
+import { push } from 'react-router-redux';
 import {
     fetchChallenge,
     resetState,
@@ -11,12 +11,15 @@ import {
 import { getUser } from '../../main/profile/profile.actions';
 import Challenge from './Challenge';
 
-const mapStateToProps = ({ challenge, auth }) => (
-    {
+const mapStateToProps = ({ challenge, auth }) => {
+    const userId = auth.get('userId');
+    const canEdit = challenge.getIn(['user', '_id']) === userId;
+    return {
         challenge,
-        userId: auth.get('userId')
-    }
-);
+        canEdit,
+        userId
+    };
+};
 
 const mapDispatchToProps = dispatch => ({
     getChallenge: id => dispatch(fetchChallenge(id)),
@@ -26,7 +29,8 @@ const mapDispatchToProps = dispatch => ({
     getInitialState: () => dispatch(resetState()),
     onWatchChallenge: challengeId => dispatch(watchChallenge(challengeId)),
     onAccept: challengeId => dispatch(acceptChallenge(challengeId)),
-    onComplete: challengeId => hashHistory.push(`complete-challenge/${challengeId}`)
+    onComplete: challengeId => dispatch(push(`complete-challenge/${challengeId}`)),
+    onEdit: challengeId => dispatch(push(`/edit/${challengeId}`))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Challenge);
