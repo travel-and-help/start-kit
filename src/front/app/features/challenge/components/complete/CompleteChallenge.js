@@ -40,10 +40,7 @@ class CompleteChallenge extends Component {
             if (similar) {
                 const curSimilar = similar.get(id);
                 if (curSimilar) {
-                    const docs = curSimilar.get('docs');
-                    if (docs) {
-                        similarChallenges = docs;
-                    }
+                    similarChallenges = curSimilar.get('docs');
                 }
             }
         }
