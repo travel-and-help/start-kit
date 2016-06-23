@@ -10,14 +10,15 @@ const Challenge = new Schema({
         type: Schema.ObjectId,
         ref: 'Category'
     }],
-    title: { type: String },
+    title: { type: String, required: true },
     image: { type: String },
     location: { type: String },
     user: {
         type: Schema.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     },
-    description: { type: String }
+    description: { type: String, required: true }
 });
 
 Challenge.plugin(mongoosePaginate);

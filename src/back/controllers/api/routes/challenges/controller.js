@@ -33,7 +33,7 @@ const controller = () => {
                 body.image = imagePath;
                 return body;
             }, next)
-            .then(Challenge.create)
+            .then(Challenge.create, next)
             .then((challenge) => {
                 res.json(challenge);
             }, next);

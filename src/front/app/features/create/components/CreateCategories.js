@@ -35,6 +35,7 @@ const CreateCategories = ({ categories, value, ...rest }) => {
 CreateCategories.propTypes = {
     categories: ImmutablePropTypes.list.isRequired,
     category: PropTypes.object,
+    rest: PropTypes.array,
     value: PropTypes.string
 };
 

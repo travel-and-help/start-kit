@@ -26,8 +26,6 @@ deploy:
     skip_cleanup: true
     api_key:
         secure: EJwfRZiMe281wOt1Ti0bRso0C8SS8DTvzl+fGsaRHutgIKMpDEJIT91/0hnoejo6qx/4L7601UgfQrPliX7/NExylr9alM8NLeQ7/EuCUIm0cIBeL0IbH9XFUTf/Df7UTMh0M+7wIMAQHi9ExT78CXPS4PKnal/QpZ1liS9K4Fjrd47DGU0JfyafGO9juYhyoNv5U/gUfzE0pYdlwN6LBOvLZDWVXb7dqJEWeqQ/G/JCvSmfYXa4z6nlR6RG2jz4Bb1JhSv0LAIEu8NRwXWt1TUzOdVNQ0I4KvK68l4/G0fHBBwn27JyvQi1cjNFTL36TWOQVDqQCSXt1ZOkjfOEU3ZlAUjEs7pMTXpFjacE6dDlDqUiXwV/GLIiHgVk9VnjRk8gWJ72Ds1/LRE3rg+4zX5aYLShfa20GE7kr3qCUiJIvsy85Qp+y4E4Z/8XgNI0vTqrgWL3r08IVEs53qhdiNoBJgeICZIXiDBWFimUlbiWVcIqdweIRNkkd0wt0CQXdUZ0yMeLT5XRupidDjY0ynARly0kayNpWi6TBhaCjEziA2CZoyOjFCIDxm8xNLhBMyHTP1+GTNh33ljT5AzWayd0oTP4i9mrso3r0zOoiV3gvZGnqiylFtqe2BFEnZy485SGEYWdW1fyrh2jt2fhpc4HjBsHKXulVx9wDKfH8UI=
-    on:
-        branch: demo/#2
   - provider: releases
     api_key: "4870c604a46f39f1ff38069cfe8cc839e6af3d07"
     file: "./platforms/android/build/outputs/apk/android.apk"

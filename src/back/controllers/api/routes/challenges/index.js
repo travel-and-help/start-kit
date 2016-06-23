@@ -1,9 +1,9 @@
 'use strict';
 
 const router = require('express').Router;
-const controller = require('./controller');
+const challengesController = require('./controller');
 
 module.exports = router()
-    .get('/', controller.get)
-    .put('/:id', controller.edit)
-    .post('/', controller.create);
+    .get('/', challengesController.get)
+    .put('/:id', challengesController.edit)
+    .post('/', challengesController.create);
