@@ -61,7 +61,7 @@ describe('routes/challenges-post', () => {
         };
 
         sut = proxyquire('./post', {
-            '../../models/challenge': Challenge,
+            '../../../../models/challenge': Challenge,
             '../../../../common/imageService': imageService
         });
 

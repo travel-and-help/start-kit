@@ -7,6 +7,10 @@ describe('categories handler', () => {
     let categoryModel;
     let userModel;
     let updateStub;
+    let res;
+    let req;
+    let next;
+    let categories;
 
     beforeEach(() => {
         categoryModel = {
@@ -19,23 +23,51 @@ describe('categories handler', () => {
         updateStub = env.stub();
         userModel.find.returns({ update: updateStub });
         sut = proxyquire('./categories', {
-            './../../models/category': categoryModel,
-            './../../models/user': userModel
+            '../../../../models/category': categoryModel,
+            '../../../../models/user': userModel
         });
+        res = {
+            json: env.stub(),
+            status: env.stub(),
+            sendStatus: env.stub()
+        };
+        req = {
+            user: { _id: 1 }
+        };
+        next = env.stub();
+        categories = [
+            { _id: 1 },
+            { _id: 2 },
+            { _id: 3 }
+        ];
     });
 
     describe('getAll', () => {
+        let findCallback;
+
+        beforeEach(() => {
+            sut.getAll(req, res, next);
+
+            findCallback = categoryModel.find.lastCall.args[1];
+        });
+
         it('should return all categories', () => {
-            sut.getAll();
+            findCallback(null, categories);
 
             categoryModel.find.should.have.been.calledWith({});
+            res.json.should.have.been.calledWith(categories);
+        });
+
+        it('should pass error to error handler', () => {
+            const err = 'some error';
+
+            findCallback(err, categories);
+
+            next.should.have.been.calledWith(err);
         });
     });
 
     describe('getUserSavedCategories', () => {
-        let res;
-        let req;
-        let next;
         let data;
         let userData;
         let onCategoryFindCallback;
@@ -47,14 +79,7 @@ describe('categories handler', () => {
                 { _id: 1, name: 'name1', checked: true },
                 { _id: 2, name: 'name2' }
             ];
-            res = {
-                json: env.stub(),
-                sendStatus: env.stub()
-            };
-            req = {
-                user: { _id: 1 }
-            };
-            next = env.stub();
+
             data = [{ _id: 1, name: 'name1' }, { _id: 2, name: 'name2' }];
             userData = {
                 categories: [1]
@@ -81,28 +106,14 @@ describe('categories handler', () => {
     });
 
     describe('save', () => {
-        let categories;
         let categoryIds;
-        let req;
-        let res;
-        let next;
 
         beforeEach(() => {
-            categories = [
-                { _id: 1 },
-                { _id: 2 },
-                { _id: 3 }
-            ];
             categoryIds = [1, 2, 3];
             req = {
                 user: { _id: 1 },
                 body: categories
             };
-            res = {
-                json: env.stub(),
-                status: env.stub()
-            };
-            next = env.stub();
 
             sut.save(req, res, next);
         });

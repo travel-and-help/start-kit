@@ -1,0 +1,31 @@
+.socials {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-top: _th-rem(11);
+  border: $gBorder;
+  border-radius: $gBorderRadius;
+  padding: _th-rem(24);
+  background-color: $gBgColor;
+
+  &__info {
+    display: flex;
+    width: 100%;
+  }
+
+  &__title {
+    display: flex;
+    width: 40%;
+    line-height: _th-rem(25);
+    font-size: _th-rem(13);
+    letter-spacing: _th-rem(.9);
+    font-weight: bold;
+    color: #9b9b9b;
+    margin: 0;
+  }
+
+  &__list {
+    display: flex;
+    width: 60%;
+  }
+}

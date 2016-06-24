@@ -1,12 +1,12 @@
 'use strict';
 
-const categoryModel = require('./../../models/category');
-const userModel = require('./../../models/user');
+const categoryModel = require('../../../../models/category');
+const userModel = require('../../../../models/user');
 
 const getAll = (req, res, next) => {
     categoryModel.find({}, (err, categories) => {
         if (err) {
-            next(next);
+            next(err);
         } else {
             res.json(categories);
         }

@@ -38,30 +38,6 @@ describe('ProfileChallengeList', () => {
         }).default;
     });
 
-    it('should call getChallenges ONCE when mounted', () => {
-        mount(<ProfileChallengeList
-            user={ user }
-            getChallenges={ getChallenges }
-            menuTitle={ menuTitle }
-            dismiss={ dismiss }
-            addToWatchList={ addToWatchList }
-            challenges ={ challenges }
-        />);
-        getChallenges.should.been.called.and.callCount(1);
-    });
-
-    it('should redirect to login if user is NOT logged in', () => {
-        mount(<ProfileChallengeList
-            user={ undefined }
-            getChallenges={ getChallenges }
-            menuTitle={ menuTitle }
-            dismiss={ dismiss }
-            addToWatchList={ addToWatchList }
-            challenges ={ challenges }
-        />);
-        push.should.been.calledWith('/').and.callCount(1);
-    });
-
     it('should NOT redirect to login if user is logged in', () => {
         mount(<ProfileChallengeList
             user={ user }

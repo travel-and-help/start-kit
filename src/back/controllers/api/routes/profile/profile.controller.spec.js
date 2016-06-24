@@ -1,29 +1,27 @@
 'use strict';
+
 const proxyquire = require('proxyquire').noCallThru(),
-    path = require('path'),
     BaseController = require('../../../../common/base.controller'),
     httpMocks = require('node-mocks-http'),
     Q = require('q');
 
-let sut,
-    userModel;
+const profileProperties = require('./profileProperties');
 
 describe('controllers/api/ProfileController', () => {
+    let sut,
+        userModel;
 
     beforeEach(() => {
-        userModel = function ModelStub() {
-        };
+        userModel = env.stub();
         userModel.paginate = env.stub();
         userModel.findById = env.stub();
         userModel.prototype.save = env.stub();
         userModel.findByIdAndUpdate = env.stub();
         userModel.remove = env.stub();
-        const userPath = path.resolve('./controllers/api/models/user');
-        const baseControllerPath = path.resolve('./common/base.controller');
 
         const ProfileController = proxyquire('./profile.controller', {
-            [userPath]: userModel,
-            [baseControllerPath]: BaseController
+            '../../../../models/user': userModel,
+            '../../../../common/base.controller': BaseController
         });
         sut = new ProfileController();
 
@@ -86,17 +84,7 @@ describe('controllers/api/ProfileController', () => {
             const response = httpMocks.createResponse();
             sut.getById(request, response)
                 .then(() => {
-                    userRequestObject.select.should.calledWith({
-                        photo: 1,
-                        fullName: 1,
-                        rating: 1,
-                        locations: 1,
-                        categories: 1,
-                        registerDate: 1,
-                        lastLogin: 1,
-                        'facebook.id': 2,
-                        'google.id': 2
-                    });
+                    userRequestObject.select.should.calledWith(profileProperties);
                     done();
                 });
         });

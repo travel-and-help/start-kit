@@ -1,6 +1,6 @@
 'use strict';
 
-const Challenge = require('../../models/challenge');
+const Challenge = require('../../../../models/challenge');
 const imageService = require('../../../../common/imageService');
 
 const post = (req, res, next) => {

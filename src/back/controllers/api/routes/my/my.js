@@ -1,6 +1,6 @@
 'use strict';
 
-const userActions = require('../../../actions/user');
+const userChallengesService = require('../../../../services/userActionsService');
 const responseBuilder = require('../../../../common/response-builder');
 
 function responseFactory(action) {
@@ -12,8 +12,11 @@ function responseFactory(action) {
 }
 
 module.exports = {
-    getWatchList: responseFactory(userActions.getWatchedChallenges),
-    unWatch: responseFactory(userActions.unWatchChallenge),
-    acceptChallenge: responseFactory(userActions.acceptChallenge),
-    watch: responseFactory(userActions.watchChallenge)
+    getWatchList: responseFactory(userChallengesService.getWatchedChallenges),
+    unWatch: responseFactory(userChallengesService.unWatchChallenge),
+    acceptChallenge: responseFactory(userChallengesService.acceptChallenge),
+    watch: responseFactory(userChallengesService.watchChallenge),
+    getCreatedChallenges: responseFactory(userChallengesService.getCreatedChallenges),
+    getCompletedChallenges: responseFactory(userChallengesService.getCompletedChallenges),
+    getAcceptedChallenges: responseFactory(userChallengesService.getAcceptedChallenges)
 };

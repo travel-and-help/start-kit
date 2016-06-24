@@ -1,8 +1,8 @@
 'use strict';
 
-const path = require('path'),
-    User = require(path.resolve('./controllers/api/models/user')),
-    BaseController = require(path.resolve('./common/base.controller'));
+const User = require('../../../../models/user');
+const BaseController = require('../../../../common/base.controller');
+const profileProperties = require('./profileProperties');
 
 module.exports = class ProfileController extends BaseController {
     constructor() {
@@ -23,17 +23,7 @@ module.exports = class ProfileController extends BaseController {
 
     createFindByIdRequest(req, res) {
         return super.createFindByIdRequest(req, res)
-            .select({
-                photo: 1,
-                fullName: 1,
-                rating: 1,
-                locations: 1,
-                categories: 1,
-                registerDate: 1,
-                lastLogin: 1,
-                'facebook.id': 2,
-                'google.id': 2
-            });
+            .select(profileProperties);
     }
 
     processGetByIdResult(result) {

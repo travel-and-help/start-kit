@@ -1,6 +1,6 @@
 'use strict';
 
-const challenge = require('../../models/challenge');
+const challenge = require('../../../../models/challenge');
 
 const getAll = (req, res) => {
     challenge

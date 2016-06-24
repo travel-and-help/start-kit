@@ -1,43 +1,58 @@
-import React, { Component, PropTypes } from 'react';
-import { hashHistory } from 'react-router';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import UserDetails from './UserDetails/UserDetails';
-import Layout from '../../../Layout';
-import ProfileScreenMenu from './ProfileScreenMenu';
+import React, { PropTypes } from 'react';
+import ChallengeStats from './stats/ChallengeStatsContainer';
 
-
-class Profile extends Component {
-    componentDidMount() {
-        const {
-            getUser,
-            getChallenges,
-            userId } = this.props;
-        if (!userId) {
-            hashHistory.push('/');
-        } else {
-            getUser(userId);
-            getChallenges(userId);
-        }
-    }
-
-    render() {
-        const { user } = this.props;
-
-        return (
-            <Layout menu={<ProfileScreenMenu />} >
-                <div>
-                    { user.size && <UserDetails user={user} /> }
+import Socials from './socials/Socials';
+import ProfileChallenges from './challenges/ProfileChallengesContainer';
+const Profile = ({
+    profile: {
+        photo,
+        fullName,
+        rating,
+        social
+    },
+    onWatchListClick
+}) => (
+    <div className="profile" >
+        <div className="profile__user-info" >
+            <div className="profile__avatar-block" >
+                <div
+                    className="profile__watchlist-link"
+                    onClick={onWatchListClick}
+                >
                 </div>
-            </Layout>
-        );
-    }
-}
+
+                <img className="profile__image" src={photo} title={fullName} />
+
+                <div className="profile__rating-container" >
+                    <span className="profile__rating" >{rating}</span>
+                    <i className="profile__rating-icon" />
+                </div>
+            </div>
+
+            <div className="profile__full-name" >
+                {fullName}
+            </div>
+
+            <ChallengeStats />
+        </div>
+
+        <div className="profile__content" >
+
+            <Socials list={social} />
+
+            <ProfileChallenges />
+        </div>
+    </div>
+);
 
 Profile.propTypes = {
-    user: ImmutablePropTypes.map,
-    getUser: PropTypes.func.isRequired,
-    getChallenges: PropTypes.func.isRequired,
-    userId: PropTypes.string
+    profile: PropTypes.shape({
+        social: PropTypes.array,
+        fullName: PropTypes.string,
+        photo: PropTypes.string,
+        rating: PropTypes.number
+    }).isRequired,
+    onWatchListClick: PropTypes.func.isRequired
 };
 
 export default Profile;

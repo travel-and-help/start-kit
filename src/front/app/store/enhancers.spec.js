@@ -1,14 +1,19 @@
-import proxyquire from 'proxyquire';
+const proxyquire = require('proxyquire').noCallThru();
 
-describe('storeEnhancers', () => {
+describe('app/store enhancers', () => {
     let redux,
         thunk,
-        sut;
+        sut,
+        history,
+        reactRouterRedux,
+        routerMiddleware;
 
     function importSut() {
         return proxyquire('./enhancers', {
             redux,
-            'redux-thunk': thunk
+            './history': history,
+            'redux-thunk': thunk,
+            'react-router-redux': reactRouterRedux
         }).default;
     }
 
@@ -21,6 +26,14 @@ describe('storeEnhancers', () => {
         thunk = {
             default: 'thunk'
         };
+
+        history = 'history';
+
+        routerMiddleware = 'routerMiddleware';
+
+        reactRouterRedux = {
+            routerMiddleware: env.stub().withArgs(history).returns(routerMiddleware)
+        };
     });
 
     describe('regardless of environment', () => {
@@ -30,9 +43,12 @@ describe('storeEnhancers', () => {
 
         it('should apply thunk middleware once', () => {
             redux.applyMiddleware.should
-                .calledWith(thunk.default)
-                .and
-                .callCount(1);
+                .calledWith(thunk);
+        });
+
+        it('should apply router middleware once', () => {
+            redux.applyMiddleware.should
+                .calledWith(routerMiddleware);
         });
 
         it('should return composed enhancers', () => {
@@ -55,7 +71,7 @@ describe('storeEnhancers', () => {
 
         it('should compose dummy function if devToolsExtension is not available', () => {
             importSut();
-            redux.compose.getCall(0).args[1](42).should.equal(42);
+            redux.compose.getCall(0).args[2](42).should.equal(42);
         });
 
         afterEach(() => {

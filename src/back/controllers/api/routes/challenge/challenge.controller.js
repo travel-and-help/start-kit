@@ -1,9 +1,7 @@
 'use strict';
 
 const path = require('path'),
-    mongoose = require('mongoose'),
-    Challenge = require(path.resolve('./controllers/api/models/challenge')),
-    User = require(path.resolve('./controllers/api/models/user')),
+    Challenge = require(path.resolve('./models/challenge')),
     BaseController = require(path.resolve('./common/base.controller'));
 
 class ChallengeController extends BaseController {
@@ -39,41 +37,6 @@ class ChallengeController extends BaseController {
                 user: 1
             })
             .populate('user categories');
-    }
-
-    getUsersChallenges(req, res) {
-        const page = Number(req.query.page) || 1;
-        const limit = Number(req.query.limit) || 3;
-        return User.aggregate([
-            { $unwind: '$challenges' },
-            {
-                $match: {
-                    _id: new mongoose.Types.ObjectId(req.params.userId),
-                    'challenges.status': req.params.statusId
-                }
-            },
-            {
-                $project: {
-                    challenge: '$challenges.challenge',
-                    date: '$challenges.date'
-                }
-            }
-        ])
-            .skip((page - 1) * limit)
-            .limit(limit)
-            .sort({ date: 'desc' })
-            .exec()
-            .then((result) => {
-                const model = this.getModel();
-                const options = this.createGetOptions(req);
-                const challengeIds = result.map((item) => (item.challenge));
-                return model.paginate({
-                    _id: { $in: challengeIds }
-                }, options);
-            })
-            .then(result => result.docs)
-            .then((result) => (this.processSuccess(req, res, result)))
-            .catch((err) => (this.processError(req, res, err)));
     }
 
     complete(req, res) {

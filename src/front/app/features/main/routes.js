@@ -3,7 +3,7 @@ import { Route } from 'react-router';
 import MainScreen from './MainScreen';
 import Awards from './awards';
 import Updates from './updates';
-import ProfileContainer from './profile/components/ProfileContainer';
+import ProfileScreen from './profile/ProfileScreen';
 import ChallengeScreenContainer from './challenges/components/ChallengeScreenContainer';
 
 export default () => (
@@ -11,6 +11,6 @@ export default () => (
         <Route path="challenges" component={ChallengeScreenContainer} />
         <Route path="awards" component={Awards} />
         <Route path="updates" component={Updates} />
-        <Route path="profile" component={ProfileContainer} />
+        <Route path="profile" component={ProfileScreen} />
     </Route>
 );

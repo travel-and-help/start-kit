@@ -5,18 +5,8 @@ const
     sinon = require('sinon'),
     sinonChai = require('sinon-chai'),
     sinonAsPromised = require('sinon-as-promised'),
-    q = require('q'),
-    doc = require('jsdom').jsdom('<!doctype html><html><body></body></html>'),
-    win = doc.defaultView;
-
-global.document = doc;
-global.window = win;
-
-Object.keys(window).forEach((key) => {
-    if (!(key in global)) {
-        global[key] = window[key];
-    }
-});
+    chainable = require('./builders/chainable'),
+    q = require('q');
 
 global.env = null;
 global.sinon = sinon;
@@ -27,6 +17,7 @@ chai.use(sinonChai);
 
 beforeEach(() => {
     global.env = sinon.sandbox.create();
+    global.env.stubChain = chainable;
 });
 
 afterEach(() => {

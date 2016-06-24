@@ -2,73 +2,54 @@
 
 const proxyquire = require('proxyquire').noCallThru();
 
-describe('controllers/api/profile', () => {
+describe('/api/profile', () => {
+
+    const req = 'req',
+        res = 'res',
+        my = 'my';
+
     let sut,
         router,
-        profileController,
-        authService,
-        controllerInstance;
+        profileCtrl;
 
     beforeEach(() => {
 
         router = {
             use: env.spy(() => router),
             get: env.spy(() => router),
-            post: env.spy(() => router),
-            route: env.spy(() => router)
+            post: env.spy(() => router)
         };
 
-        controllerInstance = {
-            getById: env.spy(),
-            get: env.spy(),
-            update: env.spy()
-        };
-
-        profileController = function ProfileController() {
-            return controllerInstance;
-        };
-
-        authService = {
-            restrictUnauthenticated: env.spy()
-        };
-
-        const express = {
-            Router: env.stub().returns(router)
+        profileCtrl = {
+            getById: env.stub(),
+            update: env.stub()
         };
 
         sut = proxyquire('./index', {
-            express,
-            './profile.controller': profileController,
-            '../../../auth/auth.service': authService
+            express: {
+                Router: env.stub().returns(router)
+            },
+            './profile.controller': env.stub().returns(profileCtrl),
+            './my': my
         });
+
     });
 
-    it('should export router', () => {
+    it('should export routes', () => {
         sut.should.equal(router);
     });
 
-    it('should register route for getting all profiles', () => {
-        router.route.should.calledWith('/');
-        const onGetCallback = router.get.getCall(0).args[0];
-        onGetCallback({}, {});
-        controllerInstance.get.should.calledWith({}, {});
+    it('should register my profile routes', () => {
+        router.use.should.been.calledWith('/my', my);
     });
 
-    it('should register single get router', () => {
-        router.route.should.calledWith('/:id');
-        router.get.should.calledWith();
-        const onGetCallback = router.get.lastCall.args[0];
-        onGetCallback({}, {});
-        controllerInstance.getById.should.calledWith({}, {});
+    it('should get user profile by id', () => {
+        router.get.firstCall.args[0].should.equal('/:id');
     });
 
-    it('should register post router', () => {
-        router.route.should.calledWith('/:id');
-        router.post.should.calledWith();
-        const onUpdateCallback = router.post.lastCall.args[1];
-        onUpdateCallback({}, {});
-        controllerInstance.update.should.calledWith({}, {});
+    it('should respond with user profile on get', () => {
+        router.get.firstCall.args[1](req, res);
+        profileCtrl.getById.should.been.calledWith(req, res);
     });
 
 });
-

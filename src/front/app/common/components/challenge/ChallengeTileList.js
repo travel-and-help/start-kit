@@ -16,12 +16,12 @@ export default class ChallengeTileList extends React.Component {
                 action: PropTypes.func.isRequired,
                 type: PropTypes.string,
                 text: PropTypes.string
-            }).isRequired,
+            }),
             rightSwipe: ImmutablePropTypes.mapContains({
                 action: PropTypes.func.isRequired,
                 type: PropTypes.string,
                 text: PropTypes.string
-            }).isRequired
+            })
         };
     }
 

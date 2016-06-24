@@ -12,9 +12,6 @@ router.route('/')
 router.route('/search')
     .get((req, res) => (controller.search(req, res)));
 
-router.route('/user/:userId/status/:statusId')
-    .get((req, res) => (controller.getUsersChallenges(req, res)));
-
 router.route('/:id/complete')
     .post(restrictUnauthenticated, (req, res) => (controller.complete(req, res)));
 

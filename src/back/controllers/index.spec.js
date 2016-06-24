@@ -30,7 +30,7 @@ describe('controllers', () => {
             './api': apiRoutes,
             './static': staticRoutes,
             './auth': authRoutes,
-            './api/models/user': userModel
+            '../models/user': userModel
         });
     });
 

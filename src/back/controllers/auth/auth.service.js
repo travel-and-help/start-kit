@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken'),
     expressJwt = require('express-jwt'),
     env = require('../../../../env'),
     http = require('http'),
-    userModel = require('../api/models/user'),
+    userModel = require('../../models/user'),
     reqUserProperty = 'auth';
 
 const validateJwt = expressJwt({

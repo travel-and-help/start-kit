@@ -11,19 +11,13 @@ describe('controllers/api/challenge', () => {
 
     beforeEach(() => {
 
-        router = {
-            use: env.spy(() => router),
-            get: env.spy(() => router),
-            post: env.spy(() => router),
-            route: env.spy(() => router)
-        };
+        router = env.stubChain(['route', 'get', 'use', 'post']);
         authService = { restrictUnauthenticated: env.stub() };
 
         controllerInstance = {
             getById: env.spy(),
             get: env.spy(),
             update: env.spy(),
-            getUsersChallenges: env.spy(),
             complete: env.spy(),
             search: env.spy()
         };
@@ -59,14 +53,6 @@ describe('controllers/api/challenge', () => {
         const onSearchCallback = router.get.getCall(1).args[0];
         onSearchCallback({}, {});
         controllerInstance.search.should.calledWith({}, {});
-    });
-
-    it('should register router for user challenges', () => {
-        router.route.should.calledWith('/user/:userId/status/:statusId');
-        router.get.should.calledWith();
-        const onGetCallback = router.get.getCall(2).args[0];
-        onGetCallback({}, {});
-        controllerInstance.getUsersChallenges.should.calledWith({}, {});
     });
 
     it('should register complete challenge router', () => {
