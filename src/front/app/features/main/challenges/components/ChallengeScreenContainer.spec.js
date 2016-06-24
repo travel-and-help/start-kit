@@ -1,4 +1,4 @@
-import proxyquire from 'proxyquire';
+const proxyquire = require('proxyquire').noCallThru();
 import { List } from 'immutable';
 
 describe('app/features/main/challenges ChallengeScreenContainer', () => {
@@ -25,15 +25,14 @@ describe('app/features/main/challenges ChallengeScreenContainer', () => {
             fetchChallenges: env.stub().returns(Symbol())
         };
 
-        ChallengeScreen = {
-            default: Symbol()
-        };
+        ChallengeScreen = Symbol();
 
         sut = proxyquire('./ChallengeScreenContainer', {
             'react-redux': reactRedux,
             '../challenges.actions': challengesActionCreators,
-            './ChallengeScreen': ChallengeScreen
-        });
+            './ChallengeScreen': ChallengeScreen,
+            '../../../../common/components/loadable': env.stub().returnsArg(0)
+        }).default;
 
         mapStateToProps = reactRedux.connect.getCall(0).args[0];
         mapDispatchToProps = reactRedux.connect.getCall(0).args[1];
@@ -51,21 +50,17 @@ describe('app/features/main/challenges ChallengeScreenContainer', () => {
 
     it('should map dispatch to challenges fetching prop method', () => {
         const props = mapDispatchToProps(dispatch);
-        props.getChallenges();
+        props.onLoad();
         dispatch.should.calledWith(challengesActionCreators.fetchChallenges());
     });
 
-    it('should map to props once', () => {
-        reactRedux.connect.should.callCount(1);
-    });
-
     it('should wrap ChallengeScreen component', () => {
-        wrapWithConnect.should.calledWith(ChallengeScreen.default)
+        wrapWithConnect.should.calledWith(ChallengeScreen)
             .and
             .callCount(1);
     });
 
     it('should return react-redux container', () => {
-        sut.default.should.equal(wrapWithConnect());
+        sut.should.equal(wrapWithConnect());
     });
 });

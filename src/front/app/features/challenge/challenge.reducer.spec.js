@@ -6,9 +6,15 @@ import {
     RESET_STATE,
     ADDED_TO_WATCHLIST,
     ADDED_TO_ACCEPTED_LIST,
-    ACCEPTED_RECEIVED,
-    WATCHLIST_RECEIVED
 } from './challenge.actions';
+
+import {
+    ACCEPTED_CHALLENGES_RECEIVED
+} from '../profile-challenges/accepted/acceptedChallenges.actions';
+
+import {
+    WATCH_LIST_CHALLENGES_RECEIVED
+} from '../profile-challenges/watch-list/watchList.actions';
 
 describe('reducer/challenge', () => {
     it('should handle initial state', () => {
@@ -65,7 +71,7 @@ describe('reducer/challenge', () => {
 
     it('should add isAccepted flag to state if challenge is accepted by user', () => {
         const action = {
-            type: ACCEPTED_RECEIVED,
+            type: ACCEPTED_CHALLENGES_RECEIVED,
             challenges: [
                 { _id: 1 },
                 { _id: 2 }
@@ -82,7 +88,7 @@ describe('reducer/challenge', () => {
 
     it('should NOT add isAccepted flag to state if challenge is NOT accepted by user', () => {
         const action = {
-            type: ACCEPTED_RECEIVED,
+            type: ACCEPTED_CHALLENGES_RECEIVED,
             challenges: [
                 { _id: 1 },
                 { _id: 2 }
@@ -99,7 +105,7 @@ describe('reducer/challenge', () => {
 
     it('should add isWatched flag to state if challenge is watched by user', () => {
         const action = {
-            type: WATCHLIST_RECEIVED,
+            type: WATCH_LIST_CHALLENGES_RECEIVED,
             challenges: [
                 { _id: 1 },
                 { _id: 2 }
@@ -116,7 +122,7 @@ describe('reducer/challenge', () => {
 
     it('should NOT add isWatched flag to state if challenge is NOT watched by user', () => {
         const action = {
-            type: WATCHLIST_RECEIVED,
+            type: WATCH_LIST_CHALLENGES_RECEIVED,
             challenges: [
                 { _id: 1 },
                 { _id: 2 }

@@ -5,49 +5,51 @@ describe('watchList.actions', () => {
     let sut;
     let dispatch;
     let api;
-    let promise;
     const watchList = ['challenges'];
 
     beforeEach(() => {
-        promise = env.stub().resolves(watchList)();
-        api = env.stub().returns(promise);
+        dispatch = env.spy(action => {
+            if (typeof action === 'function') {
+                return action(dispatch);
+            }
+            return action;
+        });
+
+        api = env.stub().resolves(watchList);
         sut = proxyquire('./watchList.actions', { '../../../common/api': api });
     });
 
     describe('unWatch', () => {
         let challengeId;
         let challenge;
+        let result;
 
         beforeEach(() => {
             challengeId = 'someId';
             challenge = { get: env.stub().returns(challengeId) };
-            dispatch = env.spy();
+            result = sut.unWatch(challenge)(dispatch);
         });
 
         it('deletes challenge from the watch list', () => {
-            sut.unWatch(challenge)(dispatch);
             api.should.calledWith(`/api/my/wish-list/${challengeId}`, { method: 'DELETE' });
         });
 
-        it('reloads list after delete', () => {
-            sut.unWatch(challenge)(dispatch);
-            return promise.finally(() => dispatch.should.calledWith({
-                type: WATCH_LIST_CHALLENGES_RECEIVED,
-                challenges: watchList
-            }));
-        });
-
-        it('reloads list after delete failed', done => {
-            const rejected = env.stub().rejects('something went wrong')();
-            api.withArgs(`/api/my/wish-list/${challengeId}`).returns(rejected);
-            sut.unWatch(challenge)(dispatch);
-            setTimeout(() => {
+        it('reloads load watch list after delete', () => result
+            .then(() => {
                 dispatch.should.calledWith({
                     type: WATCH_LIST_CHALLENGES_RECEIVED,
                     challenges: watchList
                 });
-                done();
-            }, 1);
+            })
+        );
+
+        it('reloads list after delete failed', () => {
+            api.withArgs(`/api/my/wish-list/${challengeId}`, { method: 'DELETE' })
+                .rejects('something went wrong');
+            return result.then(() => dispatch.should.calledWith({
+                type: WATCH_LIST_CHALLENGES_RECEIVED,
+                challenges: watchList
+            }));
         });
     });
 });

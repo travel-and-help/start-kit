@@ -4,20 +4,19 @@ export const WATCH_LIST_CHALLENGES_RECEIVED = 'WATCH_LIST_CHALLENGES_RECEIVED';
 export const ADDED_TO_ACCEPTED_LIST = 'ADDED_TO_ACCEPTED_LIST';
 
 export function unWatch(challenge) {
-    return function unWatchChallenge(dispatch) {
-        api(`/api/my/wish-list/${challenge.get('_id')}`, { method: 'DELETE' })
-            .then(() => fetchWishList(dispatch))
-            .catch(() => fetchWishList(dispatch));
-    };
+    return dispatch => api(`/api/my/wish-list/${challenge.get('_id')}`, { method: 'DELETE' })
+        .then(() => dispatch(load()))
+        .catch(() => dispatch(load()));
+
 }
 
 export function navigate() {
-    return dispatch => fetchWishList(dispatch)
+    return dispatch => load(dispatch)
         .then(() => dispatch(push('profile/watch-list')));
 }
 
-function fetchWishList(dispatch) {
-    return api('/api/my/wish-list')
+export function load() {
+    return dispatch => api('/api/my/wish-list')
         .then(challenges => dispatch({
             type: WATCH_LIST_CHALLENGES_RECEIVED,
             challenges

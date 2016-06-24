@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { fetchChallenges } from '../challenges.actions';
 import ChallengeScreen from './ChallengeScreen';
-import { Map } from 'immutable';
+import loadable from '../../../../common/components/loadable';
 
 const mapStateToProps = ({ challenges }) => ({
     topChallenge: challenges.first(),
@@ -9,17 +9,9 @@ const mapStateToProps = ({ challenges }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    getChallenges: () => dispatch(fetchChallenges()),
-    leftSwipe: new Map({
-        text: 'Add to watchlist',
-        type: 'watch',
-        action: () => {}
-    }),
-    rightSwipe: new Map({
-        text: 'Dismiss',
-        type: 'dismiss',
-        action: () => {}
-    })
+    onLoad() {
+        dispatch(fetchChallenges());
+    }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChallengeScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(loadable(ChallengeScreen));

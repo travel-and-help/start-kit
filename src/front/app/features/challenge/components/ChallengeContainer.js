@@ -4,25 +4,30 @@ import {
     fetchChallenge,
     resetState,
     watchChallenge,
-    acceptChallenge,
-    getAcceptedChallenges,
-    getWishList
+    acceptChallenge
 } from '../challenge.actions';
-import { load } from '../../main/profile/profile.actions';
+
+import {
+    load as getAcceptedChallenges
+} from '../../profile-challenges/accepted/acceptedChallenges.actions';
+
+import {
+    load as getWishList
+} from '../../profile-challenges/watch-list/watchList.actions';
+
+import { load as loadProfile } from '../../main/profile/profile.actions';
 import Challenge from './Challenge';
 
-const mapStateToProps = ({ challenge, auth }) => (
-    {
-        challenge,
-        userId: auth.get('userId')
-    }
-);
+const mapStateToProps = ({ challenge, auth }) => ({
+    challenge,
+    userId: auth.get('userId')
+});
 
 const mapDispatchToProps = dispatch => ({
     getChallenge: id => dispatch(fetchChallenge(id)),
     getWishList: () => dispatch(getWishList()),
-    getUser: () => dispatch(load()),
-    getAcceptedChallenges: userId => dispatch(getAcceptedChallenges(userId)),
+    getUser: () => dispatch(loadProfile()),
+    getAcceptedChallenges: () => dispatch(getAcceptedChallenges()),
     getInitialState: () => dispatch(resetState()),
     onWatchChallenge: challengeId => dispatch(watchChallenge(challengeId)),
     onAccept: challengeId => dispatch(acceptChallenge(challengeId)),
