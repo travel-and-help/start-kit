@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { fromJS } from 'immutable';
 import FormHeader from '../../../common/components/create/FormHeader';
 import CreateFormBody from './CreateFormBody';
-// import { fetchChallenge } from '../../challenge/challenge.actions';
-// import validate from './validate';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class CreateForm extends Component {
@@ -86,41 +84,3 @@ CreateForm.propTypes = {
 };
 
 export default CreateForm;
-
-// const mapStateToProps = ({ challenge, auth }) => {
-//    const { categories } = challenge.toJS();
-//    const initialValues = {
-//        ...challenge.toJS(),
-//        category: categories && categories[0],
-//        user: auth.get('userId')
-//    };
-//    return { initialValues };
-//
-// };
-// const mapDispatchToProps = (dispatch) => (
-//    {
-//        getChallenge: (id) => {
-//            dispatch(fetchChallenge(id));
-//        }
-//    }
-// );
-
-// export default reduxForm(
-//    {
-//        form: 'create',
-//        fields: [
-//            'title',
-//            'description',
-//            'category',
-//            'startDate',
-//            'endDate',
-//            'repeateble',
-//            'proof',
-//            'user',
-//            'image'
-//        ],
-//        validate
-//    },
-//    mapStateToProps,
-//    mapDispatchToProps
-// )(CreateForm);

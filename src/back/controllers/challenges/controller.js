@@ -4,7 +4,7 @@ const Q = require('q');
 const extend = require('util')._extend;
 // in versions of node where destructuring or Object.assign is supported extend should be removed
 const Challenge = require('../../models/challenge');
-const imageService = require('../../../../common/imageService');
+const imageService = require('../../common/imageService');
 
 const update = (_id, body) => (
     Challenge.update({ _id }, body)
@@ -25,14 +25,15 @@ const create = (req, res, next) => {
         image: body.image,
         category: body.categories[0]
     };
-
     imageService
         .saveImage(imageOptions)
         .then((imagePath) => {
-            body.image = imagePath;
-            return body;
+                const newBody = extend({}, body);
+                return extend(newBody, {image: imagePath});
         }, next)
-        .then(Challenge.create, next)
+        .then((challenge) => (
+            Challenge.create(challenge)
+        ), next)
         .then((challenge) => {
             res.json(challenge);
         }, next);

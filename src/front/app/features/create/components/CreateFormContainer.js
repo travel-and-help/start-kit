@@ -6,11 +6,11 @@ import { fetchCategories, postChallenge, updateChallenge } from '../create.actio
 import { resetState, fetchChallenge } from '../../challenge/challenge.actions';
 
 const mapStateToProps = ({ categories, auth, challenge }) => {
-    const chalengeCategories = challenge.toJS().categories;
+    const challengeCategories = challenge.toJS().categories;
     const user = auth.get('userId');
     const initialValues = {
         ...challenge.toJS(),
-        category: chalengeCategories && chalengeCategories[0],
+        category: challengeCategories && challengeCategories[0],
         user
     };
     return {
@@ -37,8 +37,6 @@ const mapDispatchToProps = (dispatch) => ({
     goToLogin: () => dispatch(push('/')),
     resetState
 });
-
-// export default connect(mapStateToProps, mapDispatchToProps)(CreateForm);
 
 export default reduxForm(
     {
