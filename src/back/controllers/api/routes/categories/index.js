@@ -1,10 +1,13 @@
 'use strict';
 
-const router = require('express').Router;
+const routerConstructor = require('express').Router;
 const categories = require('./categories');
 const restrictUnauthenticated = require('../../../auth/auth.service').restrictUnauthenticated;
 
-module.exports = router()
-    .use(restrictUnauthenticated)
-    .get('/', categories.getAll)
-    .post('/', categories.save);
+const router = routerConstructor();
+
+router.route('/')
+    .get(categories.getAll)
+    .post(restrictUnauthenticated, categories.save);
+
+module.exports = router;
