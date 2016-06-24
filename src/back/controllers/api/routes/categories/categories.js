@@ -6,7 +6,7 @@ const userModel = require('../../../../models/user');
 const getAll = (req, res, next) => {
     categoryModel.find({}, (err, categories) => {
         if (err) {
-            next(next);
+            next(err);
         } else {
             res.json(categories);
         }
