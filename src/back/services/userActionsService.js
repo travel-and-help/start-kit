@@ -19,13 +19,14 @@ function getWatchedChallenges(user$) {
 }
 
 function unWatchChallenge(user$, challengeId) {
-    return user$.then(user => {
-        user.set(
-            'watchList',
-            user.get('watchList').filter(id => id.toString() !== challengeId.toString())
-        );
-        return user.save();
-    });
+    return user$.then((user) => _unWatchChallenge(user, challengeId));
+}
+
+function _unWatchChallenge(user, challengeId) {
+    user.set(
+        'watchList',
+        user.get('watchList').filter(id => id.toString() !== challengeId.toString())
+    );
 }
 
 function watchChallenge(user$, challengeId) {
@@ -56,6 +57,7 @@ function acceptChallenge(user$, challengeId) {
                 .filter(acceptedDuplicates)
                 .reduce((list, task) => list.concat(task), [newlyAccepted])
         );
+        _unWatchChallenge(user, challengeId);
         return user.save();
     });
 
