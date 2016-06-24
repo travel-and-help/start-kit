@@ -38,7 +38,7 @@ class ChallengeController extends BaseController {
                 categories: 1,
                 user: 1
             })
-            .populate('user');
+            .populate('user categories');
     }
 
     getUsersChallenges(req, res) {

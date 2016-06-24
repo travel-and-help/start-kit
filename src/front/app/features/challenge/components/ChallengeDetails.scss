@@ -80,6 +80,10 @@
 
         &-category {
             text-align: center;
+
+            &__btn {
+                text-transform: capitalize;
+            }
         }
 
         &-author {

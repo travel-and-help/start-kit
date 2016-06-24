@@ -12,6 +12,7 @@ const Challenge = new Schema({
     }],
     title: { type: String, required: true },
     image: { type: String },
+    level: { type: String, default: 'easy' },
     location: { type: String },
     user: {
         type: Schema.ObjectId,
