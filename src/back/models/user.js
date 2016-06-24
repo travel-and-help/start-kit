@@ -29,6 +29,7 @@ const User = new Schema({
     },
     registerDate: { type: Date, default: Date.now },
     lastLogin: { type: Date, default: Date.now },
+    firstLogin: Boolean,
     rating: { type: Number, default: 0 },
     watchList: [{
         type: Schema.ObjectId,

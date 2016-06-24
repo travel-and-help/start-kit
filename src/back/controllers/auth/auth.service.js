@@ -33,6 +33,7 @@ function generateOAuth2VerifyCallback(UserModel, providerProperty) {
             .then((result) => {
                 let user = result;
                 if (user) {
+                    user.firstLogin = false;
                     user.lastLogin = new Date();
                 } else {
                     user = new UserModel();
@@ -41,6 +42,7 @@ function generateOAuth2VerifyCallback(UserModel, providerProperty) {
                         token: accessToken
                     };
                     user.fullName = profile.displayName;
+                    user.firstLogin = true;
                     if (profile.photos && profile.photos.length > 0) {
                         user.photo = profile.photos[0].value;
                     }
