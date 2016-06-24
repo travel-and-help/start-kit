@@ -11,7 +11,7 @@ export function unWatch(challenge) {
 }
 
 export function navigate() {
-    return dispatch => load(dispatch)
+    return dispatch => dispatch(load())
         .then(() => dispatch(push('profile/watch-list')));
 }
 
