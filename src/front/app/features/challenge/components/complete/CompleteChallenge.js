@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import Header from '../../../../common/components/header/header';
 import ChallengeList from '../../../../common/components/challenge/ChallengeTileList';
 import CompleteForm from './CompleteForm';
-import { completeChallenge, fetchSimilarChallenge } from '../../challenge.actions';
+import { completeChallenge, fetchSimilarChallenge, watchChallenge } from '../../challenge.actions';
 import { hashHistory } from 'react-router';
-
+import { Map } from 'immutable';
 
 class CompleteChallenge extends Component {
 
@@ -13,12 +13,24 @@ class CompleteChallenge extends Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.goBack = this.goBack.bind(this);
+        this.watchChallenge = this.watchChallenge.bind(this);
+
+        this.leftSwipe = new Map({
+            text: 'Add to watchlist',
+            type: 'watch',
+            action: this.watchChallenge
+        });
     }
 
     componentDidMount() {
         const { dispatch } = this.props;
         const { id } = this.props.params;
         dispatch(fetchSimilarChallenge(id));
+    }
+
+    watchChallenge(challenge) {
+        const { dispatch } = this.props;
+        dispatch(watchChallenge(challenge.get('_id')));
     }
 
     goBack() {
@@ -56,7 +68,10 @@ class CompleteChallenge extends Component {
                         <div className="challenge-complete__more-list-title">
                             More challenges
                         </div>
-                        <ChallengeList challenges={ similarChallenges } />
+                        <ChallengeList
+                            leftSwipe={ this.leftSwipe }
+                            challenges={ similarChallenges }
+                        />
                     </div>
                 </div>
             </section>

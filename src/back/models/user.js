@@ -4,6 +4,7 @@ const STATUS_COMPLETED = 'completed';
 
 const mongoose = require('mongoose'),
     mongoosePaginate = require('mongoose-paginate'),
+    ObjectId = mongoose.Types.ObjectId,
     Schema = mongoose.Schema;
 
 const User = new Schema({
@@ -58,24 +59,25 @@ const User = new Schema({
 
 User.methods.completeChallenge = function completeChallenge(challengeId) {
     const that = this;
+    const id = new ObjectId(challengeId);
     const removeUpdateConfig = {
         $pull: {
             challenges: {
-                challenge: challengeId,
+                challenge: id,
                 status: STATUS_ACCEPTED
             }
         }
     };
-    const inserUpdateConfig = {
+    const insertUpdateConfig = {
         $push: {
             challenges: {
-                challenge: challengeId,
+                challenge: id,
                 status: STATUS_COMPLETED
             }
         }
     };
     this.update(removeUpdateConfig)
-        .then(() => that.update(inserUpdateConfig));
+        .then(() => that.update(insertUpdateConfig));
 };
 
 User.plugin(mongoosePaginate);

@@ -28,7 +28,8 @@ describe('features/challenge/components/complete/CompleteChallenge', () => {
 
         challengeActionCreator = {
             completeChallenge: env.stub(),
-            fetchSimilarChallenge: env.stub()
+            fetchSimilarChallenge: env.stub(),
+            watchChallenge: env.stub()
         };
 
         reactRouter = {
@@ -104,6 +105,20 @@ describe('features/challenge/components/complete/CompleteChallenge', () => {
 
     });
 
+    describe('#watchChallenge', () => {
+
+        it('should add challenge to watch list on left swipe', () => {
+            sut.node.leftSwipe.get('type').should.equal('watch');
+        });
+
+        it('should add challenge to watch list on left swipe button click', () => {
+            const swipeAction = sut.node.leftSwipe.get('action');
+            swipeAction(fromJS({
+                _id: 'test_id'
+            }));
+            challengeActionCreator.watchChallenge.should.calledWith('test_id');
+        });
+    });
     it('should render similar challenges', () => {
         sut.find('.challenge-tile-info__title')
             .text().should.equal('test');

@@ -6,6 +6,7 @@ import Fasteners from '../../../../../common/components/fasteners/Fasteners';
 const ProfileChallengeList = ({
     status,
     challenges,
+    leftSwipe,
     onShowAllClick,
 }) => {
 
@@ -37,7 +38,7 @@ const ProfileChallengeList = ({
                 {`${status} challenges`}
             </h4>
 
-            <ChallengeList challenges={ challenges } />
+            <ChallengeList challenges={ challenges } leftSwipe={ leftSwipe } />
 
             <div className="profile-challenge-list__btn-wrap" >
                 <Fasteners className="challenge-tile-wrap__fasteners" />
@@ -50,7 +51,12 @@ const ProfileChallengeList = ({
 ProfileChallengeList.propTypes = {
     status: PropTypes.string.isRequired,
     challenges: ImmutablePropTypes.list,
-    onShowAllClick: PropTypes.func
+    onShowAllClick: PropTypes.func,
+    leftSwipe: ImmutablePropTypes.mapContains({
+        action: PropTypes.func.isRequired,
+        type: PropTypes.string,
+        text: PropTypes.string
+    })
 };
 
 export default ProfileChallengeList;
