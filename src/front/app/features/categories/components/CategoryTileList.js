@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import CategoryTile from './CategoryTile';
 import CategoryTileListSaveBar from './CategoryTileListSaveBar';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import Layout from './../../Layout';
+import Menu from './../../Menu';
 
 class CategoryTileList extends Component {
     componentDidMount() {
@@ -10,22 +12,32 @@ class CategoryTileList extends Component {
 
     render() {
         const { categories, onCategoryClick, onSaveCategoryClick } = this.props;
+        const menu = (
+            <Menu
+                className="category__menu menu_light"
+                title="Tap areas of interests"
+            />
+        );
 
         return (
-            <div>
-                <CategoryTileListSaveBar
-                  onClickHandler={() => onSaveCategoryClick(this.props.categories)}
-                />
-                <ul className="categories">
-                    {categories.map((category, index) => (
-                        <CategoryTile
-                          key={ index }
-                          category={ category }
-                          onClick={ onCategoryClick }
-                        />
-                    ))}
-                </ul>
-            </div>
+            <Layout
+                menu={menu}
+            >
+                <div>
+                    <ul className="category__list">
+                        {categories.map((category, index) => (
+                            <CategoryTile
+                                key={ index }
+                                category={ category }
+                                onClick={ onCategoryClick }
+                            />
+                        ))}
+                    </ul>
+                    <CategoryTileListSaveBar
+                        onClickHandler={() => onSaveCategoryClick(this.props.categories)}
+                    />
+                </div>
+            </Layout>
         );
     }
 }
