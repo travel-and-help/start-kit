@@ -50,28 +50,6 @@ class ChallengeController extends BaseController {
         return this.get(req, res);
     }
 
-    complete(req, res) {
-        return req.getCurrentUser()
-            .then(userInstance => userInstance.completeChallenge(req.params.id))
-            .then(result => this.processSuccess(req, res, result || {}))
-            .catch(err => this.processError(req, res, err));
-    }
-
-    search(req, res) {
-        return this.get(req, res);
-    }
-
-    complete(req, res) {
-        return req.getCurrentUser()
-            .then(userInstance => userInstance.completeChallenge(req.params.id))
-            .then(result => this.processSuccess(req, res, result || {}))
-            .catch(err => this.processError(req, res, err));
-    }
-
-    search(req, res) {
-        return this.get(req, res);
-    }
-
 }
 
 module.exports = ChallengeController;

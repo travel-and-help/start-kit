@@ -157,49 +157,5 @@ describe('controllers/api/ChallengeController', () => {
 
     });
 
-    describe('Method complete', () => {
-
-        it('should complete challenge for current user', (done) => {
-            const request = httpMocks.createRequest({
-                method: 'POST',
-                url: '/',
-                params: { id: 42 }
-            });
-            const userInstance = {
-                completeChallenge: env.stub().resolves()
-            };
-
-            request.getCurrentUser = env.stub().resolves(userInstance);
-            const response = httpMocks.createResponse();
-            sut.complete(request, response)
-                .then(() => {
-                    userInstance.completeChallenge.should.calledWith(42);
-                    done();
-                });
-        });
-
-    });
-
-    describe('Method search', () => {
-
-        it('should serch similar challenges', (done) => {
-            const findPromise = Q.fcall(() => ([
-                { test: 'test' }
-            ]));
-            challengeModel.paginate.returns(findPromise);
-            const request = httpMocks.createRequest({
-                method: 'GET',
-                url: '/search',
-                params: { similar: 42 }
-            });
-            const response = httpMocks.createResponse();
-            sut.search(request, response)
-                .then(() => {
-                    response.statusCode.should.equal(200);
-                    done();
-                });
-        });
-
-    });
 
 });
