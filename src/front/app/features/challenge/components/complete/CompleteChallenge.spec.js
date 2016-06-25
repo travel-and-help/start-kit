@@ -4,6 +4,7 @@ import { mount } from 'enzyme';
 import { fromJS } from 'immutable';
 import Header from '../../../../common/components/header/header';
 import ChallengeList from '../../../../common/components/challenge/ChallengeTileList';
+const q = require('q');
 
 describe('features/challenge/components/complete/CompleteChallenge', () => {
     let CompleteChallenge,
@@ -32,7 +33,8 @@ describe('features/challenge/components/complete/CompleteChallenge', () => {
 
         reactRouter = {
             hashHistory: {
-                goBack: env.stub()
+                goBack: env.stub(),
+                push: env.stub()
             }
         };
 
@@ -82,9 +84,24 @@ describe('features/challenge/components/complete/CompleteChallenge', () => {
         challengeActionCreator.fetchSimilarChallenge.should.calledWith('id');
     });
 
-    it('should complete challenge on form submit', () => {
-        sut.find('form').simulate('submit');
-        challengeActionCreator.completeChallenge.should.calledWith('id');
+    describe('#handleSubmit', () => {
+
+        it('should complete challenge on form submit', () => {
+            dispatch.resolves();
+            sut.find('form').simulate('submit');
+            challengeActionCreator.completeChallenge.should.calledWith('id');
+        });
+
+        it('should redirect to challenge list page on submit', () => {
+            const deferred = q.defer();
+            dispatch.returns(deferred.promise);
+            sut.find('form').simulate('submit');
+            deferred.promise.then(() => {
+                reactRouter.hashHistory.push.should.calledWith('main/challenges');
+            });
+            deferred.resolve();
+        });
+
     });
 
     it('should render similar challenges', () => {

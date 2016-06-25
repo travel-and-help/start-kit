@@ -1,7 +1,11 @@
 import React, { PropTypes } from 'react';
 
 const CreateFormBody = ({ handleSubmit }) => (
-    <form onSubmit={(formData) => handleSubmit(formData)}>
+    <form onSubmit={(formData) => {
+        formData.preventDefault();
+        handleSubmit(formData);
+    }}
+    >
         <div className="challenge-complete__body">
             <div className="challenge-complete__body-title">Good job!</div>
             <div className="challenge-complete__icons">

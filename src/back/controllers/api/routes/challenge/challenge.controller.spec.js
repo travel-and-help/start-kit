@@ -157,5 +157,4 @@ describe('controllers/api/ChallengeController', () => {
 
     });
 
-
 });

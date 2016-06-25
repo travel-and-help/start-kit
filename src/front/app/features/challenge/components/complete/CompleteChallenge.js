@@ -28,7 +28,10 @@ class CompleteChallenge extends Component {
     handleSubmit(formData) {
         const { dispatch } = this.props;
         const { id } = this.props.params;
-        dispatch(completeChallenge(id, formData));
+        dispatch(completeChallenge(id, formData))
+            .then(() => {
+                hashHistory.push('main/challenges');
+            });
     }
 
     render() {
