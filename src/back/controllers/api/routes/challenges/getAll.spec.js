@@ -25,7 +25,7 @@ describe('routes/challenges-getAll', () => {
             find: env.stub().returns(returnedPopulate)
         };
         const sut = proxyquire('./getAll', {
-            '../../models/challenge': challenge
+            '../../../../models/challenge': challenge
         });
         sut(req, res);
     });

@@ -1,35 +1,24 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Layout from '../../../Layout';
 import ChallengeScreenMenu from './ChallengeScreenMenu';
 import TopChallengeTile from './TopChallengeTile';
-import ChallengeTileList from '../../../../common/components/challenge/ChallengeTileList';
+import ChallengeTileList from './ChallengeTileListContainer';
 
-class ChallengeScreen extends React.Component {
-    componentDidMount() {
-        this.props.getChallenges();
-    }
-
-    render() {
-        const { topChallenge } = this.props;
-        return (
-            <Layout menu={<ChallengeScreenMenu />} >
-                <div className="challenge-screen__content" >
-                    { topChallenge && <TopChallengeTile challenge={topChallenge} /> }
-                    <ChallengeTileList
-                        {...this.props}
-                    />
-                </div>
-            </Layout>
-        );
-    }
-
-}
+const ChallengeScreen = ({ topChallenge, challenges }) => (
+    <Layout menu={<ChallengeScreenMenu />} >
+        <div className="challenge-screen__content" >
+            {topChallenge && <TopChallengeTile challenge={topChallenge} />}
+            <ChallengeTileList
+                challenges={challenges}
+            />
+        </div>
+    </Layout>
+);
 
 ChallengeScreen.propTypes = {
     topChallenge: ImmutablePropTypes.map,
-    challenges: ImmutablePropTypes.list.isRequired,
-    getChallenges: PropTypes.func.isRequired
+    challenges: ImmutablePropTypes.list.isRequired
 };
 
 export default ChallengeScreen;

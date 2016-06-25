@@ -1,44 +1,34 @@
-import React, { Component, PropTypes } from 'react';
-import { hashHistory } from 'react-router';
+import React, { PropTypes } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Layout from '../Layout';
 import Menu from './ProfileChallengeMenu';
 import ChallengeTileList from '../../common/components/challenge/ChallengeTileList';
 
-class ProfileChallengeList extends Component {
-
-    componentDidMount() {
-        const { getChallenges, user } = this.props;
-        getChallenges();
-        if (!user) {
-            hashHistory.push('/');
-        }
-    }
-
-    render() {
-        const { menuTitle, challenges, dismiss, addToWatchList } = this.props;
-
-        return (
-            <Layout menu={<Menu title={menuTitle} />} >
-                <div className="profile-challenge-list" >
-                    <ChallengeTileList
-                        challenges={challenges}
-                        addToWatchList={addToWatchList}
-                        dismiss={dismiss}
-                    />
-                </div>
-            </Layout>
-        );
-    }
-}
+const ProfileChallengeList = ({ menuTitle, challenges, leftSwipe, rightSwipe }) => (
+    <Layout menu={<Menu title={menuTitle} />} >
+        <div className="profile-challenge-list" >
+            <ChallengeTileList
+                challenges={challenges}
+                leftSwipe={leftSwipe}
+                rightSwipe={rightSwipe}
+            />
+        </div>
+    </Layout>
+);
 
 ProfileChallengeList.propTypes = {
     menuTitle: PropTypes.string.isRequired,
     challenges: ImmutablePropTypes.list.isRequired,
-    getChallenges: PropTypes.func.isRequired,
-    addToWatchList: PropTypes.func,
-    user: PropTypes.string,
-    dismiss: PropTypes.func
+    leftSwipe: ImmutablePropTypes.mapContains({
+        action: PropTypes.func,
+        type: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired
+    }),
+    rightSwipe: ImmutablePropTypes.mapContains({
+        action: PropTypes.func,
+        type: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired
+    })
 };
 
 export default ProfileChallengeList;

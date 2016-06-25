@@ -35,7 +35,7 @@ describe('auth.service', () => {
             jsonwebtoken,
             'express-jwt': expressJWT,
             '../../../../env': envValues,
-            '../api/models/user': userModel
+            '../../models/user': userModel
         });
     });
 

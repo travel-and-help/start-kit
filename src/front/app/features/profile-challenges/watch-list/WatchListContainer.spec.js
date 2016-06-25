@@ -14,7 +14,6 @@ describe('WatchListContainer', () => {
         reactRedux = { connect: env.stub().returns(wrapWithConnect) };
         ProfileChallengeList = { a: 'watch-list' };
         watchListActions = {
-            getWatchedChallenges: env.stub().returns('something'),
             unWatch: env.stub().returns('anything')
         };
         sut = proxyquire('./WatchListContainer', {
@@ -26,43 +25,33 @@ describe('WatchListContainer', () => {
 
     it('maps state and dispatch to props', () => {
         const watchList = ['challenges'];
-        const userId = 'userId';
-        const auth = {
-            get: env.stub().returns(userId)
-        };
-        const state = { watchList, auth };
+        const state = { watchList };
         reactRedux.connect.should.calledWith(
             env.match(mapStateToProps => mapStateToProps(state).challenges === watchList),
             env.match(
                 mapDispatchToProps => mapDispatchToProps(dispatch).should.all.keys({
-                    getChallenges: env.match.func,
-                    dismiss: env.match.func
+                    leftSwipe: env.match.map,
+                    rightSwipe: env.match.map
                 }))
         );
     });
 
-    it('maps getChallenges dispatching to props', () => {
-        const { getChallenges } = reactRedux.connect.lastCall.args[1](dispatch);
-        getChallenges();
-        dispatch.should.calledWith(watchListActions.getWatchedChallenges());
-    });
-
-    it('maps dismiss dispatching to props', () => {
-        const { dismiss } = reactRedux.connect.lastCall.args[1](dispatch);
-        dismiss();
+    it('maps rightSwipe dispatching to props', () => {
+        const { rightSwipe } = reactRedux.connect.lastCall.args[1](dispatch);
+        rightSwipe.toJS().action();
         dispatch.should.calledWith(watchListActions.unWatch());
     });
 
     it('passes challenge to unWatch', () => {
-        const { dismiss } = reactRedux.connect.lastCall.args[1](dispatch);
+        const { rightSwipe } = reactRedux.connect.lastCall.args[1](dispatch);
         const challenge = { a: 'challenge' };
-        dismiss(challenge);
+        rightSwipe.toJS().action(challenge);
         watchListActions.unWatch.should.calledWith(challenge);
     });
 
     it('should return react-redux container', () => sut.default.should.equal(wrapWithConnect()));
 
-    it('passes WatchList to connect', () => {
+    it('passes ProfileChallengeList to connect', () => {
         wrapWithConnect.should.calledWith(ProfileChallengeList.default);
     });
 });

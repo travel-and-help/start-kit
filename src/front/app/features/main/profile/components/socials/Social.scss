@@ -1,0 +1,16 @@
+.social {
+  $assetsBasePath: './app/features/main/profile/assets/';
+  $height: 25px;
+
+  width: $height;
+  height: $height;
+  display: flex;
+
+  &_GOOGLE_PLUS {
+    background: url($assetsBasePath + 'google.svg') no-repeat center;
+  }
+
+  &_FACEBOOK {
+    background: url($assetsBasePath + 'facebook.svg') no-repeat center;
+  }
+}

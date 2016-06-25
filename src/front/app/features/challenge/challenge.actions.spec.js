@@ -1,16 +1,12 @@
 const proxyquire = require('proxyquire').noCallThru();
 
 describe('action/categories', () => {
+    const challenge = { _id: 1 };
     let sut;
     let dispatch;
     let api;
     let promise;
-    const userId = 'userId';
-    const challenge = { _id: 1 };
-    const challenges = [
-        { _id: 1 },
-        { _id: 2 }
-    ];
+
     const executeSut = (apiReturnedValue) => {
         promise = env.stub().resolves(apiReturnedValue)();
 
@@ -90,60 +86,6 @@ describe('action/categories', () => {
         });
     });
 
-    describe('#getAcceptedChallenges', () => {
-        let fetcher;
-
-        beforeEach(() => {
-            sut = executeSut(challenges);
-            dispatch = env.spy();
-            fetcher = sut.getAcceptedChallenges(userId);
-        });
-
-        it('should fetch accepted challenges', () => {
-            fetcher(dispatch);
-            api.should.have.been
-                .calledWith(`/api/challenge/user/${userId}/status/accepted`)
-                .and.callCount(1);
-        });
-
-        it('should dispatch ACCEPTED_RECEIVED event with data from response', () => {
-            fetcher(dispatch);
-            return promise.finally(() => {
-                const action = dispatch.lastCall.args[0];
-                action.should.eqls({
-                    type: sut.ACCEPTED_RECEIVED,
-                    challenges
-                });
-            });
-        });
-    });
-
-    describe('#getWishList', () => {
-        let fetcher;
-
-        beforeEach(() => {
-            sut = executeSut(challenges);
-            dispatch = env.spy();
-            fetcher = sut.getWishList();
-        });
-
-        it('should fetch wishList challenges', () => {
-            fetcher(dispatch);
-            api.should.have.been.calledWith('/api/my/wish-list').and.callCount(1);
-        });
-
-        it('should dispatch WATCHLIST_RECEIVED event with data from response', () => {
-            fetcher(dispatch);
-            return promise.finally(() => {
-                const action = dispatch.lastCall.args[0];
-                action.should.eqls({
-                    type: sut.WATCHLIST_RECEIVED,
-                    challenges
-                });
-            });
-        });
-    });
-
     describe('#acceptChallenge', () => {
         let fetcher;
 
@@ -167,6 +109,53 @@ describe('action/categories', () => {
                 action.should.eqls({
                     type: sut.ADDED_TO_ACCEPTED_LIST,
                     challengeId: challenge._id
+                });
+            });
+        });
+    });
+
+    describe('#completeChallenge', () => {
+        let fetcher;
+
+        beforeEach(() => {
+            sut = executeSut();
+            dispatch = env.spy();
+            fetcher = sut.completeChallenge(42, {});
+        });
+
+        it('should complete challenge', () => {
+            fetcher(dispatch);
+            api.should.have.been
+                .calledWith('/api/challenge/42/complete')
+                .and.callCount(1);
+        });
+
+    });
+
+    describe('#fetchSimilarChallenge', () => {
+        let fetcher;
+
+        beforeEach(() => {
+            sut = executeSut([]);
+            dispatch = env.spy();
+            fetcher = sut.fetchSimilarChallenge(42);
+        });
+
+        it('should fetch similar challenges', () => {
+            fetcher(dispatch);
+            api.should.have.been
+                .calledWith('/api/challenge/search?similar=42')
+                .and.callCount(1);
+        });
+
+        it('should dispatch GET_SIMILAR_CHALLENGE event with data from response', () => {
+            fetcher(dispatch);
+            return promise.finally(() => {
+                const action = dispatch.lastCall.args[0];
+                action.should.eqls({
+                    type: sut.GET_SIMILAR_CHALLENGE,
+                    id: 42,
+                    challenges: []
                 });
             });
         });

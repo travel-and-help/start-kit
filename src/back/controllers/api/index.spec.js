@@ -1,14 +1,13 @@
 'use strict';
 
 const proxyquire = require('proxyquire').noCallThru();
-const chainable = require('../../../../test/unit/builders/chainable');
 
 describe('controllers/api', () => {
     let sut,
         router;
 
     beforeEach(() => {
-        router = chainable(['use']);
+        router = env.stubChain(['use']);
 
         const express = {
             Router: env.stub().returns(router)

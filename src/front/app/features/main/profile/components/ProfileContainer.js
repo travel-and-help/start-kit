@@ -1,21 +1,24 @@
-import { connect } from 'react-redux';
-import { getUser, getChallenges } from '../profile.actions';
-import Profile from './Profile';
+import { load } from '../profile.actions';
+import {
+    navigate as navigateToWatchList
+} from '../../../profile-challenges/watch-list/watchList.actions';
 
-const mapStateToProps = ({ user, auth }) => (
-    {
-        userId: auth.get('userId'),
-        user
-    }
-);
+import loadable from '../../../../common/components/loadable';
+import Profile from './Profile';
+import { connect } from 'react-redux';
+
+const mapStateToProps = ({ profile, createdChallenges }) => ({
+    profile,
+    createdChallenges
+});
 
 const mapDispatchToProps = (dispatch) => ({
-    getUser: (id) => {
-        dispatch(getUser(id));
+    onLoad() {
+        dispatch(load());
     },
-    getChallenges: (id) => {
-        dispatch(getChallenges(id));
+    onWatchListClick() {
+        dispatch(navigateToWatchList());
     }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(loadable(Profile));

@@ -1,19 +1,18 @@
-import proxyquire from 'proxyquire';
+const proxyquire = require('proxyquire').noCallThru();
 
-describe('store', () => {
-
+describe('app/store', () => {
     let redux,
-        reactRouter,
+        history,
         reactRouterRedux,
         challenges,
         categories,
         challenge,
-        user,
+        profile,
         auth,
         form,
         storeEnhancers,
         result,
-        watchList;
+        profileChallengesStore;
 
     beforeEach(() => {
 
@@ -23,57 +22,46 @@ describe('store', () => {
             applyMiddleware: env.stub().returns({})
         };
 
-        reactRouter = {
-            hashHistory: {}
-        };
+        history = env.stub();
 
         reactRouterRedux = {
             syncHistoryWithStore: env.stub().returns({}),
             routerReducer: env.stub()
         };
 
-        challenges = {
-            default: env.stub()
-        };
+        challenges = env.stub();
 
-        storeEnhancers = {
-            default: env.stub()
-        };
+        storeEnhancers = env.stub();
 
-        categories = {
-            default: env.stub()
-        };
+        categories = env.stub();
 
-        challenge = {
-            default: env.stub()
-        };
+        challenge = env.stub();
 
-        auth = {
-            default: env.stub()
-        };
+        auth = env.stub();
 
         form = {
             reducer: env.stub()
         };
 
-        watchList = { default: env.stub() };
-
-        user = {
-            default: env.stub()
+        profileChallengesStore = {
+            a: 'a',
+            b: 'b'
         };
+
+        profile = env.stub();
 
         const sut = proxyquire('./index', {
             redux,
-            'react-router': reactRouter,
+            './history': history,
             'react-router-redux': reactRouterRedux,
             'redux-form': form,
             '../features/main/challenges/challenges.reducer': challenges,
             '../features/challenge/challenge.reducer': challenge,
             '../features/categories/categories.reducer': categories,
             '../features/auth/auth.reducer': auth,
-            '../features/main/profile/profile.reducer': user,
+            '../features/main/profile/profile.reducer': profile,
             './enhancers': storeEnhancers,
-            '../features/profile-challenges/watch-list/watchList.reducer': watchList
+            '../features/profile-challenges/profileChallenges.store': profileChallengesStore
         }).default;
 
         result = sut();
@@ -82,34 +70,28 @@ describe('store', () => {
     it('should combine challenges and routing reducers once', () => {
         redux.combineReducers.should
             .calledWith({
-                auth: auth.default,
-                challenges: challenges.default,
-                challenge: challenge.default,
+                profile,
+                auth,
+                challenges,
+                challenge,
                 routing: reactRouterRedux.routerReducer,
-                categories: categories.default,
-                watchList: watchList.default,
-                form: form.reducer,
-                user: user.default
-            })
-            .and
-            .callCount(1);
+                categories,
+                ...profileChallengesStore,
+                form: form.reducer
+            });
     });
 
     it('should create store for combined reducer with respective enhancers', () => {
         redux.createStore.should
             .calledWith(
                 redux.combineReducers(),
-                storeEnhancers.default
-            )
-            .and
-            .callCount(1);
+                storeEnhancers
+            );
     });
 
     it('should sync history with app store', () => {
         reactRouterRedux.syncHistoryWithStore.should
-            .calledWith(reactRouter.hashHistory, redux.createStore())
-            .and
-            .callCount(1);
+            .calledWith(history, redux.createStore());
     });
 
     it('should return created app store', () => {

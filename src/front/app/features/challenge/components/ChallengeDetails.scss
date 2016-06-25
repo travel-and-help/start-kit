@@ -80,6 +80,10 @@
 
         &-category {
             text-align: center;
+
+            &__btn {
+                text-transform: capitalize;
+            }
         }
 
         &-author {
@@ -119,6 +123,10 @@
                 position: relative;
                 flex: 0 0 100%;
                 height: calc(50% - #{$grid-gap});
+            }
+
+            &_accepted {
+                background-color: map_get($colors, bg_button_active);
             }
         }
 

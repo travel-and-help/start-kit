@@ -1,13 +1,12 @@
 'use strict';
 
 const sut = require('./response-builder');
-const chainable = require('../../../test/unit/builders/chainable');
 
 describe('response builder', () => {
     let res;
 
     beforeEach(() => {
-        res = chainable(['status', 'json']);
+        res = env.stubChain(['status', 'json']);
     });
 
     it('sets code on success', () => {

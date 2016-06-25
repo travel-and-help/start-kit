@@ -1,24 +1,51 @@
 'use strict';
 
-const category = require('./../../models/category');
-const user = require('./../../models/user');
+const categoryModel = require('../../../../models/category');
+const userModel = require('../../../../models/user');
 
-const getAll = (req, res) => {
-    category.find({}, (err, categories) => {
-        res.json(categories);
+const getAll = (req, res, next) => {
+    categoryModel.find({}, (err, categories) => {
+        if (err) {
+            next(err);
+        } else {
+            res.json(categories);
+        }
     });
 };
 
-const save = (req, res) => {
+const getUserSavedCategories = (req, res, next) => {
+    categoryModel.find({}, (err, foundCategories) => {
+        if (err) {
+            next(err);
+        } else {
+            const userId = req.user._id;
+            let categories;
+
+            userModel.findById(userId, (error, user) => {
+                if (error) {
+                    next(error);
+                } else {
+                    categories = checkUserSavedCategories(user, foundCategories);
+
+                    res.json(categories);
+                }
+            });
+        }
+    });
+};
+
+const save = (req, res, next) => {
     const userId = req.user._id;
     const categoryIds = getCategoryIds(req.body);
 
-    user.find({ _id: userId }).update({
+    userModel.find({ _id: userId }).update({
         categories: categoryIds
     }, (err) => {
-        if (err) res.sendStatus(500);
-
-        res.status(200);
+        if (err) {
+            next(err);
+        } else {
+            res.json({ saved: true });
+        }
     });
 };
 
@@ -34,7 +61,22 @@ function getCategoryIds(categories) {
     return categoryIds;
 }
 
+function checkUserSavedCategories(user, foundCategories) {
+    return foundCategories.map((category) => {
+        if (user.categories.indexOf(category._id) > -1) {
+            return {
+                _id: category._id,
+                name: category.name,
+                checked: true
+            };
+        }
+
+        return category;
+    });
+}
+
 module.exports = {
     getAll,
+    getUserSavedCategories,
     save
 };
