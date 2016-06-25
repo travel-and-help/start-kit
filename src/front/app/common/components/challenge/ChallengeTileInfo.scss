@@ -27,9 +27,12 @@ $primaryTextSz: _th-rem(18);
   text-decoration: none;
 
   &__title {
+    box-sizing: border-box;
     width: 100%;
+    overflow: hidden;
     padding: _th-rem(5);
     text-transform: uppercase;
+    text-overflow: ellipsis;
   }
 
   &__info {
