@@ -75,14 +75,18 @@ describe('auth.service', () => {
         });
 
         it('should response with token if user exists', () => {
-            req.user = { _id: 'testId' };
+            req.user = {
+                _id: 'testId',
+                firstLogin: true
+            };
             sut.responseAuthToken(req, res, next);
             jsonwebtoken.sign.should.been.calledWith({ id: 'testId' },
                 'testSecret', { expiresIn: 18000 });
             res.json.should.been.calledWith({
                 success: true,
                 token,
-                id: 'testId'
+                id: 'testId',
+                firstLogin: true
             });
         });
 

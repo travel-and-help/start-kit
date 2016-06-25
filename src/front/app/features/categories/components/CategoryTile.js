@@ -1,16 +1,25 @@
 import React, { PropTypes } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import classNames from 'classnames';
+import IconButton from './../../../common/components/buttons/IconButton';
 
 const CategoryTile = ({ onClick, category }) => {
     const onCategoryClick = () => onClick(category.get('_id'));
-    const classes = classNames({
-        checked: category.get('checked') === true
+    const buttonClasses = classNames({
+        category__button_checked: category.get('checked') === true,
+        category__button: true
     });
 
     return (
-        <li className={ classes } onClick={ onCategoryClick } >
-            { category.get('name') }
+        <li className="category__item">
+            <IconButton
+              iconName={`category-${category.get('name').toLowerCase()}`}
+              iconSize={48}
+              iconClassName="icon_light"
+              buttonClassName={ buttonClasses }
+              clickHandler={ onCategoryClick }
+            />
+            {category.get('name')}
         </li>
     );
 };
