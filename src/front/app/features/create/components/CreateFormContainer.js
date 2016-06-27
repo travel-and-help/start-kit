@@ -1,8 +1,9 @@
 import { push } from 'react-router-redux';
 import { reduxForm } from 'redux-form';
+import loadable from '../../../common/components/loadable';
 import validate from './validate';
 import CreateForm from './CreateForm';
-import { fetchCategories, postChallenge, updateChallenge } from '../create.actions';
+import { fetchCategories, sendChallenge } from '../create.actions';
 import { resetState, fetchChallenge } from '../../challenge/challenge.actions';
 
 const mapStateToProps = ({ categories, auth, challenge }) => {
@@ -14,29 +15,38 @@ const mapStateToProps = ({ categories, auth, challenge }) => {
         user
     };
     return {
-        challenge,
         categories,
         initialValues,
-        user
+        user,
+        challenge
     };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-    getCategories: () => {
-        dispatch(fetchCategories());
-    },
-    postChallenge: (challenge) => {
-        dispatch(postChallenge(challenge));
-    },
-    updateChallenge: (data, id) => {
-        dispatch(updateChallenge(data, id));
-    },
-    getChallenge: (id) => {
-        dispatch(fetchChallenge(id));
-    },
-    goToLogin: () => dispatch(push('/')),
-    resetState
-});
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+    const innerSendChallenge = sendChallenge(stateProps.challenge);
+    const { challengeId } = ownProps;
+    const { dispatch } = dispatchProps;
+    return {
+        ...ownProps,
+        ...stateProps,
+        ...dispatchProps,
+        sendChallenge: (data) => {
+            dispatch(innerSendChallenge(data));
+        },
+        onLoad() {
+            if (!stateProps.user) {
+                dispatch(push('/'));
+                return;
+            }
+            dispatch(fetchCategories());
+            if (challengeId) {
+                dispatch(fetchChallenge(challengeId));
+            }
+        },
+        resetState
+    };
+
+};
 
 export default reduxForm(
     {
@@ -55,6 +65,7 @@ export default reduxForm(
         validate
     },
     mapStateToProps,
-    mapDispatchToProps
-)(CreateForm);
+    null,
+    mergeProps
+)(loadable(CreateForm));
 

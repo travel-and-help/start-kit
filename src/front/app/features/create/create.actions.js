@@ -1,3 +1,4 @@
+import { fromJS } from 'immutable';
 import { goBack, push } from 'react-router-redux';
 import api from '../../common/api';
 
@@ -27,7 +28,27 @@ export function fetchCategories() {
     };
 }
 
-export function postChallenge(formData) {
+export function sendChallenge(challenge) {
+    return function innerSendChallenge(data) {
+        if (challenge && challenge.size) {
+            const ignoredFields = ['user', '_id'];
+            const immutableData = fromJS(data);
+            const formData = immutableData
+                .filter((value, key) => ignoredFields.indexOf(key) === -1)
+                .filter((value, key) => (challenge.get(key) && (challenge.get(key) !== value)));
+
+            return updateChallenge(formData, challenge.get('_id'));
+        }
+        const formData = data;
+        formData.categories = [data.category];
+        formData.location = 'Kyiv';
+        formData.level = 'easy';
+
+        return postChallenge(formData);
+    };
+}
+
+function postChallenge(formData) {
     return function innerPostChallenge(dispatch) {
         api('/api/challenges', {
             method: 'POST',
@@ -40,7 +61,7 @@ export function postChallenge(formData) {
     };
 }
 
-export function updateChallenge(formData, id) {
+function updateChallenge(formData, id) {
     return function innerUpdateChallenge(dispatch) {
         if (formData.size) {
             api(`/api/challenges/${id}`, {
