@@ -1,6 +1,6 @@
 import proxyquire from 'proxyquire';
 
-describe('CreateFormContainer', () => {
+xdescribe('CreateFormContainer', () => {
     let sut,
         reactRedux,
         wrapWithConnect,

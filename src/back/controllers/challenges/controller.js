@@ -28,8 +28,8 @@ const create = (req, res, next) => {
     imageService
         .saveImage(imageOptions)
         .then((imagePath) => {
-                const newBody = extend({}, body);
-                return extend(newBody, {image: imagePath});
+            const newBody = extend({}, body);
+            return extend(newBody, { image: imagePath });
         }, next)
         .then((challenge) => (
             Challenge.create(challenge)

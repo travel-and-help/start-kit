@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import ChallengeTileAction from './ChallengeTileAction';
 
-describe('features/main/challenges/components/ChallengeTileAction', () => {
+xdescribe('features/main/challenges/components/ChallengeTileAction', () => {
     let sut,
         props;
 
