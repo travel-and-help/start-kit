@@ -76,7 +76,7 @@ User.methods.completeChallenge = function completeChallenge(challengeId) {
             }
         }
     };
-    this.update(removeUpdateConfig)
+    return this.update(removeUpdateConfig)
         .then(() => that.update(insertUpdateConfig));
 };
 
