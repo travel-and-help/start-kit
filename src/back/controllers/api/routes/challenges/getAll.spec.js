@@ -2,16 +2,24 @@
 const proxyquire = require('proxyquire').noCallThru();
 
 describe('routes/challenges-getAll', () => {
-    let res,
+    let sut,
+        req,
+        res,
         challenge,
-        mockChallenges;
+        mockChallenges,
+        userData;
 
     beforeEach(() => {
-        const req = {};
+        req = {
+            getCurrentUser: env.stub()
+        };
         res = {
             json: env.spy()
         };
         mockChallenges = [1, 2, 3];
+        userData = {
+            categories: [1, 2, 3]
+        };
         const mockResponse = {
             then: (successCb) => (successCb(mockChallenges))
         };
@@ -24,18 +32,30 @@ describe('routes/challenges-getAll', () => {
         challenge = {
             find: env.stub().returns(returnedPopulate)
         };
-        const sut = proxyquire('./getAll', {
+        sut = proxyquire('./getAll', {
             '../../../../models/challenge': challenge
         });
-        sut(req, res);
+
     });
 
-    it('should find challenges in db', () => {
-        challenge.find.should.been.calledWith({});
+    it('should find challenges for authenticated users', () => {
+        const expectedQuery = { categories: { $in: userData.categories } };
+
+        req.getCurrentUser.resolves(userData);
+
+        sut(req, res)
+            .then(() => {
+                challenge.find.should.not.been.calledWith(expectedQuery);
+            });
     });
 
     it('should send response with challenges from db', () => {
-        res.json.should.been.calledWith(mockChallenges);
+        req.getCurrentUser.resolves(userData);
+
+        sut(req, res)
+            .then(() => {
+                res.json.should.been.calledWith(mockChallenges);
+            });
     });
 
 });

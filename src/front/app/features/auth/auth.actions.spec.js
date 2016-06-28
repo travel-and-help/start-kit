@@ -124,6 +124,15 @@ describe('action/auth', () => {
                     });
             });
 
+            it('should redirect to categories if first time success authenticated', () => {
+                browserWrapper.getBody.returns(
+                    env.stub().resolves('{"success":true,"token":"test","firstLogin":true}')());
+                loginAction(dispatch)
+                    .finally(() => {
+                        reactRouter.hashHistory.push.should.calledWith('categories');
+                    });
+            });
+
             it('should dispatch login failed if response does not contains token', () => {
                 browserWrapper.getBody.returns(env.stub().resolves('{"success":false}')());
                 loginAction(dispatch)

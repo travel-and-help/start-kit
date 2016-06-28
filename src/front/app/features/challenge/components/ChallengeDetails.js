@@ -45,7 +45,7 @@ const ChallengeDetails = ({ challenge, onAccept, onComplete }) => {
                             title={categories[0].name}
                             iconName={`category-${categories[0].name}`.toLowerCase()}
                             iconSize={48}
-                            iconClassName={'icon_dark'}
+                            iconClassName={'icon_light'}
                             buttonClassName={'challenge-info-category__btn'}
                         />}
                     </div>

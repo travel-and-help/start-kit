@@ -11,6 +11,12 @@ const ProfileChallenges = ({
     onShowAllClick
 }) => (
     <div className="profile__challenges" >
+        <ProfileChallengeList
+            status={ACCEPTED}
+            challenges={accepted}
+            leftSwipe={acceptedLeftSwipe}
+            onShowAllClick={() => onShowAllClick(ACCEPTED)}
+        />
 
         <ProfileChallengeList
             status={CREATED}
@@ -22,13 +28,6 @@ const ProfileChallenges = ({
             status={COMPLETED}
             challenges={completed}
             onShowAllClick={() => onShowAllClick(COMPLETED)}
-        />
-
-        <ProfileChallengeList
-            status={ACCEPTED}
-            challenges={accepted}
-            leftSwipe={acceptedLeftSwipe}
-            onShowAllClick={() => onShowAllClick(ACCEPTED)}
         />
     </div>
 );

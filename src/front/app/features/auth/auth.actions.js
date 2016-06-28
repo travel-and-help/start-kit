@@ -55,8 +55,12 @@ function getServiceUrl(type) {
     }
 }
 
-function redirect() {
-    hashHistory.push('main/challenges');
+function redirect({ firstLogin }) {
+    if (firstLogin) {
+        hashHistory.push('categories');
+    } else {
+        hashHistory.push('main/challenges');
+    }
 }
 
 export function login(loginService) {
@@ -83,6 +87,7 @@ export function login(loginService) {
             })
             .then((result) => {
                 dispatch(loginSuccess(result));
+                return result;
             })
             .then(redirect)
             .catch((error) => {
@@ -95,6 +100,6 @@ export function login(loginService) {
 export function skip() {
     return (dispatch) => {
         dispatch(loginSkipped());
-        redirect();
+        redirect({});
     };
 }
