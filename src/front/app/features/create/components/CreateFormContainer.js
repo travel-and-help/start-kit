@@ -1,4 +1,4 @@
-import { push } from 'react-router-redux';
+import { push, goBack } from 'react-router-redux';
 import { reduxForm } from 'redux-form';
 import loadable from '../../../common/components/loadable';
 import validate from './validate';
@@ -11,7 +11,7 @@ const mapStateToProps = ({ categories, auth, challenge }) => {
     const user = auth.get('userId');
     const initialValues = {
         ...challenge.toJS(),
-        category: challengeCategories && challengeCategories[0],
+        category: challengeCategories && challengeCategories[0]._id,
         user
     };
     return {
@@ -30,6 +30,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
         ...ownProps,
         ...stateProps,
         ...dispatchProps,
+        discardHandler: () => dispatch(goBack()),
         sendChallenge: (data) => {
             dispatch(innerSendChallenge(data));
         },

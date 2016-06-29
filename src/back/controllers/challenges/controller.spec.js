@@ -9,6 +9,8 @@ describe('challenges/controller', () => {
         Challenge,
         mockChallenges,
         mockChallenge,
+        q,
+        util,
         imageService,
         saveImageResp;
 
@@ -60,13 +62,25 @@ describe('challenges/controller', () => {
 
         Challenge = {
             create: env.stub().returns(mockResponseForChallenge),
+            update: env.stub().returns(mockResponseForChallenge),
             find: env.spy(() => Challenge),
             populate: env.stub().returns(mockResponseForChallenges)
         };
 
+        q = {
+            resolve: env.stub().returns(mockResponseForChallenge),
+            reject: env.spy()
+        };
+
+        util = {
+            _extend: env.stub().returnsArg(1)
+        };
+
         sut = proxyquire('./controller', {
             '../../models/challenge': Challenge,
-            '../../common/imageService': imageService
+            '../../common/imageService': imageService,
+            util,
+            q
         });
     });
 
@@ -89,7 +103,7 @@ describe('challenges/controller', () => {
         });
     });
 
-    describe('post', () => {
+    describe('create', () => {
         const image = 'image';
 
         beforeEach(() => {
@@ -126,6 +140,68 @@ describe('challenges/controller', () => {
                 .should.been.calledWith(
                 sinon.match({ image: saveImageResp })
             );
+        });
+    });
+
+    describe('edit', () => {
+        describe('with image', ()=> {
+            const image = 'image';
+            const body = {
+                image
+            };
+
+            beforeEach(() => {
+                req = {
+                    params: {
+                        id: 'id'
+                    },
+                    body
+                };
+                sut.edit(req, res, next);
+            });
+
+            it('should copy request body', () => {
+                util._extend.should.been.calledWith({}, body);
+            });
+
+            it('should save new image', () => {
+                imageService.saveImage.should.been.calledWith({ image });
+            });
+
+            it('should update existing challenge', () => {
+                Challenge.update.should.been.calledWith(
+                    { _id: req.params.id },
+                    mockChallenge
+                );
+            });
+
+            it('should send updated challenge back', () => {
+                res.json.should.been.calledWith(mockChallenge);
+            });
+        });
+
+        describe('without image', ()=> {
+            const body = {};
+            beforeEach(() => {
+                req = {
+                    params: {
+                        id: 'id'
+                    },
+                    body
+                };
+                sut.edit(req, res, next);
+            });
+
+            it('should resolve promise with body without image', () => {
+                q.resolve.should.been.calledWith(body);
+            });
+
+            it('should NOT call service to save image', () => {
+                const checkAssertion = () => (
+                    imageService.saveImage.should.not.been.called
+                );
+                checkAssertion();
+            });
         });
     });
 });

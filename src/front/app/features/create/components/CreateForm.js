@@ -15,11 +15,12 @@ class CreateForm extends Component {
             sendChallenge,
             categories,
             headerTitle,
+            discardHandler
         } = this.props;
 
         return (
             <form onSubmit={ handleSubmit(sendChallenge) } >
-                <FormHeader headerTitle={headerTitle} />
+                <FormHeader headerTitle={headerTitle} discardHandler={discardHandler} />
                 <CreateFormBody fields={fields} categories={categories} />
             </form>
         );
@@ -30,6 +31,7 @@ CreateForm.propTypes = {
     fields: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     sendChallenge: PropTypes.func.isRequired,
+    discardHandler: PropTypes.func.isRequired,
     resetState: PropTypes.func.isRequired,
     categories: ImmutablePropTypes.list.isRequired,
     headerTitle: PropTypes.string

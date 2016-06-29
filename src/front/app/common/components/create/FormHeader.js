@@ -1,14 +1,13 @@
 import React, { PropTypes } from 'react';
-import { hashHistory } from 'react-router';
 
-const CreateFormHeader = ({ headerTitle }) => (
+const CreateFormHeader = ({ headerTitle, discardHandler }) => (
     <header className="challenge-create-header">
         <h1 className="challenge-create-header__title">{ headerTitle }</h1>
 
         <button
           className="challenge-create-header__discard"
           type="button"
-          onClick={ () => hashHistory.goBack() }
+          onClick={ discardHandler }
         >
 
             Discard
@@ -21,7 +20,8 @@ const CreateFormHeader = ({ headerTitle }) => (
 );
 
 CreateFormHeader.propTypes = {
-    headerTitle: PropTypes.string
+    headerTitle: PropTypes.string,
+    discardHandler: PropTypes.func
 };
 
 export default CreateFormHeader;

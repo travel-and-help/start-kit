@@ -6,10 +6,6 @@ const extend = require('util')._extend;
 const Challenge = require('../../models/challenge');
 const imageService = require('../../common/imageService');
 
-const update = (_id, body) => (
-    Challenge.update({ _id }, body)
-);
-
 const getAll = (req, res, next) => {
     Challenge
         .find({})
@@ -52,8 +48,11 @@ const editImage = (body) => {
 
 const edit = (req, res, next) => {
     const body = req.body;
+    const _id = req.params.id;
     editImage(body)
-        .then((challenge) => update(req.params.id, challenge))
+        .then((challenge) => (
+            Challenge.update({ _id }, challenge)
+        ), next)
         .then((challenge) => {
             res.json(challenge);
         }, next);

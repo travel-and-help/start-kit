@@ -1,25 +1,17 @@
 import React from 'react';
-import proxyquire from 'proxyquire';
+import FormHeader from './FormHeader';
 import { mount } from 'enzyme';
 const chai = require('chai'),
     expect = chai.expect;
 
 describe('FormHeader', () => {
     let sut;
-    let router;
+    let goBack;
 
     beforeEach(() => {
-        router = {
-            hashHistory: {
-                goBack: env.spy()
-            }
-        };
+        goBack = env.spy();
 
-        const FormHeader = proxyquire('./FormHeader', {
-            'react-router': router
-        }).default;
-
-        sut = mount(<FormHeader headerTitle="Create Challenge" />);
+        sut = mount(<FormHeader headerTitle="Create Challenge" discardHandler={goBack} />);
     });
 
     it('should contains page title', () => {
@@ -34,6 +26,6 @@ describe('FormHeader', () => {
     it('should execute  onDiscardClick function by clicking on discard button', () => {
         sut.find('.challenge-create-header__discard')
             .simulate('click');
-        expect(router.hashHistory.goBack.calledOnce).to.equal(true);
+        expect(goBack.calledOnce).to.equal(true);
     });
 });

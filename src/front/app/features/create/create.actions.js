@@ -32,7 +32,10 @@ export function sendChallenge(challenge) {
     return function innerSendChallenge(data) {
         if (challenge && challenge.size) {
             const ignoredFields = ['user', '_id'];
-            const immutableData = fromJS(data);
+            const immutableData = fromJS({
+                ...data,
+                categories: [data.category]
+            });
             const formData = immutableData
                 .filter((value, key) => ignoredFields.indexOf(key) === -1)
                 .filter((value, key) => (challenge.get(key) && (challenge.get(key) !== value)));
