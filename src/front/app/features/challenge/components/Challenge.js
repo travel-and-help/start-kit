@@ -99,6 +99,6 @@ Challenge.propTypes = {
 export default Challenge;
 
 
-/* COMMENTS was deleted for release version, to add it again:
+/* TODO
  import ChallengeComments from './ChallengeComments';
  <ChallengeComments />  between 76-77 lines */

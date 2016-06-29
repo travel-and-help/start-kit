@@ -106,7 +106,7 @@ ChallengeDetails.propTypes = {
 
 export default ChallengeDetails;
 
-/* For release was deleted or changed data
+/* TODO
 
 ---Info level
 ---item-big (sum of completions block)
