@@ -34,3 +34,10 @@ describe('ChallengeDetails', () => {
             .text().should.equal('userName userLastName');
     });
 });
+
+/*
+ it('should show challenge level', () => {
+ sut.find('.challenge-info-level').find('.challenge-info__text')
+ .text().should.equal('testLevel');
+ });
+ */
