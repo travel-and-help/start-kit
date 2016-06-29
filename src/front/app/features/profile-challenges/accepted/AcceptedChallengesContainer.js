@@ -1,4 +1,6 @@
 import ProfileChallengeList from '../ProfileChallengeList';
+import { load } from './acceptedChallenges.actions';
+import loadable from '../../../common/components/loadable';
 import { connect } from 'react-redux';
 
 const mapStateToProps = ({ acceptedChallenges }) => ({
@@ -6,4 +8,10 @@ const mapStateToProps = ({ acceptedChallenges }) => ({
     challenges: acceptedChallenges
 });
 
-export default connect(mapStateToProps)(ProfileChallengeList);
+const mapDispatchToProps = (dispatch) => ({
+    onLoad() {
+        dispatch(load());
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(loadable(ProfileChallengeList));

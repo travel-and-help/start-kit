@@ -4,7 +4,9 @@ const proxyquire = require('proxyquire').noCallThru();
 describe('watchList.actions', () => {
     let sut;
     let dispatch;
+    let push;
     let api;
+    let result;
     const watchList = ['challenges'];
 
     beforeEach(() => {
@@ -15,14 +17,37 @@ describe('watchList.actions', () => {
             return action;
         });
 
+        push = env.stub();
+
         api = env.stub().resolves(watchList);
-        sut = proxyquire('./watchList.actions', { '../../../common/api': api });
+        sut = proxyquire('./watchList.actions', {
+            'react-router-redux': {
+                push
+            },
+            '../../../common/api': api
+        });
+    });
+
+    describe('navigate', () => {
+
+        beforeEach(() => {
+            push.returns('navigateToWatchListAction');
+            result = sut.navigate();
+        });
+
+        it('should create navigate to watch list action', () => {
+            push.should.calledWith('profile/watch-list');
+        });
+
+        it('should return action', () => {
+            result.should.equal('navigateToWatchListAction');
+        });
+
     });
 
     describe('unWatch', () => {
         let challengeId;
         let challenge;
-        let result;
 
         beforeEach(() => {
             challengeId = 'someId';

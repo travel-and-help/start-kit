@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { fromJS } from 'immutable';
 import proxyquire from 'proxyquire';
 
@@ -39,7 +39,7 @@ describe('ProfileChallengeList', () => {
     });
 
     it('should NOT redirect to login if user is logged in', () => {
-        mount(<ProfileChallengeList
+        shallow(<ProfileChallengeList
             user={ user }
             getChallenges={ getChallenges }
             menuTitle={ menuTitle }

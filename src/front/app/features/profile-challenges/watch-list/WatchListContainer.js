@@ -3,6 +3,7 @@ import WatchList from '../ProfileChallengeList';
 import { load, unWatch } from './watchList.actions';
 import { acceptChallenge } from '../../challenge/challenge.actions';
 import { Map } from 'immutable';
+import loadable from '../../../common/components/loadable';
 
 const mapStateToProps = ({ watchList }) => ({
     menuTitle: 'watch list',
@@ -10,6 +11,9 @@ const mapStateToProps = ({ watchList }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+    onLoad() {
+        dispatch(load());
+    },
     leftSwipe: new Map({
         text: 'Accept',
         type: 'accept',
@@ -27,4 +31,4 @@ const mapDispatchToProps = (dispatch) => ({
     })
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(WatchList);
+export default connect(mapStateToProps, mapDispatchToProps)(loadable(WatchList));

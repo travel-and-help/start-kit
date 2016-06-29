@@ -1,18 +1,17 @@
-import React from 'react';
 import IconButton from './IconButton';
-import { hashHistory } from 'react-router';
+import { goBack } from 'react-router-redux';
+import { connect } from 'react-redux';
 
-const BackButton = ({ lightness }) => (
-    <IconButton
-        iconName={'back'}
-        iconSize={24}
-        iconClassName={`icon_${lightness}`}
-        clickHandler={hashHistory.goBack}
-    />
-);
+const mapStateToProps = (state, { lightness }) => ({
+    iconName: 'back',
+    iconSize: 24,
+    iconClassName: `icon_${lightness}`
+});
 
-BackButton.propTypes = {
-    lightness: React.PropTypes.string
-};
+const mapDispatchToProps = (dispatch) => ({
+    clickHandler() {
+        dispatch(goBack());
+    }
+});
 
-export default BackButton;
+export default connect(mapStateToProps, mapDispatchToProps)(IconButton);

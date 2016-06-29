@@ -1,6 +1,7 @@
 import React from 'react';
+import { shallow } from 'enzyme';
 import ChallengeDetailsMenu from './ChallengeDetailsMenu';
-import { mount, shallow } from 'enzyme';
+import Menu from '../../Menu';
 
 describe('ChallengeDetailsMenu', () => {
     let wrapper;
@@ -15,9 +16,15 @@ describe('ChallengeDetailsMenu', () => {
         wrapper.is('.challenge-details-menu').should.equal(true);
     });
 
-    it('shows title', () => {
+    it('shows title when background visible', () => {
         const title = 'a title';
-        wrapper = mount(<ChallengeDetailsMenu isBgVisible="true" title={title} />);
-        wrapper.find('.menu__title').at(0).text().should.equal(title);
+        wrapper = shallow(<ChallengeDetailsMenu isBgVisible title={title} />);
+        wrapper.find(Menu).props().title.should.equal(title);
+    });
+
+    it('shows hide title when background invisible', () => {
+        const title = 'a title';
+        wrapper = shallow(<ChallengeDetailsMenu isBgVisible={false} title={title} />);
+        wrapper.find(Menu).props().title.should.equal('');
     });
 });

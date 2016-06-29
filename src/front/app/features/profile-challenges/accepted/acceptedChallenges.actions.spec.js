@@ -8,6 +8,7 @@ describe('features/profile-challenges/accepted/acceptedChallenges.actions', () =
     let sut,
         dispatch,
         profileChallengesService,
+        push,
         result;
 
     beforeEach(() => {
@@ -17,8 +18,28 @@ describe('features/profile-challenges/accepted/acceptedChallenges.actions', () =
             getChallengesByStatus: env.stub().resolves(getChallengesByStatusResult)
         };
 
+        push = env.stub();
+
         sut = proxyquire('./acceptedChallenges.actions', {
-            '../profileChallengesService': profileChallengesService
+            '../profileChallengesService': profileChallengesService,
+            'react-router-redux': {
+                push
+            }
+        });
+    });
+
+    describe('navigate', () => {
+        beforeEach(() => {
+            push.returns('pushAction');
+            result = sut.navigate();
+        });
+
+        it('should create navigate to accepted challenges action', () => {
+            push.should.calledWith('profile/accepted-challenges');
+        });
+
+        it('should return action', () => {
+            result.should.equal('pushAction');
         });
     });
 

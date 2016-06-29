@@ -9,8 +9,7 @@ export function unWatch(challenge) {
 }
 
 export function navigate() {
-    return dispatch => dispatch(load())
-        .then(() => dispatch(push('profile/watch-list')));
+    return push('profile/watch-list');
 }
 
 export function load() {

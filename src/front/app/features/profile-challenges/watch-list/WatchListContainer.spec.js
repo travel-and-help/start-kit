@@ -1,4 +1,5 @@
 import { Map } from 'immutable';
+
 const proxyquire = require('proxyquire').noCallThru();
 
 describe('WatchListContainer', () => {
@@ -33,7 +34,8 @@ describe('WatchListContainer', () => {
             'react-redux': reactRedux,
             '../ProfileChallengeList': ProfileChallengeList,
             './watchList.actions': watchListActions,
-            '../../challenge/challenge.actions': challengeActions
+            '../../challenge/challenge.actions': challengeActions,
+            '../../../common/components/loadable': env.stub().returnsArg(0)
         });
     });
 
@@ -45,9 +47,22 @@ describe('WatchListContainer', () => {
             env.match(
                 mapDispatchToProps => mapDispatchToProps(dispatch).should.all.keys({
                     leftSwipe: env.match.map,
-                    rightSwipe: env.match.map
+                    rightSwipe: env.match.map,
+                    onLoad: env.match.func
                 }))
         );
+    });
+
+    describe('when load', () => {
+
+        beforeEach(() => {
+            const { onLoad } = reactRedux.connect.lastCall.args[1](dispatch);
+            onLoad();
+        });
+
+        it('should load watch list', () => {
+            dispatch.should.calledWith('loadWatchListAction');
+        });
     });
 
     describe('left swiped action', () => {
