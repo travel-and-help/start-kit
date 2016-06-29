@@ -50,6 +50,7 @@ $imageMeasurement: 120px;
     width: $ratingIconSize;
     height: $ratingIconSize;
     background: url($assetsBasePath + 'pizza.svg') no-repeat center;
+      display: none;
   }
 
   &__watchlist-link {
