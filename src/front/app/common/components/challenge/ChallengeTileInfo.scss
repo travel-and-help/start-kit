@@ -55,6 +55,7 @@ $primaryTextSz: _th-rem(18);
 
     &-rank {
       @extend %primaryText;
+        display: none;
 
       &_good {
         color: $goodRankColor;

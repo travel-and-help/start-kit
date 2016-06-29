@@ -21,6 +21,7 @@
     overflow-y: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+      margin-left: 25%;
   }
 
   &__action {
@@ -28,3 +29,8 @@
     font-size: 0;
   }
 }
+
+
+/* For release was deleted or changed data
+&__title added line margin-left: 25%;
+*/

@@ -8,7 +8,7 @@
   margin-top: $heightDiff;
   border-radius: $gBorderRadius $gBorderRadius 0 0;
   border: $gBorder;
-  width: 24%;
+  width: 49%;
   height: 100%;
 
   &::after {
@@ -41,6 +41,7 @@
 
   &_awards {
     background: #ffee93;
+      display: none;
     &::after {
       background-image: url($assetsBasePath + 'awards-icon.svg');
     }
@@ -48,6 +49,7 @@
 
   &_updates {
     background: #adf7b6;
+      display: none;
     &::after {
       background-image: url($assetsBasePath + 'updates-icon.svg');
     }
@@ -60,3 +62,11 @@
     }
   }
 }
+
+
+/*
+
+.navigation-item from width: 24%; to width: 49%;
+
+&_awards and &_updates: display: none;
+*/
