@@ -49,13 +49,14 @@ describe('action/create', () => {
         });
     });
 
-    xdescribe('#postChallenge', () => {
+    describe('#postChallenge', () => {
         const challengeMock = {
             name: 'mockChallenge'
         };
         beforeEach(() => {
             sut = executeSut(challengeMock);
-            sut.postChallenge(challengeMock)(dispatch);
+            const innerPostChallenge = sut.sendChallenge()(challengeMock);
+            innerPostChallenge(dispatch);
         });
 
         it('should post challenge', () => {

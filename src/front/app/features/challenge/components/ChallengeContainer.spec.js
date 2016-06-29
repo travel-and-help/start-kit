@@ -38,18 +38,19 @@ describe('ChallengeContainer', () => {
         });
     });
 
-    xit('should map state challenge to props challenge', () => {
+    it('should map state to props', () => {
         const userId = 'userId';
         const challenge = fromJS({
             user: {
-                id: userId
+                _id: userId
             }
         });
         const auth = {
             get: env.stub().returns(userId)
         };
         const state = { challenge, auth };
-        reactRedux.connect.getCall(0).args[0](state).should.contains({ challenge, userId });
+        const expectedState = { challenge, canEdit: true };
+        reactRedux.connect.getCall(0).args[0](state).should.contains(expectedState);
     });
 
     it('should map dispatch to challenge fetching prop method', () => {

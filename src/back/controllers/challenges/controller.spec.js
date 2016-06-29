@@ -1,5 +1,5 @@
 'use strict';
-const proxyquire = require('proxyquire').noCallThru();
+const proxyquire = require('proxyquire');
 
 describe('challenges/controller', () => {
     let sut,
@@ -66,7 +66,7 @@ describe('challenges/controller', () => {
 
         sut = proxyquire('./controller', {
             '../../models/challenge': Challenge,
-            '../../../../common/imageService': imageService
+            '../../common/imageService': imageService
         });
     });
 
@@ -89,7 +89,7 @@ describe('challenges/controller', () => {
         });
     });
 
-    xdescribe('post', () => {
+    describe('post', () => {
         const image = 'image';
 
         beforeEach(() => {
@@ -115,10 +115,10 @@ describe('challenges/controller', () => {
         it('should call save image service with category', () => {
             imageService.saveImage
                 .should.been.calledWith(
-                sinon.match({
-                    category: req.body.categories[0]
-                })
-            );
+                    sinon.match({
+                        category: req.body.categories[0]
+                    })
+                );
         });
 
         it('should create challenge with correct image', () => {

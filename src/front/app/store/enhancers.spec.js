@@ -64,9 +64,9 @@ describe('app/store enhancers', () => {
                 .callCount(1);
         });
 
-        xit('should compose dummy function if devToolsExtension is not available', () => {
+        it('should compose dummy function if devToolsExtension is not available', () => {
             importSut();
-            redux.compose.getCall(0).args[2](42).should.equal(42);
+            redux.compose.getCall(0).args[1](42).should.equal(42);
         });
 
         afterEach(() => {
