@@ -18,11 +18,13 @@ function responseAuthToken(req, res, next) {
         next(new Error('Something went wrong, please try again.'));
     } else {
         const id = req.user._id;
+        const firstLogin = req.user.firstLogin;
         const token = jwt.sign({ id }, env.SESSION_SECRET, { expiresIn: 60 * 60 * 5 });
         res.json({
             success: true,
             token,
-            id
+            id,
+            firstLogin
         });
     }
 }
@@ -33,6 +35,7 @@ function generateOAuth2VerifyCallback(UserModel, providerProperty) {
             .then((result) => {
                 let user = result;
                 if (user) {
+                    user.firstLogin = false;
                     user.lastLogin = new Date();
                 } else {
                     user = new UserModel();
@@ -41,6 +44,7 @@ function generateOAuth2VerifyCallback(UserModel, providerProperty) {
                         token: accessToken
                     };
                     user.fullName = profile.displayName;
+                    user.firstLogin = true;
                     if (profile.photos && profile.photos.length > 0) {
                         user.photo = profile.photos[0].value;
                     }

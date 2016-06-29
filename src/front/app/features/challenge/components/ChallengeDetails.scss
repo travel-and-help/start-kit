@@ -15,12 +15,14 @@
             bottom: _th-rem(11);
             width: 100%;
             margin: 0;
+            padding: 0 $grid-gap;
             text-align: center;
+            word-wrap: break-word;
         }
     }
 
     &-info {
-        $button-width: _th-rem(72);
+        $button-width: _th-rem(75);
 
         display: flex;
         justify-content: space-between;
@@ -61,7 +63,7 @@
             flex-direction: column;
             justify-content: center;
             flex: 1 1 5rem;
-            margin-right: $grid-gap;
+            margin-right: $page-padding;
             @extend %border-block;
 
             &_big {
@@ -80,6 +82,10 @@
 
         &-category {
             text-align: center;
+
+            &__btn {
+                text-transform: capitalize;
+            }
         }
 
         &-author {
@@ -114,6 +120,7 @@
             color: map-get($colors, main);
             @extend %border-block;
             background-color: map-get($colors, bg_button);
+            transition: .5s ease background-color;
 
             &_wrapper {
                 position: relative;
@@ -130,6 +137,7 @@
             flex: 1 1 100%;
             height: auto;
             margin: $grid-gap;
+            word-wrap: break-word;
             @extend %border-block;
 
             &__title {

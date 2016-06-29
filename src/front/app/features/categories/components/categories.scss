@@ -1,5 +1,55 @@
-.categories {
-    .checked {
-        font-weight: 600;
+.category {
+    &__menu {
+        .menu__title {
+            max-width: 100%;
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 0;
+        padding: _th-rem(75) 0 _th-rem(60);
+    }
+
+    &__item {
+        flex: 0 0 _th-rem(90);
+        margin: 0 _th-rem(15) _th-rem(20);
+        list-style: none;
+        text-align: center;
+        text-transform: capitalize;
+    }
+
+    &__button {
+        display: block;
+        width: _th-rem(90);
+        height: _th-rem(90);
+        border: solid 1px $gTextColor;
+        border-radius: 50%;
+        text-align: center;
+        background-color: #fff;
+
+        &_checked {
+            background-color: #adf7b6;
+
+            .icon {
+                fill: #adf7b6;
+            }
+        }
+    }
+
+    &__save-btn {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: inline-block;
+        height: _th-rem(60);
+        border-top: 1px solid $gTextColor;
+        background-color: #ffa777;
+        text-align: center;
+        line-height: _th-rem(60);
+        font-weight: bold;
     }
 }
