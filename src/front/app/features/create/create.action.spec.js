@@ -1,4 +1,5 @@
-const proxyquire = require('proxyquire').noCallThru();
+import proxyquire  from 'proxyquire';
+import { fromJS }  from 'immutable';
 
 describe('action/create', () => {
     let sut,
@@ -21,8 +22,12 @@ describe('action/create', () => {
 
         api = env.stub().returns(promise);
 
+        const apiWrapper = {
+            default: api
+        };
+
         return proxyquire('./create.actions', {
-            '../../common/api': api,
+            '../../common/api': apiWrapper,
             'react-router-redux': router
         });
     };
@@ -74,6 +79,44 @@ describe('action/create', () => {
                 action.should.eqls({
                     type: sut.POST_CHALLENGE,
                     challenge: challengeMock
+                });
+            });
+        });
+    });
+
+    describe('#updateChallenge', () => {
+        const _id = '_id';
+        const challenge = {
+            name: 'mockChallenge',
+            _id
+        };
+        const editedChallenge = {
+            name: 'name'
+        };
+        const category = 'category';
+        beforeEach(() => {
+            const immutableChallenge = fromJS(challenge);
+            sut = executeSut(challenge);
+            const innerSendChallenge = sut.sendChallenge(immutableChallenge);
+            const innerUpdateChallenge = innerSendChallenge(editedChallenge);
+            innerUpdateChallenge(dispatch);
+        });
+
+        it('should update challenge', () => {
+            const options = {
+                method: 'PUT',
+                body: JSON.stringify(editedChallenge)
+            };
+
+            api.should.have.been.calledWith(`/api/challenges/${_id}`, options).and.callCount(1);
+        });
+
+        it('should dispatch challenge event with data from response', () => {
+            promise.finally(() => {
+                const action = dispatch.firstCall.args[0];
+                action.should.eqls({
+                    type: sut.POST_CHALLENGE,
+                    challenge: editedChallenge
                 });
             });
         });
