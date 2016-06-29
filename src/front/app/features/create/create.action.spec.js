@@ -1,5 +1,5 @@
-import proxyquire  from 'proxyquire';
-import { fromJS }  from 'immutable';
+import proxyquire from 'proxyquire';
+import { fromJS } from 'immutable';
 
 describe('action/create', () => {
     let sut,
@@ -93,7 +93,6 @@ describe('action/create', () => {
         const editedChallenge = {
             name: 'name'
         };
-        const category = 'category';
         beforeEach(() => {
             const immutableChallenge = fromJS(challenge);
             sut = executeSut(challenge);
