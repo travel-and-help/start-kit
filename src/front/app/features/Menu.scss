@@ -21,7 +21,6 @@
     overflow-y: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-      margin-left: 25%;
   }
 
   &__action {
@@ -29,8 +28,3 @@
     font-size: 0;
   }
 }
-
-
-/* TODO
-&__title added line margin-left: 25%;
-*/

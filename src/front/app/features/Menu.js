@@ -1,7 +1,10 @@
 import React from 'react';
 
-const Menu = ({ className, rightAction, title }) => (
+const Menu = ({ className, leftAction, rightAction, title }) => (
     <div className={`${className} menu`} >
+        <div className="menu__action" >
+            {leftAction}
+        </div>
         <div className="menu__title" >
             {title}
         </div>
@@ -21,10 +24,3 @@ Menu.propTypes = {
 
 export default Menu;
 
-
-/* TODO
- * line 5
- <div className="menu__action" >
- {leftAction}
- </div>
- */
