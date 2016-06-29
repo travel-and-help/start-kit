@@ -38,7 +38,7 @@
         &__inner {
             display: flex;
             flex-wrap: wrap;
-            min-height: _th-rem(160);
+            min-height: _th-rem(90);
 
             &_big {
                 flex: 1 1 calc(100% - #{$button-width});
@@ -125,7 +125,7 @@
             &_wrapper {
                 position: relative;
                 flex: 0 0 100%;
-                height: calc(50% - #{$grid-gap});
+                height: calc(100% - #{$grid-gap});
             }
 
             &_accepted {
@@ -146,3 +146,9 @@
         }
     }
 }
+
+/* For release was deleted or changed data
+ &__inner was changed min-height: from _th-rem(160) to _th-rem(90);
+ &_wrapper was changed height: calc(50%  to height: calc(100%
+
+ */

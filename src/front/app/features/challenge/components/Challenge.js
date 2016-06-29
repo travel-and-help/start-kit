@@ -2,7 +2,6 @@ import React, { PropTypes, Component } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ChallengeDetailsMenu from './ChallengeDetailsMenu';
 import ChallengeDetails from './ChallengeDetails';
-import ChallengeComments from './ChallengeComments';
 import Layout from '../../Layout';
 
 const headerHeight = 250;
@@ -75,7 +74,6 @@ class Challenge extends Component {
                             onAccept={onAccept}
                             onComplete={onComplete}
                         />
-                        <ChallengeComments />
                     </div>
                 </Layout>
             );
@@ -99,3 +97,8 @@ Challenge.propTypes = {
 };
 
 export default Challenge;
+
+
+/* COMMENTS was deleted for release version, to add it again:
+ import ChallengeComments from './ChallengeComments';
+ <ChallengeComments />  between 76-77 lines */
