@@ -144,7 +144,7 @@ describe('challenges/controller', () => {
     });
 
     describe('edit', () => {
-        describe('with image', ()=> {
+        describe('with image', () => {
             const image = 'image';
             const body = {
                 image
@@ -180,7 +180,7 @@ describe('challenges/controller', () => {
             });
         });
 
-        describe('without image', ()=> {
+        describe('without image', () => {
             const body = {};
             beforeEach(() => {
                 req = {

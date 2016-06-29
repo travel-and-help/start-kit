@@ -157,5 +157,9 @@ describe('CreateFormContainer', () => {
                 .fetchChallenge
                 .should.been.calledWith(challengeId);
         });
-    })
+    });
+
+    it('should return react-redux container', () => {
+        sut.should.equal(wrapWithConnect());
+    });
 });
