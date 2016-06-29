@@ -12,7 +12,7 @@ function saveImageMiddleware(req, res, next) {
     const body = req.body;
     const image = body.image;
     if (!image) {
-        next();
+        return next();
     }
     const imageOptions = { image };
     return saveImage(imageOptions)
