@@ -44,6 +44,9 @@ const User = new Schema({
             type: Date,
             default: Date.now
         },
+        image: {
+            type: String
+        },
         challenge: {
             type: Schema.ObjectId,
             ref: 'Challenge'
@@ -58,7 +61,7 @@ const User = new Schema({
     }]
 });
 
-User.methods.completeChallenge = function completeChallenge(challengeId) {
+User.methods.completeChallenge = function completeChallenge(challengeId, body) {
     const that = this;
     const id = new ObjectId(challengeId);
     const removeUpdateConfig = {
@@ -69,13 +72,12 @@ User.methods.completeChallenge = function completeChallenge(challengeId) {
             }
         }
     };
+    const newItem = Object.assign({
+        challenge: id,
+        status: STATUS_COMPLETED
+    }, body);
     const insertUpdateConfig = {
-        $push: {
-            challenges: {
-                challenge: id,
-                status: STATUS_COMPLETED
-            }
-        }
+        $push: { challenges: newItem }
     };
     return this.update(removeUpdateConfig)
         .then(() => that.update(insertUpdateConfig));

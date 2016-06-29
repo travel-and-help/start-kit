@@ -7,7 +7,8 @@ describe('controllers/api/challenge', () => {
         router,
         challengeController,
         controllerInstance,
-        authService;
+        authService,
+        imageService;
 
     beforeEach(() => {
 
@@ -22,6 +23,10 @@ describe('controllers/api/challenge', () => {
             search: env.spy()
         };
 
+        imageService = {
+            saveImage: env.stub()
+        };
+
         challengeController = function ProfileController() {
             return controllerInstance;
         };
@@ -33,7 +38,8 @@ describe('controllers/api/challenge', () => {
         sut = proxyquire('./index', {
             express,
             './challenge.controller': challengeController,
-            '../../../auth/auth.service': authService
+            '../../../auth/auth.service': authService,
+            '../../../../common/imageService': imageService
         });
     });
 
@@ -57,9 +63,28 @@ describe('controllers/api/challenge', () => {
 
     it('should register complete challenge router', () => {
         router.route.should.calledWith('/:id/complete');
-        const onCompleteCallback = router.post.lastCall.args[1];
+        const onCompleteCallback = router.post.lastCall.args[2];
         onCompleteCallback({}, {});
         controllerInstance.complete.should.calledWith({}, {});
+    });
+
+    it('should save image before complete', (done) => {
+        router.route.should.calledWith('/:id/complete');
+        imageService.saveImage.resolves('testUrl');
+        const saveImageMiddleware = router.post.lastCall.args[1];
+        const next = env.stub();
+        const request = {
+            body: {
+                image: 'test image data'
+            }
+        };
+        saveImageMiddleware(request, {}, next)
+            .then(() => {
+                request.body.image.should.equal('testUrl');
+                next.should.calledWith();
+                done();
+            });
+
     });
 
     it('should register single get router', () => {
