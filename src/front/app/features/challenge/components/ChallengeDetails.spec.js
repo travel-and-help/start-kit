@@ -29,13 +29,15 @@ describe('ChallengeDetails', () => {
             .text().should.equal('testTitle');
     });
 
-    it('should show challenge level', () => {
-        sut.find('.challenge-info-level').find('.challenge-info__text')
-            .text().should.equal('testLevel');
-    });
-
     it('should show user firstName and lastName', () => {
         sut.find('.challenge-info-author').find('.challenge-info__text')
             .text().should.equal('userName userLastName');
     });
 });
+
+/*
+ it('should show challenge level', () => {
+ sut.find('.challenge-info-level').find('.challenge-info__text')
+ .text().should.equal('testLevel');
+ });
+ */

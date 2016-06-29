@@ -7,7 +7,6 @@ const ChallengeDetails = ({ challenge, onAccept, onComplete }) => {
     const {
         image,
         title,
-        level,
         description,
         categories,
         location,
@@ -64,22 +63,6 @@ const ChallengeDetails = ({ challenge, onAccept, onComplete }) => {
                             <span className="challenge-info__text" >{location}</span>
                         </div>
                     </div>
-
-                    <div className="challenge-info__item challenge-info-level" >
-                        <Fasteners className="challenge-info__fasteners" />
-                        <span className="challenge-info__text" >{level}</span>
-                    </div>
-
-                    <div
-                        className={`challenge-info__item
-                        challenge-info__item_big
-                        challenge-info-completed`}
-                    >
-                        <Fasteners className="challenge-info__fasteners" />
-                        <span className="challenge-info-completed__count" >
-                            <b>25</b> completions
-                        </span>
-                    </div>
                 </div>
 
                 <div className="challenge-info__inner challenge-info__inner_small" >
@@ -95,16 +78,6 @@ const ChallengeDetails = ({ challenge, onAccept, onComplete }) => {
                         />
                     </div>
 
-                    <div className="challenge-info__button_wrapper" >
-                        <Fasteners className="challenge-info__fasteners" />
-                        <IconButton
-                            title={'Share'}
-                            buttonClassName={'challenge-info__button'}
-                            iconName={'share'}
-                            iconSize={32}
-                            iconClassName={'icon_dark'}
-                        />
-                    </div>
                 </div>
             </div>
             <div className="challenge-info-description" >
@@ -132,3 +105,40 @@ ChallengeDetails.propTypes = {
 };
 
 export default ChallengeDetails;
+
+/* TODO
+
+---Info level
+---item-big (sum of completions block)
+ just add between line 66-67
+ <div className="challenge-info__item challenge-info-level" >
+ <Fasteners className="challenge-info__fasteners" />
+ <span className="challenge-info__text" >{level}</span>
+ </div>
+
+ <div
+ className={`challenge-info__item
+ challenge-info__item_big
+ challenge-info-completed`}
+ >
+ <Fasteners className="challenge-info__fasteners" />
+ <span className="challenge-info-completed__count" >
+ <b>25</b> completions
+ </span>
+ </div>
+
+ level, (beetween title and description) 10 line
+
+---Share block
+ Between 79-80
+ <div className="challenge-info__button_wrapper" >
+ <Fasteners className="challenge-info__fasteners" />
+ <IconButton
+ title={'Share'}
+ buttonClassName={'challenge-info__button'}
+ iconName={'share'}
+ iconSize={32}
+ iconClassName={'icon_dark'}
+ />
+ </div>
+ */
