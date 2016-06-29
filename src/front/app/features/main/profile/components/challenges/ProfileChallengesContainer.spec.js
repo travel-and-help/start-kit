@@ -11,7 +11,8 @@ describe('ProfileChallengesContainer', () => {
     let sut,
         mapStateToProps,
         mapDispatchToProps,
-        profileChallengesActions;
+        profileChallengesActions,
+        reactRouter;
 
     beforeEach(() => {
 
@@ -20,12 +21,19 @@ describe('ProfileChallengesContainer', () => {
             navigate: env.stub().returns(navigateAction)
         };
 
+        reactRouter = {
+            hashHistory: {
+                push: env.stub()
+            }
+        };
+
         sut = proxyquire('./ProfileChallengesContainer', {
             'react-redux': {
                 connect
             },
             '../../../../../common/components/loadable': env.stub().returnsArg(0),
             './ProfileChallenges': ProfileChallenges,
+            'react-router': reactRouter,
             '../../../../profile-challenges/profileChallenges.actions': profileChallengesActions
         }).default;
     });
@@ -75,6 +83,12 @@ describe('ProfileChallengesContainer', () => {
         it('should load challenges', () => {
             result.onLoad();
             dispatch.should.been.calledWith(loadAction);
+        });
+
+        it('should open complete popup on left accepted action', () => {
+            const challenge = fromJS({ _id: '124' });
+            result.acceptedLeftSwipe.get('action')(challenge);
+            reactRouter.hashHistory.push.should.calledWith('complete-challenge/124');
         });
 
         describe('show all click', () => {

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { list } from 'react-immutable-proptypes';
+import { list, mapContains } from 'react-immutable-proptypes';
 import ProfileChallengeList from './ProfileChallengeList';
 import { CREATED, ACCEPTED, COMPLETED } from '../../../../profile-challenges/challengeStatus';
 
@@ -7,12 +7,14 @@ const ProfileChallenges = ({
     created,
     accepted,
     completed,
+    acceptedLeftSwipe,
     onShowAllClick
 }) => (
     <div className="profile__challenges" >
         <ProfileChallengeList
             status={ACCEPTED}
             challenges={accepted}
+            leftSwipe={acceptedLeftSwipe}
             onShowAllClick={() => onShowAllClick(ACCEPTED)}
         />
 
@@ -34,7 +36,12 @@ ProfileChallenges.propTypes = {
     created: list.isRequired,
     accepted: list.isRequired,
     completed: list.isRequired,
-    onShowAllClick: PropTypes.func.isRequired
+    onShowAllClick: PropTypes.func.isRequired,
+    acceptedLeftSwipe: mapContains({
+        action: PropTypes.func.isRequired,
+        type: PropTypes.string,
+        text: PropTypes.string
+    })
 };
 
 export default ProfileChallenges;

@@ -137,20 +137,70 @@ describe('controllers/api/ChallengeController', () => {
 
     describe('Method search', () => {
 
-        it('should serch similar challenges', (done) => {
-            const findPromise = Q.fcall(() => ([
+        it('should return challenges without parameters', (done) => {
+            challengeModel.findById.resolves({
+                categories: 'testCategory',
+                location: 'testLocation'
+            });
+            challengeModel.paginate.resolves([
                 { test: 'test' }
-            ]));
-            challengeModel.paginate.returns(findPromise);
+            ]);
             const request = httpMocks.createRequest({
                 method: 'GET',
-                url: '/search',
-                params: { similar: 42 }
+                url: '/search'
             });
             const response = httpMocks.createResponse();
             sut.search(request, response)
                 .then(() => {
                     response.statusCode.should.equal(200);
+                    done();
+                });
+        });
+
+        it('should search similar challenges', (done) => {
+            challengeModel.findById.resolves({
+                categories: 'testCategory',
+                location: 'testLocation'
+            });
+            challengeModel.paginate.resolves([
+                { test: 'test' }
+            ]);
+            const request = httpMocks.createRequest({
+                method: 'GET',
+                url: '/search',
+                query: { similar: 42 }
+            });
+            const response = httpMocks.createResponse();
+            sut.search(request, response)
+                .then(() => {
+                    response.statusCode.should.equal(200);
+                    challengeModel.findById.should.calledWith(42);
+                    challengeModel.paginate.should.calledWith({
+                        $or: [{ categories: 'testCategory' }, { location: 'testLocation' }]
+                    });
+                    done();
+                });
+        });
+
+        it('return expected object on get, if failed result', (done) => {
+            const findPromise = Q.reject('error');
+            challengeModel.findById.returns(findPromise);
+            challengeModel.paginate.resolves([
+                { test: 'test' }
+            ]);
+            const request = httpMocks.createRequest({
+                method: 'GET',
+                url: '/search',
+                query: { similar: 42 }
+            });
+            const response = httpMocks.createResponse();
+            sut.search(request, response)
+                .then(() => {
+                    response.statusCode.should.equal(500);
+                    const data = JSON.parse(response._getData());
+                    data.should.deep.equal({
+                        error: 'error'
+                    });
                     done();
                 });
         });
