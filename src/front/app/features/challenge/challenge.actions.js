@@ -49,7 +49,7 @@ export function completeChallenge(id, data) {
     return () => api(`/api/challenge/${id}/complete`,
         {
             method: 'POST',
-            body: data
+            body: JSON.stringify(data)
         }
     );
 }

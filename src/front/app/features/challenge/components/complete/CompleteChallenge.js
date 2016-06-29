@@ -63,7 +63,7 @@ class CompleteChallenge extends Component {
             <section className="challenge-complete">
                 <Header title="Challenge completed" onDiscardClick={this.goBack} />
                 <div className="challenge-screen__content">
-                    <CompleteForm handleSubmit={this.handleSubmit} />
+                    <CompleteForm postComplete={this.handleSubmit} />
                     <div className="challenge-complete__more-list">
                         <div className="challenge-complete__more-list-title">
                             More challenges

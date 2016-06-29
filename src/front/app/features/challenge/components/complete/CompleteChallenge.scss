@@ -36,6 +36,7 @@ $regular_border_color: #4a4a4a;
     &__icon {
         display: inline-block;
         text-align: center;
+        position: relative;
         margin: 0 1.5rem;
     }
     &__submit-wrapper {
@@ -83,15 +84,20 @@ $regular_border_color: #4a4a4a;
     }
 
     .create-photo {
-        width: 5rem;
-        height: 1.1rem;
-        padding-top: 3rem;
-        border-radius: 100%;
         border: none;
-        float: left;
-        font-size: 0.5625rem;
-        background: url($assetsBasePath + 'create-photo.svg') no-repeat center;
+        width: 4.2rem;
+        height: 4.2rem;
+    }
 
+    &__add-photo-text {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        font-size: .5625rem;
+        bottom: 0.3rem;
+        left: 0rem;
+        white-space: nowrap;
     }
 
     .share-facebook {

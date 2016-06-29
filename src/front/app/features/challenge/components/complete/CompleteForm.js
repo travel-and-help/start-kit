@@ -1,16 +1,15 @@
 import React, { PropTypes } from 'react';
+import { reduxForm } from 'redux-form';
+import CreatePhoto from '../../../../common/components/create/CreatePhoto';
 
-const CreateFormBody = ({ handleSubmit }) => (
-    <form onSubmit={(formData) => {
-        formData.preventDefault();
-        handleSubmit(formData);
-    }}
-    >
+const CreateFormBody = ({ handleSubmit, postComplete, fields: { image } }) => (
+    <form onSubmit={handleSubmit(postComplete)} >
         <div className="challenge-complete__body">
             <div className="challenge-complete__body-title">Good job!</div>
             <div className="challenge-complete__icons">
                 <div className="challenge-complete__icon">
-                    <button className="create-photo">Add Photo</button>
+                    <CreatePhoto {...image} />
+                    <span className="challenge-complete__add-photo-text">Add Photo</span>
                 </div>
                 <div className="challenge-complete__icon">
                    <button className="share-facebook">Share</button>
@@ -24,8 +23,14 @@ const CreateFormBody = ({ handleSubmit }) => (
 );
 
 CreateFormBody.propTypes = {
-    handleSubmit: PropTypes.func.isRequired
+    fields: PropTypes.object.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    postComplete: PropTypes.func.isRequired
 };
 
-export default CreateFormBody;
-
+export default reduxForm({
+    form: 'complete',
+    fields: [
+        'image'
+    ]
+})(CreateFormBody);

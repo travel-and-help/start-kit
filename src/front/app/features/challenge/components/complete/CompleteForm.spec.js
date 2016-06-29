@@ -1,16 +1,33 @@
 import React from 'react';
-import CompleteForm from './CompleteForm';
 import { mount } from 'enzyme';
+import proxyquire from 'proxyquire';
 const chai = require('chai'),
     expect = chai.expect;
 
 describe('features/challenge/components/complete/CompleteForm', () => {
     let sut,
-        submitHandler;
+        submitHandler,
+        handleSubmit,
+        mockStore,
+        CompleteForm;
 
     beforeEach(() => {
         submitHandler = env.stub();
-        sut = mount(<CompleteForm handleSubmit={submitHandler} />);
+        handleSubmit = env.stub();
+        const reduxForm = env.spy(() => (component) => component);
+        mockStore = {
+            subscribe: env.spy(),
+            getState: env.stub().returns({ form: {} }),
+            dispatch: env.spy()
+        };
+        CompleteForm = proxyquire('./CompleteForm', {
+            'redux-form': reduxForm
+        }).default;
+        sut = mount(<CompleteForm
+            store={mockStore}
+            postComplete={submitHandler}
+            handleSubmit={handleSubmit}
+        />);
     });
 
     it('should contains add photo option', () => {

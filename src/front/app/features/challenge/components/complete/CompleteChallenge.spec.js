@@ -1,5 +1,6 @@
 import React from 'react';
 import proxyquire from 'proxyquire';
+import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
 import { fromJS } from 'immutable';
 import Header from '../../../../common/components/header/header';
@@ -14,6 +15,7 @@ describe('features/challenge/components/complete/CompleteChallenge', () => {
         reactRouter,
         dispatch,
         params,
+        mockStore,
         sut;
 
     beforeEach(() => {
@@ -37,6 +39,11 @@ describe('features/challenge/components/complete/CompleteChallenge', () => {
                 goBack: env.stub(),
                 push: env.stub()
             }
+        };
+        mockStore = {
+            subscribe: env.spy(),
+            getState: env.stub().returns({ form: {} }),
+            dispatch: env.spy()
         };
 
         CompleteChallenge = proxyquire('./CompleteChallenge', {
@@ -64,11 +71,14 @@ describe('features/challenge/components/complete/CompleteChallenge', () => {
             }
         });
 
-        sut = mount(<CompleteChallenge
-            dispatch={dispatch}
-            params={params}
-            challenge={challenge}
-        />);
+        sut = mount(
+            <Provider store={mockStore} >
+                <CompleteChallenge
+                    dispatch={dispatch}
+                    params={params}
+                    challenge={challenge}
+                />
+            </Provider>);
     });
 
     it('should contains similar challenges title', () => {
@@ -108,17 +118,20 @@ describe('features/challenge/components/complete/CompleteChallenge', () => {
     describe('#watchChallenge', () => {
 
         it('should add challenge to watch list on left swipe', () => {
-            sut.node.leftSwipe.get('type').should.equal('watch');
+            const completeChallengeNode = sut.find('CompleteChallenge').node;
+            completeChallengeNode.leftSwipe.get('type').should.equal('watch');
         });
 
         it('should add challenge to watch list on left swipe button click', () => {
-            const swipeAction = sut.node.leftSwipe.get('action');
+            const completeChallengeNode = sut.find('CompleteChallenge').node;
+            const swipeAction = completeChallengeNode.leftSwipe.get('action');
             swipeAction(fromJS({
                 _id: 'test_id'
             }));
             challengeActionCreator.watchChallenge.should.calledWith('test_id');
         });
     });
+
     it('should render similar challenges', () => {
         sut.find('.challenge-tile-info__title')
             .text().should.equal('test');
