@@ -2,7 +2,7 @@
 
 const proxyquire = require('proxyquire');
 
-describe.only('ImageService', () => {
+describe('ImageService', () => {
     let sut,
         request,
         q,
