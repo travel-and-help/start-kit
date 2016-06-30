@@ -10,5 +10,9 @@ function getByStatus(user$, status) {
     return user$
         .findOne('challenges.status', status)
         .select('challenges')
-        .then(user => challengeService.findRange(user.challenges.map(c => c.challenge)));
+        .then(user => challengeService.findRange(
+            user.challenges
+                .filter(n => n.status === status)
+                .map(c => c.challenge)
+        ));
 }
