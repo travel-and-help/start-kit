@@ -5,7 +5,6 @@ const Menu = ({ className, leftAction, rightAction, title }) => (
         <div className="menu__action" >
             {leftAction}
         </div>
-
         <div className="menu__title" >
             {title}
         </div>
@@ -24,3 +23,4 @@ Menu.propTypes = {
 };
 
 export default Menu;
+

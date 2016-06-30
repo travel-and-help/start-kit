@@ -41,24 +41,37 @@ class ChallengeController extends BaseController {
 
     complete(req, res) {
         return req.getCurrentUser()
-            .then(userInstance => userInstance.completeChallenge(req.params.id))
+            .then(userInstance => userInstance.completeChallenge(req.params.id, req.body))
             .then(result => this.processSuccess(req, res, result || {}))
             .catch(err => this.processError(req, res, err));
     }
 
     search(req, res) {
-        return this.get(req, res);
-    }
-
-    complete(req, res) {
-        return req.getCurrentUser()
-            .then(userInstance => userInstance.completeChallenge(req.params.id))
-            .then(result => this.processSuccess(req, res, result || {}))
-            .catch(err => this.processError(req, res, err));
-    }
-
-    search(req, res) {
-        return this.get(req, res);
+        const model = this.getModel();
+        const query = new Promise((resolve, reject) => {
+            if (req.query.similar) {
+                const baseItemId = req.query.similar;
+                return model.findById(baseItemId)
+                    .then((result) => ({
+                        $or: [
+                            {
+                                categories: result.categories
+                            }, {
+                                location: result.location
+                            }
+                        ]
+                    }))
+                    .then(resolve)
+                    .catch(reject);
+            }
+            return resolve(req.query);
+        });
+        const options = this.createGetOptions(req);
+        return query.then((queryConfig) => model.paginate(queryConfig, options))
+            .then((result) => (this.processSuccess(req, res, result)))
+            .catch((err) => (
+                this.processError(req, res, err)
+            ));
     }
 
 }

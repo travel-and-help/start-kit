@@ -6,6 +6,8 @@ import {
 import loadable from '../../../../../common/components/loadable';
 import { connect } from 'react-redux';
 import ProfileChallenges from './ProfileChallenges';
+import { Map } from 'immutable';
+import { hashHistory } from 'react-router';
 
 const mapStateToProps = ({ createdChallenges, acceptedChallenges, completedChallenges }) => ({
     created: createdChallenges.take(3),
@@ -19,7 +21,15 @@ const mapDispatchToProps = (dispatch) => ({
     },
     onShowAllClick(type) {
         dispatch(navigate(type));
-    }
+    },
+    acceptedLeftSwipe: new Map({
+        text: 'Complete',
+        type: 'complete',
+        action(challenge) {
+            const challengeId = challenge.get('_id');
+            hashHistory.push(`complete-challenge/${challengeId}`);
+        }
+    })
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(loadable(ProfileChallenges));
