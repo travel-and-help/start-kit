@@ -2,10 +2,11 @@
 
 const imageHostingUrl = require('../../../env').IMAGE_HOSTING_URL;
 const request = require('request');
-const q = require('q');
+const Q = require('q');
 
-const saveToExtHost = (base64, deferred) => {
+const saveToExtHost = (base64) => {
     // Image should be converted to  base64
+    const deferred = Q.defer();
     const url = `${imageHostingUrl}/picture`;
     const imageBuffer = new Buffer(base64, 'base64');
     const formData = {
@@ -33,23 +34,20 @@ const saveToExtHost = (base64, deferred) => {
             }
         }
     );
-
+    return deferred.promise;
 };
 
-const saveCategoryImage = (categoryId, deferred) => {
+const saveCategoryImage = (/* categoryId */) => (
     // TODO find category picture
-    deferred.resolve('http://placekitten.com/400/400');
-};
+    Q.resolve('http://placekitten.com/400/400')
+);
 
 const saveImage = (options) => {
-    const deferred = q.defer();
     const image = options.image;
     if (image) {
-        saveToExtHost(image, deferred);
-    } else {
-        saveCategoryImage(options.category, deferred);
+        return saveToExtHost(image);
     }
-    return deferred.promise;
+    return saveCategoryImage(options.category);
 };
 
 module.exports = {
