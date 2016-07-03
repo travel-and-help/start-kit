@@ -37,7 +37,7 @@ const CreateFormBody = ({ fields, categories }) => {
 
             <CreateCategories
                 categories={categories}
-                category={category}
+                {...category}
             />
 
         <textarea

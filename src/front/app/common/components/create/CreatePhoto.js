@@ -39,16 +39,25 @@ class CreatePhoto extends Component {
 
     render() {
         const { inlineStyle } = this.state;
-        const { onChange, error, touched, ...rest } = this.props;
+        const { onChange, error, touched, initialValue, ...rest } = this.props;
+        let initialStyle;
+        if (initialValue) {
+            initialStyle = {
+                background: `url(${initialValue})`,
+                backgroundSize: 'cover'
+            };
+        }
         return (
             <input className={error && touched ?
                 'create-photo create-photo_error' :
                 'create-photo'}
                    type="text"
                    ref={(ref) => { this.createInput = ref; }}
-                   style={ inlineStyle }
-                   {...rest}
-                   onClick= { this.onClick }
+                   style={
+                        (Object.keys(inlineStyle).length && inlineStyle) || initialStyle
+                   }
+                {...rest}
+                   onClick={ this.onClick }
                    onChange={ onChange }
             />
         );
@@ -57,6 +66,7 @@ class CreatePhoto extends Component {
 
 CreatePhoto.propTypes = {
     onChange: PropTypes.func,
+    initialValue: PropTypes.string,
     error: PropTypes.bool,
     touched: PropTypes.bool
 };

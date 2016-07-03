@@ -1,17 +1,17 @@
 import React from 'react';
-import CreateFormHeader from './CreateFormHeader';
+import FormHeader from './FormHeader';
 import { mount } from 'enzyme';
 const chai = require('chai'),
     expect = chai.expect;
 
-describe('CreateFormHeader', () => {
+describe('FormHeader', () => {
     let sut;
     let goBack;
 
     beforeEach(() => {
-        goBack = env.stub();
+        goBack = env.spy();
 
-        sut = mount(<CreateFormHeader onDiscardClick={goBack} />);
+        sut = mount(<FormHeader headerTitle="Create Challenge" discardHandler={goBack} />);
     });
 
     it('should contains page title', () => {
@@ -24,7 +24,8 @@ describe('CreateFormHeader', () => {
     });
 
     it('should execute  onDiscardClick function by clicking on discard button', () => {
-        sut.find('.challenge-create-header__discard').simulate('click');
+        sut.find('.challenge-create-header__discard')
+            .simulate('click');
         expect(goBack.calledOnce).to.equal(true);
     });
 });

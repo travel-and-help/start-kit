@@ -1,13 +1,13 @@
 import React, { PropTypes } from 'react';
 
-const CreateFormHeader = ({ onDiscardClick }) => (
+const CreateFormHeader = ({ headerTitle, discardHandler }) => (
     <header className="challenge-create-header">
-        <h1 className="challenge-create-header__title">Create Challenge</h1>
+        <h1 className="challenge-create-header__title">{ headerTitle }</h1>
 
         <button
           className="challenge-create-header__discard"
           type="button"
-          onClick={onDiscardClick}
+          onClick={ discardHandler }
         >
 
             Discard
@@ -20,7 +20,8 @@ const CreateFormHeader = ({ onDiscardClick }) => (
 );
 
 CreateFormHeader.propTypes = {
-    onDiscardClick: PropTypes.func
+    headerTitle: PropTypes.string,
+    discardHandler: PropTypes.func
 };
 
 export default CreateFormHeader;

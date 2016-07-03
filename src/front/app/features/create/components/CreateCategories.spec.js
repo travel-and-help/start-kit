@@ -19,7 +19,7 @@ describe('CreateCategories', () => {
             name: 'test category'
         }]);
 
-        sut = mount(<CreateCategories categories={categoriesMock} category={categoryMock} />);
+        sut = mount(<CreateCategories categories={categoriesMock} {...categoryMock} />);
     });
 
     it('should has error class', () => {

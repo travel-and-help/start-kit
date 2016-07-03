@@ -3,8 +3,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import IconButton from './../../../common/components/buttons/IconButton';
 import Fasteners from './../../../common/components/fasteners/Fasteners';
 
-const ChallengeDetails = ({ challenge, onAccept, onComplete }) => {
+const ChallengeDetails = ({ challenge, onAccept, onComplete, canEdit, onEdit }) => {
     const {
+        _id,
         image,
         title,
         description,
@@ -15,16 +16,26 @@ const ChallengeDetails = ({ challenge, onAccept, onComplete }) => {
 
     const defaultButtonClassName = 'challenge-info__button';
 
-    let actionTitle = 'Accept',
-        actionIconName = 'accept',
-        buttonClassName = defaultButtonClassName,
-        clickHandler = () => onAccept(challenge.get('_id'));
+    let actionTitle,
+        actionIconName,
+        clickHandler,
+        buttonClassName;
 
-    if (challenge.get('isAccepted')) {
+    if (canEdit) {
+        actionTitle = 'Edit';
+        clickHandler = () => onEdit(_id);
+        buttonClassName = defaultButtonClassName;
+        actionIconName = 'edit';
+    } else if (challenge.get('isAccepted')) {
         actionTitle = 'Complete';
         buttonClassName = `${defaultButtonClassName} ${defaultButtonClassName}_accepted`;
         clickHandler = () => onComplete(challenge.get('_id'));
         actionIconName = 'complete';
+    } else {
+        actionTitle = 'Accept';
+        actionIconName = 'accept';
+        buttonClassName = defaultButtonClassName;
+        clickHandler = () => onAccept(_id);
     }
 
     const inlineStyle = image ? { backgroundImage: `url(${image})` } : {};
@@ -91,6 +102,7 @@ const ChallengeDetails = ({ challenge, onAccept, onComplete }) => {
 ChallengeDetails.propTypes = {
     onAccept: PropTypes.func.isRequired,
     onComplete: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired,
     challenge: ImmutablePropTypes.mapContains({
         image: PropTypes.string,
         title: PropTypes.string,
@@ -101,7 +113,8 @@ ChallengeDetails.propTypes = {
         user: ImmutablePropTypes.mapContains({
             fullName: PropTypes.string
         })
-    }).isRequired
+    }).isRequired,
+    canEdit: PropTypes.bool
 };
 
 export default ChallengeDetails;

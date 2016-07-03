@@ -56,7 +56,7 @@ class Challenge extends Component {
 
     render() {
 
-        const { challenge, onWatchChallenge, onAccept, onComplete } = this.props;
+        const { challenge, onWatchChallenge, onAccept, onComplete, canEdit, onEdit } = this.props;
         if (challenge.size) {
             return (
                 <Layout
@@ -73,6 +73,8 @@ class Challenge extends Component {
                             challenge={challenge}
                             onAccept={onAccept}
                             onComplete={onComplete}
+                            onEdit={onEdit}
+                            canEdit={canEdit}
                         />
                     </div>
                 </Layout>
@@ -85,6 +87,7 @@ class Challenge extends Component {
 Challenge.propTypes = {
     challenge: ImmutablePropTypes.map.isRequired,
     getUser: PropTypes.func.isRequired,
+    canEdit: PropTypes.bool,
     userId: PropTypes.string,
     getChallenge: PropTypes.func.isRequired,
     getAcceptedChallenges: PropTypes.func.isRequired,
@@ -93,6 +96,7 @@ Challenge.propTypes = {
     onWatchChallenge: PropTypes.func.isRequired,
     onAccept: PropTypes.func.isRequired,
     onComplete: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired,
     getInitialState: PropTypes.func.isRequired
 };
 

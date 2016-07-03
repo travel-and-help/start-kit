@@ -1,47 +1,28 @@
 import React, { Component, PropTypes } from 'react';
-import { reduxForm } from 'redux-form';
-import { hashHistory } from 'react-router';
-import CreateFormHeader from './CreateFormHeader';
+import FormHeader from '../../../common/components/create/FormHeader';
 import CreateFormBody from './CreateFormBody';
-import validate from './validate';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-
 class CreateForm extends Component {
-    componentDidMount() {
-        const { categories, user, getCategories } = this.props;
-        if (!user) {
-            hashHistory.push('/');
-        }
-        if (categories.size === 0) {
-            getCategories();
-        }
-    }
-
-    goBack() {
-        hashHistory.goBack();
+    componentWillUnmount() {
+        this.props.resetState();
     }
 
     render() {
-        const { fields, handleSubmit, postChallenge, categories, user } = this.props;
-
-        const extendPostChallenge = (data) => {
-            const formData = data;
-            formData.user = user;
-            formData.categories = [JSON.parse(data.category)._id];
-            formData.location = 'Kyiv';
-            formData.level = 'easy';
-
-            postChallenge(formData);
-        };
+        const {
+            fields,
+            handleSubmit,
+            sendChallenge,
+            categories,
+            headerTitle,
+            discardHandler
+        } = this.props;
 
         return (
-            <section className="challenge-create">
-                <form onSubmit={ handleSubmit(extendPostChallenge) }>
-                    <CreateFormHeader onDiscardClick={this.goBack} />
-                    <CreateFormBody fields={fields} categories={categories} />
-                </form>
-            </section>
+            <form onSubmit={ handleSubmit(sendChallenge) } >
+                <FormHeader headerTitle={headerTitle} discardHandler={discardHandler} />
+                <CreateFormBody fields={fields} categories={categories} />
+            </form>
         );
     }
 }
@@ -49,24 +30,11 @@ class CreateForm extends Component {
 CreateForm.propTypes = {
     fields: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    getCategories: PropTypes.func.isRequired,
-    postChallenge: PropTypes.func.isRequired,
+    sendChallenge: PropTypes.func.isRequired,
+    discardHandler: PropTypes.func.isRequired,
+    resetState: PropTypes.func.isRequired,
     categories: ImmutablePropTypes.list.isRequired,
-    user: PropTypes.string
+    headerTitle: PropTypes.string
 };
 
-export default reduxForm({
-    form: 'create',
-    fields: [
-        'title',
-        'description',
-        'category',
-        'startDate',
-        'endDate',
-        'repeateble',
-        'proof',
-        'user',
-        'image'
-    ],
-    validate
-})(CreateForm);
+export default CreateForm;

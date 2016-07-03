@@ -1,17 +1,72 @@
-import { connect } from 'react-redux';
+import { push, goBack } from 'react-router-redux';
+import { reduxForm } from 'redux-form';
+import loadable from '../../../common/components/loadable';
+import validate from './validate';
 import CreateForm from './CreateForm';
-import { fetchCategories, postChallenge } from '../create.actions';
+import { fetchCategories, sendChallenge } from '../create.actions';
+import { resetState, fetchChallenge } from '../../challenge/challenge.actions';
 
-const mapStateToProps = ({ categories, auth }) => ({ categories, user: auth.get('userId') });
+const mapStateToProps = ({ categories, auth, challenge }) => {
+    const challengeCategories = challenge.toJS().categories;
+    const user = auth.get('userId');
+    const initialValues = {
+        ...challenge.toJS(),
+        category: challengeCategories && challengeCategories[0]._id,
+        user
+    };
+    return {
+        categories,
+        initialValues,
+        user,
+        challenge
+    };
+};
 
-const mapDispatchToProps = (dispatch) => ({
-    getCategories: () => {
-        dispatch(fetchCategories());
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+    const innerSendChallenge = sendChallenge(stateProps.challenge);
+    const { challengeId } = ownProps;
+    const { dispatch } = dispatchProps;
+    return {
+        ...ownProps,
+        ...stateProps,
+        ...dispatchProps,
+        discardHandler: () => dispatch(goBack()),
+        sendChallenge: (data) => {
+            dispatch(innerSendChallenge(data));
+        },
+        onLoad() {
+            if (!stateProps.user) {
+                dispatch(push('/'));
+                return;
+            }
+            dispatch(fetchCategories());
+            if (challengeId) {
+                dispatch(fetchChallenge(challengeId));
+            }
+        },
+        resetState
+    };
+
+};
+
+export default reduxForm(
+    {
+        form: 'create',
+        fields: [
+            'title',
+            'description',
+            'category',
+            'startDate',
+            'endDate',
+            'repeateble',
+            'proof',
+            'user',
+            'image'
+        ],
+        validate
     },
-    postChallenge: (challenge) => {
-        dispatch(postChallenge(challenge));
-    }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreateForm);
+    mapStateToProps,
+    null,
+    mergeProps
+)(loadable(CreateForm));
 

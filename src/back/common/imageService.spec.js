@@ -2,7 +2,6 @@
 
 const proxyquire = require('proxyquire');
 
-
 describe('ImageService', () => {
     let sut,
         request,
@@ -38,7 +37,8 @@ describe('ImageService', () => {
         };
 
         q = {
-            defer: env.stub().returns(mockPromise)
+            defer: env.stub().returns(mockPromise),
+            resolve: env.spy()
         };
 
         sut = proxyquire('./imageService', {
@@ -143,9 +143,8 @@ describe('ImageService', () => {
         });
 
         it('should resolve promise with hard coded image', () => {
-            const expectedPath = 'http://placekitten.com/400/400';
-            mockPromise.resolve.should.been
-                .calledWith(expectedPath);
+            q.resolve.should.been
+                .calledWith(sinon.match.string);
         });
     });
 });
